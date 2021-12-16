@@ -63,7 +63,7 @@ public class AreaMgr : MonoBehaviour
     public Dictionary<Vector3, GameObject> rooms = new Dictionary<Vector3, GameObject>();
 
     public int roomNum;
-
+    public bool aaa;
     public void Start()
     {
 
