@@ -12,7 +12,7 @@ public class EventInfo<T> : IEventInfo
     public UnityAction<T> actions;
     public EventInfo(UnityAction<T> action)
     {
-        action += action;
+        actions += action;
     }
 }
 public class EventInfo : IEventInfo
@@ -20,7 +20,7 @@ public class EventInfo : IEventInfo
     public UnityAction actions;
     public EventInfo(UnityAction action)
     {
-        action += action;
+        actions += action;
     }
 }
 /// <summary>
@@ -95,7 +95,9 @@ public class EventCenter:InstanceNoMono<EventCenter>
         if (eventDic.ContainsKey(name))
         {
             if ((eventDic[name] as EventInfo<T>).actions != null)
-                (eventDic[name] as EventInfo<T>).actions.Invoke(info);
+            {
+                (eventDic[name] as EventInfo<T>).actions(info);
+            }
         }
 
     }
@@ -105,7 +107,9 @@ public class EventCenter:InstanceNoMono<EventCenter>
         if (eventDic.ContainsKey(name))
         {
             if ((eventDic[name] as EventInfo).actions != null)
-                (eventDic[name] as EventInfo).actions.Invoke();
+            {
+                (eventDic[name] as EventInfo).actions();
+            }
         }
 
     }

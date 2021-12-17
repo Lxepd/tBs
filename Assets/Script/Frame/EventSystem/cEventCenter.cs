@@ -7,8 +7,8 @@ using System;
 /// 事件类型（类名）
 /// </summary>
 public enum EventType
-{ 
-
+{
+    Joystick
 }
 public delegate void CallBack();
 public delegate void CallBack<T>(T t_arg);

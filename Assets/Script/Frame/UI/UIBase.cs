@@ -12,7 +12,7 @@ public class UIBase : MonoBehaviour
     private Dictionary<string, List<UIBehaviour>> controlDic = new Dictionary<string, List<UIBehaviour>>();
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Awake()
     {
         FindChildrenControl<Button>();
         FindChildrenControl<Image>();
@@ -20,6 +20,7 @@ public class UIBase : MonoBehaviour
         FindChildrenControl<Toggle>();
         FindChildrenControl<Slider>();
         FindChildrenControl<ScrollRect>();
+        FindChildrenControl<InputField>();
     }
     /// <summary>
     /// 显示UI
@@ -32,6 +33,18 @@ public class UIBase : MonoBehaviour
     /// 隐藏UI
     /// </summary>
     public virtual void HideMe()
+    {
+
+    }
+    /// <summary>
+    /// 点击
+    /// </summary>
+    /// <param name="btnName"></param>
+    protected virtual void OnClick(string btnName)
+    {
+
+    }
+    protected virtual void OnValueChange(string btnName,bool value)
     {
 
     }
@@ -61,16 +74,32 @@ public class UIBase : MonoBehaviour
     private void FindChildrenControl<T>() where T : UIBehaviour
     {
         T[] btns = GetComponentsInChildren<T>();
-        string objName;
 
         foreach (var item in btns)
         {
-            objName = item.gameObject.name;
+            string objName = item.gameObject.name;
 
             if (controlDic.ContainsKey(item.gameObject.name))
                 controlDic[objName].Add(item);
             else
                 controlDic.Add(objName, new List<UIBehaviour>() { item });
+        
+            // 按钮
+            if(item is Button)
+            {
+                (item as Button).onClick.AddListener(()=> 
+                {
+                    OnClick(objName);
+                });
+            }
+            // 单选框或多选框
+            else if (item is Toggle)
+            {
+                (item as Toggle).onValueChanged.AddListener((value) =>
+                {
+                    OnValueChange(objName, value);
+                });
+            }
         }
 
     }

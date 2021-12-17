@@ -49,14 +49,14 @@ public class MusicMgr : InstanceNoMono<MusicMgr>
     /// <param name="name"></param>
     public void PlayBkMusic(string name)
     {
-        if(bkMusic==null)
+        if (bkMusic == null)
         {
             GameObject obj = new GameObject();
             obj.name = "BkMusic";
             bkMusic = obj.AddComponent<AudioSource>();
         }
 
-        ResMgr.GetInstance().LoadAsync<AudioClip>("Music / Sound" + name, (clip) =>
+        ResMgr.GetInstance().LoadAsync<AudioClip>("Music/Bk" + name, (clip) =>
         {
             bkMusic.clip = clip;
             bkMusic.loop = true;
