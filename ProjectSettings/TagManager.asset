@@ -6,6 +6,7 @@ TagManager:
   tags:
   - "\u6295\u63B7\u7269"
   - "\u5899\u58C1"
+  - "\u654C\u4EBA"
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - "\u6295\u63B7\u7269"
+  - "\u654C\u4EBA"
   - 
   - 
   - 

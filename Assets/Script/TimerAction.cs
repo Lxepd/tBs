@@ -64,7 +64,7 @@ public class TimerAction : InstanceNoMono<TimerAction>
     /// <summary>
     /// 判断是否开始进行 计时器事件
     /// </summary>
-    private bool isPlayer;
+    public bool isPlayer;
     public TimerAction()
     {
         MonoMgr.GetInstance().AddUpdateListener(ActionUpdate);
@@ -75,13 +75,15 @@ public class TimerAction : InstanceNoMono<TimerAction>
         {
             currentTime += Time.deltaTime;
 
-            foreach (var item in action)
+            for (int i = 0; i < action.Count; i++)
             {
-                if (item.timer <= currentTime)
+                if (action[i].timer <= currentTime)
                 {
-                    item.action();
+                    action[i].action();
+                    action.RemoveAt(i--);
                 }
             }
+
 
             if (action.Count == 0)
             {
@@ -90,28 +92,24 @@ public class TimerAction : InstanceNoMono<TimerAction>
             }
         }
     }
-    public void PlayerAction(string name, float time = 0, Action callBack = null, bool isStop = true)
+    public void AddTimerActionDic(string name, float time = 0, Action callBack = null)
     {
-        if (isStop)
-        {
-            Stop();
-        }
-
-        // 字典没有，则注册一个
-        if (!actionDic.TryGetValue(name, out var act))
+        if(!actionDic.ContainsKey(name))
         {
             ActionsBase ab = new ActionsBase(time, callBack);
             actionDic.Add(name, ab);
-            action.AddRange(ab.actions);
         }
-        else
+    }
+
+    public void PlayerAction(string name)
+    {
+        if (actionDic.TryGetValue(name, out var act))
         {
             // 有则直接启用 计时器
-            action.AddRange(act.actions);
+            action.AddRange(actionDic[name].actions);
+            isPlayer = true;
+            currentTime = 0;
         }
-
-        isPlayer = true;
-        currentTime = 0;
     }
 
     private void Stop()

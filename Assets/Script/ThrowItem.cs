@@ -8,7 +8,7 @@ public class ThrowItem : MonoBehaviour
     {
         if(collision.CompareTag("г╫╠з"))
         {
-            PoolMgr.GetInstance().PushObj(name.Replace("(Clone)",""), gameObject);
+            PoolMgr.GetInstance().PushObj("Prefabs/й╞вс", gameObject);
         }
     }
 }

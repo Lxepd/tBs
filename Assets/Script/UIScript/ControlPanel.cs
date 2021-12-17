@@ -32,8 +32,10 @@ public class ControlPanel : UIBase
     void Start()
     {
         numText = GetControl<Text>("ThrowNum");
-        EventCenter.GetInstance().AddEventListener<Collider2D[]>("Missile", (x) => { missiles = x; });
+        EventCenter.GetInstance().AddEventListener<Collider2D[]>("附近投掷物", (x) => { missiles = x; });
         EventCenter.GetInstance().AddEventListener<Vector2>("PlayerPos", (x)=> { playerPos = x; });
+
+        TimerAction.GetInstance().AddTimerActionDic("扔石子", .5f, Throw);
     }
 
     // Update is called once per frame
@@ -75,15 +77,11 @@ public class ControlPanel : UIBase
         // 遍历所有 玩家角色附近的 collider物
         foreach (var item in missiles)
         {
-            // 排除玩家
-            if (item.CompareTag("投掷物"))
-            {
-                // 一次只拿取一个，拿完跳出
-                PushQueue(item.gameObject);
-                item.gameObject.SetActive(false);
-                Debug.Log(throwMagazine.Count);
-                return;
-            }
+            // 一次只拿取一个，拿完跳出
+            PushQueue(item.gameObject);
+            item.gameObject.SetActive(false);
+            Debug.Log(throwMagazine.Count);
+            return;
         }
     }
     /// <summary>
@@ -91,26 +89,13 @@ public class ControlPanel : UIBase
     /// </summary>
     private void ThrowThing()
     {
+        if (TimerAction.GetInstance().isPlayer)
+            return;
+
         if (throwMagazine.Count == 0)
         {
-
             Debug.Log("没有更厉害的东西掷出，只能投掷石子了");
-
-            PoolMgr.GetInstance().GetObj("Prefabs/石子", (x) =>
-            {
-                TimerAction.GetInstance().PlayerAction("掷石头", .5f, () =>
-                {
-                    x.transform.position = playerPos;
-                    Rigidbody2D rg = x.GetComponent<Rigidbody2D>();
-                    rg.velocity = Vector2.right * 5;
-
-                    if (x.GetComponent<ThrowItem>() == null)
-                    {
-                        x.AddComponent<ThrowItem>();
-                    }
-
-                });
-            });
+            TimerAction.GetInstance().PlayerAction("扔石子");
 
             return;
         }
@@ -129,5 +114,19 @@ public class ControlPanel : UIBase
         UIMgr.GetInstance().ShowPanel<BagPanel>("BagPanel", E_UI_Layer.Above);
     }
 
+    private void Throw()
+    {
+        PoolMgr.GetInstance().GetObj("Prefabs/石子", (x) =>
+        {
+            x.transform.position = playerPos;
 
+            Rigidbody2D rg = x.GetComponent<Rigidbody2D>();
+            rg.velocity = Vector2.right * 5;
+
+            if (x.GetComponent<ThrowItem>() == null)
+            {
+                x.AddComponent<ThrowItem>();
+            }
+        });
+    }
 }

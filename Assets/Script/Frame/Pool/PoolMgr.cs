@@ -42,7 +42,6 @@ public class PoolData
         obj = poolList[0];
         poolList.RemoveAt(0);
         obj.SetActive(true);
-        obj.transform.parent = null;
 
         return obj;
     }
@@ -63,7 +62,7 @@ public class PoolMgr:InstanceNoMono<PoolMgr>
     /// <param name="name"></param>
     public void GetObj(string name,UnityAction<GameObject> callBack)
     {
-        if(poolDic.ContainsKey(name) && poolDic[name].poolList.Count>0)
+        if (poolDic.ContainsKey(name) && poolDic[name].poolList.Count > 0)
         {
             callBack(poolDic[name].GetObj());
         }
@@ -71,10 +70,10 @@ public class PoolMgr:InstanceNoMono<PoolMgr>
         {
             // 通过异步加载资源，创建对象给外部用
             ResMgr.GetInstance().LoadAsync<GameObject>(name, (x) =>
-             {
-                 x.name = name;
-                 callBack(x);
-             });
+            {
+                x.name = name;
+                callBack(x);
+            });
 
             //obj = Object.Instantiate(Resources.Load<GameObject>(name));
             //obj.name = name;
@@ -88,7 +87,7 @@ public class PoolMgr:InstanceNoMono<PoolMgr>
    /// <param name="obj">放的东西是啥</param>
     public void PushObj(string name,GameObject obj)
     {
-        if(objParent==null)
+        if (objParent==null)
         {
             objParent = new GameObject("Pool");
         }
