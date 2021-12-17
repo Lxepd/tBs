@@ -1,0 +1,17 @@
+<Item>
+	<it id="1" name="a">
+		<icon>1</icon>
+		<type>1</type>
+		<tips>11111</tips>
+	</it>
+	<it id="2" name="b">
+		<icon>2</icon>
+		<type>2</type>
+		<tips>22222</tips>
+	</it>
+	<it id="3" name="c">
+		<icon>3</icon>
+		<type>3</type>
+		<tips>33333</tips>
+	</it>
+</Item>

@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        EventCenter.GetInstance().EventTrigger<Vector2>("PlayerPos", transform.position);
+
         rg.velocity = dir*speed;
         CheckMissileScope();
     }
