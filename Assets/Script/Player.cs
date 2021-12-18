@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     /// </summary>
     private void CheckMissileScope()
     {
+        // 获取范围的场景投掷物
         Collider2D[] cols = Physics2D.OverlapBoxAll(transform.position, new Vector2(2, 2), .5f,LayerMask.GetMask("投掷物"));
         // 消息中心存储 <附近投掷物> 消息
         EventCenter.GetInstance().EventTrigger<Collider2D[]>("附近投掷物", cols);
@@ -48,11 +49,17 @@ public class Player : MonoBehaviour
     /// </summary>
     private void FindProximityOfEnemy()
     {
+        // 获取范围内的敌人
         Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 3f, LayerMask.GetMask("敌人"));
-
-        QuickSortArray(cols, 0, cols.Length - 1);
-
-        Debug.Log(cols[0].name);
+        // 如果范围内没人
+        if(cols.Length==0)
+        {
+            // 消息中心存储 <距离最近的敌人> 消息
+            EventCenter.GetInstance().EventTrigger<Collider2D>("距离最近的敌人", null);
+            return;
+        }
+        // 进行排序
+        GameTool.QuickSortArray(transform.position, cols, 0, cols.Length - 1);
         // 消息中心存储 <距离最近的敌人> 消息
         EventCenter.GetInstance().EventTrigger<Collider2D>("距离最近的敌人", cols[0]);
     }
@@ -61,48 +68,5 @@ public class Player : MonoBehaviour
         Gizmos.color = Color.black;
         Gizmos.DrawWireSphere(transform.position, 3f);
     }
-    /// <summary>
-    /// 快速排序
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="array">待排序组</param>
-    /// <param name="start">排序起点</param>
-    /// <param name="end">排序终点</param>
-    public void QuickSortArray(Collider2D[] array,int start, int end)
-    {
-        // 如果起点 >= 终点，跳出
-        if (start >= end)
-            return;
-
-        int left = start, right = end;
-        float m = GetDis(array[start]);
-        Collider2D temp = array[start];
-
-        while (left<right)
-        {
-            while (left < right && GetDis(array[right]) >= m)
-            {
-                right--;
-            }
-
-            array[left] = array[right];
-
-            while (left < right && GetDis(array[left]) <= m)
-            {
-                left++;
-            }
-
-            array[right] = array[left];
-        }
-
-        array[right] = temp;
-
-        QuickSortArray(array, start, left - 1);
-        QuickSortArray(array, left + 1, end);
-    }
-
-    public float GetDis(Collider2D array)
-    {
-        return Vector2.Distance(array.gameObject.transform.position, transform.position);
-    }
+    
 }

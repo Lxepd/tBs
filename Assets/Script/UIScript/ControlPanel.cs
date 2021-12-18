@@ -16,7 +16,11 @@ public class ControlPanel : UIBase
     private int maxThingNum = 5;
 
     // 当前玩家位置
-    private Vector2 playerPos;
+    private Vector3 playerPos;
+    // 最近的敌人
+    private GameObject nearEnemy;
+    // 敌人方向向量
+    private Vector3 enemyDir;
 
     protected override void Awake()
     {
@@ -32,15 +36,33 @@ public class ControlPanel : UIBase
     void Start()
     {
         numText = GetControl<Text>("ThrowNum");
+        // 从消息中心拿取消息
         EventCenter.GetInstance().AddEventListener<Collider2D[]>("附近投掷物", (x) => { missiles = x; });
-        EventCenter.GetInstance().AddEventListener<Vector2>("PlayerPos", (x)=> { playerPos = x; });
+        EventCenter.GetInstance().AddEventListener<Vector2>("PlayerPos", (x) => { playerPos = x; });
+        EventCenter.GetInstance().AddEventListener<Collider2D>("距离最近的敌人", (x) =>
+        {
+            if (x == null)
+            {
+                nearEnemy = null;
+                return;
+            }
 
-        TimerAction.GetInstance().AddTimerActionDic("扔石子", .5f, Throw);
+            nearEnemy = x.gameObject;
+        });
+        // 注册投掷的计时器事件
+        TimerAction.GetInstance().AddTimerActionDic("扔石子", .5f, ThrowBase);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (nearEnemy != null)
+        {
+            enemyDir = (nearEnemy.transform.position - playerPos).normalized;
+
+        }
+
+        Debug.Log(enemyDir);
 
     }
     private void PushQueue(GameObject thing)
@@ -113,20 +135,30 @@ public class ControlPanel : UIBase
         Debug.Log("打开背包！！");
         UIMgr.GetInstance().ShowPanel<BagPanel>("BagPanel", E_UI_Layer.Above);
     }
-
-    private void Throw()
+    /// <summary>
+    /// 基础投掷物---石子投掷
+    /// </summary>
+    private void ThrowBase()
     {
         PoolMgr.GetInstance().GetObj("Prefabs/石子", (x) =>
         {
             x.transform.position = playerPos;
 
             Rigidbody2D rg = x.GetComponent<Rigidbody2D>();
-            rg.velocity = Vector2.right * 5;
+            if (enemyDir == Vector3.zero)
+            {
+                rg.velocity = 5 * Vector2.right;
+            }
+            else
+            {
+                rg.velocity = 5 * enemyDir;
+            }
 
             if (x.GetComponent<ThrowItem>() == null)
             {
                 x.AddComponent<ThrowItem>();
             }
+
         });
     }
 }
