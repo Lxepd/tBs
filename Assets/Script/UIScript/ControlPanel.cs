@@ -56,14 +56,7 @@ public class ControlPanel : UIBase
     // Update is called once per frame
     void Update()
     {
-        if (nearEnemy != null)
-        {
-            enemyDir = (nearEnemy.transform.position - playerPos).normalized;
-
-        }
-
-        Debug.Log(enemyDir);
-
+        
     }
     private void PushQueue(GameObject thing)
     {
@@ -145,12 +138,15 @@ public class ControlPanel : UIBase
             x.transform.position = playerPos;
 
             Rigidbody2D rg = x.GetComponent<Rigidbody2D>();
-            if (enemyDir == Vector3.zero)
+            // 默认向右发射
+            if (nearEnemy == null)
             {
                 rg.velocity = 5 * Vector2.right;
             }
+            // 有敌人就朝敌人发射
             else
             {
+                enemyDir = (nearEnemy.transform.position - playerPos).normalized;
                 rg.velocity = 5 * enemyDir;
             }
 
