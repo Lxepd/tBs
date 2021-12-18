@@ -40,13 +40,13 @@ public class SupplyPoint : MonoBehaviour
     private void Start()
     {
         TimerAction.GetInstance().AddTimerActionDic("ฒนธ๘", 2f, NewSupply);
-        //TimerAction.GetInstance().PlayerAction("ฒนธ๘");
+        
 
     }
 
     private void Update()
     {
-
+        TimerAction.GetInstance().PlayerAction("ฒนธ๘");
     }
 
     private void NewSupply()
