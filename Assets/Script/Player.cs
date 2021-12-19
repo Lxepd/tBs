@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     private void CheckMissileScope()
     {
         // 获取范围的场景投掷物
-        Collider2D[] cols = Physics2D.OverlapBoxAll(transform.position, new Vector2(2, 2), shootThrowThingLen, LayerMask.GetMask("投掷物"));
+        Collider2D[] cols = Physics2D.OverlapBoxAll(transform.position, new Vector2(2, 2), shootThrowThingLen, LayerMask.GetMask("场景投掷物"));
         // 消息中心存储 <附近投掷物> 消息
         EventCenter.GetInstance().EventTrigger<Collider2D[]>("附近投掷物", cols);
     }

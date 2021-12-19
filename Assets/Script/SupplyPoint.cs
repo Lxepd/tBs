@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 /// <summary>
@@ -39,20 +40,20 @@ public class SupplyPoint : MonoBehaviour
     /// </summary>
     public SupplyData data;
 
-    TimeAction timeAction = new TimeAction();
+    Timer cdTimer;
 
     private void Start()
     {
-        timeAction.RegisterTimerTask("补给" + data.type.ToString(), 2f, NewSupply,true);
-        timeAction.PlayTimerTask("补给" + data.type.ToString());
-        //if (timeAction == null)
-        //    timeAction = new TimeAction();
-        //Debug.Log(timeAction);
+        cdTimer = new Timer(3f, true);
     }
 
     private void Update()
     {
-        timeAction.OnUpdate();
+        if (!cdTimer.isTimeUp)
+            return;
+
+        cdTimer.Start();
+        NewSupply();
     }
 
     private void NewSupply()
@@ -60,6 +61,20 @@ public class SupplyPoint : MonoBehaviour
         if (data.type == SupplyType.None)
             return;
 
-        Debug.Log(data.type);
+        //Collider2D cols = Physics2D.OverlapBox(transform.position, GetComponent<BoxCollider2D>().bounds.size, .1f, LayerMask.GetMask("场景投掷物"));
+        //if (cols == null)
+        //{
+        //    PoolMgr.GetInstance().GetObj("Prefabs/" + data.type.ToString(), (x) =>
+        //    {
+        //        x.transform.position = transform.position;
+        //    });
+            Debug.Log(data.type);
+        //}
+
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(0, 255, 255);
+        Gizmos.DrawWireCube(transform.position, GetComponent<BoxCollider2D>().bounds.size);
     }
 }
