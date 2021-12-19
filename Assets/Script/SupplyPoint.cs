@@ -37,16 +37,17 @@ public class SupplyPoint : MonoBehaviour
     /// </summary>
     public SupplyData data;
 
+    private TimeAction timeAction;
     private void Start()
     {
-        TimerAction.GetInstance().AddTimerActionDic("补给", 2f, NewSupply);
-        
-
+        //TimerAction.GetInstance().AddTimerActionDic("补给", 2f, NewSupply);
+        Debug.Log(timeAction);
     }
 
     private void Update()
     {
-        TimerAction.GetInstance().PlayerAction("补给");
+        //TimerAction.GetInstance().PlayerAction("补给");
+
     }
 
     private void NewSupply()

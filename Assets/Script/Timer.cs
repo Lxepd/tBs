@@ -32,7 +32,7 @@ public class Timer
         isLoop = _loop;
     }
 }
-public class TimeAction : InstanceNoMono<TimeAction>
+public class TimeAction
 {
     /// <summary>
     /// 已经注册的计时任务字典
@@ -42,6 +42,14 @@ public class TimeAction : InstanceNoMono<TimeAction>
     /// 计时任务表
     /// </summary>
     private List<Timer> actTaskTable = new List<Timer>();
+    /// <summary>
+    /// 是否在计时
+    /// </summary>
+    public bool isTimer;
+    /// <summary>
+    /// 记录按键按下之后的时间，用于执行事件
+    /// </summary>
+    private float currentTime;
 
     public TimeAction()
     {
@@ -52,20 +60,20 @@ public class TimeAction : InstanceNoMono<TimeAction>
     /// </summary>
     private void OnUpdate()
     {
-        if (actTaskTable.Count < 1)
+        if (!isTimer)
             return;
 
         float deltaTime = Time.deltaTime;
+        // currentTime += deltaTime;
 
         for (int i = 0; i < actTaskTable.Count; i++)
         {
             // 任务是暂停状态
             if (actTaskTable[i].isPause)
                 return;
-
             actTaskTable[i].curTime += deltaTime;
             // 如果内置时间 到 执行任务的时间
-            if(actTaskTable[i].curTime >= actTaskTable[i].time)
+            if (actTaskTable[i].curTime >= actTaskTable[i].time)
             {
                 // 该任务的委托
                 actTaskTable[i].action();
@@ -84,6 +92,11 @@ public class TimeAction : InstanceNoMono<TimeAction>
             }
         }
 
+        if(actTaskTable.Count==0)
+        {
+            isTimer = false;
+        }
+
     }
     /// <summary>
     /// 注册任务
@@ -92,12 +105,41 @@ public class TimeAction : InstanceNoMono<TimeAction>
     /// <param name="time">执行时间</param>
     /// <param name="act">执行的委托</param>
     /// <param name="loop">是否重复</param>
-    public void RegisterTimerTask(string name, float time, Action act, bool loop)
+    public void RegisterTimerTask(string name, float time, Action act, bool loop = false)
     {
         if (!timeActionDic.ContainsKey(name))
         {
             timeActionDic.Add(name, new Timer(time, act, loop));
         }
+    }
+    public void PlayTimerTask(string name)
+    {
+        Debug.Log(actTaskTable.Count);
+
+        if (!timeActionDic.ContainsKey(name))
+        {
+            throw new Exception(string.Format("字典里面没有注册<{0}>任务", name));
+        }
+
+        actTaskTable.Add(timeActionDic[name]);
+        isTimer = true;
+
+        foreach (var item in actTaskTable)
+        {
+            item.curTime = 0;
+        }
+    }
+    /// <summary>
+    /// 停止播放
+    /// </summary>
+    public void Stop()
+    {
+        if (!isTimer)
+            return;
+
+
+        isTimer = false;
+        Clear();
     }
     /// <summary>
     /// 暂停任务
@@ -130,6 +172,6 @@ public class TimeAction : InstanceNoMono<TimeAction>
     /// </summary>
     public void Clear()
     {
-        timeActionDic.Clear();
+        actTaskTable.Clear();
     }
 }
