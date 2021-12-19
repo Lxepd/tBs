@@ -21,9 +21,7 @@ public class ControlPanel : UIBase
     private GameObject nearEnemy;
     // 敌人方向向量
     private Vector3 enemyDir;
-
-    private TimeAction timerAct = new TimeAction();
-
+    TimeAction timeAction = new TimeAction();
     protected override void Awake()
     {
         base.Awake();
@@ -52,15 +50,15 @@ public class ControlPanel : UIBase
             nearEnemy = x.gameObject;
         });
         // 注册投掷的计时器事件
-        //TimerAction.GetInstance().AddTimerActionDic("扔石子", .5f, ThrowBase);
-        timerAct.RegisterTimerTask("扔石子", .5f, ThrowBase);
+        timeAction.RegisterTimerTask("扔石子", .5f, ThrowBase);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        timeAction.OnUpdate();
+
     }
     private void PushQueue(GameObject thing)
     {
@@ -108,16 +106,14 @@ public class ControlPanel : UIBase
     /// </summary>
     private void ThrowThing()
     {
-        //if (TimerAction.GetInstance().isPlayer)
-        //    return;
-        if (timerAct.isTimer)
+        if (TimeAction.GetInstance().isTimer)
             return;
 
         if (throwMagazine.Count == 0)
         {
             Debug.Log("没有更厉害的东西掷出，只能投掷石子了");
             //TimerAction.GetInstance().PlayerAction("扔石子");
-            timerAct.PlayTimerTask("扔石子");
+            timeAction.PlayTimerTask("扔石子");
 
             return;
         }

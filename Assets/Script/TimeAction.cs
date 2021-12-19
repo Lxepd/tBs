@@ -32,7 +32,7 @@ public class Timer
         isLoop = _loop;
     }
 }
-public class TimeAction
+public class TimeAction : InstanceNoMono<TimeAction>
 {
     /// <summary>
     /// 已经注册的计时任务字典
@@ -51,14 +51,14 @@ public class TimeAction
     /// </summary>
     private float currentTime;
 
-    public TimeAction()
-    {
-        MonoMgr.GetInstance().AddUpdateListener(OnUpdate);
-    }
+    //public TimeAction()
+    //{
+    //    MonoMgr.GetInstance().AddUpdateListener(OnUpdate);
+    //}
     /// <summary>
     /// 更新
     /// </summary>
-    private void OnUpdate()
+    public void OnUpdate()
     {
         if (!isTimer)
             return;
@@ -114,8 +114,6 @@ public class TimeAction
     }
     public void PlayTimerTask(string name)
     {
-        Debug.Log(actTaskTable.Count);
-
         if (!timeActionDic.ContainsKey(name))
         {
             throw new Exception(string.Format("字典里面没有注册<{0}>任务", name));

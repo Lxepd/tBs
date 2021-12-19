@@ -10,7 +10,9 @@ public enum SupplyType
 {
     None,
     罐子,
-    砖头
+    砖头,
+    玻璃,
+    球
 }
 /// <summary>
 /// 补给数据
@@ -37,17 +39,20 @@ public class SupplyPoint : MonoBehaviour
     /// </summary>
     public SupplyData data;
 
-    private TimeAction timeAction;
+    TimeAction timeAction = new TimeAction();
+
     private void Start()
     {
-        //TimerAction.GetInstance().AddTimerActionDic("补给", 2f, NewSupply);
-        Debug.Log(timeAction);
+        timeAction.RegisterTimerTask("补给" + data.type.ToString(), 2f, NewSupply,true);
+        timeAction.PlayTimerTask("补给" + data.type.ToString());
+        //if (timeAction == null)
+        //    timeAction = new TimeAction();
+        //Debug.Log(timeAction);
     }
 
     private void Update()
     {
-        //TimerAction.GetInstance().PlayerAction("补给");
-
+        timeAction.OnUpdate();
     }
 
     private void NewSupply()
