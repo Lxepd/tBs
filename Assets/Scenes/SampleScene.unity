@@ -6949,6 +6949,10 @@ PrefabInstance:
       propertyPath: data.type
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1275207857350060322, guid: 707e6f5053bf4b949a2c95dfff702e12, type: 3}
+      propertyPath: data.supplyNum
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2146144110948915525, guid: 707e6f5053bf4b949a2c95dfff702e12, type: 3}
       propertyPath: m_IsActive
       value: 0

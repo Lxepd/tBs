@@ -29,6 +29,11 @@ public class SupplyData
     /// 补给类型
     /// </summary>
     public SupplyType type;
+    /// <summary>
+    /// 当前已补给数量
+    /// </summary>
+    //[HideInInspector]
+    public int num;
 }
 /// <summary>
 /// 补给点
@@ -44,33 +49,52 @@ public class SupplyPoint : MonoBehaviour
 
     private void Start()
     {
-        cdTimer = new Timer(3f, true);
+        cdTimer = new Timer(3f, true, true);
     }
 
     private void Update()
     {
-        if (!cdTimer.isTimeUp)
-            return;
 
-        cdTimer.Start();
-        NewSupply();
+        Collider2D cols = Physics2D.OverlapBox(transform.position, GetComponent<BoxCollider2D>().bounds.size, .1f, LayerMask.GetMask("场景投掷物"));
+        if(cols!=null)
+        {
+            cdTimer.Continue();
+        }
+
+        if (cdTimer.isTimeUp)
+        {
+            NewSupply();
+        }
+ 
     }
 
     private void NewSupply()
     {
-        if (data.type == SupplyType.None)
+        if (data.num == data.supplyNum || data.type == SupplyType.None)
+        {
+            cdTimer.End();
             return;
+        }
 
-        //Collider2D cols = Physics2D.OverlapBox(transform.position, GetComponent<BoxCollider2D>().bounds.size, .1f, LayerMask.GetMask("场景投掷物"));
-        //if (cols == null)
-        //{
-        //    PoolMgr.GetInstance().GetObj("Prefabs/" + data.type.ToString(), (x) =>
-        //    {
-        //        x.transform.position = transform.position;
-        //    });
-            Debug.Log(data.type);
-        //}
+        Collider2D cols = Physics2D.OverlapBox(transform.position, GetComponent<BoxCollider2D>().bounds.size, .1f, LayerMask.GetMask("场景投掷物"));
+        if (cols == null)
+        {
+            PoolMgr.GetInstance().GetObj("Prefabs/" + data.type.ToString(), (x) =>
+            {
+                x.transform.position = transform.position;
+                data.num++;
+            });
 
+            cdTimer.Pause();
+        }
+    }
+    private void CreateSupply()
+    {
+        PoolMgr.GetInstance().GetObj("Prefabs/" + data.type.ToString(), (x) =>
+        {
+            x.transform.position = transform.position;
+            data.num++;
+        });
     }
     private void OnDrawGizmos()
     {
