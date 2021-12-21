@@ -34,7 +34,8 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private void FindThrowDir()
     {
-        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 2f,LayerMask.GetMask("投掷物"));
+        LayerMask mask = LayerMask.GetMask("基础投掷物") | LayerMask.GetMask("场景投掷物");
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 2f, mask);
         if (cols.Length == 0)
             return;
 

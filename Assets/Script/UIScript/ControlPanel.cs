@@ -11,9 +11,9 @@ public class ControlPanel : UIBase
     private Text numText;
     // 投掷物弹匣
     // 将拿取的 投掷物放入 队列
-    private Queue<GameObject> throwMagazine;
+    private Queue<string> throwMagazine;
     // 拿取投掷物的最大数量
-    private int maxThingNum = 5;
+    private int maxThingNum = 10;
 
     // 当前玩家位置
     private Vector3 playerPos;
@@ -23,6 +23,8 @@ public class ControlPanel : UIBase
     private Vector3 enemyDir;
 
     Timer cdTimer;
+    public float throwSpeed = .5f;
+    private float lastThrow;
 
     protected override void Awake()
     {
@@ -30,7 +32,7 @@ public class ControlPanel : UIBase
 
         if (throwMagazine == null)
         {
-            throwMagazine = new Queue<GameObject>();
+            throwMagazine = new Queue<string>();
         }
 
     }
@@ -52,20 +54,19 @@ public class ControlPanel : UIBase
             nearEnemy = x.gameObject;
         });
 
-        cdTimer = new Timer(.5f,true);
+        cdTimer = new Timer(throwSpeed, true);
+        lastThrow = throwSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if(lastThrow != throwSpeed)
+        {
+            cdTimer.Reset(throwSpeed, false);
+            lastThrow = throwSpeed;
+        }
     }
-    private void PushQueue(GameObject thing)
-    {
-        if (throwMagazine.Count < maxThingNum)
-            throwMagazine.Enqueue(thing);
-    }
-
     /// <summary>
     /// 按钮点击事件注册
     /// </summary>
@@ -78,10 +79,12 @@ public class ControlPanel : UIBase
                 TakeThing();
                 break;
             case "ThrowBto":
-                if (!cdTimer.isTimeUp)
+                if (nearEnemy == null || !cdTimer.isTimeUp)
+                {
+                    Debug.Log("附近没怪 或者 CD没好");
                     return;
+                }
 
-                cdTimer.Start();
                 ThrowThing();
                 break;
             case "BagBto":
@@ -94,34 +97,42 @@ public class ControlPanel : UIBase
     /// </summary>
     private void TakeThing()
     {
-        Debug.Log("拿取  投掷物！！");
-        // 遍历所有 玩家角色附近的 collider物
-        foreach (var item in missiles)
+        if(missiles.Length<1)
         {
-            // 一次只拿取一个，拿完跳出
-            PushQueue(item.gameObject);
-            item.gameObject.SetActive(false);
-            Debug.Log(throwMagazine.Count);
+            Debug.Log("拿了个空气！！");
             return;
         }
+
+        Debug.Log("拿取  投掷物！！");
+        // 一次只拿取一个，拿完跳出
+        if (throwMagazine.Count < maxThingNum)
+        {
+            throwMagazine.Enqueue(missiles[0].name);
+            PoolMgr.GetInstance().PushObj(missiles[0].name, missiles[0].gameObject);
+            Debug.Log(throwMagazine.Count);
+        }
+
     }
     /// <summary>
     /// 投掷
     /// </summary>
     private void ThrowThing()
     {
-
+        // 如果弹匣里没有，则投掷石头进行攻击
         if (throwMagazine.Count == 0)
         {
             Debug.Log("没有更厉害的东西掷出，只能投掷石子了");
             ThrowBase("Prefabs/石子");
-            return;
         }
+        // 否则，扔弹匣中第一个投掷物
+        else
+        {
+            string firstThrow = throwMagazine.Dequeue();
+            Debug.Log(throwMagazine.Count);
 
-        GameObject th = throwMagazine.Dequeue();
-
-        Debug.Log("掷出  投掷物！！        " + th.name);
-        PoolMgr.GetInstance().PushObj(th.name,th);
+            Debug.Log("掷出  投掷物！！        " + firstThrow);
+            ThrowBase(firstThrow);
+        }
     }
     /// <summary>
     /// 打开背包
@@ -136,18 +147,15 @@ public class ControlPanel : UIBase
     /// </summary>
     private void ThrowBase(string name)
     {
+        Debug.Log(name);
         PoolMgr.GetInstance().GetObj(name, (x) =>
         {
             x.transform.position = playerPos;
 
             Rigidbody2D rg = x.GetComponent<Rigidbody2D>();
-            // 默认向右发射
-            if (nearEnemy == null)
-            {
-                rg.velocity = 5 * Vector2.right;
-            }
+
             // 有敌人就朝敌人发射
-            else
+            if(nearEnemy != null)
             {
                 enemyDir = (nearEnemy.transform.position - playerPos).normalized;
                 rg.velocity = 5 * enemyDir;

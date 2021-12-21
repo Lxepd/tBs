@@ -10,28 +10,28 @@ public class Timer
 {
     // 是否自动循环（<=0重置）
     public bool isAutoLoop
-    { 
-        get; 
-        private set; 
+    {
+        get;
+        private set;
     }
     // 是否暂停
-    public bool isStop 
-    { 
-        get; 
-        private set; 
+    public bool isStop
+    {
+        get;
+        private set;
     }
     // 当前时间
-    public float nowTime 
-    { 
-        get { return UpdateNowTime(); } 
-    } 
+    public float nowTime
+    {
+        get { return UpdateNowTime(); }
+    }
     // 是否时间到
-    public bool isTimeUp 
+    public bool isTimeUp
     {
         get { return nowTime <= 0; }
     }
     // 计时时间长度
-    public float Duration 
+    public float Duration
     {
         get;
         private set;
@@ -46,9 +46,9 @@ public class Timer
     /// 构造倒计时器
     /// </summary>
     /// <param name="duration">时长</param>
-    /// <param name="autoLoop">是否自动循环</param>
-    /// <param name="autoStart">是否自动开始</param>
-    public Timer(float duration, bool autoLoop=false,bool autoStart = true)
+    /// <param name="autoLoop">是否自动循环（默认不循环）</param>
+    /// <param name="autoStart">是否自动开始（默认自动开始）</param>
+    public Timer(float duration, bool autoLoop = false, bool autoStart = true)
     {
         isStop = true;
         Duration = Mathf.Max(0f, duration);
@@ -66,10 +66,10 @@ public class Timer
             // 返回剩余时间
             return curTime;
         // 如果剩余时间小于等于0
-        if(curTime <=0)
+        if (curTime <= 0)
         {
             // 如果是循环
-            if(isAutoLoop)
+            if (isAutoLoop)
                 // 重置时间
                 Reset(Duration, false);
 
@@ -102,7 +102,7 @@ public class Timer
     /// </summary>
     /// <param name="duration">持续时间</param>
     /// <param name="isStop">是否暂停</param>
-    public void Reset(float duration,bool isStop=false)
+    public void Reset(float duration, bool isStop = true)
     {
         // 更新标记
         UpdateLastTimeInfo();
@@ -149,7 +149,7 @@ public class Timer
     {
         UpdateLastTimeInfo();
 
-        if(curTime<=0||Duration<=0)
+        if (curTime <= 0 || Duration <= 0)
         {
             return 1f;
         }

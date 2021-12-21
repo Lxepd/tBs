@@ -28,6 +28,10 @@ public class Player : MonoBehaviour
         EventCenter.GetInstance().EventTrigger<Vector2>("PlayerPos", transform.position);
 
         rg.velocity = dir*speed;
+
+    }
+    private void FixedUpdate()
+    {
         CheckMissileScope();
         FindProximityOfEnemy();
     }
@@ -37,7 +41,7 @@ public class Player : MonoBehaviour
     private void CheckMissileScope()
     {
         // 获取范围的场景投掷物
-        Collider2D[] cols = Physics2D.OverlapBoxAll(transform.position, new Vector2(2, 2), shootThrowThingLen, LayerMask.GetMask("场景投掷物"));
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, shootThrowThingLen, LayerMask.GetMask("场景投掷物"));
         // 消息中心存储 <附近投掷物> 消息
         EventCenter.GetInstance().EventTrigger<Collider2D[]>("附近投掷物", cols);
     }
