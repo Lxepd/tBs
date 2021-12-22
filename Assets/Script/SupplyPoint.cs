@@ -45,7 +45,7 @@ public class SupplyPoint : MonoBehaviour
     /// </summary>
     public SupplyData data;
 
-    Timer cdTimer;
+    Timer supplyTimer;
     Vector2 size;
 
     // 是否无限补给
@@ -54,10 +54,9 @@ public class SupplyPoint : MonoBehaviour
         get => data.supplyNum == -1;
     }
 
-
     private void Start()
     {
-        cdTimer = new Timer(1f, true, true);
+        supplyTimer = new Timer(3f, true, true);
         size = GetComponent<BoxCollider2D>().bounds.size;
 
     }
@@ -67,10 +66,10 @@ public class SupplyPoint : MonoBehaviour
         Collider2D cols = Physics2D.OverlapBox(transform.position, size, .1f, LayerMask.GetMask("场景投掷物"));
         if (cols != null)
         {
-            cdTimer.Continue();
+            supplyTimer.Continue();
         }
 
-        if (cdTimer.isTimeUp)
+        if (supplyTimer.isTimeUp)
         {
             NewSupply();
         }
@@ -81,7 +80,7 @@ public class SupplyPoint : MonoBehaviour
     {
         if (!IsInfiniteSupply && data.num == data.supplyNum || data.type == SupplyType.None)
         {
-            cdTimer.End();
+            supplyTimer.End();
             return;
         }
 
@@ -94,16 +93,8 @@ public class SupplyPoint : MonoBehaviour
                 data.num++;
             });
 
-            cdTimer.Pause();
+            supplyTimer.Pause();
         }
-    }
-    private void CreateSupply()
-    {
-        PoolMgr.GetInstance().GetObj("Prefabs/" + data.type.ToString(), (x) =>
-        {
-            x.transform.position = transform.position;
-            data.num++;
-        });
     }
     private void OnDrawGizmos()
     {

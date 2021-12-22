@@ -21,15 +21,17 @@ public class ControlPanel : UIBase
     private GameObject nearEnemy;
     // 敌人方向向量
     private Vector3 enemyDir;
-
-    Timer cdTimer;
+    // 计时器
+    private Timer cdTimer;
+    // 投掷速度
     public float throwSpeed = .5f;
+    // 改变前的投掷速度
     private float lastThrow;
 
     protected override void Awake()
     {
         base.Awake();
-
+        // 初始化队列
         if (throwMagazine == null)
         {
             throwMagazine = new Queue<string>();
@@ -39,6 +41,7 @@ public class ControlPanel : UIBase
     // Start is called before the first frame update
     void Start()
     {
+        // 获取text组件
         numText = GetControl<Text>("ThrowNum");
         // 从消息中心拿取消息
         EventCenter.GetInstance().AddEventListener<Collider2D[]>("附近投掷物", (x) => { missiles = x; });
@@ -53,16 +56,28 @@ public class ControlPanel : UIBase
 
             nearEnemy = x.gameObject;
         });
-
+        // 计时器
         cdTimer = new Timer(throwSpeed, true);
         lastThrow = throwSpeed;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(lastThrow != throwSpeed)
+        // 根据队列数量修改text的文本
+        if(throwMagazine.Count<1)
         {
+            numText.text = "∞";
+        }
+        else
+        {
+            numText.text = throwMagazine.Count + "/" + maxThingNum;
+        }
+        // 投掷速度修改时
+        if (lastThrow != throwSpeed)
+        {
+            // 重置计时器
             cdTimer.Reset(throwSpeed, false);
             lastThrow = throwSpeed;
         }

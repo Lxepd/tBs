@@ -46,7 +46,7 @@ public class SceneMgr : InstanceNoMono<SceneMgr>
         while(!ao.isDone)
         {
             // 用事件中心分发 更新进度条 事件
-            EventCenter.GetInstance().EventTrigger("进度条更新", ao.progress);
+            EventCenter.GetInstance().EventTrigger<float>("进度条更新", ao.progress);
             yield return ao.progress;
         }
 

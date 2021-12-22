@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
 
             Debug.Log("敌人扣血：    " + x);
             // 力 = 投掷物来向 * 投掷物重量
+            // rg.AddForce(nearThrow * newnearThrow.gameObject.data.mass;
             rg.AddForce(nearThrow * 5, ForceMode2D.Impulse);
         });
     }

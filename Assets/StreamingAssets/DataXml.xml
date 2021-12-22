@@ -1,0 +1,53 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<Data>
+	<it id="10011">
+		<path>Prefabs/石子</path>
+		<name>石子</name>
+		<tips>没什么用的小石头</tips>
+		<mass>0</mass>
+		<hurt>1</hurt>
+		<price>0</price>
+		<buy>false</buy>
+		<sell>false</sell>
+	</it>
+	<it id="10012">
+		<path>Prefabs/罐子</path>
+		<name>罐子</name>
+		<tips>很好看的罐子，要是拿来砸人。。。挺。。挺痛的吧</tips>
+		<mass>9</mass>
+		<hurt>6</hurt>
+		<price>0</price>
+		<buy>false</buy>
+		<sell>false</sell>
+	</it>
+	<it id="10013">
+		<path>Prefabs/砖头</path>
+		<name>砖头</name>
+		<tips>随处可见的建筑材料</tips>
+		<mass>4</mass>
+		<hurt>3</hurt>
+		<price>0</price>
+		<buy>false</buy>
+		<sell>false</sell>
+	</it>
+	<it id="10014">
+		<path>Prefabs/玻璃</path>
+		<name>玻璃</name>
+		<tips>透光挺不错的</tips>
+		<mass>1</mass>
+		<hurt>1</hurt>
+		<price>0</price>
+		<buy>false</buy>
+		<sell>false</sell>
+	</it>
+	<it id="10015">
+		<path>Prefabs/球</path>
+		<name>球</name>
+		<tips>玩球吗？</tips>
+		<mass>6</mass>
+		<hurt>4</hurt>
+		<price>0</price>
+		<buy>false</buy>
+		<sell>false</sell>
+	</it>
+</Data>
