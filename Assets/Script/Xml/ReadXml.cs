@@ -7,28 +7,22 @@ using UnityEngine.UI;
 
 public class ReadXml : InstanceNoMono<ReadXml>
 {
-    private Dictionary<int, ThrowItemData> itemDataDic = new Dictionary<int, ThrowItemData>();
-
     //private void Start()
     //{
     //    path = Application.persistentDataPath + "/DataXml.xml";
     //    SetFileToPersistent(path);
     //    LoadXml(path);
     //}
-    public void ReadXmlFile(string path)
-    {
-        SetFileToPersistent(path);
-        LoadXml(path);
-    }
+
     /// <summary>
     /// 检查persistentDataPath路径有没有文件
     /// </summary>
-    private void SetFileToPersistent(string path)
+    public void SetFileToPersistent(string path, string xmlPath)
     {
-        FileInfo info = new FileInfo(path);
+        FileInfo info = new FileInfo(Application.persistentDataPath + path);
         if (!info.Exists)
         {
-            TextAsset ts = Resources.Load("Xml/DataXml") as TextAsset;
+            TextAsset ts = Resources.Load(xmlPath) as TextAsset;
             string content = ts.text;
             StreamWriter sw = info.CreateText();
             sw.Write(content);
@@ -39,10 +33,10 @@ public class ReadXml : InstanceNoMono<ReadXml>
     /// <summary>
     /// 读取Xml
     /// </summary>
-    private void LoadXml(string path)
+    public void LoadThrowItemXml(string path)
     {
         XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.Load(path);
+        xmlDoc.Load(Application.persistentDataPath + path);
 
         XmlNodeList xmlList = xmlDoc.SelectSingleNode("Data").ChildNodes;
 
@@ -60,19 +54,51 @@ public class ReadXml : InstanceNoMono<ReadXml>
             newData.canBuy = bool.Parse(item.SelectSingleNode("buy").InnerText);
             newData.canSell = bool.Parse(item.SelectSingleNode("sell").InnerText);
 
-            itemDataDic.Add(newData.id, newData);
+            GameMgr.GetInstance().ThrowItemDataDic.Add(newData.id, newData);
         }
     }
-    /// <summary>
-    /// 根据ID获取
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    public ThrowItemData GetThrowItemInfo(int id)
+    public void LoadItemXml(string path)
     {
-        if (itemDataDic.ContainsKey(id))
-            return itemDataDic[id];
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.Load(Application.persistentDataPath + path);
 
-        return null;
+        XmlNodeList xmlList = xmlDoc.SelectSingleNode("Data").ChildNodes;
+
+        foreach (XmlNode item in xmlList)
+        {
+            ItemData newData = new ItemData();
+            newData.id = int.Parse(item.Attributes["id"].InnerText);
+
+            newData.name = item.SelectSingleNode("name").InnerText;
+            newData.tips = item.SelectSingleNode("tips").InnerText;
+            newData.canSuperPosition = bool.Parse(item.SelectSingleNode("canSuperPosition").InnerText);
+            newData.maxNum = int.Parse(item.SelectSingleNode("maxNum").InnerText);
+            newData.canSell = bool.Parse(item.SelectSingleNode("canSell").InnerText);
+            newData.sellPrice = int.Parse(item.SelectSingleNode("sellPrice").InnerText);
+            newData.canBuy = bool.Parse(item.SelectSingleNode("canBuy").InnerText);
+            newData.buyPrice = int.Parse(item.SelectSingleNode("buyPrice").InnerText);
+            newData.itemType = (ItemType)int.Parse(item.SelectSingleNode("itemType").InnerText);
+            newData.actType = (ItemActType)int.Parse(item.SelectSingleNode("actType").InnerText);
+
+            GameMgr.GetInstance().ItemDataDic.Add(newData.id, newData);
+        }
+    }
+    public void LoadNpcXml(string path)
+    {
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.Load(Application.persistentDataPath + path);
+
+        XmlNodeList xmlList = xmlDoc.SelectSingleNode("Data").ChildNodes;
+
+        foreach (XmlNode item in xmlList)
+        {
+            NpcData newData = new NpcData();
+            newData.id = int.Parse(item.Attributes["id"].InnerText);
+
+            newData.name = item.SelectSingleNode("name").InnerText;
+            newData.type = (NpcType)int.Parse(item.SelectSingleNode("type").InnerText);
+
+            GameMgr.GetInstance().NpcDataDic.Add(newData.id, newData);
+        }
     }
 }

@@ -10,7 +10,7 @@ public class ThrowItem : MonoBehaviour
 
     private void Start()
     {
-        data = ReadXml.GetInstance().GetThrowItemInfo(id);
+        data = GameMgr.GetInstance().GetThrowItemInfo(id);
         Debug.Log(data.name);
     }
 

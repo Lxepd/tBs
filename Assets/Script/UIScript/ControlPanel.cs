@@ -28,6 +28,8 @@ public class ControlPanel : UIBase
     // 改变前的投掷速度
     private float lastThrow;
 
+    private bool npcHere;
+
     protected override void Awake()
     {
         base.Awake();
@@ -55,6 +57,13 @@ public class ControlPanel : UIBase
             }
 
             nearEnemy = x.gameObject;
+        });
+        EventCenter.GetInstance().AddEventListener<Collider2D>("附近的Npc", (x) =>
+        {
+            // TODO:  把<投掷>按键上的图片，改成<聊天>图片
+
+            npcHere = x != null;
+
         });
         // 计时器
         cdTimer = new Timer(throwSpeed, true);
@@ -94,13 +103,22 @@ public class ControlPanel : UIBase
                 TakeThing();
                 break;
             case "ThrowBto":
-                if (nearEnemy == null || !cdTimer.isTimeUp)
+                Debug.Log(npcHere);
+                if (!npcHere)
                 {
-                    Debug.Log("附近没怪 或者 CD没好");
-                    return;
-                }
+                    if (nearEnemy == null || !cdTimer.isTimeUp)
+                    {
+                        Debug.Log("附近没怪 或者 CD没好");
+                        return;
+                    }
 
-                ThrowThing();
+                    ThrowThing();
+                }
+                else
+                {
+                    Debug.Log("打开商店");
+                    UIMgr.GetInstance().ShowPanel<ShopPanel>("ShopPanel", E_UI_Layer.Above);
+                }
                 break;
             case "BagBto":
                 OpenBag();

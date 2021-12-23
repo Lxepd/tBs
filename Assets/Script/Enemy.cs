@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
         GameTool.QuickSortArray(transform.position, cols, 0, cols.Length - 1);
         nearThrow = (transform.position - cols[0].transform.position).normalized;
     }
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, 2f);

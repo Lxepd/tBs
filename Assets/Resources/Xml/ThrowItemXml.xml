@@ -1,6 +1,5 @@
-<!--<?xml version="1.0" encoding="utf-8"?>-->
 <Data>
-	<it id="10011">
+	<it id="10001">
 		<path>Prefabs/石子</path>
 		<name>石子</name>
 		<tips>没什么用的小石头</tips>
@@ -10,7 +9,7 @@
 		<buy>false</buy>
 		<sell>false</sell>
 	</it>
-	<it id="10012">
+	<it id="10002">
 		<path>Prefabs/罐子</path>
 		<name>罐子</name>
 		<tips>很好看的罐子，要是拿来砸人。。。挺。。挺痛的吧</tips>
@@ -20,7 +19,7 @@
 		<buy>false</buy>
 		<sell>false</sell>
 	</it>
-	<it id="10013">
+	<it id="10003">
 		<path>Prefabs/砖头</path>
 		<name>砖头</name>
 		<tips>随处可见的建筑材料</tips>
@@ -30,7 +29,7 @@
 		<buy>false</buy>
 		<sell>false</sell>
 	</it>
-	<it id="10014">
+	<it id="10004">
 		<path>Prefabs/玻璃</path>
 		<name>玻璃</name>
 		<tips>透光挺不错的</tips>
@@ -40,7 +39,7 @@
 		<buy>false</buy>
 		<sell>false</sell>
 	</it>
-	<it id="10015">
+	<it id="10005">
 		<path>Prefabs/球</path>
 		<name>球</name>
 		<tips>玩球吗？</tips>

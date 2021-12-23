@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     {
         CheckMissileScope();
         FindProximityOfEnemy();
+        CheckNpcHere();
     }
     /// <summary>
     /// 检查附近有没有场景投掷物
@@ -64,7 +65,16 @@ public class Player : MonoBehaviour
         // 消息中心存储 <距离最近的敌人> 消息
         EventCenter.GetInstance().EventTrigger<Collider2D>("距离最近的敌人", cols[0]);
     }
-    private void OnDrawGizmos()
+    /// <summary>
+    /// 检查附近Npc
+    /// </summary>
+    private void CheckNpcHere()
+    {
+        Collider2D cols = Physics2D.OverlapCircle(transform.position, shootThrowThingLen, LayerMask.GetMask("Npc"));
+        // 消息中心存储 <Npc> 消息
+        EventCenter.GetInstance().EventTrigger<Collider2D>("附近的Npc", cols);
+    }
+    private void OnDrawGizmosSelected()
     {
         // 检索投掷物圈
         Gizmos.color = Color.green;

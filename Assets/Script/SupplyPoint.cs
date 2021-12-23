@@ -96,7 +96,7 @@ public class SupplyPoint : MonoBehaviour
             supplyTimer.Pause();
         }
     }
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(0, 255, 255);
         Gizmos.DrawWireCube(transform.position, GetComponent<BoxCollider2D>().bounds.size);
