@@ -175,12 +175,6 @@ public class ControlPanel : UIBase
                 enemyDir = (nearEnemy.transform.position - playerPos).normalized;
                 rg.velocity = 5 * enemyDir;
             }
-
-            if (x.GetComponent<ThrowItem>() == null)
-            {
-                x.AddComponent<ThrowItem>();
-            }
-
         });
     }
 }

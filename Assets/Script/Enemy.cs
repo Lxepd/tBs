@@ -15,15 +15,14 @@ public class Enemy : MonoBehaviour
 
         rg = GetComponent<Rigidbody2D>();
         // 获取<敌人扣血>的消息
-        EventCenter.GetInstance().AddEventListener<float>("敌人扣血", (x) =>
+        EventCenter.GetInstance().AddEventListener<ThrowItemData>("敌人扣血", (x) =>
         {
             if (nearThrow == Vector2.zero)
                 return;
 
-            Debug.Log("敌人扣血：    " + x);
+            Debug.Log("敌人扣血：    " + x.hurt);
             // 力 = 投掷物来向 * 投掷物重量
-            // rg.AddForce(nearThrow * newnearThrow.gameObject.data.mass;
-            rg.AddForce(nearThrow * 5, ForceMode2D.Impulse);
+            rg.AddForce(nearThrow * x.mass, ForceMode2D.Impulse);
         });
     }
     private void Update()

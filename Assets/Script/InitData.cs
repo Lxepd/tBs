@@ -8,11 +8,8 @@ public class InitData : MonoBehaviour
     void Start()
     {
         UIMgr.GetInstance().ShowPanel<MainPanel>("MainPanel", E_UI_Layer.Normal);
+        ReadXml.GetInstance().ReadXmlFile(Application.persistentDataPath + "/DataXml.xml");
+        //Debug.Log(ReadXml.GetInstance().ItemDataList.Count);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

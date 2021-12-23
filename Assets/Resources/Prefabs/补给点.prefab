@@ -123,6 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    supplyNum: 5
+    supplyNum: 0
     type: 0
     num: 0
