@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     private Vector2 dir;
     Rigidbody2D rg;
+    private Animator animator;
 
     public float speed=0;
     [Tooltip("检索附近投掷物的范围")]
@@ -20,13 +21,18 @@ public class Player : MonoBehaviour
     [Tooltip("检索附近敌人的范围")]
     public float shootEnemyLen = 3f;
 
+    public Animator Animator { get => animator; set => animator = value; }
+
     // Start is called before the first frame update
     void Start()
     {
-        rg=GetComponent<Rigidbody2D>();
+        rg = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         // 获取消息中心中 Joystick 的消息，然后执行 委托
         // 获取摇杆方向向量
-        EventCenter.GetInstance().AddEventListener<Vector2>("Joystick", (x)=> { this.dir = x; });
+        EventCenter.GetInstance().AddEventListener<Vector2>("Joystick", (x) => { this.dir = x; });
+
+        EventCenter.GetInstance().EventTrigger<Animator>("Player动画", animator);
     }
 
     // Update is called once per frame
@@ -34,7 +40,18 @@ public class Player : MonoBehaviour
     {
         EventCenter.GetInstance().EventTrigger<Vector2>("PlayerPos", transform.position);
 
-        rg.velocity = dir*speed;
+        animator.SetFloat("RunX", dir.x);
+        animator.SetFloat("RunY", dir.y);
+        animator.SetFloat("Magnitude", dir.magnitude);
+        if (dir.magnitude > 0)
+        {
+            animator.SetFloat("IdleX", animator.GetFloat("RunX"));
+            animator.SetFloat("IdleY", animator.GetFloat("RunY"));
+            animator.SetFloat("AtkX", animator.GetFloat("RunX"));
+            animator.SetFloat("AtkY", animator.GetFloat("RunY"));
+        }
+
+        rg.velocity = dir * speed;
     }
     private void FixedUpdate()
     {

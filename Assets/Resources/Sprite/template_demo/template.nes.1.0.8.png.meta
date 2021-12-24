@@ -1,0 +1,3195 @@
+fileFormatVersion: 2
+guid: 437f7374799fd6b438f82adaf3f0b83c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8233831826925472992
+    second: template.nes.1.0.8_0
+  - first:
+      213: -3743076612006261878
+    second: template.nes.1.0.8_1
+  - first:
+      213: -7580245088268111796
+    second: template.nes.1.0.8_2
+  - first:
+      213: -7331439557545148352
+    second: template.nes.1.0.8_3
+  - first:
+      213: -1511882574304577087
+    second: template.nes.1.0.8_4
+  - first:
+      213: 6225429789821544597
+    second: template.nes.1.0.8_5
+  - first:
+      213: -3504691696194574682
+    second: template.nes.1.0.8_6
+  - first:
+      213: 9183211961665548293
+    second: template.nes.1.0.8_7
+  - first:
+      213: -5201094575435576610
+    second: template.nes.1.0.8_8
+  - first:
+      213: 7752822207224779627
+    second: template.nes.1.0.8_9
+  - first:
+      213: 6257332640490176217
+    second: template.nes.1.0.8_10
+  - first:
+      213: -6365688668660607518
+    second: template.nes.1.0.8_11
+  - first:
+      213: -8614461767348798997
+    second: template.nes.1.0.8_12
+  - first:
+      213: 2927587723237103129
+    second: template.nes.1.0.8_13
+  - first:
+      213: 8185859611437306699
+    second: template.nes.1.0.8_14
+  - first:
+      213: -1364623544988448564
+    second: template.nes.1.0.8_15
+  - first:
+      213: 6694859934023504554
+    second: template.nes.1.0.8_16
+  - first:
+      213: -7675003592077720931
+    second: template.nes.1.0.8_17
+  - first:
+      213: -5725085651181331381
+    second: template.nes.1.0.8_18
+  - first:
+      213: 1793460484504193617
+    second: template.nes.1.0.8_19
+  - first:
+      213: -5918211121460100859
+    second: template.nes.1.0.8_20
+  - first:
+      213: 5986790999775585490
+    second: template.nes.1.0.8_21
+  - first:
+      213: 7130980716130740306
+    second: template.nes.1.0.8_22
+  - first:
+      213: 7524594310726587350
+    second: template.nes.1.0.8_23
+  - first:
+      213: 8833675191139582295
+    second: template.nes.1.0.8_24
+  - first:
+      213: 6016382317004261976
+    second: template.nes.1.0.8_25
+  - first:
+      213: 3406488847806457693
+    second: template.nes.1.0.8_26
+  - first:
+      213: -7554471245527844897
+    second: template.nes.1.0.8_27
+  - first:
+      213: 5278858378784959874
+    second: template.nes.1.0.8_28
+  - first:
+      213: 6796556447793887717
+    second: template.nes.1.0.8_29
+  - first:
+      213: 9165319574535761286
+    second: template.nes.1.0.8_30
+  - first:
+      213: 4538719522045781835
+    second: template.nes.1.0.8_31
+  - first:
+      213: -251661117212479669
+    second: template.nes.1.0.8_32
+  - first:
+      213: 6748419357081226698
+    second: template.nes.1.0.8_33
+  - first:
+      213: 3429153674079877193
+    second: template.nes.1.0.8_34
+  - first:
+      213: 5589020991457889821
+    second: template.nes.1.0.8_35
+  - first:
+      213: -9176066596575280730
+    second: template.nes.1.0.8_36
+  - first:
+      213: -8847702421720127849
+    second: template.nes.1.0.8_37
+  - first:
+      213: -5652993836020622215
+    second: template.nes.1.0.8_38
+  - first:
+      213: -9191575355352071269
+    second: template.nes.1.0.8_39
+  - first:
+      213: -8872495408058951115
+    second: template.nes.1.0.8_40
+  - first:
+      213: 5603325036562360744
+    second: template.nes.1.0.8_41
+  - first:
+      213: -8240563307181609881
+    second: template.nes.1.0.8_42
+  - first:
+      213: -1199301453135225142
+    second: template.nes.1.0.8_43
+  - first:
+      213: 6367580573461279323
+    second: template.nes.1.0.8_44
+  - first:
+      213: 6968097359796840032
+    second: template.nes.1.0.8_45
+  - first:
+      213: -7054884259041643839
+    second: template.nes.1.0.8_46
+  - first:
+      213: 7993611898866793187
+    second: template.nes.1.0.8_47
+  - first:
+      213: 7534363327547858223
+    second: template.nes.1.0.8_48
+  - first:
+      213: 3870476411810253501
+    second: template.nes.1.0.8_49
+  - first:
+      213: 8327971424828013610
+    second: template.nes.1.0.8_50
+  - first:
+      213: 4718220362598900088
+    second: template.nes.1.0.8_51
+  - first:
+      213: -293272023830995622
+    second: template.nes.1.0.8_52
+  - first:
+      213: -5748812509314134502
+    second: template.nes.1.0.8_53
+  - first:
+      213: 5176691137249224143
+    second: template.nes.1.0.8_54
+  - first:
+      213: -411411991108335476
+    second: template.nes.1.0.8_55
+  - first:
+      213: -8614109379161217286
+    second: template.nes.1.0.8_56
+  - first:
+      213: 9135587326958739400
+    second: template.nes.1.0.8_57
+  - first:
+      213: -447317843887932391
+    second: template.nes.1.0.8_58
+  - first:
+      213: 5201872085875183613
+    second: template.nes.1.0.8_59
+  - first:
+      213: 508512251747373473
+    second: template.nes.1.0.8_60
+  - first:
+      213: 8088007057398102621
+    second: template.nes.1.0.8_61
+  - first:
+      213: -3141457487036912293
+    second: template.nes.1.0.8_62
+  - first:
+      213: 2547880298058066002
+    second: template.nes.1.0.8_63
+  - first:
+      213: 1631173406244774100
+    second: template.nes.1.0.8_64
+  - first:
+      213: 5107412673301104778
+    second: template.nes.1.0.8_65
+  - first:
+      213: 4880136910550727776
+    second: template.nes.1.0.8_66
+  - first:
+      213: -9111434908822023955
+    second: template.nes.1.0.8_67
+  - first:
+      213: -2026962268819630497
+    second: template.nes.1.0.8_68
+  - first:
+      213: 8089682270531108536
+    second: template.nes.1.0.8_69
+  - first:
+      213: -4992985903681898752
+    second: template.nes.1.0.8_70
+  - first:
+      213: 5322539903739386787
+    second: template.nes.1.0.8_71
+  - first:
+      213: 7055314122734063493
+    second: template.nes.1.0.8_72
+  - first:
+      213: -556313131480707751
+    second: template.nes.1.0.8_73
+  - first:
+      213: 3576449961696194560
+    second: template.nes.1.0.8_74
+  - first:
+      213: -2495364840073195208
+    second: template.nes.1.0.8_75
+  - first:
+      213: -3811181194175249602
+    second: template.nes.1.0.8_76
+  - first:
+      213: -3528343786471396839
+    second: template.nes.1.0.8_77
+  - first:
+      213: 9086132204849496179
+    second: template.nes.1.0.8_78
+  - first:
+      213: 3340801196046988831
+    second: template.nes.1.0.8_79
+  - first:
+      213: 2395388027475065492
+    second: template.nes.1.0.8_80
+  - first:
+      213: 874578363606700109
+    second: template.nes.1.0.8_81
+  - first:
+      213: 5879300880922880227
+    second: template.nes.1.0.8_82
+  - first:
+      213: 1949197685010786680
+    second: template.nes.1.0.8_83
+  - first:
+      213: -1404871359239000161
+    second: template.nes.1.0.8_84
+  - first:
+      213: 7827509667525573750
+    second: template.nes.1.0.8_85
+  - first:
+      213: -3912489764321858216
+    second: template.nes.1.0.8_86
+  - first:
+      213: 3331297279592236515
+    second: template.nes.1.0.8_87
+  - first:
+      213: 3876473200205985069
+    second: template.nes.1.0.8_88
+  - first:
+      213: -3989228104453085795
+    second: template.nes.1.0.8_89
+  - first:
+      213: -2863026245429061764
+    second: template.nes.1.0.8_90
+  - first:
+      213: -5128739675173134830
+    second: template.nes.1.0.8_91
+  - first:
+      213: 5662028235082106109
+    second: template.nes.1.0.8_92
+  - first:
+      213: -6818548167009370251
+    second: template.nes.1.0.8_93
+  - first:
+      213: -3767160825921813122
+    second: template.nes.1.0.8_94
+  - first:
+      213: -937743647279699684
+    second: template.nes.1.0.8_95
+  - first:
+      213: 4366937610031744954
+    second: template.nes.1.0.8_96
+  - first:
+      213: 1911983617184058628
+    second: template.nes.1.0.8_97
+  - first:
+      213: -8936981183961882421
+    second: template.nes.1.0.8_98
+  - first:
+      213: -2621661860290722197
+    second: template.nes.1.0.8_99
+  - first:
+      213: 2844937929247376793
+    second: template.nes.1.0.8_100
+  - first:
+      213: 1241608524372473557
+    second: template.nes.1.0.8_101
+  - first:
+      213: -2064335190272311285
+    second: template.nes.1.0.8_102
+  - first:
+      213: 5319261842677313448
+    second: template.nes.1.0.8_103
+  - first:
+      213: -5933748954875779807
+    second: template.nes.1.0.8_104
+  - first:
+      213: 5290054378533062082
+    second: template.nes.1.0.8_105
+  - first:
+      213: -4493123244956032655
+    second: template.nes.1.0.8_106
+  - first:
+      213: 4728656391113133041
+    second: template.nes.1.0.8_107
+  - first:
+      213: 6656421439155362947
+    second: template.nes.1.0.8_108
+  - first:
+      213: -4537600432274677294
+    second: template.nes.1.0.8_109
+  - first:
+      213: -3553372783370890617
+    second: template.nes.1.0.8_110
+  - first:
+      213: 4019732411519729758
+    second: template.nes.1.0.8_111
+  - first:
+      213: -4642964830473483765
+    second: template.nes.1.0.8_112
+  - first:
+      213: 5761460457449840576
+    second: template.nes.1.0.8_113
+  - first:
+      213: -6138778220977339322
+    second: template.nes.1.0.8_114
+  - first:
+      213: 3698613148187216563
+    second: template.nes.1.0.8_115
+  - first:
+      213: -1993796379079870825
+    second: template.nes.1.0.8_116
+  - first:
+      213: 2406024953497442619
+    second: template.nes.1.0.8_117
+  - first:
+      213: 5978428397014194940
+    second: template.nes.1.0.8_118
+  - first:
+      213: 7404832808824661367
+    second: template.nes.1.0.8_119
+  - first:
+      213: 8633553124331072888
+    second: template.nes.1.0.8_120
+  - first:
+      213: 7467991698496496556
+    second: template.nes.1.0.8_121
+  - first:
+      213: -4773159597350751795
+    second: template.nes.1.0.8_122
+  - first:
+      213: 119773979811214616
+    second: template.nes.1.0.8_123
+  - first:
+      213: -8343774473862462307
+    second: template.nes.1.0.8_124
+  - first:
+      213: -5330672915964663207
+    second: template.nes.1.0.8_125
+  - first:
+      213: -3039075794806678372
+    second: template.nes.1.0.8_126
+  - first:
+      213: 6131226993767036585
+    second: template.nes.1.0.8_127
+  - first:
+      213: 718410665690951611
+    second: template.nes.1.0.8_128
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 22
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: template.nes.1.0.8_0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 1239
+        width: 22
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0233dcff39d8bbd80800000000000000
+      internalID: -8233831826925472992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_1
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 1239
+        width: 22
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8b4b4e27abed0cc0800000000000000
+      internalID: -3743076612006261878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_2
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 1239
+        width: 22
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c40316b014f8dc690800000000000000
+      internalID: -7580245088268111796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_3
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 1239
+        width: 22
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0404648e09e714a90800000000000000
+      internalID: -7331439557545148352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_4
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 1239
+        width: 22
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c9f8781fc6b40be0800000000000000
+      internalID: -1511882574304577087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_5
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 1239
+        width: 22
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 598a27cf86b256650800000000000000
+      internalID: 6225429789821544597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_6
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 1239
+        width: 22
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a6af019875dc5fc0800000000000000
+      internalID: -3504691696194574682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_7
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 1239
+        width: 22
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5007138df92517f70800000000000000
+      internalID: 9183211961665548293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_8
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 1174
+        width: 17
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eda83fb4a0002d7b0800000000000000
+      internalID: -5201094575435576610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_9
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 1174
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b639464a8be879b60800000000000000
+      internalID: 7752822207224779627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_10
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 1174
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9debfdd32e286d650800000000000000
+      internalID: 6257332640490176217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_11
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 1174
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e551c9f1e788a7a0800000000000000
+      internalID: -6365688668660607518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_12
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 1174
+        width: 16
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be9bdf9f9a8437880800000000000000
+      internalID: -8614461767348798997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_13
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 1174
+        width: 16
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9169754f581e0a820800000000000000
+      internalID: 2927587723237103129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_14
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 1174
+        width: 16
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4310f032f30a9170800000000000000
+      internalID: 8185859611437306699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_15
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 1174
+        width: 17
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc844dcad12ef0de0800000000000000
+      internalID: -1364623544988448564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_16
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 1111
+        width: 22
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa2577c93abe8ec50800000000000000
+      internalID: 6694859934023504554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_17
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 1111
+        width: 22
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d924c5c95e8ec7590800000000000000
+      internalID: -7675003592077720931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_18
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 1111
+        width: 22
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4c96acdee86c80b0800000000000000
+      internalID: -5725085651181331381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_19
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 1111
+        width: 22
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15a8299fec6a3e810800000000000000
+      internalID: 1793460484504193617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_20
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 1111
+        width: 24
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 501ca9f475a4edda0800000000000000
+      internalID: -5918211121460100859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_21
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 1111
+        width: 24
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d42126e1ba551350800000000000000
+      internalID: 5986790999775585490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_22
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 1111
+        width: 24
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25822250e2556f260800000000000000
+      internalID: 7130980716130740306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_23
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 1111
+        width: 24
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d398c998aabc6860800000000000000
+      internalID: 7524594310726587350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_24
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 1046
+        width: 17
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7514e0598c4879a70800000000000000
+      internalID: 8833675191139582295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_25
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 1046
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85a0bf557db7e7350800000000000000
+      internalID: 6016382317004261976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_26
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 1046
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5765d80f87464f20800000000000000
+      internalID: 3406488847806457693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_27
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 1046
+        width: 16
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd7f8607d60292790800000000000000
+      internalID: -7554471245527844897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_28
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 1046
+        width: 16
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28d62171ab5424940800000000000000
+      internalID: 5278858378784959874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_29
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 1046
+        width: 16
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e935ae5418325e50800000000000000
+      internalID: 6796556447793887717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_30
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 1046
+        width: 16
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68d6325d791c13f70800000000000000
+      internalID: 9165319574535761286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_31
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 1046
+        width: 17
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b476baeab55ccfe30800000000000000
+      internalID: 4538719522045781835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_32
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 980
+        width: 20
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4fa5c81c8be18cf0800000000000000
+      internalID: -251661117212479669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_33
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 981
+        width: 22
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acd423e86a337ad50800000000000000
+      internalID: 6748419357081226698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_34
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 982
+        width: 22
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 948b1cf191dc69f20800000000000000
+      internalID: 3429153674079877193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_35
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 982
+        width: 21
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1e8c06daf0309d40800000000000000
+      internalID: 5589020991457889821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_36
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 980
+        width: 20
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a18dcb1c0018a080800000000000000
+      internalID: -9176066596575280730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_37
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 981
+        width: 22
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 796220b4685a63580800000000000000
+      internalID: -8847702421720127849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_38
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 982
+        width: 22
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97c94869e088c81b0800000000000000
+      internalID: -5652993836020622215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_39
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 983
+        width: 21
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b934102d9e6f07080800000000000000
+      internalID: -9191575355352071269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_40
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 919
+        width: 18
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53a9c535f609ed480800000000000000
+      internalID: -8872495408058951115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_41
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 919
+        width: 15
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a92a5dde6203cd40800000000000000
+      internalID: 5603325036562360744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_42
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 919
+        width: 14
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76c625e1553a3ad80800000000000000
+      internalID: -8240563307181609881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_43
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 919
+        width: 14
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aced34bbea93b5fe0800000000000000
+      internalID: -1199301453135225142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_44
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 919
+        width: 17
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5276df6bc03e5850800000000000000
+      internalID: 6367580573461279323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_45
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 919
+        width: 15
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 066270351a7a3b060800000000000000
+      internalID: 6968097359796840032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_46
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 919
+        width: 14
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c2f3501524081e90800000000000000
+      internalID: -7054884259041643839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_47
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 919
+        width: 14
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ea7a488ba30fee60800000000000000
+      internalID: 7993611898866793187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_48
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 856
+        width: 23
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2d5833178f6f8860800000000000000
+      internalID: 7534363327547858223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_49
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 855
+        width: 22
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dba8a753ac1b6b530800000000000000
+      internalID: 3870476411810253501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_50
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 854
+        width: 21
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2c3a7c23e5e29370800000000000000
+      internalID: 8327971424828013610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_51
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 854
+        width: 22
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 871e8bceb6c7a7140800000000000000
+      internalID: 4718220362598900088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_52
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 856
+        width: 23
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5d5efce5a61eebf0800000000000000
+      internalID: -293272023830995622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_53
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 855
+        width: 22
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1e42063b7d1830b0800000000000000
+      internalID: -5748812509314134502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_54
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 854
+        width: 21
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc527ab792d47d740800000000000000
+      internalID: 5176691137249224143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_55
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 854
+        width: 22
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c88c6ad49fe5a4af0800000000000000
+      internalID: -411411991108335476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_56
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 791
+        width: 18
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af62cbeb829847880800000000000000
+      internalID: -8614109379161217286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_57
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 791
+        width: 15
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cf9fed754028ce70800000000000000
+      internalID: 9135587326958739400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_58
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 791
+        width: 14
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91cbd5d7acecac9f0800000000000000
+      internalID: -447317843887932391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_59
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 791
+        width: 14
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dff4c95f913c03840800000000000000
+      internalID: 5201872085875183613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_60
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 791
+        width: 17
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a11651e2399e0700800000000000000
+      internalID: 508512251747373473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_61
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 791
+        width: 15
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5af01d019f5e3070800000000000000
+      internalID: 8088007057398102621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_62
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 791
+        width: 14
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5d6c284f0d4764d0800000000000000
+      internalID: -3141457487036912293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_63
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 791
+        width: 14
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 258a7ffb1a3eb5320800000000000000
+      internalID: 2547880298058066002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_64
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 722
+        width: 21
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d0a846129713a610800000000000000
+      internalID: 1631173406244774100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_65
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 726
+        width: 20
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a88c07124cc21e640800000000000000
+      internalID: 5107412673301104778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_66
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 728
+        width: 23
+        height: 27
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06cf5a00aaab9b340800000000000000
+      internalID: 4880136910550727776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_67
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 726
+        width: 24
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de0d191993ead8180800000000000000
+      internalID: -9111434908822023955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_68
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 722
+        width: 21
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f56d2e94e88ced3e0800000000000000
+      internalID: -2026962268819630497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_69
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 726
+        width: 20
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8be38c00a23544070800000000000000
+      internalID: 8089682270531108536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_70
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 728
+        width: 23
+        height: 27
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 007f18a46c955bab0800000000000000
+      internalID: -4992985903681898752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_71
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 726
+        width: 24
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ab5a39a7d57dd940800000000000000
+      internalID: 5322539903739386787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_72
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 664
+        width: 23
+        height: 29
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58f4c5060d289e160800000000000000
+      internalID: 7055314122734063493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_73
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 664
+        width: 26
+        height: 27
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95d053687249748f0800000000000000
+      internalID: -556313131480707751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_74
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 663
+        width: 23
+        height: 29
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0007cd39a4a12a130800000000000000
+      internalID: 3576449961696194560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_75
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 663
+        width: 21
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 831107226eeae5dd0800000000000000
+      internalID: -2495364840073195208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_76
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 664
+        width: 23
+        height: 29
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e33098a75e6fb1bc0800000000000000
+      internalID: -3811181194175249602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_77
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 664
+        width: 27
+        height: 27
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91a6ae9250ec80fc0800000000000000
+      internalID: -3528343786471396839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_78
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 663
+        width: 23
+        height: 29
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3708a44991d681e70800000000000000
+      internalID: 9086132204849496179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_79
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 663
+        width: 21
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f16b49bccf8ec5e20800000000000000
+      internalID: 3340801196046988831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_80
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 595
+        width: 20
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49affdc38b02e3120800000000000000
+      internalID: 2395388027475065492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_81
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 599
+        width: 21
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4015035360232c00800000000000000
+      internalID: 874578363606700109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_82
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 596
+        width: 21
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e8ac075009779150800000000000000
+      internalID: 5879300880922880227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_83
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 595
+        width: 20
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 879e41c97f0fc0b10800000000000000
+      internalID: 1949197685010786680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_84
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 595
+        width: 20
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9f607d21f4e08ce0800000000000000
+      internalID: -1404871359239000161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_85
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 599
+        width: 21
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67c3cc81296e0ac60800000000000000
+      internalID: 7827509667525573750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_86
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 596
+        width: 21
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85d6e32e94b04b9c0800000000000000
+      internalID: -3912489764321858216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_87
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 595
+        width: 20
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e5025fc9352b3e20800000000000000
+      internalID: 3331297279592236515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_88
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 536
+        width: 23
+        height: 29
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d25799f46dffbc530800000000000000
+      internalID: 3876473200205985069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_89
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 536
+        width: 26
+        height: 27
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d95a112cc2a63a8c0800000000000000
+      internalID: -3989228104453085795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_90
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 535
+        width: 23
+        height: 29
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c77949a7ccc7448d0800000000000000
+      internalID: -2863026245429061764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_91
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 535
+        width: 21
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21e5adb407e03d8b0800000000000000
+      internalID: -5128739675173134830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_92
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 536
+        width: 23
+        height: 29
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df40d4c5ea0939e40800000000000000
+      internalID: 5662028235082106109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_93
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 536
+        width: 27
+        height: 27
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57ff38d7196af51a0800000000000000
+      internalID: -6818548167009370251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_94
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 535
+        width: 23
+        height: 29
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e75c927203b58bbc0800000000000000
+      internalID: -3767160825921813122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_95
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 535
+        width: 21
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c19a3850f177cf2f0800000000000000
+      internalID: -937743647279699684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_96
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 471
+        width: 26
+        height: 31
+      alignment: 9
+      pivot: {x: 0.25, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab74c3a8e9a7a9c30800000000000000
+      internalID: 4366937610031744954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_97
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 457
+        width: 30
+        height: 42
+      alignment: 9
+      pivot: {x: 0.28, y: 0.33}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40d4f9e38fab88a10800000000000000
+      internalID: 1911983617184058628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_98
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 457
+        width: 50
+        height: 42
+      alignment: 9
+      pivot: {x: 0.63, y: 0.285}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc02a9d96f679f380800000000000000
+      internalID: -8936981183961882421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_99
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 461
+        width: 44
+        height: 39
+      alignment: 9
+      pivot: {x: 0.67, y: 0.205}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b668e20ad6cfd9bd0800000000000000
+      internalID: -2621661860290722197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_100
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 469
+        width: 44
+        height: 31
+      alignment: 9
+      pivot: {x: 0.6680367, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99543d839ff3b7720800000000000000
+      internalID: 2844937929247376793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_101
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 407
+        width: 19
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d67155ef541b3110800000000000000
+      internalID: 1241608524372473557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_102
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 407
+        width: 32
+        height: 30
+      alignment: 9
+      pivot: {x: 0.25, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b000b7ee4120a53e0800000000000000
+      internalID: -2064335190272311285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_103
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 399
+        width: 33
+        height: 39
+      alignment: 9
+      pivot: {x: 0.25, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8af22189670d1d940800000000000000
+      internalID: 5319261842677313448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_104
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 400
+        width: 27
+        height: 38
+      alignment: 9
+      pivot: {x: 0.25, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 125a84e83c617ada0800000000000000
+      internalID: -5933748954875779807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_105
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 400
+        width: 15
+        height: 38
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c586faed6c0a6940800000000000000
+      internalID: 5290054378533062082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_106
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 340
+        width: 20
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 171685cd63835a1c0800000000000000
+      internalID: -4493123244956032655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_108
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 342
+        width: 35
+        height: 42
+      alignment: 9
+      pivot: {x: 0.65, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38c562c180c506c50800000000000000
+      internalID: 6656421439155362947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_109
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 342
+        width: 45
+        height: 42
+      alignment: 9
+      pivot: {x: 0.33, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d1eb95b2743701c0800000000000000
+      internalID: -4537600432274677294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_110
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 342
+        width: 46
+        height: 35
+      alignment: 9
+      pivot: {x: 0.33, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78213a4b742efaec0800000000000000
+      internalID: -3553372783370890617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_111
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 342
+        width: 46
+        height: 32
+      alignment: 9
+      pivot: {x: 0.33, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5002c0b455f8c730800000000000000
+      internalID: 4019732411519729758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_112
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 279
+        width: 19
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0a0ffe0610e09fb0800000000000000
+      internalID: -4642964830473483765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_113
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 279
+        width: 32
+        height: 30
+      alignment: 9
+      pivot: {x: 0.8, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cfd1c1b2c1d4ff40800000000000000
+      internalID: 5761460457449840576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_114
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 271
+        width: 33
+        height: 39
+      alignment: 9
+      pivot: {x: 0.75, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 644cdbf8bbdaecaa0800000000000000
+      internalID: -6138778220977339322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_115
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 272
+        width: 27
+        height: 38
+      alignment: 9
+      pivot: {x: 0.78, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bac94bef0d145330800000000000000
+      internalID: 3698613148187216563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_116
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 272
+        width: 15
+        height: 38
+      alignment: 9
+      pivot: {x: 0.7, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 796fb7eb1cc9454e0800000000000000
+      internalID: -1993796379079870825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_117
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 212
+        width: 22
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b39d0f192fae36120800000000000000
+      internalID: 2406024953497442619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_118
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 215
+        width: 18
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfa9327b3f4a7f250800000000000000
+      internalID: 5978428397014194940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_119
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 212
+        width: 16
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 775e627053043c660800000000000000
+      internalID: 7404832808824661367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_120
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 151
+        width: 19
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87da735f2da80d770800000000000000
+      internalID: 8633553124331072888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_121
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 151
+        width: 17
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca32376f1e2a3a760800000000000000
+      internalID: 7467991698496496556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_122
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 151
+        width: 17
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc179afa2a452cdb0800000000000000
+      internalID: -4773159597350751795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_123
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 87
+        width: 22
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8157bffccc589a100800000000000000
+      internalID: 119773979811214616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_124
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 85
+        width: 20
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d94c47fb255f43c80800000000000000
+      internalID: -8343774473862462307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_125
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 85
+        width: 20
+        height: 30
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95a612ed935a506b0800000000000000
+      internalID: -5330672915964663207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_126
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 23
+        width: 19
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9c5f059aa803d5d0800000000000000
+      internalID: -3039075794806678372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_127
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 23
+        width: 17
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a635c8577e761550800000000000000
+      internalID: 6131226993767036585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: template.nes.1.0.8_128
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 23
+        width: 17
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbf6c53b1be48f900800000000000000
+      internalID: 718410665690951611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

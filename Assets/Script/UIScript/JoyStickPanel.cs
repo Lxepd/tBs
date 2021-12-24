@@ -78,6 +78,7 @@ public class JoyStickPanel : UIBase
             (data as PointerEventData).position, // 得到当前点击屏幕的坐标位置
             (data as PointerEventData).pressEventCamera, // UI摄像机
             out localPos); // 转换之后返回的坐标
+        
 
         //// 范围判断
         //float r;

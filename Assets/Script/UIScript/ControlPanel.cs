@@ -116,6 +116,10 @@ public class ControlPanel : UIBase
                 TakeThing();
                 break;
             case "ThrowBto":
+                //EventCenter.GetInstance().AddEventListener<Animator>("Player动画", (x)=> 
+                //{
+                //    x.Play("Atk");
+                //});
                 SwitchThrowKeyAct();
                 break;
             case "BagBto":
@@ -153,6 +157,9 @@ public class ControlPanel : UIBase
         if (throwMagazine.Count == 0)
         {
             Debug.Log("没有更厉害的东西掷出，只能投掷石子了");
+            // 播放挥砍动画
+            Player.instance.Animator.Play("Atk");
+            // 投掷石子
             ThrowBase("Prefabs/石子");
         }
         // 否则，扔弹匣中第一个投掷物
