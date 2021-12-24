@@ -19,6 +19,7 @@ public class InstanceMono<T> : MonoBehaviour where T : MonoBehaviour
             DontDestroyOnLoad(obj);
 
             instance = obj.AddComponent<T>();
+
         }
 
         return instance;

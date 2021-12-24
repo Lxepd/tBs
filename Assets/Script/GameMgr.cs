@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class GameMgr : InstanceNoMono<GameMgr>
 {
-    // 存放投掷物信息字典
-    private Dictionary<int, ThrowItemData> throwItemDataDic = new Dictionary<int, ThrowItemData>();
-    // 存放道具信息字典
-    private Dictionary<int, ItemData> itemDataDic = new Dictionary<int, ItemData>();
-    // 存放装备信息字典
-    private Dictionary<int, EquipmentData> equipmentDataDic = new Dictionary<int, EquipmentData>();
-    // 存放Npc信息字典
-    private Dictionary<int, NpcData> npcDataDic = new Dictionary<int, NpcData>();
-
-    public Dictionary<int, ThrowItemData> ThrowItemDataDic { get => throwItemDataDic; set => throwItemDataDic = value; }
-    public Dictionary<int, ItemData> ItemDataDic { get => itemDataDic; set => itemDataDic = value; }
-    public Dictionary<int, EquipmentData> EquipmentDataDic { get => equipmentDataDic; set => equipmentDataDic = value; }
-    public Dictionary<int, NpcData> NpcDataDic { get => npcDataDic; set => npcDataDic = value; }
+    // 存放<投掷物>信息字典
+    public Dictionary<int, ThrowItemData> ThrowItemDataDic = new Dictionary<int, ThrowItemData>();
+    // 存放<道具>信息字典
+    public Dictionary<int, ItemData> ItemDataDic = new Dictionary<int, ItemData>();
+    // 存放<装备>信息字典
+    public Dictionary<int, EquipmentData> EquipmentDataDic = new Dictionary<int, EquipmentData>();
+    // 存放<Npc>信息字典
+    public Dictionary<int, NpcData> NpcDataDic = new Dictionary<int, NpcData>();
+    // 存放<关卡>字典
+    public Dictionary<int, RoomData> RoomDataDic = new Dictionary<int, RoomData>();
 
     /// <summary>
     /// 根据ID获取投掷物信息
@@ -25,8 +22,8 @@ public class GameMgr : InstanceNoMono<GameMgr>
     /// <returns></returns>
     public ThrowItemData GetThrowItemInfo(int id)
     {
-        if (throwItemDataDic.ContainsKey(id))
-            return throwItemDataDic[id];
+        if (ThrowItemDataDic.ContainsKey(id))
+            return ThrowItemDataDic[id];
 
         return null;
     }
@@ -37,8 +34,8 @@ public class GameMgr : InstanceNoMono<GameMgr>
     /// <returns></returns>
     public ItemData GetItemInfo(int id)
     {
-        if (itemDataDic.ContainsKey(id))
-            return itemDataDic[id];
+        if (ItemDataDic.ContainsKey(id))
+            return ItemDataDic[id];
 
         return null;
     }
@@ -49,8 +46,8 @@ public class GameMgr : InstanceNoMono<GameMgr>
     /// <returns></returns>
     public EquipmentData GetEquipmentInfo(int id)
     {
-        if (equipmentDataDic.ContainsKey(id))
-            return equipmentDataDic[id];
+        if (EquipmentDataDic.ContainsKey(id))
+            return EquipmentDataDic[id];
 
         return null;
     }
@@ -61,8 +58,20 @@ public class GameMgr : InstanceNoMono<GameMgr>
     /// <returns></returns>
     public NpcData GetNpcInfo(int id)
     {
-        if (npcDataDic.ContainsKey(id))
-            return npcDataDic[id];
+        if (NpcDataDic.ContainsKey(id))
+            return NpcDataDic[id];
+
+        return null;
+    }
+    /// <summary>
+    /// 根据ID获取Room信息
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public RoomData GetRoomInfo(int id)
+    {
+        if (RoomDataDic.ContainsKey(id))
+            return RoomDataDic[id];
 
         return null;
     }

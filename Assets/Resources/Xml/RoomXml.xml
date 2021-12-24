@@ -1,0 +1,17 @@
+<Data>
+    <level id="11001">
+        <name>第一关</name>
+		<path>Prefabs/RoomPrefabs/关卡一</path>
+		<roomType>0</roomType>
+    </level>
+    <level id="11002">
+        <name>第二关</name>
+		<path>Prefabs/RoomPrefabs/关卡二</path>
+		<roomType>0</roomType>
+    </level>
+    <level id="11003">
+        <name>第三关</name>
+		<path>Prefabs/RoomPrefabs/关卡三</path>
+		<roomType>1</roomType>
+    </level>
+</Data>

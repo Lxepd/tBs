@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private Vector2 dir;
     Rigidbody2D rg;
 
@@ -28,7 +35,6 @@ public class Player : MonoBehaviour
         EventCenter.GetInstance().EventTrigger<Vector2>("PlayerPos", transform.position);
 
         rg.velocity = dir*speed;
-
     }
     private void FixedUpdate()
     {

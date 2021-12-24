@@ -101,4 +101,23 @@ public class ReadXml : InstanceNoMono<ReadXml>
             GameMgr.GetInstance().NpcDataDic.Add(newData.id, newData);
         }
     }
+    public void LoadRoomXml(string path)
+    {
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.Load(Application.persistentDataPath + path);
+
+        XmlNodeList xmlList = xmlDoc.SelectSingleNode("Data").ChildNodes;
+
+        foreach (XmlNode item in xmlList)
+        {
+            RoomData newData = new RoomData();
+            newData.id = int.Parse(item.Attributes["id"].InnerText);
+
+            newData.name = item.SelectSingleNode("name").InnerText;
+            newData.prefabPath = item.SelectSingleNode("path").InnerText;
+            newData.roomType = (RoomType)int.Parse(item.SelectSingleNode("roomType").InnerText);
+
+            GameMgr.GetInstance().RoomDataDic.Add(newData.id, newData);
+        }
+    }
 }

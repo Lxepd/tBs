@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum CtrlType
+{
+    投掷,
+    打开商店,
+    传送
+}
 public class ControlPanel : UIBase
 {
     // 投掷物列表
@@ -28,7 +34,7 @@ public class ControlPanel : UIBase
     // 改变前的投掷速度
     private float lastThrow;
 
-    private bool npcHere;
+    CtrlType ctrlType;
 
     protected override void Awake()
     {
@@ -62,7 +68,14 @@ public class ControlPanel : UIBase
         {
             // TODO:  把<投掷>按键上的图片，改成<聊天>图片
 
-            npcHere = x != null;
+            if(x!=null)
+            {
+                ctrlType = CtrlType.打开商店;
+            }
+            else
+            {
+                ctrlType = CtrlType.投掷;
+            }
 
         });
         // 计时器
@@ -103,22 +116,7 @@ public class ControlPanel : UIBase
                 TakeThing();
                 break;
             case "ThrowBto":
-                Debug.Log(npcHere);
-                if (!npcHere)
-                {
-                    if (nearEnemy == null || !cdTimer.isTimeUp)
-                    {
-                        Debug.Log("附近没怪 或者 CD没好");
-                        return;
-                    }
-
-                    ThrowThing();
-                }
-                else
-                {
-                    Debug.Log("打开商店");
-                    UIMgr.GetInstance().ShowPanel<ShopPanel>("ShopPanel", E_UI_Layer.Above);
-                }
+                SwitchThrowKeyAct();
                 break;
             case "BagBto":
                 OpenBag();
@@ -191,8 +189,34 @@ public class ControlPanel : UIBase
             if(nearEnemy != null)
             {
                 enemyDir = (nearEnemy.transform.position - playerPos).normalized;
+                // 设置速度
                 rg.velocity = 5 * enemyDir;
+                // 设置旋转
+                rg.AddTorque(300f,ForceMode2D.Force);
             }
         });
+    }
+
+    private void SwitchThrowKeyAct()
+    {
+        switch (ctrlType)
+        {
+            case CtrlType.投掷:
+                if (nearEnemy == null || !cdTimer.isTimeUp)
+                {
+                    Debug.Log("附近没怪 或者 CD没好");
+                    return;
+                }
+                ThrowThing();
+                break;
+            case CtrlType.打开商店:
+                Debug.Log("打开商店");
+                UIMgr.GetInstance().ShowPanel<ShopPanel>("ShopPanel", E_UI_Layer.Above);
+                break;
+            case CtrlType.传送:
+                break;
+            default:
+                break;
+        }
     }
 }
