@@ -47,8 +47,8 @@ public class Player : MonoBehaviour
         {
             animator.SetFloat("IdleX", animator.GetFloat("RunX"));
             animator.SetFloat("IdleY", animator.GetFloat("RunY"));
-            animator.SetFloat("AtkX", animator.GetFloat("RunX"));
-            animator.SetFloat("AtkY", animator.GetFloat("RunY"));
+            //animator.SetFloat("AtkX", animator.GetFloat("RunX"));
+            //animator.SetFloat("AtkY", animator.GetFloat("RunY"));
         }
 
         rg.velocity = dir * speed;
@@ -87,6 +87,7 @@ public class Player : MonoBehaviour
         GameTool.QuickSortArray(transform.position, cols, 0, cols.Length - 1);
         // 消息中心存储 <距离最近的敌人> 消息
         EventCenter.GetInstance().EventTrigger<Collider2D>("距离最近的敌人", cols[0]);
+
     }
     /// <summary>
     /// 检查附近Npc

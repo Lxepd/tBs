@@ -30,7 +30,7 @@ public class ControlPanel : UIBase
     // 计时器
     private Timer cdTimer;
     // 投掷速度
-    public float throwSpeed = .5f;
+    public float throwSpeed = .2f;
     // 改变前的投掷速度
     private float lastThrow;
 
@@ -53,7 +53,10 @@ public class ControlPanel : UIBase
         numText = GetControl<Text>("ThrowNum");
         // 从消息中心拿取消息
         EventCenter.GetInstance().AddEventListener<Collider2D[]>("附近投掷物", (x) => { missiles = x; });
-        EventCenter.GetInstance().AddEventListener<Vector2>("PlayerPos", (x) => { playerPos = x; });
+        EventCenter.GetInstance().AddEventListener<Vector2>("PlayerPos", (x) => 
+        {
+            playerPos = x + new Vector2(0, .5f); 
+        });
         EventCenter.GetInstance().AddEventListener<Collider2D>("距离最近的敌人", (x) =>
         {
             if (x == null)
@@ -116,10 +119,6 @@ public class ControlPanel : UIBase
                 TakeThing();
                 break;
             case "ThrowBto":
-                //EventCenter.GetInstance().AddEventListener<Animator>("Player动画", (x)=> 
-                //{
-                //    x.Play("Atk");
-                //});
                 SwitchThrowKeyAct();
                 break;
             case "BagBto":
@@ -157,8 +156,7 @@ public class ControlPanel : UIBase
         if (throwMagazine.Count == 0)
         {
             Debug.Log("没有更厉害的东西掷出，只能投掷石子了");
-            // 播放挥砍动画
-            Player.instance.Animator.Play("Atk");
+
             // 投掷石子
             ThrowBase("Prefabs/石子");
         }
@@ -196,6 +194,11 @@ public class ControlPanel : UIBase
             if(nearEnemy != null)
             {
                 enemyDir = (nearEnemy.transform.position - playerPos).normalized;
+                Debug.Log(enemyDir);
+                Player.instance.Animator.SetFloat("AtkX", enemyDir.x);
+                Player.instance.Animator.SetFloat("AtkY", enemyDir.y);
+                // 播放挥砍动画
+                Player.instance.Animator.Play("Atk");
                 // 设置速度
                 rg.velocity = 5 * enemyDir;
                 // 设置旋转
