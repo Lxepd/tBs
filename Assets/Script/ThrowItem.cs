@@ -8,6 +8,8 @@ public class ThrowItem : MonoBehaviour
     public int id;
     private ThrowItemData data;
 
+    public ThrowItemData Data { get => data;}
+
     private void Start()
     {
         data = GameMgr.GetInstance().GetThrowItemInfo(id);

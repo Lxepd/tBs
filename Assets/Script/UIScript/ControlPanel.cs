@@ -5,20 +5,20 @@ using UnityEngine.UI;
 
 public enum CtrlType
 {
-    投掷,
+    射击,
     打开商店,
     传送
 }
 public class ControlPanel : UIBase
 {
-    // 投掷物列表
-    private Collider2D[] missiles;
-    // 投掷物数量
+    // 强化物列表
+    private Collider2D[] strengthen;
+    // 强化物数量
     private Text numText;
-    // 投掷物弹匣
-    // 将拿取的 投掷物放入 队列
-    private Queue<string> throwMagazine;
-    // 拿取投掷物的最大数量
+    // 强化物弹匣
+    // 将拿取的 强化物放入 队列
+    private Queue<ThrowItemData> strengthenQueue;
+    // 拿取强化物的最大数量
     private int maxThingNum = 10;
 
     // 当前玩家位置
@@ -40,9 +40,9 @@ public class ControlPanel : UIBase
     {
         base.Awake();
         // 初始化队列
-        if (throwMagazine == null)
+        if (strengthenQueue == null)
         {
-            throwMagazine = new Queue<string>();
+            strengthenQueue = new Queue<ThrowItemData>();
         }
 
     }
@@ -52,7 +52,7 @@ public class ControlPanel : UIBase
         // 获取text组件
         numText = GetControl<Text>("ThrowNum");
         // 从消息中心拿取消息
-        EventCenter.GetInstance().AddEventListener<Collider2D[]>("附近投掷物", (x) => { missiles = x; });
+        EventCenter.GetInstance().AddEventListener<Collider2D[]>("强化物", (x) => { strengthen = x; });
         EventCenter.GetInstance().AddEventListener<Vector2>("PlayerPos", (x) => 
         {
             playerPos = x + new Vector2(0, .5f); 
@@ -77,7 +77,7 @@ public class ControlPanel : UIBase
             }
             else
             {
-                ctrlType = CtrlType.投掷;
+                ctrlType = CtrlType.射击;
             }
 
         });
@@ -91,13 +91,13 @@ public class ControlPanel : UIBase
     void Update()
     {
         // 根据队列数量修改text的文本
-        if(throwMagazine.Count<1)
+        if(strengthenQueue.Count<1)
         {
             numText.text = "∞";
         }
         else
         {
-            numText.text = throwMagazine.Count + "/" + maxThingNum;
+            numText.text = strengthenQueue.Count + "/" + maxThingNum;
         }
         // 投掷速度修改时
         if (lastThrow != throwSpeed)
@@ -131,43 +131,42 @@ public class ControlPanel : UIBase
     /// </summary>
     private void TakeThing()
     {
-        if(missiles.Length<1)
+        if(strengthen.Length<1)
         {
             Debug.Log("拿了个空气！！");
             return;
         }
 
-        Debug.Log("拿取  投掷物！！");
+        Debug.Log("拿取强化物！！");
         // 一次只拿取一个，拿完跳出
-        if (throwMagazine.Count < maxThingNum)
+        if (strengthenQueue.Count < maxThingNum)
         {
-            throwMagazine.Enqueue(missiles[0].name);
-            PoolMgr.GetInstance().PushObj(missiles[0].name, missiles[0].gameObject);
-            Debug.Log(throwMagazine.Count);
+            strengthenQueue.Enqueue(strengthen[0].GetComponent<ThrowItem>().Data);
+            PoolMgr.GetInstance().PushObj(strengthen[0].name, strengthen[0].gameObject);
+            Debug.Log(strengthenQueue.Count);
         }
 
     }
     /// <summary>
-    /// 投掷
+    /// 射击
     /// </summary>
-    private void ThrowThing()
+    private void Shoot()
     {
-        // 如果弹匣里没有，则投掷石头进行攻击
-        if (throwMagazine.Count == 0)
+        // 如果弹匣里没有，则进行基础攻击
+        if (strengthenQueue.Count == 0)
         {
-            Debug.Log("没有更厉害的东西掷出，只能投掷石子了");
-
-            // 投掷石子
-            ThrowBase("Prefabs/石子");
+            // 基础攻击
+            ThrowItemData data = GameMgr.GetInstance().GetThrowItemInfo(10001);
+            ShootBase(data.path, data.speed);
         }
-        // 否则，扔弹匣中第一个投掷物
+        // 否则，使用弹匣中第一个强化物
         else
         {
-            string firstThrow = throwMagazine.Dequeue();
-            Debug.Log(throwMagazine.Count);
+            ThrowItemData first = strengthenQueue.Dequeue();
+            Debug.Log(strengthenQueue.Count);
 
-            Debug.Log("掷出  投掷物！！        " + firstThrow);
-            ThrowBase(firstThrow);
+            Debug.Log("强化射击！！        " + first);
+            ShootBase(first.path,first.speed);
         }
     }
     /// <summary>
@@ -179,11 +178,11 @@ public class ControlPanel : UIBase
         UIMgr.GetInstance().ShowPanel<BagPanel>("BagPanel", E_UI_Layer.Above);
     }
     /// <summary>
-    /// 投掷
+    /// 射击
     /// </summary>
-    private void ThrowBase(string name)
+    private void ShootBase(string name,float speed)
     {
-        Debug.Log(name);
+        Debug.Log(name + "        " + speed);
         PoolMgr.GetInstance().GetObj(name, (x) =>
         {
             x.transform.position = playerPos;
@@ -194,15 +193,16 @@ public class ControlPanel : UIBase
             if(nearEnemy != null)
             {
                 enemyDir = (nearEnemy.transform.position - playerPos).normalized;
-                Debug.Log(enemyDir);
+                EventCenter.GetInstance().EventTrigger<Vector2>("Joystick", Vector2.zero);
+
                 Player.instance.Animator.SetFloat("AtkX", enemyDir.x);
                 Player.instance.Animator.SetFloat("AtkY", enemyDir.y);
                 // 播放挥砍动画
                 Player.instance.Animator.Play("Atk");
                 // 设置速度
-                rg.velocity = 5 * enemyDir;
-                // 设置旋转
-                rg.AddTorque(300f,ForceMode2D.Force);
+                rg.velocity = speed * enemyDir;
+                // 设置朝向
+                x.transform.rotation = Quaternion.FromToRotation(Vector3.right, enemyDir);
             }
         });
     }
@@ -211,13 +211,13 @@ public class ControlPanel : UIBase
     {
         switch (ctrlType)
         {
-            case CtrlType.投掷:
+            case CtrlType.射击:
                 if (nearEnemy == null || !cdTimer.isTimeUp)
                 {
                     Debug.Log("附近没怪 或者 CD没好");
                     return;
                 }
-                ThrowThing();
+                Shoot();
                 break;
             case CtrlType.打开商店:
                 Debug.Log("打开商店");

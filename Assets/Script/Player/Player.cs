@@ -55,19 +55,19 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        CheckMissileScope();
+        Checkstrengthen();
         FindProximityOfEnemy();
         CheckNpcHere();
     }
     /// <summary>
-    /// 检查附近有没有场景投掷物
+    /// 检查附近有没有强化物
     /// </summary>
-    private void CheckMissileScope()
+    private void Checkstrengthen()
     {
         // 获取范围的场景投掷物
-        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, shootThrowThingLen, LayerMask.GetMask("场景投掷物"));
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, shootThrowThingLen, LayerMask.GetMask("强化物"));
         // 消息中心存储 <附近投掷物> 消息
-        EventCenter.GetInstance().EventTrigger<Collider2D[]>("附近投掷物", cols);
+        EventCenter.GetInstance().EventTrigger<Collider2D[]>("强化物", cols);
     }
     /// <summary>
     /// 寻找离自身最近的一个敌人

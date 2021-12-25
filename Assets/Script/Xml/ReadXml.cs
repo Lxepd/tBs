@@ -20,15 +20,14 @@ public class ReadXml : InstanceNoMono<ReadXml>
     public void SetFileToPersistent(string path, string xmlPath)
     {
         FileInfo info = new FileInfo(Application.persistentDataPath + path);
-        if (!info.Exists)
-        {
-            TextAsset ts = Resources.Load(xmlPath) as TextAsset;
-            string content = ts.text;
-            StreamWriter sw = info.CreateText();
-            sw.Write(content);
-            sw.Close();
-            sw.Dispose();
-        }
+
+        TextAsset ts = Resources.Load(xmlPath) as TextAsset;
+        string content = ts.text;
+        StreamWriter sw = info.CreateText();
+        sw.Write(content);
+        sw.Close();
+        sw.Dispose();
+
     }
     /// <summary>
     /// ∂¡»°Xml
@@ -49,6 +48,7 @@ public class ReadXml : InstanceNoMono<ReadXml>
             newData.name = item.SelectSingleNode("name").InnerText;
             newData.tips = item.SelectSingleNode("tips").InnerText;
             newData.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
+            newData.speed = float.Parse(item.SelectSingleNode("speed").InnerText);
             newData.hurt = float.Parse(item.SelectSingleNode("hurt").InnerText);
             newData.price = int.Parse(item.SelectSingleNode("price").InnerText);
             newData.canBuy = bool.Parse(item.SelectSingleNode("buy").InnerText);

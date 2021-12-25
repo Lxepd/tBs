@@ -6,15 +6,15 @@ using System;
 
 public enum TpType
 {
-    »ØÈ¥,
-    ÏÂÒ»¹Ø
+    å›å»,
+    ä¸‹ä¸€å…³
 }
 [Serializable]
 public class TpData
 {
-    [Tooltip("´«ËÍtype")]
+    [Tooltip("ä¼ é€type")]
     public TpType type;
-    [Tooltip("ÏÂÒ»¹Øid")]
+    [Tooltip("ä¸‹ä¸€å…³id")]
     public int roomID;
 }
 public class TpPoint : MonoBehaviour
@@ -30,12 +30,12 @@ public class TpPoint : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Collider2D col = Physics2D.OverlapBox(transform.position, GetComponent<BoxCollider2D>().bounds.size, .1f, LayerMask.GetMask("Íæ¼Ò"));
+        Collider2D col = Physics2D.OverlapBox(transform.position, GetComponent<BoxCollider2D>().bounds.size, .1f, LayerMask.GetMask("ç©å®¶"));
         if (col != null && !isStart)
         {
             isStart = true;
             tpTimer.Start();
-            Debug.Log("Íæ¼ÒÔÚ´«ËÍµã£¬×¼±¸´«ËÍ");
+            Debug.Log("ç©å®¶åœ¨ä¼ é€ç‚¹ï¼Œå‡†å¤‡ä¼ é€");
         }
 
         if (tpTimer.isTimeUp)
@@ -43,25 +43,25 @@ public class TpPoint : MonoBehaviour
 
             switch (tp.type)
             {
-                case TpType.»ØÈ¥:
+                case TpType.å›å»:
                     SceneMgr.GetInstance().LoadSceneAsyn("Game", () =>
                     {
-                        Player.instance.transform.position = GameObject.Find("·µ»Øµã").transform.position;
+                        Player.instance.transform.position = GameObject.Find("è¿”å›ç‚¹").transform.position;
                     });
                     break;
-                case TpType.ÏÂÒ»¹Ø:
+                case TpType.ä¸‹ä¸€å…³:
                     Debug.Log(GameMgr.GetInstance().RoomDataDic[tp.roomID].name);
                     SceneMgr.GetInstance().LoadSceneAsyn("Level", () =>
                     {
                         GameObject room = Instantiate(Resources.Load<GameObject>(GameMgr.GetInstance().RoomDataDic[tp.roomID].prefabPath));
-                        Player.instance.transform.position = room.transform.FindChild("³öÏÖµã").position;
+                        Player.instance.transform.position = room.transform.Find("å‡ºç°ç‚¹").position;
                         ResetRoom();
                     });
                     break;
             }
             //PoolMgr.GetInstance().GetObj(GameMgr.GetInstance().GetRoomInfo(tp.roomID).prefabPath, (x) =>
             //{
-            //    Player.instance.transform.position = x.transform.FindChild("³öÏÖµã").position;
+            //    Player.instance.transform.position = x.transform.FindChild("å‡ºç°ç‚¹").position;
             //    ResetRoom();
             //});
         }

@@ -1,50 +1,55 @@
 <Data>
 	<it id="10001">
-		<path>Prefabs/石子</path>
-		<name>石子</name>
-		<tips>没什么用的小石头</tips>
+		<path>Prefabs/Bullet/子弹1</path>
+		<name>子弹</name>
+		<tips>基础射击子弹</tips>
 		<mass>0</mass>
+		<speed>10</speed>
 		<hurt>1</hurt>
 		<price>0</price>
 		<buy>false</buy>
 		<sell>false</sell>
 	</it>
 	<it id="10002">
-		<path>Prefabs/罐子</path>
-		<name>罐子</name>
-		<tips>很好看的罐子，要是拿来砸人。。。挺。。挺痛的吧</tips>
-		<mass>9</mass>
-		<hurt>6</hurt>
-		<price>0</price>
-		<buy>false</buy>
-		<sell>false</sell>
-	</it>
-	<it id="10003">
-		<path>Prefabs/砖头</path>
-		<name>砖头</name>
-		<tips>随处可见的建筑材料</tips>
-		<mass>4</mass>
+		<path>Prefabs/Bullet/强化弹</path>
+		<name>强化弹</name>
+		<tips>强化过的基础子弹</tips>
+		<mass>2</mass>
+		<speed>10</speed>
 		<hurt>3</hurt>
 		<price>0</price>
 		<buy>false</buy>
 		<sell>false</sell>
 	</it>
+	<it id="10003">
+		<path>Prefabs/Bullet/质量弹</path>
+		<name>质量弹</name>
+		<tips>击退弹</tips>
+		<mass>8</mass>
+		<speed>6</speed>
+		<hurt>2</hurt>
+		<price>0</price>
+		<buy>false</buy>
+		<sell>false</sell>
+	</it>
 	<it id="10004">
-		<path>Prefabs/玻璃</path>
-		<name>玻璃</name>
-		<tips>透光挺不错的</tips>
-		<mass>1</mass>
-		<hurt>1</hurt>
+		<path>Prefabs/Bullet/伤害弹</path>
+		<name>伤害弹</name>
+		<tips>伤害弹</tips>
+		<mass>4</mass>
+		<speed>8</speed>
+		<hurt>10</hurt>
 		<price>0</price>
 		<buy>false</buy>
 		<sell>false</sell>
 	</it>
 	<it id="10005">
-		<path>Prefabs/球</path>
-		<name>球</name>
-		<tips>玩球吗？</tips>
-		<mass>6</mass>
-		<hurt>4</hurt>
+		<path>Prefabs/Bullet/均衡弹</path>
+		<name>均衡弹</name>
+		<tips>击退与伤害并存的均衡弹</tips>
+		<mass>3</mass>
+		<speed>10</speed>
+		<hurt>3</hurt>
 		<price>0</price>
 		<buy>false</buy>
 		<sell>false</sell>

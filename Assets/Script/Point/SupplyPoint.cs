@@ -10,10 +10,10 @@ using System;
 public enum SupplyType
 {
     None,
-    罐子,
-    砖头,
-    玻璃,
-    球
+    强化弹,
+    质量弹,
+    伤害弹,
+    均衡弹
 }
 /// <summary>
 /// 补给数据
@@ -63,7 +63,7 @@ public class SupplyPoint : MonoBehaviour
 
     private void Update()
     {
-        Collider2D cols = Physics2D.OverlapBox(transform.position, size, .1f, LayerMask.GetMask("场景投掷物"));
+        Collider2D cols = Physics2D.OverlapBox(transform.position, size, .1f, LayerMask.GetMask("强化物"));
         if (cols != null)
         {
             supplyTimer.Continue();
@@ -84,10 +84,10 @@ public class SupplyPoint : MonoBehaviour
             return;
         }
 
-        Collider2D cols = Physics2D.OverlapBox(transform.position, size, .1f, LayerMask.GetMask("场景投掷物"));
+        Collider2D cols = Physics2D.OverlapBox(transform.position, size, .1f, LayerMask.GetMask("强化物"));
         if (cols == null)
         {
-            PoolMgr.GetInstance().GetObj("Prefabs/" + data.type.ToString(), (x) =>
+            PoolMgr.GetInstance().GetObj(TypeFindBulletOfID(), (x) =>
             {
                 x.transform.position = transform.position;
                 data.num++;
@@ -95,6 +95,28 @@ public class SupplyPoint : MonoBehaviour
 
             supplyTimer.Pause();
         }
+    }
+    private string TypeFindBulletOfID()
+    {
+        int pathID = 0;
+
+        switch (data.type)
+        {
+            case SupplyType.强化弹:
+                pathID = 10002;
+                break;
+            case SupplyType.质量弹:
+                pathID = 10003;
+                break;
+            case SupplyType.伤害弹:
+                pathID = 10004;
+                break;
+            case SupplyType.均衡弹:
+                pathID = 10005;
+                break;
+        }
+
+        return GameMgr.GetInstance().GetThrowItemInfo(pathID).path;
     }
     private void OnDrawGizmosSelected()
     {

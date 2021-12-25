@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameMgr : InstanceNoMono<GameMgr>
 {
-    // 存放<投掷物>信息字典
+    // 存放<射击物>信息字典
     public Dictionary<int, ThrowItemData> ThrowItemDataDic = new Dictionary<int, ThrowItemData>();
     // 存放<道具>信息字典
     public Dictionary<int, ItemData> ItemDataDic = new Dictionary<int, ItemData>();

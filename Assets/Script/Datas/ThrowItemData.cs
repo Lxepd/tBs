@@ -10,6 +10,7 @@ public class ThrowItemData
     public string name; // 名
     public string tips; // 描述
     public float mass; // 质量
+    public float speed; // 速度
     public float hurt; // 伤害
     public int price; // 价格
     public bool canBuy; // 能否买
