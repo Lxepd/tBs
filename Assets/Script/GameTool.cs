@@ -48,4 +48,21 @@ public class GameTool
     {
         return Vector2.Distance(array.gameObject.transform.position, pos);
     }
+
+    public static float GetAnimatorLength(Animator animator, string name)
+    {
+        float length = 0;
+
+        AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
+        foreach (var clip in clips)
+        {
+            if(clip.name.Equals(name))
+            {
+                length = clip.length;
+                break;
+            }
+        }
+
+        return length;
+    }
 }

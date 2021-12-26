@@ -182,7 +182,6 @@ public class ControlPanel : UIBase
     /// </summary>
     private void ShootBase(string name,float speed)
     {
-        Debug.Log(name + "        " + speed);
         PoolMgr.GetInstance().GetObj(name, (x) =>
         {
             x.transform.position = playerPos;
@@ -204,6 +203,8 @@ public class ControlPanel : UIBase
                 // …Ë÷√≥ØœÚ
                 x.transform.rotation = Quaternion.FromToRotation(Vector3.right, enemyDir);
             }
+
+            x.GetComponent<ThrowItem>().ws = WhoShoot.Player;
         });
     }
 

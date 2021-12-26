@@ -3,7 +3,7 @@
 		<path>Prefabs/Bullet/子弹1</path>
 		<name>子弹</name>
 		<tips>基础射击子弹</tips>
-		<mass>0</mass>
+		<mass>10</mass>
 		<speed>10</speed>
 		<hurt>1</hurt>
 		<price>0</price>
