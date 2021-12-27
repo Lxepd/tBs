@@ -27,6 +27,9 @@ public class FireWorm : MonoBehaviour
     public FWState fws = FWState.Idle;
     public StateMachine machine;
 
+    public float MoveTimertime;
+    public float AtkTimertime;
+
     private void Start()
     {
         // TODO: 初始化怪物
@@ -35,8 +38,11 @@ public class FireWorm : MonoBehaviour
         animator = GetComponent<Animator>();
 
         forceTimer = new Timer(.2f, false, false);
-        atkTimer = new Timer(.75f * GameTool.GetAnimatorLength(animator, "Atk"), false, false);
-        moveTimer = new Timer(.5f * GameTool.GetAnimatorLength(animator, "Walk"), false, false);
+
+        MoveTimertime = .5f * GameTool.GetAnimatorLength(animator, "Walk");
+        moveTimer = new Timer(MoveTimertime, false, false);
+        AtkTimertime = .65f * GameTool.GetAnimatorLength(animator, "Atk");
+        atkTimer = new Timer(AtkTimertime, false, false);
 
         // 获取<敌人扣血>的消息
         EventCenter.GetInstance().AddEventListener<ThrowItemData>("敌人扣血", (x) =>
@@ -95,7 +101,7 @@ public class FireWorm : MonoBehaviour
     }
     public void Rotate(Vector2 dir)
     {
-        if (dir.x < 0)
+        if (dir.x <= 0)
         {
             transform.localScale = new Vector2(-1, transform.localScale.y);
         }
@@ -129,7 +135,7 @@ public class EnemyIdle : StateBaseTemplate<FireWorm>
     }
     public override void OnStay(params object[] args)
     {
-        Debug.Log("玩家不在附近，站立状态！");
+        Debug.Log("站立状态！");
     }
     public override void OnExit(params object[] args)
     {
@@ -153,25 +159,29 @@ public class EnemyWalk : StateBaseTemplate<FireWorm>
     }
     public override void OnStay(params object[] args)
     {
+        Debug.Log("移动状态！");
+
         Vector2 playerDir = (player.transform.position - owner.transform.position).normalized;
 
-        if(owner.moveTimer.isTimeUp)
+        if (owner.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > GameTool.GetAnimatorLength(owner.animator, "Walk"))
+        {
+            OnExit();
+            return;
+        }
+
+        if (owner.moveTimer.isTimeUp)
         {
             // 朝向玩家
             owner.Rotate(playerDir);
             // 刚体移动 = 朝向 * 怪物速度
             owner.rg.velocity = playerDir * 3;
 
-            if (owner.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > GameTool.GetAnimatorLength(owner.animator, "Walk"))
-            {
-                OnExit();
-            }
         }
 
     }
     public override void OnExit(params object[] args)
     {
-        owner.moveTimer.Reset(.5f * GameTool.GetAnimatorLength(owner.animator, "Walk"));
+        owner.moveTimer.Reset(owner.MoveTimertime);
         owner.rg.velocity = Vector2.zero;
         machine.TranslateState(1);
     }
@@ -182,6 +192,7 @@ public class EnemyWalk : StateBaseTemplate<FireWorm>
 public class EnemyAtk : StateBaseTemplate<FireWorm>
 {
     Collider2D player;
+    bool isAtk;
     public EnemyAtk(int id, FireWorm ec) : base(id, ec)
     {
 
@@ -194,24 +205,40 @@ public class EnemyAtk : StateBaseTemplate<FireWorm>
     }
     public override void OnStay(params object[] args)
     {
-        Vector2 playerDir = (player.transform.position - owner.transform.position).normalized;
+        Debug.Log("攻击状态！");
+
+        Vector3 yoff = new Vector3(.5f * owner.transform.localScale.x, 1f, 0);
+        Vector3 playerYoff = new Vector3(0, .5f, 0);
+        Vector3 playerDir = ((player.transform.position+ playerYoff) - owner.transform.position - yoff).normalized;
         
         owner.Rotate(playerDir);
-
-        if(owner.atkTimer.isTimeUp)
-        {
-            Debug.Log("攻击");
-
-        }
 
         if (owner.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > GameTool.GetAnimatorLength(owner.animator, "Atk"))
         {
             OnExit();
+            return;
         }
+
+        if (owner.atkTimer.isTimeUp && !isAtk)
+        {
+            isAtk = true;
+            PoolMgr.GetInstance().GetObj("Prefabs/Bullet/FireBall", (x) =>
+             {
+                 x.transform.position = owner.transform.position + yoff;
+                 // 设置火球速度
+                 x.GetComponent<Rigidbody2D>().velocity = playerDir * 10;
+                 // 设置火球朝向
+                 x.transform.rotation = Quaternion.FromToRotation(Vector3.right, playerDir);
+                 // 设置火球发射者
+                 x.GetComponent<ThrowItem>().ws = WhoShoot.Enemy;
+             });
+        }
+
     }
     public override void OnExit(params object[] args)
     {
-        owner.atkTimer.Reset(.75f * GameTool.GetAnimatorLength(owner.animator, "Atk"));
+        isAtk = false;
+        owner.atkTimer.Reset(owner.AtkTimertime, false);
         machine.TranslateState(1);
     }
 }
