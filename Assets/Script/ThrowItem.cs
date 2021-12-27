@@ -39,7 +39,7 @@ public class ThrowItem : MonoBehaviour
         }
         else if (ws == WhoShoot.Enemy && collision.CompareTag("Player"))
         {
-            // 碰到玩家，在消息中心存储<敌人扣血>消息
+            // 碰到玩家，在消息中心存储<玩家扣血>消息
             EventCenter.GetInstance().EventTrigger<ThrowItemData>("玩家扣血", data);
             PoolMgr.GetInstance().PushObj(name, gameObject);
 
