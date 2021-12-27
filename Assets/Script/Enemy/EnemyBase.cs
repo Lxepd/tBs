@@ -15,7 +15,7 @@ public class EnemyBase : MonoBehaviour
     [HideInInspector] protected Vector2 nearThrow;
 
     protected Timer forceStopTimer;
-
+    public Collider2D player;
     protected virtual void Start()
     {
         // TODO: ≥ı ºªØπ÷ŒÔ

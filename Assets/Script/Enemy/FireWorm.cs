@@ -2,7 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+public enum FireWormState
+{
+    None,
+    Idle,
+    Walk,
+    Atk,
+    Hit
+}
 public class FireWorm : EnemyBase
 {
     // 注册状态计时器
@@ -23,6 +30,8 @@ public class FireWorm : EnemyBase
 
     public Timer ForceStopTimer { get => forceStopTimer; }
     public bool isHit;
+
+    FireWormState fws = FireWormState.Idle;
 
     protected override void Start()
     {
@@ -65,52 +74,68 @@ public class FireWorm : EnemyBase
     {
         base.Update();
 
+        switch (fws)
+        {
+            case FireWormState.Idle:
+                machine.TranslateState(1);
+                break;
+            case FireWormState.Walk:
+                machine.TranslateState(2, player);
+                if (moveTimer.isStop)
+                {
+                    moveTimer.Start();
+                }
+                break;
+            case FireWormState.Atk:
+                machine.TranslateState(3, player);
+                if (atkTimer.isStop)
+                {
+                    atkTimer.Start();
+                }
+                break;
+            case FireWormState.Hit:
+                machine.TranslateState(4);
+                if (HitTimer.isStop)
+                {
+                    HitTimer.Start();
+                }
+                break;
+        }
+
     }
     /// <summary>
     /// 状态改变
     /// </summary>
     public override void CheckState()
     {
-        Collider2D player = Physics2D.OverlapCircle(transform.position, MoveLen, LayerMask.GetMask("玩家"));
+        player = Physics2D.OverlapCircle(transform.position, MoveLen, LayerMask.GetMask("玩家"));
 
         // 如果范围内没有玩家
         if (player == null)
         {
             // 进入 站立状态
-            machine.TranslateState(1);
+            fws = FireWormState.Idle;
             return;
         }
 
-        if(isHit)
+
+        if (!isHit)
         {
-            machine.TranslateState(4);
-            if(HitTimer.isStop)
+            //如果在攻击范围内，则进入 攻击状态
+            if (Vector2.Distance(player.transform.position, transform.position) <= AtkLen)
             {
-                HitTimer.Start();
+                fws = FireWormState.Atk;
+
             }
-
-            return;
-        }
-
-        //如果在攻击范围内，则进入 攻击状态
-        if (Vector2.Distance(player.transform.position, transform.position) <= AtkLen)
-        {
-            machine.TranslateState(3, player);
-
-            if (atkTimer.isStop)
+            // 否则移动追击状态
+            else
             {
-                atkTimer.Start();
+                fws = FireWormState.Walk;
             }
         }
-        // 否则移动追击状态
         else
         {
-            machine.TranslateState(2, player);
-
-            if (moveTimer.isStop)
-            {
-                moveTimer.Start();
-            }
+            fws = FireWormState.Hit;
         }
     }
 
@@ -141,7 +166,8 @@ public class FireWormIdle : StateBaseTemplate<FireWorm>
     }
     public override void OnStay(params object[] args)
     {
-        Debug.Log("站立状态！");
+
+        //Debug.Log("站立状态！");
     }
     public override void OnExit(params object[] args)
     {
@@ -266,7 +292,7 @@ public class FireWormHit : StateBaseTemplate<FireWorm>
     }
     public override void OnStay(params object[] args)
     {
-        Debug.Log("被击状态！");
+        //Debug.Log("被击状态！");
 
         if (owner.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > GameTool.GetAnimatorLength(owner.Animator, "Hit"))
         {
@@ -287,7 +313,6 @@ public class FireWormHit : StateBaseTemplate<FireWorm>
         owner.moveTimer.Reset(owner.MoveTimertime);
         owner.atkTimer.Reset(owner.AtkTimertime);
         owner.HitTimer.Reset(owner.HitTimertime);
-        machine.TranslateState(1);
     }
 }
 #endregion
