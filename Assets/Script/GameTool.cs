@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameTool
 {
@@ -64,5 +65,22 @@ public class GameTool
         }
 
         return length;
+    }
+    //查找子物体
+    public static Transform FindTheChild(GameObject goParent, string childName)
+    {
+        Transform searchTrans = goParent.transform.Find(childName);
+        if (searchTrans == null)
+        {
+            foreach (Transform trans in goParent.transform)
+            {
+                searchTrans = FindTheChild(trans.gameObject, childName);
+                if (searchTrans != null)
+                {
+                    return searchTrans;
+                }
+            }
+        }
+        return searchTrans;
     }
 }

@@ -70,6 +70,7 @@ public class ReadXml : InstanceNoMono<ReadXml>
             newData.id = int.Parse(item.Attributes["id"].InnerText);
 
             newData.name = item.SelectSingleNode("name").InnerText;
+            newData.path = item.SelectSingleNode("path").InnerText;
             newData.tips = item.SelectSingleNode("tips").InnerText;
             newData.canSuperPosition = bool.Parse(item.SelectSingleNode("canSuperPosition").InnerText);
             newData.maxNum = int.Parse(item.SelectSingleNode("maxNum").InnerText);

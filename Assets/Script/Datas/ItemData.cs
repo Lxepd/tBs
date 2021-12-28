@@ -5,7 +5,7 @@ using UnityEngine;
 public enum ItemActType
 {
     None,
-    回血,
+    恢复,
     强化
 }
 public enum ItemType
@@ -19,6 +19,7 @@ public class ItemData
 {
     public int id; // id
     public string name; // 名
+    public string path; // 图片路径
     public string tips; // 说明
     public bool canSuperPosition; // 能否叠加
     public int maxNum; // 最大数量

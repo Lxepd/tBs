@@ -26,14 +26,14 @@ public class UIMgr : InstanceNoMono<UIMgr>
 
     public UIMgr()
     {
-        GameObject obj = ResMgr.GetInstance().Load<GameObject>("UI/Canvas");
+        GameObject obj = ResMgr.GetInstance().Load<GameObject>("Prefabs/UI/Canvas");
         canvas = obj.transform as RectTransform;
         Object.DontDestroyOnLoad(obj);
 
         normal = canvas.Find("Normal");
         above = canvas.Find("Above");
 
-        obj = ResMgr.GetInstance().Load<GameObject>("UI/EventSystem");
+        obj = ResMgr.GetInstance().Load<GameObject>("Prefabs/UI/EventSystem");
         Object.DontDestroyOnLoad(obj);
     }
     public Transform GetLayerFather(E_UI_Layer layer)
@@ -68,7 +68,7 @@ public class UIMgr : InstanceNoMono<UIMgr>
             return;
         }
 
-        ResMgr.GetInstance().LoadAsync<GameObject>("UI/" + panelName,(obj)=> 
+        ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/UI/" + panelName,(obj)=> 
         {
 
             Transform father = normal;

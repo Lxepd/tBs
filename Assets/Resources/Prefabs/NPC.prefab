@@ -123,9 +123,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  itemList:
-  - id: 0
-    num: 0
-  - id: 0
-    num: 0
-  checkRadius: 2
+  itemList: []
+  checkRadius: 3

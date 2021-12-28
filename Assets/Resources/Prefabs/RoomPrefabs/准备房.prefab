@@ -15512,6 +15512,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC
       objectReference: {fileID: 0}
+    - target: {fileID: 3683938811624229461, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
+      propertyPath: id
+      value: 13001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3683938811624229461, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
+      propertyPath: itemSellList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3683938811624229461, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
+      propertyPath: itemSellList.Array.data[0].id
+      value: 12001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3683938811624229461, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
+      propertyPath: itemSellList.Array.data[0].num
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8129074260691347443, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
       propertyPath: m_RootOrder
       value: 7

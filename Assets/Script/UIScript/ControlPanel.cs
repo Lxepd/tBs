@@ -20,7 +20,6 @@ public class ControlPanel : UIBase
     private Queue<ThrowItemData> strengthenQueue;
     // 拿取强化物的最大数量
     private int maxThingNum = 10;
-
     // 当前玩家位置
     private Vector3 playerPos;
     // 最近的敌人
@@ -35,7 +34,7 @@ public class ControlPanel : UIBase
     private float lastThrow;
 
     CtrlType ctrlType;
-
+    Npc npcComponent;
     protected override void Awake()
     {
         base.Awake();
@@ -74,6 +73,7 @@ public class ControlPanel : UIBase
             if(x!=null)
             {
                 ctrlType = CtrlType.打开商店;
+                npcComponent = x.GetComponent<Npc>();
             }
             else
             {
@@ -222,12 +222,16 @@ public class ControlPanel : UIBase
                 break;
             case CtrlType.打开商店:
                 Debug.Log("打开商店");
-                UIMgr.GetInstance().ShowPanel<ShopPanel>("ShopPanel", E_UI_Layer.Above);
+                //UIMgr.GetInstance().ShowPanel<ShopPanel>("ShopPanel", E_UI_Layer.Above);
+                npcComponent.OpenShop();
                 break;
             case CtrlType.传送:
                 break;
             default:
                 break;
         }
+
+        EventCenter.GetInstance().EventTrigger<bool>("玩家打开商店", ctrlType == CtrlType.打开商店);
+
     }
 }

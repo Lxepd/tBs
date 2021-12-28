@@ -5,7 +5,7 @@ using System;
 
 public enum NpcType
 {
-    None,
+    None,   
     道具商人,
     装备商人,
     工匠
