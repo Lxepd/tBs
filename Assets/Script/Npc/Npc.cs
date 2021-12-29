@@ -28,16 +28,40 @@ public class Npc : MonoBehaviour
         UIMgr.GetInstance().ShowPanel<ShopPanel>("ShopPanel", E_UI_Layer.Above, (y) =>
         {
             Transform content = GameTool.FindTheChild(UIMgr.GetInstance().GetLayerFather(E_UI_Layer.Above).gameObject , "商店展示界面");
-
-            foreach (var item in itemSellList)
+            Debug.Log(itemSellList.Count);
+            foreach (NpcSell item in itemSellList)
             {
-                PoolMgr.GetInstance().GetObj("Prefabs/ShopItem", (x) =>
+                int[] num = new int[]
                 {
-                    x.transform.SetParent(content);
-                    x.transform.localScale = Vector3.one;
-                    x.transform.Find("Img").GetComponent<Image>().sprite = ResMgr.GetInstance().Load<Sprite>(GameMgr.GetInstance().GetItemInfo(item.id).path);
-                });
+                    // 有多少个满的
+                    item.num / GameMgr.GetInstance().GetItemInfo(item.id).maxNum,
+                    // 多出来几个
+                    item.num % GameMgr.GetInstance().GetItemInfo(item.id).maxNum
+                };
+
+                if (num[0] != 0)
+                {
+                    for (int i = 0; i < num[0]; i++)
+                    {
+                        CreateShopItem(content, item, GameMgr.GetInstance().GetItemInfo(item.id).maxNum);
+                    }
+                }
+                if (num[1] != 0)
+                {
+                    CreateShopItem(content, item, num[1]);
+                }
             }
+
+        });
+    }
+    private void CreateShopItem(Transform parent, NpcSell item,int num)
+    {
+        PoolMgr.GetInstance().GetObj("Prefabs/ShopItem", (x) =>
+        {
+            x.transform.SetParent(parent);
+            x.transform.localScale = Vector3.one;
+            x.transform.Find("Img").GetComponent<Image>().sprite = ResMgr.GetInstance().Load<Sprite>(GameMgr.GetInstance().GetItemInfo(item.id).path);
+            x.transform.Find("ItemNum").GetComponent<Text>().text = num.ToString();
 
         });
     }

@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemActType
-{
-    None,
-    恢复,
-    强化
-}
 public enum ItemType
 {
     None,
     一次性消耗品,
     可重复使用,
     非消耗品
+}
+public enum ItemActType
+{
+    None,
+    恢复,
+    强化
 }
 public class ItemData
 {

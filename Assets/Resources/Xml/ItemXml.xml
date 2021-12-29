@@ -12,4 +12,17 @@
         <itemType>1</itemType>
         <actType>1</actType>
     </it>
+    <it id="12002">
+        <name>柠檬</name>
+		<path>Sprites/ItemSprite/柠檬</path>
+        <tips>看起来很酸。。。</tips>
+        <canSuperPosition>true</canSuperPosition>
+        <maxNum>5</maxNum>
+        <canSell>true</canSell>
+        <sellPrice>2</sellPrice>
+        <canBuy>true</canBuy>
+        <buyPrice>5</buyPrice>
+        <itemType>1</itemType>
+        <actType>2</actType>
+    </it>
 </Data>
