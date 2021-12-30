@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ShopPanel : UIBase
 {
     public ItemClick item;
+    private Transform itemParent;
 
     public void Start()
     {
@@ -14,10 +15,16 @@ public class ShopPanel : UIBase
             Debug.Log(x);
             item = x;
         });
+
+        itemParent = GameTool.FindTheChild(UIMgr.GetInstance().GetLayerFather(E_UI_Layer.Above).gameObject, "商店展示界面");
+
+    }
+    private void Update()
+    {
+        ClearZeroItem();
     }
     public override void HideMe()
     {
-        Transform itemParent = GameTool.FindTheChild(UIMgr.GetInstance().GetLayerFather(E_UI_Layer.Above).gameObject, "商店展示界面");
         for (int i = itemParent.childCount - 1; i >= 0; i--)
         {
             itemParent.GetChild(i).GetChild(0).GetComponent<Image>().sprite = null;
@@ -44,20 +51,31 @@ public class ShopPanel : UIBase
                 break;
         }
     }
+    /// <summary>
+    /// 清除为0的道具商品
+    /// </summary>
+    private void ClearZeroItem()
+    {
+        // 当商品数量<=0的时候，回收池回收预制体
+        for (int i = 0; i < itemParent.childCount; i++)
+        {
+            ItemClick ic = itemParent.GetChild(i).GetComponent<ItemClick>();
+            if(ic.currentNum == 0)
+            {
+                PoolMgr.GetInstance().PushObj(itemParent.GetChild(i).name, itemParent.GetChild(i).gameObject);
+                EventCenter.GetInstance().EventTrigger<ItemClick>("商店物品", null);
+            }
+        }
+    }
+    /// <summary>
+    /// 添加物品进玩家背包
+    /// </summary>
     private void AddItem()
     {
         Transform content = GameTool.FindTheChild(UIMgr.GetInstance().GetLayerFather(E_UI_Layer.Above).gameObject, "背包界面");
 
-
         // 商品-1
-        // 当商品数量<=0的时候，回收池回收预制体
-        if (--item.currentNum < 0)
-        {
-            item.transform.GetChild(0).GetComponent<Image>().sprite = null;
-            PoolMgr.GetInstance().PushObj(item.gameObject.name, item.gameObject);
-            EventCenter.GetInstance().EventTrigger<ItemClick>("商店物品", null);
-            return;
-        }
+        item.currentNum--;
 
         // 没有达到最大值则叠加
         for (int i = 0; i < content.childCount; i++)
@@ -71,7 +89,6 @@ public class ShopPanel : UIBase
             }
         }
 
-
         // 之前相同的都满了，但是又有相同的道具，则添加
         PoolMgr.GetInstance().GetObj("Prefabs/ShopItem", (x) =>
          {
@@ -84,8 +101,6 @@ public class ShopPanel : UIBase
 
              x.transform.Find("Img").GetComponent<Image>().sprite = ResMgr.GetInstance().Load<Sprite>(GameMgr.GetInstance().GetItemInfo(item.id).path);
          });
-
-
 
     }
 }

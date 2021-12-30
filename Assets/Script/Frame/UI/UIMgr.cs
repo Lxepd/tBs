@@ -110,6 +110,13 @@ public class UIMgr : InstanceNoMono<UIMgr>
             panelDic[panelName].gameObject.SetActive(false);
         }
     }
+    public void HideAllPanel()
+    {
+        foreach (var panel in panelDic)
+        {
+            HidePanel(panel.Key);
+        }
+    }
     /// <summary>
     /// 获取已经显示的UI
     /// </summary>

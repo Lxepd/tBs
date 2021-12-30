@@ -7,7 +7,8 @@ public class InitData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UIMgr.GetInstance().ShowPanel<MainPanel>("MainPanel", E_UI_Layer.Normal);    
+
+        UIMgr.GetInstance().ShowPanel<MainPanel>("MainPanel", E_UI_Layer.Normal);
 
         ReadXml.GetInstance().SetFileToPersistent("/ThrowItemXml.xml", "Xml/ThrowItemXml");
         ReadXml.GetInstance().LoadThrowItemXml("/ThrowItemXml.xml");
@@ -28,5 +29,7 @@ public class InitData : MonoBehaviour
         ReadXml.GetInstance().SetFileToPersistent("/PlayerXml.xml", "Xml/PlayerXml");
         ReadXml.GetInstance().LoadPlayerXml("/PlayerXml.xml");
         Debug.Log("角色字典数据数量：    " + GameMgr.GetInstance().PlayerDataDic.Count);
+
+
     }
 }

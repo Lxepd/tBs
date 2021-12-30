@@ -20,6 +20,16 @@ public class StatePanel : UIBase
         GetControl<Image>("HpBar").fillAmount = currentHp / data.MaxHp;
     }
 
+    protected override void OnClick(string btnName)
+    {
+        switch (btnName)
+        {
+            case "Bto_List":
+                UIMgr.GetInstance().ShowPanel<ListPanel>("ListPanel", E_UI_Layer.Above);
+                break;
+        }
+    }
+
     private void InitStateUI()
     {
         currentHp = data.MaxHp;

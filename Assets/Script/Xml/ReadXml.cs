@@ -34,6 +34,9 @@ public class ReadXml : InstanceNoMono<ReadXml>
     /// </summary>
     public void LoadThrowItemXml(string path)
     {
+        if (GameMgr.GetInstance().ThrowItemDataDic.Count != 0)
+            return;
+
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.Load(Application.persistentDataPath + path);
 
@@ -59,6 +62,10 @@ public class ReadXml : InstanceNoMono<ReadXml>
     }
     public void LoadItemXml(string path)
     {
+        if (GameMgr.GetInstance().ItemDataDic.Count != 0)
+            return;
+
+
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.Load(Application.persistentDataPath + path);
 
@@ -86,6 +93,9 @@ public class ReadXml : InstanceNoMono<ReadXml>
     }
     public void LoadNpcXml(string path)
     {
+        if (GameMgr.GetInstance().NpcDataDic.Count != 0)
+            return;
+
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.Load(Application.persistentDataPath + path);
 
@@ -104,6 +114,9 @@ public class ReadXml : InstanceNoMono<ReadXml>
     }
     public void LoadRoomXml(string path)
     {
+        if (GameMgr.GetInstance().RoomDataDic.Count != 0)
+            return;
+
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.Load(Application.persistentDataPath + path);
 
@@ -123,6 +136,9 @@ public class ReadXml : InstanceNoMono<ReadXml>
     }
     public void LoadPlayerXml(string path)
     {
+        if (GameMgr.GetInstance().PlayerDataDic.Count != 0)
+            return;
+
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.Load(Application.persistentDataPath + path);
 
