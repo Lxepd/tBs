@@ -9,6 +9,7 @@ public class PlayerData
 {
     public int id; // id
     public string name; // 角色名
+    public string path; // 预制体位置
     public string tips; // 角色说明
     public int MaxHp; // 最大生命值
     public float speed; // 角色速度

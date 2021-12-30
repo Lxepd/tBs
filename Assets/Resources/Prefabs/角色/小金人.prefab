@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 4321760943173944740}
   - component: {fileID: 8342669029123840125}
   m_Layer: 11
-  m_Name: Player
+  m_Name: "\u5C0F\u91D1\u4EBA"
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -320,6 +320,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 14001
-  speed: 5
   shootThrowThingLen: 1.34
   shootEnemyLen: 10

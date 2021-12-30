@@ -1,6 +1,7 @@
 <Data>
     <it id="14001">
         <name>小金人</name>
+		<path>Prefabs/角色/小金人</path>
 		<tips>浑身发着光。。</tips>
 		<maxHp>50</maxHp>
 		<speed>10</speed>

@@ -17,7 +17,7 @@ public class MainPanel : UIBase
                 UIMgr.GetInstance().ShowPanel<LoadingPanel>("LoadingPanel", E_UI_Layer.Above);
                 SceneMgr.GetInstance().LoadSceneAsyn("Game", () => 
                 {
-                    InitPlayer();
+                    //InitPlayer();
 
                     UIMgr.GetInstance().HidePanel("MainPanel");
                     UIMgr.GetInstance().HidePanel("LoadingPanel");
@@ -32,9 +32,11 @@ public class MainPanel : UIBase
 
     private void InitPlayer()
     {
-        GameObject player = Instantiate(Resources.Load<GameObject>("Prefabs/Player"));
-        player.transform.position = GameObject.Find("返回点").transform.position;
-        DontDestroyOnLoad(player);
+        PoolMgr.GetInstance().GetObj("Prefabs/小金人", (x) =>
+         {
+             x.transform.position = GameObject.Find("返回点").transform.position;
+             DontDestroyOnLoad(x);
+         });
 
         EventCenter.GetInstance().AddEventListener<ItemClick>("商店物品", (x) =>
         {

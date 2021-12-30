@@ -150,6 +150,7 @@ public class ReadXml : InstanceNoMono<ReadXml>
             newData.id = int.Parse(item.Attributes["id"].InnerText);
 
             newData.name = item.SelectSingleNode("name").InnerText;
+            newData.path = item.SelectSingleNode("path").InnerText;
             newData.tips = item.SelectSingleNode("tips").InnerText;
             newData.MaxHp = int.Parse(item.SelectSingleNode("maxHp").InnerText);
             newData.speed = float.Parse(item.SelectSingleNode("speed").InnerText);

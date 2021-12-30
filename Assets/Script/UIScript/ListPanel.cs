@@ -27,7 +27,8 @@ public class ListPanel : UIBase
             case "Bto_Home":
                 SceneMgr.GetInstance().LoadSceneAsyn("Main", ()=>
                 {
-                    UIMgr.GetInstance().HideAllPanel();
+                    UIMgr.GetInstance().HideAllPanelBesides("MainPanel");
+                    //PoolMgr.GetInstance().PushObj("½ÇÉ«/"+GameMgr.GetInstance().GetPlayerInfo(Player.instance.id).name, Player.instance.gameObject);
                 });
                 break;
             // ¹Ø±Õ²Ëµ¥

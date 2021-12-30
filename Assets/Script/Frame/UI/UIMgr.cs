@@ -117,6 +117,16 @@ public class UIMgr : InstanceNoMono<UIMgr>
             HidePanel(panel.Key);
         }
     }
+    public void HideAllPanelBesides(string name)
+    {
+        foreach (var panel in panelDic)
+        {
+            if (panel.Key == name)
+                continue;
+
+            HidePanel(panel.Key);
+        }
+    }
     /// <summary>
     /// 获取已经显示的UI
     /// </summary>
