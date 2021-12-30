@@ -19,6 +19,7 @@ public class LoadingPanel : UIBase
     {
         EventCenter.GetInstance().AddEventListener<float>("进度条更新", (x) =>
         {
+            Debug.Log("进度条：+++++++++++      " + x);
             slider.value = x;
             sliderText.text = ((int)x).ToString();
         });

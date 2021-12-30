@@ -13,6 +13,7 @@ public class MainPanel : UIBase
         switch(btnName)
         {
             case "Bto_Play":
+                UIMgr.GetInstance().ShowPanel<BagPanel>("BagPanel", E_UI_Layer.Above);
                 UIMgr.GetInstance().ShowPanel<LoadingPanel>("LoadingPanel", E_UI_Layer.Above);
                 SceneMgr.GetInstance().LoadSceneAsyn("Game", () => 
                 {
@@ -22,6 +23,8 @@ public class MainPanel : UIBase
                     UIMgr.GetInstance().HidePanel("LoadingPanel");
                     UIMgr.GetInstance().ShowPanel<JoyStickPanel>("JoyStickPanel", E_UI_Layer.Normal);
                     UIMgr.GetInstance().ShowPanel<ControlPanel>("ControlPanel", E_UI_Layer.Normal);
+                    UIMgr.GetInstance().ShowPanel<StatePanel>("StatePanel", E_UI_Layer.Normal);
+                    UIMgr.GetInstance().HidePanel("BagPanel");
                 });
                 break;
         }
@@ -32,5 +35,10 @@ public class MainPanel : UIBase
         GameObject player = Instantiate(Resources.Load<GameObject>("Prefabs/Player"));
         player.transform.position = GameObject.Find("返回点").transform.position;
         DontDestroyOnLoad(player);
+
+        EventCenter.GetInstance().AddEventListener<ItemClick>("商店物品", (x) =>
+        {
+            Debug.Log(x);
+        });
     }
 }

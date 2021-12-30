@@ -25,5 +25,8 @@ public class InitData : MonoBehaviour
         ReadXml.GetInstance().LoadRoomXml("/RoomXml.xml");
         Debug.Log("房间字典数据数量：    " + GameMgr.GetInstance().RoomDataDic.Count);
 
+        ReadXml.GetInstance().SetFileToPersistent("/PlayerXml.xml", "Xml/PlayerXml");
+        ReadXml.GetInstance().LoadPlayerXml("/PlayerXml.xml");
+        Debug.Log("角色字典数据数量：    " + GameMgr.GetInstance().PlayerDataDic.Count);
     }
 }

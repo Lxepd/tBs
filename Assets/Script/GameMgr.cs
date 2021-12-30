@@ -14,6 +14,8 @@ public class GameMgr : InstanceNoMono<GameMgr>
     public Dictionary<int, NpcData> NpcDataDic = new Dictionary<int, NpcData>();
     // 存放<关卡>字典
     public Dictionary<int, RoomData> RoomDataDic = new Dictionary<int, RoomData>();
+    // 存放<玩家>信息字典
+    public Dictionary<int, PlayerData> PlayerDataDic = new Dictionary<int, PlayerData>();
 
     /// <summary>
     /// 根据ID获取投掷物信息
@@ -72,6 +74,18 @@ public class GameMgr : InstanceNoMono<GameMgr>
     {
         if (RoomDataDic.ContainsKey(id))
             return RoomDataDic[id];
+
+        return null;
+    }
+    /// <summary>
+    /// 根据ID获取玩家信息
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public PlayerData GetPlayerInfo(int id)
+    {
+        if (PlayerDataDic.ContainsKey(id))
+            return PlayerDataDic[id];
 
         return null;
     }

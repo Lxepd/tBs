@@ -121,4 +121,27 @@ public class ReadXml : InstanceNoMono<ReadXml>
             GameMgr.GetInstance().RoomDataDic.Add(newData.id, newData);
         }
     }
+    public void LoadPlayerXml(string path)
+    {
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.Load(Application.persistentDataPath + path);
+
+        XmlNodeList xmlList = xmlDoc.SelectSingleNode("Data").ChildNodes;
+
+        foreach (XmlNode item in xmlList)
+        {
+            PlayerData newData = new PlayerData();
+            newData.id = int.Parse(item.Attributes["id"].InnerText);
+
+            newData.name = item.SelectSingleNode("name").InnerText;
+            newData.tips = item.SelectSingleNode("tips").InnerText;
+            newData.MaxHp = int.Parse(item.SelectSingleNode("maxHp").InnerText);
+            newData.speed = float.Parse(item.SelectSingleNode("speed").InnerText);
+            newData.bulletID = int.Parse(item.SelectSingleNode("bulletID").InnerText);
+            newData.checkLen = float.Parse(item.SelectSingleNode("checkLen").InnerText);
+            newData.shootLen = float.Parse(item.SelectSingleNode("shootLen").InnerText);
+
+            GameMgr.GetInstance().PlayerDataDic.Add(newData.id, newData);
+        }
+    }
 }

@@ -223,7 +223,7 @@ public class ControlPanel : UIBase
             case CtrlType.打开商店:
                 Debug.Log("打开商店");
                 //UIMgr.GetInstance().ShowPanel<ShopPanel>("ShopPanel", E_UI_Layer.Above);
-                npcComponent.OpenShop();
+                npcComponent.InitShop();
                 break;
             case CtrlType.传送:
                 break;

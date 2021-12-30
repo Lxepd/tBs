@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     public static Player instance;
 
+    public int id;
+
     private void Awake()
     {
         instance = this;
@@ -15,7 +17,6 @@ public class Player : MonoBehaviour
     Rigidbody2D rg;
     private Animator animator;
 
-    public float speed=0;
     [Tooltip("检索附近投掷物的范围")]
     public float shootThrowThingLen = .5f;
     [Tooltip("检索附近敌人的范围")]
@@ -51,7 +52,7 @@ public class Player : MonoBehaviour
             //animator.SetFloat("AtkY", animator.GetFloat("RunY"));
         }
 
-        rg.velocity = dir * speed;
+        rg.velocity = dir * GameMgr.GetInstance().GetPlayerInfo(id).speed;
     }
     private void FixedUpdate()
     {

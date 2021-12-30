@@ -12,23 +12,23 @@ public class Npc : MonoBehaviour
     public List<NpcSell> itemSellList = new List<NpcSell>();
 
     private float checkRadius = 2f;
-    private bool playerOpenShop;
 
     private void Start()
     {
         data = GameMgr.GetInstance().GetNpcInfo(id);
-  
+
+        EventCenter.GetInstance().EventTrigger<int>("Npc", id);
     }
     private void FixedUpdate()
     {
         
     }
-    public void OpenShop()
+    // 初始化商店
+    public void InitShop()
     {
         UIMgr.GetInstance().ShowPanel<ShopPanel>("ShopPanel", E_UI_Layer.Above, (y) =>
         {
             Transform content = GameTool.FindTheChild(UIMgr.GetInstance().GetLayerFather(E_UI_Layer.Above).gameObject , "商店展示界面");
-            Debug.Log(itemSellList.Count);
             foreach (NpcSell item in itemSellList)
             {
                 int[] num = new int[]
@@ -54,14 +54,19 @@ public class Npc : MonoBehaviour
 
         });
     }
+    // 生成商店物品
     private void CreateShopItem(Transform parent, NpcSell item,int num)
     {
         PoolMgr.GetInstance().GetObj("Prefabs/ShopItem", (x) =>
         {
             x.transform.SetParent(parent);
             x.transform.localScale = Vector3.one;
+
+            ItemClick ic = x.GetComponent<ItemClick>();
+            ic.id = item.id;
+            ic.currentNum = num;
             x.transform.Find("Img").GetComponent<Image>().sprite = ResMgr.GetInstance().Load<Sprite>(GameMgr.GetInstance().GetItemInfo(item.id).path);
-            x.transform.Find("ItemNum").GetComponent<Text>().text = num.ToString();
+            //x.transform.Find("ItemNum").GetComponent<Text>().text = num.ToString();
 
         });
     }

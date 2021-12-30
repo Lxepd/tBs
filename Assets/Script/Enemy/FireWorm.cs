@@ -166,7 +166,7 @@ public class FireWormIdle : StateBaseTemplate<FireWorm>
     }
     public override void OnStay(params object[] args)
     {
-
+        owner.Rg.velocity = Vector2.zero;
         //Debug.Log("Õ¾Á¢×´Ì¬£¡");
     }
     public override void OnExit(params object[] args)

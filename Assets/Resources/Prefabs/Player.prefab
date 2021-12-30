@@ -319,6 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8b937740c35a0f49ad07d5ccab1d273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 14001
   speed: 5
   shootThrowThingLen: 1.34
   shootEnemyLen: 10

@@ -29,4 +29,5 @@ public class ItemData
     public int buyPrice; // 买入价
     public ItemType itemType; // 道具类型
     public ItemActType actType; // 道具功能
+
 }

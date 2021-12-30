@@ -646,6 +646,7 @@ GameObject:
   - component: {fileID: 2025844773}
   - component: {fileID: 2025844775}
   - component: {fileID: 2025844774}
+  - component: {fileID: 8935421893358441948}
   m_Layer: 5
   m_Name: ItemSelect
   m_TagString: Untagged
@@ -710,6 +711,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!50 &8935421893358441948
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025844772}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &324758779337046092
 GameObject:
   m_ObjectHideFlags: 0
@@ -1628,7 +1650,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 125368123313711482}
   m_HandleRect: {fileID: 1141936153496063428}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
