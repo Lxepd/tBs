@@ -1,6 +1,11 @@
 <Data>
     <it id="13001">
-        <name>AAA</name>
-		<type>1</type>
+        <name>道具商人</name>
     </it>
+	<it id="13002">
+		<name>装备商人</name>
+	</it>
+	<it id="13003">
+		<name>工匠</name>
+	</it>
 </Data>

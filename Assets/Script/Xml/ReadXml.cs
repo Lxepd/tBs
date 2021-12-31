@@ -108,7 +108,6 @@ public class ReadXml : InstanceNoMono<ReadXml>
             newData.id = int.Parse(item.Attributes["id"].InnerText);
 
             newData.name = item.SelectSingleNode("name").InnerText;
-            newData.type = (NpcType)int.Parse(item.SelectSingleNode("type").InnerText);
 
             GameMgr.GetInstance().NpcDataDic.Add(newData.id, newData);
         }
