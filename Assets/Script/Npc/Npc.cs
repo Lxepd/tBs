@@ -19,10 +19,6 @@ public class Npc : MonoBehaviour
 
         EventCenter.GetInstance().EventTrigger<int>("Npc", id);
     }
-    private void FixedUpdate()
-    {
-        
-    }
     // ≥ı ºªØ…ÃµÍ
     public void InitShop()
     {

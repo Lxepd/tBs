@@ -230,8 +230,5 @@ public class ControlPanel : UIBase
             default:
                 break;
         }
-
-        EventCenter.GetInstance().EventTrigger<bool>("玩家打开商店", ctrlType == CtrlType.打开商店);
-
     }
 }

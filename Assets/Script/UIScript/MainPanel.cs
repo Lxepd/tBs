@@ -13,34 +13,18 @@ public class MainPanel : UIBase
         switch(btnName)
         {
             case "Bto_Play":
-                UIMgr.GetInstance().ShowPanel<BagPanel>("BagPanel", E_UI_Layer.Above);
-                UIMgr.GetInstance().ShowPanel<LoadingPanel>("LoadingPanel", E_UI_Layer.Above);
-                SceneMgr.GetInstance().LoadSceneAsyn("Game", () => 
-                {
-                    //InitPlayer();
-
-                    UIMgr.GetInstance().HidePanel("MainPanel");
-                    UIMgr.GetInstance().HidePanel("LoadingPanel");
-                    UIMgr.GetInstance().ShowPanel<JoyStickPanel>("JoyStickPanel", E_UI_Layer.Normal);
-                    UIMgr.GetInstance().ShowPanel<ControlPanel>("ControlPanel", E_UI_Layer.Normal);
-                    UIMgr.GetInstance().ShowPanel<StatePanel>("StatePanel", E_UI_Layer.Normal);
-                    UIMgr.GetInstance().HidePanel("BagPanel");
-                });
+                // 展开<选择角色>界面
+                UIMgr.GetInstance().ShowPanel<SelectPanel>("SelectPanel", E_UI_Layer.Normal);
+                // 隐藏<主界面>
+                UIMgr.GetInstance().HidePanel("MainPanel");
+                break;
+            case "Bto_Quit":
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+#else
+                Application.Quit();
+#endif
                 break;
         }
-    }
-
-    private void InitPlayer()
-    {
-        PoolMgr.GetInstance().GetObj("Prefabs/小金人", (x) =>
-         {
-             x.transform.position = GameObject.Find("返回点").transform.position;
-             DontDestroyOnLoad(x);
-         });
-
-        EventCenter.GetInstance().AddEventListener<ItemClick>("商店物品", (x) =>
-        {
-            Debug.Log(x);
-        });
     }
 }
