@@ -99,6 +99,7 @@ public class Player : MonoBehaviour
         // 消息中心存储 <Npc> 消息
         EventCenter.GetInstance().EventTrigger<Collider2D>("附近的Npc", cols);
     }
+#if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         // 检索投掷物圈
@@ -108,5 +109,5 @@ public class Player : MonoBehaviour
         Gizmos.color = Color.black;
         Gizmos.DrawWireSphere(transform.position, shootEnemyLen);
     }
-    
+#endif
 }

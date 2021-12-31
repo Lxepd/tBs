@@ -138,7 +138,7 @@ public class FireWorm : EnemyBase
             fws = FireWormState.Hit;
         }
     }
-
+#if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
@@ -148,6 +148,7 @@ public class FireWorm : EnemyBase
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, AtkLen);
     }
+#endif
 }
 
     #region ״̬

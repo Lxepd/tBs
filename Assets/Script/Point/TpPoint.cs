@@ -71,10 +71,11 @@ public class TpPoint : MonoBehaviour
     {
         isStart = false;
     }
-
+#if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.white;
         Gizmos.DrawWireCube(transform.position, GetComponent<BoxCollider2D>().bounds.size);
     }
+#endif
 }

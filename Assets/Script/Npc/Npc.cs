@@ -66,9 +66,11 @@ public class Npc : MonoBehaviour
 
         });
     }
+#if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.black;
         Gizmos.DrawWireSphere(transform.position, checkRadius);
     }
+#endif
 }
