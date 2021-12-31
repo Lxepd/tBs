@@ -6,6 +6,7 @@ using UnityEngine;
 public class ThrowItemData
 {
     public int id; // id
+    public string icon; // 弹包图标位置 
     public string path; // 预制体位置
     public string name; // 名
     public string tips; // 描述

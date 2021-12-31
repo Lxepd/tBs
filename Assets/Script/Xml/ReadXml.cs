@@ -47,6 +47,7 @@ public class ReadXml : InstanceNoMono<ReadXml>
             ThrowItemData newData = new ThrowItemData();
             newData.id = int.Parse(item.Attributes["id"].InnerText);
 
+            newData.icon = item.SelectSingleNode("icon").InnerText;
             newData.path = item.SelectSingleNode("path").InnerText;
             newData.name = item.SelectSingleNode("name").InnerText;
             newData.tips = item.SelectSingleNode("tips").InnerText;

@@ -87,8 +87,14 @@ public class SupplyPoint : MonoBehaviour
         Collider2D cols = Physics2D.OverlapBox(transform.position, size, .1f, LayerMask.GetMask("强化物"));
         if (cols == null)
         {
-            PoolMgr.GetInstance().GetObj(TypeFindBulletOfID(), (x) =>
+            PoolMgr.GetInstance().GetObj("Prefabs/弹包", (x) =>
             {
+                int bulletID = TypeFindBulletOfID();
+                ResMgr.GetInstance().LoadAsync<Sprite>(GameMgr.GetInstance().GetThrowItemInfo(bulletID).icon, (y) =>
+                 {
+                     x.GetComponent<SpriteRenderer>().sprite = y;
+                     x.GetComponent<BulletBag>().id = bulletID;
+                 });
                 x.transform.position = transform.position;
                 data.num++;
             });
@@ -96,7 +102,7 @@ public class SupplyPoint : MonoBehaviour
             supplyTimer.Pause();
         }
     }
-    private string TypeFindBulletOfID()
+    private int TypeFindBulletOfID()
     {
         int pathID = 0;
 
@@ -116,7 +122,7 @@ public class SupplyPoint : MonoBehaviour
                 break;
         }
 
-        return GameMgr.GetInstance().GetThrowItemInfo(pathID).path;
+        return pathID;
     }
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()

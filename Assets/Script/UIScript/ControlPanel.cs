@@ -17,7 +17,7 @@ public class ControlPanel : UIBase
     private Text numText;
     // 强化物弹匣
     // 将拿取的 强化物放入 队列
-    private Queue<ThrowItemData> strengthenQueue;
+    private Queue<BulletBag> strengthenQueue;
     // 拿取强化物的最大数量
     private int maxThingNum = 10;
     // 当前玩家位置
@@ -41,7 +41,7 @@ public class ControlPanel : UIBase
         // 初始化队列
         if (strengthenQueue == null)
         {
-            strengthenQueue = new Queue<ThrowItemData>();
+            strengthenQueue = new Queue<BulletBag>();
         }
 
     }
@@ -141,7 +141,9 @@ public class ControlPanel : UIBase
         // 一次只拿取一个，拿完跳出
         if (strengthenQueue.Count < maxThingNum)
         {
-            strengthenQueue.Enqueue(strengthen[0].GetComponent<ThrowItem>().Data);
+            BulletBag bb = strengthen[0].GetComponent<BulletBag>();
+            bb.InitPos();
+            strengthenQueue.Enqueue(bb);
             PoolMgr.GetInstance().PushObj(strengthen[0].name, strengthen[0].gameObject);
             Debug.Log(strengthenQueue.Count);
         }
@@ -162,11 +164,11 @@ public class ControlPanel : UIBase
         // 否则，使用弹匣中第一个强化物
         else
         {
-            ThrowItemData first = strengthenQueue.Dequeue();
-            Debug.Log(strengthenQueue.Count);
+            BulletBag first = strengthenQueue.Dequeue();
 
             Debug.Log("强化射击！！        " + first);
-            ShootBase(first.path,first.speed);
+            ThrowItemData tid = GameMgr.GetInstance().GetThrowItemInfo(first.id);
+            ShootBase(tid.path, tid.speed);
         }
     }
     /// <summary>

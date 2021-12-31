@@ -1,6 +1,7 @@
 <Data>
 	<it id="10001">
-		<path>Prefabs/Bullet/子弹1</path>
+		<icon>Sprites/BulletIcon/J</icon>
+		<path>Prefabs/Bullet/子弹</path>
 		<name>子弹</name>
 		<tips>基础射击子弹</tips>
 		<mass>10</mass>
@@ -11,6 +12,7 @@
 		<sell>false</sell>
 	</it>
 	<it id="10002">
+		<icon>Sprites/BulletIcon/Q</icon>
 		<path>Prefabs/Bullet/强化弹</path>
 		<name>强化弹</name>
 		<tips>强化过的基础子弹</tips>
@@ -22,6 +24,7 @@
 		<sell>false</sell>
 	</it>
 	<it id="10003">
+		<icon>Sprites/BulletIcon/Z</icon>
 		<path>Prefabs/Bullet/质量弹</path>
 		<name>质量弹</name>
 		<tips>击退弹</tips>
@@ -33,6 +36,7 @@
 		<sell>false</sell>
 	</it>
 	<it id="10004">
+		<icon>Sprites/BulletIcon/S</icon>
 		<path>Prefabs/Bullet/伤害弹</path>
 		<name>伤害弹</name>
 		<tips>伤害弹</tips>
@@ -44,6 +48,7 @@
 		<sell>false</sell>
 	</it>
 	<it id="10005">
+		<icon>Sprites/BulletIcon/J</icon>
 		<path>Prefabs/Bullet/均衡弹</path>
 		<name>均衡弹</name>
 		<tips>击退与伤害并存的均衡弹</tips>

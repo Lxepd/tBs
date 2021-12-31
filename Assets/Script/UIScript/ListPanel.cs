@@ -27,6 +27,7 @@ public class ListPanel : UIBase
             // 疑问按钮
             case "Bto_Q":
                 // 打开疑问UI
+                UIMgr.GetInstance().ShowPanel<QuestionPanel>("QuestionPanel", E_UI_Layer.Above);
                 break;
             // 返回主菜单
             case "Bto_Home":
