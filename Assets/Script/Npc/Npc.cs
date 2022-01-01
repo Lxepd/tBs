@@ -18,6 +18,12 @@ public class 道具商人
     public int id;
     // 道具数量
     public int num;
+
+    public 道具商人(int id,int num)
+    {
+        this.id = id;
+        this.num = num;
+    }
 }
 [Serializable]
 public class 装备商人
@@ -35,15 +41,70 @@ public class Npc : MonoBehaviour
     public NpcData data;
     // Npc类型
     public NpcType type;
+    
     public List<道具商人> itemNpc = new List<道具商人>();
+    public Dictionary<int, int> itemDic = new Dictionary<int, int>();
+
     public List<装备商人> equipmentNpc = new List<装备商人>();
     public List<工匠> craftsMan = new List<工匠>();
 
     private float checkRadius = 2f;
-    // 初始化Npc数据
-    public void InitNpcData(int id)
+    Timer reInit;
+
+    private void Start()
     {
-        data = GameMgr.GetInstance().GetNpcInfo(id);
+        switch (type)
+        {
+            case NpcType.道具商人:
+                data = GameMgr.GetInstance().GetNpcInfo(13001);
+                foreach (var item in itemNpc)
+                {
+                    itemDic.Add(item.id, item.num);
+                }
+                EventCenter.GetInstance().AddEventListener<int>("NPC道具数量更新", (x) =>
+                {
+                    foreach (var item in itemNpc)
+                    {
+                        if (item.id == x)
+                        {
+                            item.num--;
+                            return;
+                        }
+                    }
+                });
+                break;
+            case NpcType.装备商人:
+                data = GameMgr.GetInstance().GetNpcInfo(13002);
+                //TODO
+                break;
+            case NpcType.工匠:
+                data = GameMgr.GetInstance().GetNpcInfo(13003);
+                //TODO
+                break;
+        }
+
+        reInit = new Timer(30, true, true);
+    }
+    private void FixedUpdate()
+    {
+        EventCenter.GetInstance().EventTrigger<float>("刷新时间", reInit.nowTime);
+        if (reInit.isTimeUp)
+        {
+            switch (type)
+            {
+                case NpcType.道具商人:
+                    itemNpc.Clear();
+                    foreach (var key in itemDic)
+                    {
+                        itemNpc.Add(new 道具商人(key.Key, key.Value));
+                    }
+                    break;
+                case NpcType.装备商人:
+                    break;
+                case NpcType.工匠:
+                    break;
+            }
+        }
     }
     // 初始化商店
     public void InitShop()
@@ -51,17 +112,13 @@ public class Npc : MonoBehaviour
         switch (type)
         {
             case NpcType.道具商人:
-                InitNpcData(13001);
                 ItemNpc();
                 break;
             case NpcType.装备商人:
-                InitNpcData(13002);
                 break;
             case NpcType.工匠:
-                InitNpcData(13003);
                 break;
         }
-
     }
     #region <<<   道具Npc   >>>
     private void ItemNpc()

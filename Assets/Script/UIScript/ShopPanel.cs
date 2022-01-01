@@ -13,6 +13,13 @@ public class ShopPanel : UIBase
     // <道具>父物体
     private Transform itemParent;
 
+    private void Start()
+    {
+        EventCenter.GetInstance().AddEventListener<float>("刷新时间", (x) =>
+         {
+             GetControl<Text>("ReTimeText").text = "距离刷新时间：" + GameTool.SetTime(x);
+         });
+    }
     private void Update()
     {
         // 清空数量为0的道具
@@ -101,6 +108,7 @@ public class ShopPanel : UIBase
 
         // 商品-1
         item.currentNum--;
+        EventCenter.GetInstance().EventTrigger<int>("NPC道具数量更新", item.id);
 
         // 没有达到最大值则叠加
         for (int i = 0; i < content.childCount; i++)

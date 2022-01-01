@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -57,7 +58,7 @@ public class GameTool
         AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
         foreach (var clip in clips)
         {
-            if(clip.name.Equals(name))
+            if (clip.name.Equals(name))
             {
                 length = clip.length;
                 break;
@@ -82,5 +83,26 @@ public class GameTool
             }
         }
         return searchTrans;
+    }
+
+    public static string SetTime(float second)
+    {
+        TimeSpan ts = new TimeSpan(0, 0, Convert.ToInt32(second));
+        string str = "";
+
+        if (ts.Hours > 0)
+        {
+            str = ts.Hours.ToString("00") + "£º" + ts.Minutes.ToString("00") + "£º" + ts.Seconds.ToString("00");
+        }
+        if (ts.Hours == 0 && ts.Minutes > 0)
+        {
+            str = "00£º" + ts.Minutes.ToString("00") + "£º" + ts.Seconds.ToString("00");
+        }
+        if (ts.Hours == 0 && ts.Minutes == 0)
+        {
+             str = "00£º" + "00£º" + ts.Seconds.ToString("00");
+        }
+
+        return str;
     }
 }

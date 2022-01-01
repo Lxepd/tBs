@@ -1,0 +1,12 @@
+<Data>
+    <it id="15001">
+        <name>怪物1</name>
+		<path></path>
+		<tips>怪物1</tips>
+    </it>
+    <it id="15002">
+        <name>怪物2</name>
+		<path></path>
+        <tips>怪物2</tips>
+    </it>
+</Data>

@@ -8,7 +8,8 @@ public enum FireWormState
     Idle,
     Walk,
     Atk,
-    Hit
+    Hit,
+    Dead
 }
 public class FireWorm : EnemyBase
 {
@@ -30,6 +31,7 @@ public class FireWorm : EnemyBase
 
     public Timer ForceStopTimer { get => forceStopTimer; }
     public bool isHit;
+    public bool isDead;
 
     FireWormState fws = FireWormState.Idle;
 
@@ -49,12 +51,15 @@ public class FireWorm : EnemyBase
         FireWormWalk walk = new FireWormWalk(2, this);
         FireWormAtk atk = new FireWormAtk(3, this);
         FireWormHit hit = new FireWormHit(4, this);
+        FireWormHit dead = new FireWormHit(5, this);
+
         // 设置初始状态
         machine = new StateMachine(idle);
         // 添加状态
         machine.AddState(walk);
         machine.AddState(atk);
         machine.AddState(hit);
+        machine.AddState(dead);
 
         // 获取<敌人扣血>的消息
         EventCenter.GetInstance().AddEventListener<ThrowItemData>("敌人扣血", (x) =>
@@ -98,6 +103,13 @@ public class FireWorm : EnemyBase
                 if (HitTimer.isStop)
                 {
                     HitTimer.Start();
+                }
+                break;
+            case FireWormState.Dead:
+                if (!isDead)
+                {
+                    machine.TranslateState(5);
+                    isDead = true;
                 }
                 break;
         }
@@ -314,6 +326,27 @@ public class FireWormHit : StateBaseTemplate<FireWorm>
         owner.moveTimer.Reset(owner.MoveTimertime);
         owner.atkTimer.Reset(owner.AtkTimertime);
         owner.HitTimer.Reset(owner.HitTimertime);
+    }
+}
+public class FireWormDead : StateBaseTemplate<FireWorm>
+{
+    public FireWormDead(int id, FireWorm ec) : base(id, ec)
+    {
+
+    }
+    public override void OnEnter(params object[] args)
+    {
+        owner.Animator.Play("Dead");
+
+    }
+    public override void OnStay(params object[] args)
+    {
+        //Debug.Log("死亡状态！");
+
+    }
+    public override void OnExit(params object[] args)
+    {
+        
     }
 }
 #endregion
