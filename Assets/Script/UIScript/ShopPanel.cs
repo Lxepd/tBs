@@ -59,7 +59,7 @@ public class ShopPanel : UIBase
     /// <param name="btnName">该界面下的按钮名</param>
     protected override void OnClick(string btnName)
     {
-        switch(btnName)
+        switch (btnName)
         {
             // 关闭商店按钮
             case "Bto_ShopQuit":
@@ -92,7 +92,7 @@ public class ShopPanel : UIBase
         for (int i = 0; i < itemParent.childCount; i++)
         {
             ItemClick ic = itemParent.GetChild(i).GetComponent<ItemClick>();
-            if(ic.currentNum == 0)
+            if (ic.currentNum <= 0)
             {
                 PoolMgr.GetInstance().PushObj(itemParent.GetChild(i).name, itemParent.GetChild(i).gameObject);
                 EventCenter.GetInstance().EventTrigger<ItemClick>("商店物品", null);
@@ -114,8 +114,8 @@ public class ShopPanel : UIBase
         for (int i = 0; i < content.childCount; i++)
         {
             ItemClick ic = content.GetChild(i).GetComponent<ItemClick>();
-            if (item.id == GameMgr.GetInstance().GetItemInfo(ic.id).id &&
-                ic.currentNum < GameMgr.GetInstance().GetItemInfo(ic.id).maxNum)
+            if (item.id == GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic, ic.id).id &&
+                ic.currentNum < GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic, ic.id).maxNum)
             {
                 ic.currentNum++;
                 return;
@@ -132,7 +132,7 @@ public class ShopPanel : UIBase
              ic.id = item.id;
              ic.currentNum = 1;
 
-             x.transform.Find("Img").GetComponent<Image>().sprite = ResMgr.GetInstance().Load<Sprite>(GameMgr.GetInstance().GetItemInfo(item.id).path);
+             x.transform.Find("Img").GetComponent<Image>().sprite = ResMgr.GetInstance().Load<Sprite>(GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic, item.id).path);
          });
 
     }

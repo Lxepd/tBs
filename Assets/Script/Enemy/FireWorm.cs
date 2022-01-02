@@ -13,6 +13,7 @@ public enum FireWormState
 }
 public class FireWorm : EnemyBase
 {
+    
     // 注册状态计时器
     public Timer moveTimer, atkTimer,HitTimer;
     // 获取父类的组件信息

@@ -5,23 +5,12 @@ using UnityEngine.UI;
 
 public class LoadingPanel : UIBase
 {
-    Slider slider;
-    Text sliderText;
-
-    void Start()
-    {
-        slider = GetControl<Slider>("Slider");
-        sliderText = GetControl<Text>("SliderText"); 
-    }
-
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
         EventCenter.GetInstance().AddEventListener<float>("进度条更新", (x) =>
         {
-            Debug.Log("进度条：+++++++++++      " + x);
-            slider.value = x;
-            sliderText.text = ((int)x).ToString();
+            GetControl<Slider>("Slider").value = x;
+            GetControl<Text>("SliderText").text = (x * 100).ToString() + "%";
         });
     }
 }

@@ -389,9 +389,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  itemNpc:
+  items:
   - id: 12001
-    num: 17
+    num: 18
+  - id: 12002
+    num: 7
+  itemsCopy: []
   equipmentNpc: []
   craftsMan: []
 --- !u!1 &7414583002709670174 stripped
@@ -412,8 +415,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  itemNpc:
+  items:
   - id: 12002
-    num: 12
+    num: 13
+  itemsCopy: []
   equipmentNpc: []
   craftsMan: []

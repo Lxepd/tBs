@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameTool
 {
@@ -104,5 +106,35 @@ public class GameTool
         }
 
         return str;
+    }
+    /// <summary>
+    /// 获取任意字典信息
+    /// </summary>
+    /// <typeparam name="T">数据类型</typeparam>
+    /// <param name="dic">字典</param>
+    /// <param name="id">获取的id数据</param>
+    /// <returns></returns>
+    public static T GetDicInfo<T>(Dictionary<int, T> dic, int id)
+    {
+        if (dic.ContainsKey(id))
+            return dic[id];
+
+        return default(T);
+    }
+    /// <summary>
+    /// List深复制
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="List">The list.</param>
+    /// <returns>List{``0}.</returns>
+    public static List<T> Clone<T>(object List)
+    {
+        using (Stream objectStream = new MemoryStream())
+        {
+            IFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(objectStream, List);
+            objectStream.Seek(0, SeekOrigin.Begin);
+            return formatter.Deserialize(objectStream) as List<T>;
+        }
     }
 }

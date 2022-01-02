@@ -4,51 +4,20 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 
-public enum NpcType
-{
-    None,
-    道具商人,
-    装备商人,
-    工匠
-}
-[Serializable]
-public class 道具商人
-{
-    // 道具ID
-    public int id;
-    // 道具数量
-    public int num;
-
-    public 道具商人(int id,int num)
-    {
-        this.id = id;
-        this.num = num;
-    }
-}
-[Serializable]
-public class 装备商人
-{
-    public int test;
-}
-[Serializable]
-public class 工匠
-{
-    public int test;
-}
 public class Npc : MonoBehaviour
 {
     // NpcData
     public NpcData data;
     // Npc类型
     public NpcType type;
-    
-    public List<道具商人> itemNpc = new List<道具商人>();
-    public Dictionary<int, int> itemDic = new Dictionary<int, int>();
+
+    [Header("道具商店售卖的东西")]
+    public List<道具商人> items = new List<道具商人>();
+    public List<道具商人> itemsCopy = new List<道具商人>();
 
     public List<装备商人> equipmentNpc = new List<装备商人>();
     public List<工匠> craftsMan = new List<工匠>();
 
-    private float checkRadius = 2f;
     Timer reInit;
 
     private void Start()
@@ -56,14 +25,11 @@ public class Npc : MonoBehaviour
         switch (type)
         {
             case NpcType.道具商人:
-                data = GameMgr.GetInstance().GetNpcInfo(13001);
-                foreach (var item in itemNpc)
-                {
-                    itemDic.Add(item.id, item.num);
-                }
+                data = GameTool.GetDicInfo(Datas.GetInstance().NpcDataDic, 13001);
+                itemsCopy = GameTool.Clone<道具商人>(items);
                 EventCenter.GetInstance().AddEventListener<int>("NPC道具数量更新", (x) =>
                 {
-                    foreach (var item in itemNpc)
+                    foreach (var item in itemsCopy)
                     {
                         if (item.id == x)
                         {
@@ -72,18 +38,18 @@ public class Npc : MonoBehaviour
                         }
                     }
                 });
+                reInit = new Timer(Mathf.Max(30, ReTime.商人刷新时间), true, true);
                 break;
             case NpcType.装备商人:
-                data = GameMgr.GetInstance().GetNpcInfo(13002);
+                data = GameTool.GetDicInfo(Datas.GetInstance().NpcDataDic, 13002);
                 //TODO
                 break;
             case NpcType.工匠:
-                data = GameMgr.GetInstance().GetNpcInfo(13003);
+                data = GameTool.GetDicInfo(Datas.GetInstance().NpcDataDic, 13003);
                 //TODO
                 break;
         }
 
-        reInit = new Timer(30, true, true);
     }
     private void FixedUpdate()
     {
@@ -93,11 +59,8 @@ public class Npc : MonoBehaviour
             switch (type)
             {
                 case NpcType.道具商人:
-                    itemNpc.Clear();
-                    foreach (var key in itemDic)
-                    {
-                        itemNpc.Add(new 道具商人(key.Key, key.Value));
-                    }
+                    itemsCopy.Clear();
+                    itemsCopy = GameTool.Clone<道具商人>(items);
                     break;
                 case NpcType.装备商人:
                     break;
@@ -126,21 +89,21 @@ public class Npc : MonoBehaviour
         UIMgr.GetInstance().ShowPanel<ShopPanel>("ShopPanel", E_UI_Layer.Above, (y) =>
         {
             Transform content = GameTool.FindTheChild(UIMgr.GetInstance().GetLayerFather(E_UI_Layer.Above).gameObject, "商店展示界面");
-            foreach (道具商人 item in itemNpc)
+            foreach (道具商人 item in itemsCopy)
             {
                 int[] num = new int[]
                 {
                         // 有多少个满的
-                        item.num / GameMgr.GetInstance().GetItemInfo(item.id).maxNum,
+                        item.num / GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic,item.id).maxNum,
                         // 多出来几个
-                        item.num % GameMgr.GetInstance().GetItemInfo(item.id).maxNum
+                        item.num % GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic,item.id).maxNum
                 };
 
                 if (num[0] != 0)
                 {
                     for (int i = 0; i < num[0]; i++)
                     {
-                        CreateShopItem(content, item, GameMgr.GetInstance().GetItemInfo(item.id).maxNum);
+                        CreateShopItem(content, item, GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic, item.id).maxNum);
                     }
                 }
                 if (num[1] != 0)
@@ -167,10 +130,10 @@ public class Npc : MonoBehaviour
             ItemClick ic = x.GetComponent<ItemClick>();
             ic.id = item.id;
             ic.currentNum = num;
-            x.transform.Find("Img").GetComponent<Image>().sprite = ResMgr.GetInstance().Load<Sprite>(GameMgr.GetInstance().GetItemInfo(item.id).path);
-                //x.transform.Find("ItemNum").GetComponent<Text>().text = num.ToString();
+            x.transform.Find("Img").GetComponent<Image>().sprite = ResMgr.GetInstance().Load<Sprite>(GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic, item.id).path);
+            //x.transform.Find("ItemNum").GetComponent<Text>().text = num.ToString();
 
-            });
+        });
     }
     #endregion
     // TODO
@@ -181,11 +144,4 @@ public class Npc : MonoBehaviour
     #region <<<   工匠Npc   >>>
 
     #endregion
-#if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.black;
-        Gizmos.DrawWireSphere(transform.position, checkRadius);
-    }
-#endif
 }

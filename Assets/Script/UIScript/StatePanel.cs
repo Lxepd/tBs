@@ -18,13 +18,19 @@ public class StatePanel : UIBase
     public override void ShowMe()
     {
         // 获取数据
-        data = GameMgr.GetInstance().GetPlayerInfo(Player.instance.id);
-        // 初始化UI
-        InitStateUI();
+        EventCenter.GetInstance().AddEventListener<int>("角色信息", (x) =>
+        {
+            data = GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, x);
+            // 初始化UI
+            InitStateUI();
+        });   
     }
 
     void Update()
     {
+        if (data == null)
+            return;
+
         // 更新血量
         GetControl<Image>("HpBar").fillAmount = currentHp / data.MaxHp;
     }

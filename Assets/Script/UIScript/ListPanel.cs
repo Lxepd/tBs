@@ -7,6 +7,12 @@ using UnityEngine;
 /// </summary>
 public class ListPanel : UIBase
 {
+    GameObject playerGo;
+    private void Start()
+    {
+        EventCenter.GetInstance().AddEventListener<GameObject>("玩家物体", (x) => { playerGo = x; });
+    }
+
     public override void ShowMe()
     {
         // 暂停游戏
@@ -41,7 +47,7 @@ public class ListPanel : UIBase
                     // 触发消息，初始化<选择角色>界面的选择id
                     EventCenter.GetInstance().EventTrigger<int>("选择角色", 0);
                     // 触发消息，执行<玩家角色>销毁
-                    EventCenter.GetInstance().EventTrigger<GameObject>("玩家角色",Player.instance.gameObject);
+                    EventCenter.GetInstance().EventTrigger<GameObject>("玩家角色", playerGo);
                 });
                 break;
             // 关闭菜单

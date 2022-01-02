@@ -50,10 +50,10 @@ public class TpPoint : MonoBehaviour
                     });
                     break;
                 case TpType.下一关:
-                    Debug.Log(GameMgr.GetInstance().RoomDataDic[tp.roomID].name);
+                    Debug.Log(GameTool.GetDicInfo(Datas.GetInstance().RoomDataDic, tp.roomID).name);
                     SceneMgr.GetInstance().LoadSceneAsyn("Level", () =>
                     {
-                        GameObject room = Instantiate(Resources.Load<GameObject>(GameMgr.GetInstance().RoomDataDic[tp.roomID].prefabPath));
+                        GameObject room = Instantiate(Resources.Load<GameObject>(GameTool.GetDicInfo(Datas.GetInstance().RoomDataDic, tp.roomID).prefabPath));
                         Player.instance.transform.position = room.transform.Find("出现点").position;
                         ResetRoom();
                     });

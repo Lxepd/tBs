@@ -34,7 +34,7 @@ public class ReadXml : InstanceNoMono<ReadXml>
     /// </summary>
     public void LoadThrowItemXml(string path)
     {
-        if (GameMgr.GetInstance().ThrowItemDataDic.Count != 0)
+        if (Datas.GetInstance().ThrowItemDataDic.Count != 0)
             return;
 
         XmlDocument xmlDoc = new XmlDocument();
@@ -58,12 +58,14 @@ public class ReadXml : InstanceNoMono<ReadXml>
             newData.canBuy = bool.Parse(item.SelectSingleNode("buy").InnerText);
             newData.canSell = bool.Parse(item.SelectSingleNode("sell").InnerText);
 
-            GameMgr.GetInstance().ThrowItemDataDic.Add(newData.id, newData);
+            Datas.GetInstance().ThrowItemDataDic.Add(newData.id, newData);
         }
     }
+
+    #region Êý¾Ý¶ÁÈ¡
     public void LoadItemXml(string path)
     {
-        if (GameMgr.GetInstance().ItemDataDic.Count != 0)
+        if (Datas.GetInstance().ItemDataDic.Count != 0)
             return;
 
 
@@ -89,12 +91,12 @@ public class ReadXml : InstanceNoMono<ReadXml>
             newData.itemType = (ItemType)int.Parse(item.SelectSingleNode("itemType").InnerText);
             newData.actType = (ItemActType)int.Parse(item.SelectSingleNode("actType").InnerText);
 
-            GameMgr.GetInstance().ItemDataDic.Add(newData.id, newData);
+            Datas.GetInstance().ItemDataDic.Add(newData.id, newData);
         }
     }
     public void LoadNpcXml(string path)
     {
-        if (GameMgr.GetInstance().NpcDataDic.Count != 0)
+        if (Datas.GetInstance().NpcDataDic.Count != 0)
             return;
 
         XmlDocument xmlDoc = new XmlDocument();
@@ -109,12 +111,12 @@ public class ReadXml : InstanceNoMono<ReadXml>
 
             newData.name = item.SelectSingleNode("name").InnerText;
 
-            GameMgr.GetInstance().NpcDataDic.Add(newData.id, newData);
+            Datas.GetInstance().NpcDataDic.Add(newData.id, newData);
         }
     }
     public void LoadRoomXml(string path)
     {
-        if (GameMgr.GetInstance().RoomDataDic.Count != 0)
+        if (Datas.GetInstance().RoomDataDic.Count != 0)
             return;
 
         XmlDocument xmlDoc = new XmlDocument();
@@ -131,12 +133,12 @@ public class ReadXml : InstanceNoMono<ReadXml>
             newData.prefabPath = item.SelectSingleNode("path").InnerText;
             newData.roomType = (RoomType)int.Parse(item.SelectSingleNode("roomType").InnerText);
 
-            GameMgr.GetInstance().RoomDataDic.Add(newData.id, newData);
+            Datas.GetInstance().RoomDataDic.Add(newData.id, newData);
         }
     }
     public void LoadPlayerXml(string path)
     {
-        if (GameMgr.GetInstance().PlayerDataDic.Count != 0)
+        if (Datas.GetInstance().PlayerDataDic.Count != 0)
             return;
 
         XmlDocument xmlDoc = new XmlDocument();
@@ -158,7 +160,36 @@ public class ReadXml : InstanceNoMono<ReadXml>
             newData.checkLen = float.Parse(item.SelectSingleNode("checkLen").InnerText);
             newData.shootLen = float.Parse(item.SelectSingleNode("shootLen").InnerText);
 
-            GameMgr.GetInstance().PlayerDataDic.Add(newData.id, newData);
+            Datas.GetInstance().PlayerDataDic.Add(newData.id, newData);
         }
     }
+    public void LoadEnemyXml(string path)
+    {
+        if (Datas.GetInstance().EnemyDataDic.Count != 0)
+            return;
+
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.Load(Application.persistentDataPath + path);
+
+        XmlNodeList xmlList = xmlDoc.SelectSingleNode("Data").ChildNodes;
+
+        foreach (XmlNode item in xmlList)
+        {
+            EnemyData newData = new EnemyData();
+            newData.id = int.Parse(item.Attributes["id"].InnerText);
+
+            newData.name = item.SelectSingleNode("name").InnerText;
+            newData.path = item.SelectSingleNode("path").InnerText;
+            newData.tips = item.SelectSingleNode("tips").InnerText;
+            newData.hp = float.Parse(item.SelectSingleNode("hp").InnerText);
+            newData.speed = float.Parse(item.SelectSingleNode("speed").InnerText);
+            newData.atk = float.Parse(item.SelectSingleNode("atk").InnerText);
+            newData.hitLen = float.Parse(item.SelectSingleNode("hitLen").InnerText);
+            newData.moveLen = float.Parse(item.SelectSingleNode("moveLen").InnerText);
+            newData.atkLen = float.Parse(item.SelectSingleNode("atkLen").InnerText);
+
+            Datas.GetInstance().EnemyDataDic.Add(newData.id, newData);
+        }
+    }
+    #endregion
 }

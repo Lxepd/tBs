@@ -90,11 +90,11 @@ public class SupplyPoint : MonoBehaviour
             PoolMgr.GetInstance().GetObj("Prefabs/µ¯°ü", (x) =>
             {
                 int bulletID = TypeFindBulletOfID();
-                ResMgr.GetInstance().LoadAsync<Sprite>(GameMgr.GetInstance().GetThrowItemInfo(bulletID).icon, (y) =>
-                 {
-                     x.GetComponent<SpriteRenderer>().sprite = y;
-                     x.GetComponent<BulletBag>().id = bulletID;
-                 });
+                ResMgr.GetInstance().LoadAsync<Sprite>(GameTool.GetDicInfo(Datas.GetInstance().ThrowItemDataDic, bulletID).icon, (y) =>
+                  {
+                      x.GetComponent<SpriteRenderer>().sprite = y;
+                      x.GetComponent<BulletBag>().id = bulletID;
+                  });
                 x.transform.position = transform.position;
                 data.num++;
             });

@@ -30,6 +30,8 @@ public class InitData : MonoBehaviour
         ReadXml.GetInstance().LoadPlayerXml("/PlayerXml.xml");
         //Debug.Log("角色字典数据数量：    " + GameMgr.GetInstance().PlayerDataDic.Count);
 
-
+        ReadXml.GetInstance().SetFileToPersistent("/EnemyXml.xml", "Xml/EnemyXml");
+        ReadXml.GetInstance().LoadEnemyXml("/EnemyXml.xml");
+        //Debug.Log("怪物字典数据数量：    " + GameMgr.GetInstance().EnemyDataDic.Count);
     }
 }

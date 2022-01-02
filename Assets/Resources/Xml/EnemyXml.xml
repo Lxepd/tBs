@@ -1,12 +1,13 @@
 <Data>
     <it id="15001">
-        <name>怪物1</name>
-		<path></path>
-		<tips>怪物1</tips>
-    </it>
-    <it id="15002">
-        <name>怪物2</name>
-		<path></path>
-        <tips>怪物2</tips>
+        <name>火蛇</name>
+		<path>Prefabs/Enemy/FireWorm/FireWorm</path>
+		<tips>一种会发射Fire波的蛇类怪物</tips>
+		<hp>10</hp>
+		<speed>3</speed>
+		<atk>2</atk>
+		<hitLen>2</hitLen>
+		<moveLen>12</moveLen>
+		<atkLen>10</atkLen>
     </it>
 </Data>

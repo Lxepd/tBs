@@ -52,9 +52,9 @@ public class ControlPanel : UIBase
         numText = GetControl<Text>("ThrowNum");
         // 从消息中心拿取消息
         EventCenter.GetInstance().AddEventListener<Collider2D[]>("强化物", (x) => { strengthen = x; });
-        EventCenter.GetInstance().AddEventListener<Vector2>("PlayerPos", (x) => 
+        EventCenter.GetInstance().AddEventListener<Vector2>("PlayerPos", (x) =>
         {
-            playerPos = x + new Vector2(0, .5f); 
+            playerPos = x + new Vector2(0, .5f);
         });
         EventCenter.GetInstance().AddEventListener<Collider2D>("距离最近的敌人", (x) =>
         {
@@ -70,7 +70,7 @@ public class ControlPanel : UIBase
         {
             // TODO:  把<投掷>按键上的图片，改成<聊天>图片
 
-            if(x!=null)
+            if (x != null)
             {
                 ctrlType = CtrlType.打开商店;
                 npcComponent = x.GetComponent<Npc>();
@@ -91,7 +91,7 @@ public class ControlPanel : UIBase
     void Update()
     {
         // 根据队列数量修改text的文本
-        if(strengthenQueue.Count<1)
+        if (strengthenQueue.Count < 1)
         {
             numText.text = "∞";
         }
@@ -131,7 +131,7 @@ public class ControlPanel : UIBase
     /// </summary>
     private void TakeThing()
     {
-        if(strengthen.Length<1)
+        if (strengthen.Length < 1)
         {
             Debug.Log("拿了个空气！！");
             return;
@@ -158,7 +158,7 @@ public class ControlPanel : UIBase
         if (strengthenQueue.Count == 0)
         {
             // 基础攻击
-            ThrowItemData data = GameMgr.GetInstance().GetThrowItemInfo(10001);
+            ThrowItemData data = GameTool.GetDicInfo(Datas.GetInstance().ThrowItemDataDic, 10001);
             ShootBase(data.path, data.speed);
         }
         // 否则，使用弹匣中第一个强化物
@@ -167,7 +167,7 @@ public class ControlPanel : UIBase
             BulletBag first = strengthenQueue.Dequeue();
 
             Debug.Log("强化射击！！        " + first);
-            ThrowItemData tid = GameMgr.GetInstance().GetThrowItemInfo(first.id);
+            ThrowItemData tid = GameTool.GetDicInfo(Datas.GetInstance().ThrowItemDataDic, first.id);
             ShootBase(tid.path, tid.speed);
         }
     }
@@ -182,7 +182,7 @@ public class ControlPanel : UIBase
     /// <summary>
     /// 射击
     /// </summary>
-    private void ShootBase(string name,float speed)
+    private void ShootBase(string name, float speed)
     {
         PoolMgr.GetInstance().GetObj(name, (x) =>
         {
@@ -191,7 +191,7 @@ public class ControlPanel : UIBase
             Rigidbody2D rg = x.GetComponent<Rigidbody2D>();
 
             // 有敌人就朝敌人发射
-            if(nearEnemy != null)
+            if (nearEnemy != null)
             {
                 enemyDir = (nearEnemy.transform.position - playerPos).normalized;
                 EventCenter.GetInstance().EventTrigger<Vector2>("Joystick", Vector2.zero);

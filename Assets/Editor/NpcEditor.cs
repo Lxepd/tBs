@@ -9,15 +9,17 @@ public class NpcEditor : Editor
     private SerializedObject npcData;
     private SerializedProperty npcType;
 
-    private SerializedProperty itemNpc, equipmentNpc, craftsMan;
+    private SerializedProperty items, equipmentNpc, craftsMan;
 
     private void OnEnable()
     {
         npcData = new SerializedObject(target);
         npcType = npcData.FindProperty("type");
-
-        itemNpc = npcData.FindProperty("itemNpc");
+        // 道具商人
+        items = npcData.FindProperty("items");
+        // 装备商人
         equipmentNpc = npcData.FindProperty("equipmentNpc");
+        // 工匠
         craftsMan = npcData.FindProperty("craftsMan");
     }
 
@@ -31,7 +33,7 @@ public class NpcEditor : Editor
             case 0:
                 break;
             case 1:
-                EditorGUILayout.PropertyField(itemNpc);
+                EditorGUILayout.PropertyField(items);
                 break;
             case 2:
                 EditorGUILayout.PropertyField(equipmentNpc);

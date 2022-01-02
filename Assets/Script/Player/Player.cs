@@ -29,11 +29,12 @@ public class Player : MonoBehaviour
     {
         rg = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        // 消息
         // 获取消息中心中 Joystick 的消息，然后执行 委托
         // 获取摇杆方向向量
         EventCenter.GetInstance().AddEventListener<Vector2>("Joystick", (x) => { this.dir = x; });
-
         EventCenter.GetInstance().EventTrigger<Animator>("Player动画", animator);
+        EventCenter.GetInstance().EventTrigger<int>("角色信息", id);
     }
 
     // Update is called once per frame
@@ -52,7 +53,8 @@ public class Player : MonoBehaviour
             //animator.SetFloat("AtkY", animator.GetFloat("RunY"));
         }
 
-        rg.velocity = dir * GameMgr.GetInstance().GetPlayerInfo(id).speed;
+        rg.velocity = dir * GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, id).speed;
+        //rg.velocity = dir * GameMgr.GetInstance().GetPlayerInfo(id).speed;
     }
     private void FixedUpdate()
     {

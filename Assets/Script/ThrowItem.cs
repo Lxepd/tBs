@@ -18,7 +18,7 @@ public class ThrowItem : MonoBehaviour
 
     private void Start()
     {
-        data = GameMgr.GetInstance().GetThrowItemInfo(id);
+        data = GameTool.GetDicInfo(Datas.GetInstance().ThrowItemDataDic, id);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
