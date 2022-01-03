@@ -10,11 +10,15 @@ public class NpcEditor : Editor
     private SerializedProperty npcType;
 
     private SerializedProperty items, equipmentNpc, craftsMan;
+    private SerializedProperty checkRadius;
 
     private void OnEnable()
     {
         npcData = new SerializedObject(target);
         npcType = npcData.FindProperty("type");
+
+        checkRadius = npcData.FindProperty("checkPlayerHereRadius");
+
         // 道具商人
         items = npcData.FindProperty("items");
         // 装备商人
@@ -27,6 +31,7 @@ public class NpcEditor : Editor
     {
         npcData.Update();
         EditorGUILayout.PropertyField(npcType);
+        EditorGUILayout.PropertyField(checkRadius);
 
         switch (npcType.enumValueIndex)
         {

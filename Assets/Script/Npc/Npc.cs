@@ -18,7 +18,8 @@ public class Npc : MonoBehaviour
     public List<装备商人> equipmentNpc = new List<装备商人>();
     public List<工匠> craftsMan = new List<工匠>();
 
-    Timer reInit;
+    private Timer reInit;
+    public float checkPlayerHereRadius = 1.5f;
 
     private void Start()
     {
@@ -29,10 +30,14 @@ public class Npc : MonoBehaviour
                 itemsCopy = GameTool.Clone<道具商人>(items);
                 EventCenter.GetInstance().AddEventListener<int>("NPC道具数量更新", (x) =>
                 {
+                    if (!Physics2D.OverlapCircle(transform.position, checkPlayerHereRadius, LayerMask.GetMask("玩家")))
+                        return;
+
                     foreach (var item in itemsCopy)
                     {
                         if (item.id == x)
                         {
+                            Debug.Log(111);
                             item.num--;
                             return;
                         }
@@ -144,4 +149,9 @@ public class Npc : MonoBehaviour
     #region <<<   工匠Npc   >>>
 
     #endregion
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(transform.position, checkPlayerHereRadius);
+    }
 }
