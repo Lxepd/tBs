@@ -408,6 +408,7 @@ MonoBehaviour:
   itemsCopy: []
   equipmentNpc: []
   craftsMan: []
+  reInitTime: 0
   checkPlayerHereRadius: 2
 --- !u!114 &7414583002709670176
 MonoBehaviour:
@@ -428,7 +429,8 @@ MonoBehaviour:
   itemsCopy: []
   equipmentNpc: []
   craftsMan: []
-  checkPlayerHereRadius: 1.5
+  reInitTime: 4752
+  checkPlayerHereRadius: 30
 --- !u!114 &7414583002709670177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,4 +452,5 @@ MonoBehaviour:
   itemsCopy: []
   equipmentNpc: []
   craftsMan: []
+  reInitTime: 60
   checkPlayerHereRadius: 1.5

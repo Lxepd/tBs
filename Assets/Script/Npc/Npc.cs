@@ -19,10 +19,14 @@ public class Npc : MonoBehaviour
     public List<工匠> craftsMan = new List<工匠>();
 
     private Timer reInit;
+    [Header("商店刷新时间，最短30s")]
+    public float reInitTime;
+    [Header("检测玩家距离，最短1.5")]
     public float checkPlayerHereRadius = 1.5f;
 
     private void Start()
     {
+        Debug.Log(reInitTime);
         switch (type)
         {
             case NpcType.道具商人:
@@ -43,7 +47,7 @@ public class Npc : MonoBehaviour
                         }
                     }
                 });
-                reInit = new Timer(Mathf.Max(30, ReTime.商人刷新时间), true, true);
+                reInit = new Timer(Mathf.Max(30, reInitTime), true, true);
                 break;
             case NpcType.装备商人:
                 data = GameTool.GetDicInfo(Datas.GetInstance().NpcDataDic, 13002);
@@ -58,7 +62,9 @@ public class Npc : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        EventCenter.GetInstance().EventTrigger<float>("刷新时间", reInit.nowTime);
+        if (Physics2D.OverlapCircle(transform.position, checkPlayerHereRadius, LayerMask.GetMask("玩家")))
+            EventCenter.GetInstance().EventTrigger<float>("刷新时间", reInit.nowTime);
+        
         if (reInit.isTimeUp)
         {
             switch (type)
