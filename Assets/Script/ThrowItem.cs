@@ -12,7 +12,7 @@ public class ThrowItem : MonoBehaviour
 {
     public int id;
     private ThrowItemData data;
-    public WhoShoot ws;
+    [HideInInspector] public WhoShoot ws;
 
     public ThrowItemData Data { get => data;}
 
@@ -42,7 +42,7 @@ public class ThrowItem : MonoBehaviour
             // 碰到玩家，在消息中心存储<玩家扣血>消息
             EventCenter.GetInstance().EventTrigger<ThrowItemData>("玩家扣血", data);
             PoolMgr.GetInstance().PushObj(name, gameObject);
-
+            Debug.Log(data.hurt);
         }
     }
 }

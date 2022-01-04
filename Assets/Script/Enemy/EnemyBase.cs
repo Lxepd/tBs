@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
+    protected EnemyData data;
     // 刚体组件
     [HideInInspector] protected Rigidbody2D rg;
     // 动画组件

@@ -13,7 +13,4 @@ public class ThrowItemData
     public float mass; // 质量
     public float speed; // 速度
     public float hurt; // 伤害
-    public int price; // 价格
-    public bool canBuy; // 能否买
-    public bool canSell; // 能否卖
 }

@@ -6,7 +6,7 @@ public enum ItemType
 {
     None,
     一次性消耗品,
-    可重复使用,
+    可重复使用消耗品,
     非消耗品
 }
 public enum ItemActType

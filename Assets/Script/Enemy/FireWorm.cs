@@ -13,7 +13,8 @@ public enum FireWormState
 }
 public class FireWorm : EnemyBase
 {
-    
+    private int id = 15001;   
+    public EnemyData Data { get => data; }
     // 注册状态计时器
     public Timer moveTimer, atkTimer,HitTimer;
     // 获取父类的组件信息
@@ -26,10 +27,6 @@ public class FireWorm : EnemyBase
     // 攻击状态的攻击执行时间
     [HideInInspector] public float HitTimertime;
 
-    [Tooltip("玩家攻击来向范围")]  public float HitLen = 2f;
-    [Tooltip("移动范围")] public float MoveLen = 12f;
-    [Tooltip("攻击范围")] public float AtkLen = 10f;
-
     public Timer ForceStopTimer { get => forceStopTimer; }
     public bool isHit;
     public bool isDead;
@@ -39,6 +36,8 @@ public class FireWorm : EnemyBase
     protected override void Start()
     {
         base.Start();
+
+        data = GameTool.GetDicInfo(Datas.GetInstance().EnemyDataDic, id);
 
         MoveTimertime = .5f * GameTool.GetAnimatorLength(animator, "Walk");
         moveTimer = new Timer(MoveTimertime, false, false);
@@ -121,45 +120,52 @@ public class FireWorm : EnemyBase
     /// </summary>
     public override void CheckState()
     {
-        player = Physics2D.OverlapCircle(transform.position, MoveLen, LayerMask.GetMask("玩家"));
+        player = Physics2D.OverlapCircle(transform.position, data.moveLen, LayerMask.GetMask("玩家"));
 
         // 如果范围内没有玩家
-        if (player == null)
+        //if (player == null)
+        //{
+        //    // 进入 站立状态
+        //    fws = FireWormState.Idle;
+        //    return;
+        //}
+
+        if(player == null)
         {
-            // 进入 站立状态
             fws = FireWormState.Idle;
             return;
         }
 
+        fws = FireWormState.Idle;
 
-        if (!isHit)
-        {
-            //如果在攻击范围内，则进入 攻击状态
-            if (Vector2.Distance(player.transform.position, transform.position) <= AtkLen)
-            {
-                fws = FireWormState.Atk;
-
-            }
-            // 否则移动追击状态
-            else
-            {
-                fws = FireWormState.Walk;
-            }
-        }
-        else
+        if (isHit)
         {
             fws = FireWormState.Hit;
+            return;
         }
+        //如果在攻击范围内，则进入 攻击状态
+        if (Vector2.Distance(player.transform.position, transform.position) <= data.atkLen)
+        {
+            fws = FireWormState.Atk;
+            return;
+        }
+        // 否则移动追击状态
+        else
+        {
+            fws = FireWormState.Walk;
+            return;
+        }
+        
     }
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, HitLen);
+        Gizmos.DrawWireSphere(transform.position, data.hitLen);
         Gizmos.color = Color.black;
-        Gizmos.DrawWireSphere(transform.position, MoveLen);
+        Gizmos.DrawWireSphere(transform.position, data.moveLen);
         Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(transform.position, AtkLen);
+        Gizmos.DrawWireSphere(transform.position, data.atkLen);
     }
 #endif
 }
@@ -209,9 +215,8 @@ public class FireWormWalk : StateBaseTemplate<FireWorm>
 
         Vector2 playerDir = (player.transform.position - owner.transform.position).normalized;
 
-        if (owner.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > GameTool.GetAnimatorLength(owner.Animator, "Walk"))
+        if (owner.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > GameTool.GetAnimatorLen(owner.Animator, "Walk"))
         {
-
             OnExit();
             return;
         }
@@ -221,7 +226,7 @@ public class FireWormWalk : StateBaseTemplate<FireWorm>
             // 朝向玩家
             owner.Rotate(playerDir);
             // 刚体移动 = 朝向 * 怪物速度
-            owner.Rg.velocity = playerDir * 3;
+            owner.Rg.velocity = playerDir * owner.Data.speed;
 
         }
 
@@ -260,9 +265,8 @@ public class FireWormAtk : StateBaseTemplate<FireWorm>
         
         owner.Rotate(playerDir);
 
-        if (owner.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > GameTool.GetAnimatorLength(owner.Animator, "Atk"))
+        if (owner.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > GameTool.GetAnimatorLen(owner.Animator, "Atk"))
         {
-            
             OnExit();
             return;
         }
@@ -308,7 +312,7 @@ public class FireWormHit : StateBaseTemplate<FireWorm>
     {
         //Debug.Log("被击状态！");
 
-        if (owner.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > GameTool.GetAnimatorLength(owner.Animator, "Hit"))
+        if (owner.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > GameTool.GetAnimatorLen(owner.Animator, "Hit"))
         {
             OnExit();
             return;

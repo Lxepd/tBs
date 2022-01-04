@@ -73,8 +73,10 @@ public class ShopPanel : UIBase
                     return;
 
                 Debug.Log("购买！！");
-                // 给玩家背包里添加道具
-                AddItem();
+                // 商品-1
+                item.currentNum--;
+                EventCenter.GetInstance().EventTrigger<int>("NPC道具数量更新", item.id);
+                EventCenter.GetInstance().EventTrigger<ItemClick>("成功购买的道具", item);
                 break;
             // 商店道具出售按钮
             case "Bto_Sell":
@@ -109,31 +111,5 @@ public class ShopPanel : UIBase
         // 商品-1
         item.currentNum--;
         EventCenter.GetInstance().EventTrigger<int>("NPC道具数量更新", item.id);
-
-        // 没有达到最大值则叠加
-        for (int i = 0; i < content.childCount; i++)
-        {
-            ItemClick ic = content.GetChild(i).GetComponent<ItemClick>();
-            if (item.id == GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic, ic.id).id &&
-                ic.currentNum < GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic, ic.id).maxNum)
-            {
-                ic.currentNum++;
-                return;
-            }
-        }
-
-        // 之前相同的都满了，但是又有相同的道具，则添加
-        PoolMgr.GetInstance().GetObj("Prefabs/ShopItem", (x) =>
-         {
-             x.transform.SetParent(content);
-             x.transform.localScale = Vector3.one;
-
-             ItemClick ic = x.GetComponent<ItemClick>();
-             ic.id = item.id;
-             ic.currentNum = 1;
-
-             x.transform.Find("Img").GetComponent<Image>().sprite = ResMgr.GetInstance().Load<Sprite>(GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic, item.id).path);
-         });
-
     }
 }

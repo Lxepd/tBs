@@ -7,9 +7,6 @@
 		<mass>10</mass>
 		<speed>10</speed>
 		<hurt>1</hurt>
-		<price>0</price>
-		<buy>false</buy>
-		<sell>false</sell>
 	</it>
 	<it id="10002">
 		<icon>Sprites/BulletIcon/Q</icon>
@@ -19,9 +16,6 @@
 		<mass>2</mass>
 		<speed>10</speed>
 		<hurt>3</hurt>
-		<price>0</price>
-		<buy>false</buy>
-		<sell>false</sell>
 	</it>
 	<it id="10003">
 		<icon>Sprites/BulletIcon/Z</icon>
@@ -31,9 +25,6 @@
 		<mass>8</mass>
 		<speed>6</speed>
 		<hurt>2</hurt>
-		<price>0</price>
-		<buy>false</buy>
-		<sell>false</sell>
 	</it>
 	<it id="10004">
 		<icon>Sprites/BulletIcon/S</icon>
@@ -43,9 +34,6 @@
 		<mass>4</mass>
 		<speed>8</speed>
 		<hurt>10</hurt>
-		<price>0</price>
-		<buy>false</buy>
-		<sell>false</sell>
 	</it>
 	<it id="10005">
 		<icon>Sprites/BulletIcon/J</icon>
@@ -55,8 +43,14 @@
 		<mass>3</mass>
 		<speed>10</speed>
 		<hurt>3</hurt>
-		<price>0</price>
-		<buy>false</buy>
-		<sell>false</sell>
+	</it>
+	<it id="10006">
+		<icon>Sprites/BulletIcon/J</icon>
+		<path>Prefabs/Bullet/FireBall</path>
+		<name>火球</name>
+		<tips>火蛇发射的炽热火球</tips>
+		<mass>3</mass>
+		<speed>10</speed>
+		<hurt>3</hurt>
 	</it>
 </Data>

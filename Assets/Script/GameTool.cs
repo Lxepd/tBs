@@ -53,22 +53,6 @@ public class GameTool
         return Vector2.Distance(array.gameObject.transform.position, pos);
     }
 
-    public static float GetAnimatorLength(Animator animator, string name)
-    {
-        float length = 0;
-
-        AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
-        foreach (var clip in clips)
-        {
-            if (clip.name.Equals(name))
-            {
-                length = clip.length;
-                break;
-            }
-        }
-
-        return length;
-    }
     //查找子物体
     public static Transform FindTheChild(GameObject goParent, string childName)
     {
@@ -137,4 +121,25 @@ public class GameTool
             return formatter.Deserialize(objectStream) as List<T>;
         }
     }
+    public static float GetAnimatorLength(Animator animator, string name)
+    {
+        float length = 0;
+
+        AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
+        foreach (var clip in clips)
+        {
+            if (clip.name.Equals(name))
+            {
+                length = clip.length;
+                break;
+            }
+        }
+
+        return length;
+    }
+    public static float GetAnimatorLen(Animator anim,string animName)
+    {
+        return Mathf.Min(GetAnimatorLength(anim, animName), 1f);
+    }
+
 }

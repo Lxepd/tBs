@@ -54,9 +54,6 @@ public class ReadXml : InstanceNoMono<ReadXml>
             newData.mass = float.Parse(item.SelectSingleNode("mass").InnerText);
             newData.speed = float.Parse(item.SelectSingleNode("speed").InnerText);
             newData.hurt = float.Parse(item.SelectSingleNode("hurt").InnerText);
-            newData.price = int.Parse(item.SelectSingleNode("price").InnerText);
-            newData.canBuy = bool.Parse(item.SelectSingleNode("buy").InnerText);
-            newData.canSell = bool.Parse(item.SelectSingleNode("sell").InnerText);
 
             Datas.GetInstance().ThrowItemDataDic.Add(newData.id, newData);
         }
