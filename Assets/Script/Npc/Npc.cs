@@ -24,9 +24,10 @@ public class Npc : MonoBehaviour
     [Header("检测玩家距离，最短1.5")]
     public float checkPlayerHereRadius = 1.5f;
 
+    private bool playerHere;
+
     private void Start()
     {
-        Debug.Log(reInitTime);
         switch (type)
         {
             case NpcType.道具商人:
@@ -34,18 +35,10 @@ public class Npc : MonoBehaviour
                 itemsCopy = GameTool.Clone<道具商人>(items);
                 EventCenter.GetInstance().AddEventListener<int>("NPC道具数量更新", (x) =>
                 {
-                    if (!Physics2D.OverlapCircle(transform.position, checkPlayerHereRadius, LayerMask.GetMask("玩家")))
+                    if (!playerHere)
                         return;
 
-                    foreach (var item in itemsCopy)
-                    {
-                        if (item.id == x)
-                        {
-                            Debug.Log(111);
-                            item.num--;
-                            return;
-                        }
-                    }
+                    ShopItemNumReduce(x);
                 });
                 reInit = new Timer(Mathf.Max(30, reInitTime), true, true);
                 break;
@@ -62,8 +55,10 @@ public class Npc : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (Physics2D.OverlapCircle(transform.position, checkPlayerHereRadius, LayerMask.GetMask("玩家")))
+        if (playerHere = Physics2D.OverlapCircle(transform.position, checkPlayerHereRadius, LayerMask.GetMask("玩家")))
+        {
             EventCenter.GetInstance().EventTrigger<float>("刷新时间", reInit.nowTime);
+        }
         
         if (reInit.isTimeUp)
         {
@@ -145,6 +140,17 @@ public class Npc : MonoBehaviour
             //x.transform.Find("ItemNum").GetComponent<Text>().text = num.ToString();
 
         });
+    }
+    private void ShopItemNumReduce(int _id)
+    {
+        foreach (var item in itemsCopy)
+        {
+            if (item.id == _id)
+            {
+                item.num--;
+                return;
+            }
+        }
     }
     #endregion
     // TODO

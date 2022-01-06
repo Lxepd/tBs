@@ -124,6 +124,7 @@ public class StatePanel : UIBase
     private void GetBagItem()
     {
         Transform content = GameTool.FindTheChild(UIMgr.GetInstance().GetLayerFather(E_UI_Layer.Above).gameObject, "背包界面");
+        Dictionary<int, int> test = new Dictionary<int, int>();
         // 获取背包内的可消耗道具
         for (int i = 0; i < content.childCount; i++)
         {
@@ -134,18 +135,19 @@ public class StatePanel : UIBase
                 continue;
             // 检测字典有没有
             // 有则更新数量
-            if (BagItem.ContainsKey(ic.id))
+            if (test.ContainsKey(ic.id))
             {
-                BagItem[ic.id] = ic.currentNum;
+                test[ic.id] += ic.currentNum;
             }
             // 无则添加
             else
             {
-                BagItem.Add(ic.id, ic.currentNum);
+                test.Add(ic.id, ic.currentNum);
                 BagItemIDList.Add(ic.id);
             }
         }
 
+        BagItem = test;
     }
     /// <summary>
     /// 将<一次性消耗品>与<可重复使用消耗品>放置状态边上的物品格子中

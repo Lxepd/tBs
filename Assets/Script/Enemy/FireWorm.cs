@@ -32,6 +32,7 @@ public class FireWorm : EnemyBase
     public Timer ForceStopTimer { get => forceStopTimer; }
     public bool isHit;
     public bool isDead;
+    public bool isPushInPool;
 
     FireWormState fws = FireWormState.Idle;
 
@@ -88,6 +89,9 @@ public class FireWorm : EnemyBase
     }
     protected override void Update()
     {
+        if (isPushInPool)
+            return;
+
         base.Update();
 
         switch (fws)
@@ -353,7 +357,9 @@ public class FireWormDead : StateBaseTemplate<FireWorm>
         {
             disappearTimer = new Timer(1.5f, false, false);
             disappearTimer.Start();
+            owner.GetComponent<BoxCollider2D>().enabled = false;
             owner.Animator.Play("Dead");
+            owner.Rg.velocity = Vector2.zero;
         }
     }
     public override void OnStay(params object[] args)
@@ -374,6 +380,7 @@ public class FireWormDead : StateBaseTemplate<FireWorm>
     public override void OnExit(params object[] args)
     {
         PoolMgr.GetInstance().PushObj(owner.Data.path, owner.gameObject);
+        owner.isPushInPool = true;
     }
 }
 #endregion

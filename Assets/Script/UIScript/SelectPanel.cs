@@ -70,19 +70,22 @@ public class SelectPanel : UIBase
         // 异步生成角色  
         ResMgr.GetInstance().LoadAsync<GameObject>(GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, playerID).path, (x) =>
           {
-             // 初始化位置
-             x.transform.position = GameObject.Find("返回点").transform.position;
-             // 注册返回主界面的消息
-             EventCenter.GetInstance().AddEventListener<GameObject>("玩家角色", (y) =>
+              // 初始化位置
+              ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/RoomPrefabs/准备房", (z) =>
               {
-                  Destroy(y);
+                  x.transform.position = GameObject.Find("返回点").transform.position;
               });
+
+              // 注册返回主界面的消息
+              EventCenter.GetInstance().AddEventListener<GameObject>("玩家角色", (y) =>
+               {
+                   Destroy(y);
+               });
               EventCenter.GetInstance().EventTrigger<GameObject>("玩家物体", x);
-             // 切换场景不销毁
-             DontDestroyOnLoad(x);
+              // 切换场景不销毁
+              DontDestroyOnLoad(x);
           });
     }
-
     public void ttt()
     {
         UIMgr.GetInstance().HidePanel("LoadingPanel");

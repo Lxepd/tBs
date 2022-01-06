@@ -40,13 +40,16 @@ public class TpPoint : MonoBehaviour
 
         if (tpTimer.isTimeUp)
         {
-
+            PoolMgr.GetInstance().Clear();
             switch (tp.type)
             {
                 case TpType.回去:
                     SceneMgr.GetInstance().LoadSceneAsyn("Game", () =>
                     {
-                        Player.instance.transform.position = GameObject.Find("返回点").transform.position;
+                        ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/RoomPrefabs/准备房", (z) =>
+                        {
+                            Player.instance.transform.position = GameObject.Find("返回点").transform.position;
+                        });
                     });
                     break;
                 case TpType.下一关:
@@ -55,10 +58,10 @@ public class TpPoint : MonoBehaviour
                     {
                         GameObject room = Instantiate(Resources.Load<GameObject>(GameTool.GetDicInfo(Datas.GetInstance().RoomDataDic, tp.roomID).prefabPath));
                         Player.instance.transform.position = room.transform.Find("出现点").position;
-                        ResetRoom();
                     });
                     break;
             }
+            tpTimer.Reset(5f);
             //PoolMgr.GetInstance().GetObj(GameMgr.GetInstance().GetRoomInfo(tp.roomID).prefabPath, (x) =>
             //{
             //    Player.instance.transform.position = x.transform.FindChild("出现点").position;
@@ -67,10 +70,6 @@ public class TpPoint : MonoBehaviour
         }
     }
 
-    private void ResetRoom()
-    {
-        isStart = false;
-    }
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {

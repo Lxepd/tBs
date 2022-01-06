@@ -15976,7 +15976,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5183851662907177101, guid: 7eb4407398836fb41bd510b39cda4e98, type: 3}
       propertyPath: tp.type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5183851662907177101, guid: 7eb4407398836fb41bd510b39cda4e98, type: 3}
       propertyPath: tp.roomID
