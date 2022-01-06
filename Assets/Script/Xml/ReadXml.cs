@@ -188,5 +188,27 @@ public class ReadXml : InstanceNoMono<ReadXml>
             Datas.GetInstance().EnemyDataDic.Add(newData.id, newData);
         }
     }
+    public void LoadRewardXml(string path)
+    {
+        if (Datas.GetInstance().RewardDataDic.Count != 0)
+            return;
+
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.Load(Application.persistentDataPath + path);
+
+        XmlNodeList xmlList = xmlDoc.SelectSingleNode("Data").ChildNodes;
+
+        foreach (XmlNode item in xmlList)
+        {
+            RewardData newData = new RewardData();
+            newData.id = int.Parse(item.Attributes["id"].InnerText);
+
+            newData.name = item.SelectSingleNode("name").InnerText;
+            newData.path = item.SelectSingleNode("path").InnerText;
+            newData.reward = int.Parse(item.SelectSingleNode("reward").InnerText);
+
+            Datas.GetInstance().RewardDataDic.Add(newData.id, newData);
+        }
+    }
     #endregion
 }

@@ -19,6 +19,11 @@ public class ShopPanel : UIBase
          {
              GetControl<Text>("ReTimeText").text = "距离刷新时间：" + GameTool.SetTime(x);
          });
+        // 注册<道具点击>消息
+        EventCenter.GetInstance().AddEventListener<ItemClick>("商店物品", (x) =>
+        {
+            item = x;
+        });
     }
     private void Update()
     {
@@ -29,16 +34,9 @@ public class ShopPanel : UIBase
     /// 界面展开时执行
     /// </summary>
     public override void ShowMe()
-    {
-        // 注册<道具点击>消息
-        EventCenter.GetInstance().AddEventListener<ItemClick>("商店物品", (x) =>
-        {
-            Debug.Log(x);
-            item = x;
-        });
+    { 
         // 找到父物体
         itemParent = GameTool.FindTheChild(UIMgr.GetInstance().GetLayerFather(E_UI_Layer.Above).gameObject, "商店展示界面");
-
     }
     /// <summary>
     /// 界面隐藏时执行
@@ -71,8 +69,6 @@ public class ShopPanel : UIBase
                 // 排除没有点击任何道具
                 if (item == null)
                     return;
-
-                Debug.Log("购买！！");
                 // 商品-1
                 item.currentNum--;
                 EventCenter.GetInstance().EventTrigger<int>("NPC道具数量更新", item.id);
@@ -81,7 +77,18 @@ public class ShopPanel : UIBase
             // 商店道具出售按钮
             case "Bto_Sell":
                 //TODO: 道具出售
-                Debug.Log("售出！！");
+                for (int i = 0; i < itemParent.childCount; i++)
+                {
+                    ItemClick ic = itemParent.GetChild(i).GetComponent<ItemClick>();
+
+                    if (item.id != ic.id)
+                        continue;
+
+                    if (ic.currentNum <= GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic,ic.id).maxNum)
+                    {
+                        
+                    }
+                }
                 break;
         }
     }
@@ -101,15 +108,5 @@ public class ShopPanel : UIBase
             }
         }
     }
-    /// <summary>
-    /// 添加物品进玩家背包
-    /// </summary>
-    private void AddItem()
-    {
-        Transform content = GameTool.FindTheChild(UIMgr.GetInstance().GetLayerFather(E_UI_Layer.Above).gameObject, "背包界面");
 
-        // 商品-1
-        item.currentNum--;
-        EventCenter.GetInstance().EventTrigger<int>("NPC道具数量更新", item.id);
-    }
 }

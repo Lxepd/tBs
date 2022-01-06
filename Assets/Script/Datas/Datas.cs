@@ -18,4 +18,6 @@ public class Datas : InstanceNoMono<Datas>
     public Dictionary<int, PlayerData> PlayerDataDic = new Dictionary<int, PlayerData>();
     // 存放<怪物>信息字典
     public Dictionary<int, EnemyData> EnemyDataDic = new Dictionary<int, EnemyData>();
+    // 存放<奖励>信息字典
+    public Dictionary<int, RewardData> RewardDataDic = new Dictionary<int, RewardData>();
 }

@@ -19,10 +19,7 @@ public class StatePanel : UIBase
     // 下标
     int index = 0;
 
-    /// <summary>
-    /// 界面展开时执行
-    /// </summary>
-    public override void ShowMe()
+    private void Start()
     {
         // 获取数据
         EventCenter.GetInstance().AddEventListener<int>("角色信息", (x) =>
@@ -35,7 +32,7 @@ public class StatePanel : UIBase
         {
             ChangeHp((int)x.hurt);
         });
-        EventCenter.GetInstance().AddEventListener<int>("状态界面清空", (x)=>
+        EventCenter.GetInstance().AddEventListener<int>("状态界面清空", (x) =>
         {
             data = null;
             BagItemIDList.Clear();
@@ -43,7 +40,6 @@ public class StatePanel : UIBase
             index = 0;
         });
     }
-
     void Update()
     {
         if (data == null)

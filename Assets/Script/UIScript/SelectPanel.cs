@@ -10,14 +10,14 @@ public class SelectPanel : UIBase
     // 选择的角色ID
     private int playerID;
 
-    public override void ShowMe()
+    private void Start()
     {
         // 注册角色ID消息
         EventCenter.GetInstance().AddEventListener<int>("选择角色", (x) =>
-         {
-             Debug.Log(x);
-             playerID = x;
-         });
+        {
+            Debug.Log(x);
+            playerID = x;
+        });
     }
     protected override void OnClick(string btnName)
     {

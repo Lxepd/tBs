@@ -1,0 +1,7 @@
+<Data>
+    <it id="16001">
+        <name>少量钱</name>
+		<path>Prefabs/Reward/少量钱</path>
+		<reward>1</reward>
+    </it>
+</Data>

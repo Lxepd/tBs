@@ -15757,13 +15757,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3683938811624229461, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
 --- !u!4 &7403456589494805388 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8129074260691347443, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
   m_PrefabInstance: {fileID: 1616257296165995647}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4579798722468796381 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3017605121712444322, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
+  m_PrefabInstance: {fileID: 1616257296165995647}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7414583002709670177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4579798722468796381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d70f2fdf484e74b88ec83d60c27c1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  items:
+  - id: 12001
+    num: 7
+  - id: 12002
+    num: 13
+  itemsCopy: []
+  equipmentNpc: []
+  craftsMan: []
+  reInitTime: 60
+  checkPlayerHereRadius: 1.5
 --- !u!1001 &2609785829269780594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15915,6 +15944,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3017605121712444322, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3683938811624229461, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
       propertyPath: itemSellList.Array.size
       value: 0
@@ -15971,13 +16004,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3683938811624229461, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
 --- !u!4 &4429558405698717985 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8129074260691347443, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
   m_PrefabInstance: {fileID: 5595922780710498002}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7226053914923253104 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3017605121712444322, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
+  m_PrefabInstance: {fileID: 5595922780710498002}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7414583002709670175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7226053914923253104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d70f2fdf484e74b88ec83d60c27c1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  items: []
+  itemsCopy: []
+  equipmentNpc: []
+  craftsMan: []
+  reInitTime: 0
+  checkPlayerHereRadius: 2
 --- !u!1001 &6450494569143177271
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15988,6 +16046,10 @@ PrefabInstance:
     - target: {fileID: 3017605121712444322, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
       propertyPath: m_Name
       value: NPC (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3017605121712444322, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3683938811624229461, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
       propertyPath: itemSellList.Array.size
@@ -16045,7 +16107,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3683938811624229461, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
 --- !u!4 &2978154074317977540 stripped
 Transform:
@@ -16259,10 +16322,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3683938811624229461, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
+--- !u!1 &5694041049005178801 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3017605121712444322, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
+  m_PrefabInstance: {fileID: 7414583001438481427}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1600367816478067680 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8129074260691347443, guid: fd8f6f36e73d1474f83bebfecb352a27, type: 3}
   m_PrefabInstance: {fileID: 7414583001438481427}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7414583002709670176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5694041049005178801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d70f2fdf484e74b88ec83d60c27c1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  items:
+  - id: 12001
+    num: 12
+  itemsCopy: []
+  equipmentNpc: []
+  craftsMan: []
+  reInitTime: 4752
+  checkPlayerHereRadius: 30

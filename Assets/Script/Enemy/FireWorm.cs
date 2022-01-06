@@ -16,7 +16,7 @@ public class FireWorm : EnemyBase
     private int id = 15001;   
     public EnemyData Data { get => data; }
     // 注册状态计时器
-    public Timer moveTimer, atkTimer,HitTimer;
+    public Timer moveTimer, atkTimer, HitTimer, DeadTimer;
     // 获取父类的组件信息
     public Animator Animator { get => animator; } 
     public Rigidbody2D Rg { get => rg; }
@@ -24,8 +24,10 @@ public class FireWorm : EnemyBase
     [HideInInspector] public float MoveTimertime;
     // 攻击状态的攻击执行时间
     [HideInInspector] public float AtkTimertime;
-    // 攻击状态的攻击执行时间
+    // 受击状态的受击执行时间
     [HideInInspector] public float HitTimertime;
+    // 死亡状态的消失执行时间
+    [HideInInspector] public float DeadTimertime;
 
     public Timer ForceStopTimer { get => forceStopTimer; }
     public bool isHit;
@@ -45,13 +47,15 @@ public class FireWorm : EnemyBase
         atkTimer = new Timer(AtkTimertime, false, false);
         HitTimertime = .3f * GameTool.GetAnimatorLength(animator, "Hit");
         HitTimer = new Timer(HitTimertime, false, false);
+        DeadTimertime = 3f * GameTool.GetAnimatorLength(animator, "Dead");
+        DeadTimer = new Timer(DeadTimertime, false, false);
 
         // 状态机状态注册
         FireWormIdle idle = new FireWormIdle(1, this);
         FireWormWalk walk = new FireWormWalk(2, this);
         FireWormAtk atk = new FireWormAtk(3, this);
         FireWormHit hit = new FireWormHit(4, this);
-        FireWormHit dead = new FireWormHit(5, this);
+        FireWormDead dead = new FireWormDead(5, this);
 
         // 设置初始状态
         machine = new StateMachine(idle);
@@ -67,10 +71,17 @@ public class FireWorm : EnemyBase
             if (nearThrow == Vector2.zero)
                 return;
 
-            Debug.Log("敌人扣血：    " + x.hurt);
+            data.hp -= x.hurt;
+            if (data.hp <= 0)
+            {
+                isDead = true;
+                DeadTimer.Start();
+                fws = FireWormState.Dead;
+                return;
+            }
             // 力 = 投掷物来向 * 投掷物重量
             //rg.AddForce(nearThrow * x.mass, ForceMode2D.Impulse);
-
+            Debug.Log(data.hp);
             isHit = true;
         });
 
@@ -106,11 +117,7 @@ public class FireWorm : EnemyBase
                 }
                 break;
             case FireWormState.Dead:
-                if (!isDead)
-                {
-                    machine.TranslateState(5);
-                    isDead = true;
-                }
+                machine.TranslateState(5);
                 break;
         }
 
@@ -122,44 +129,42 @@ public class FireWorm : EnemyBase
     {
         player = Physics2D.OverlapCircle(transform.position, data.moveLen, LayerMask.GetMask("玩家"));
 
-        // 如果范围内没有玩家
-        //if (player == null)
-        //{
-        //    // 进入 站立状态
-        //    fws = FireWormState.Idle;
-        //    return;
-        //}
-
-        if(player == null)
+        if (!isDead)
         {
+            if (player == null)
+            {
+                fws = FireWormState.Idle;
+                return;
+            }
+
             fws = FireWormState.Idle;
-            return;
-        }
 
-        fws = FireWormState.Idle;
 
-        if (isHit)
-        {
-            fws = FireWormState.Hit;
-            return;
+            if (isHit)
+            {
+                fws = FireWormState.Hit;
+                return;
+            }
+            //如果在攻击范围内，则进入 攻击状态
+            if (Vector2.Distance(player.transform.position, transform.position) <= data.atkLen)
+            {
+                fws = FireWormState.Atk;
+                return;
+            }
+            // 否则移动追击状态
+            else
+            {
+                fws = FireWormState.Walk;
+                return;
+            }
         }
-        //如果在攻击范围内，则进入 攻击状态
-        if (Vector2.Distance(player.transform.position, transform.position) <= data.atkLen)
-        {
-            fws = FireWormState.Atk;
-            return;
-        }
-        // 否则移动追击状态
-        else
-        {
-            fws = FireWormState.Walk;
-            return;
-        }
-        
     }
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
+        if (data == null)
+            return;
+
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, data.hitLen);
         Gizmos.color = Color.black;
@@ -335,23 +340,40 @@ public class FireWormHit : StateBaseTemplate<FireWorm>
 }
 public class FireWormDead : StateBaseTemplate<FireWorm>
 {
+    bool isDisappear;
+    Timer disappearTimer;
+
     public FireWormDead(int id, FireWorm ec) : base(id, ec)
     {
 
     }
     public override void OnEnter(params object[] args)
     {
-        owner.Animator.Play("Dead");
-
+        if (!isDisappear)
+        {
+            disappearTimer = new Timer(1.5f, false, false);
+            disappearTimer.Start();
+            owner.Animator.Play("Dead");
+        }
     }
     public override void OnStay(params object[] args)
     {
-        //Debug.Log("死亡状态！");
+        Debug.Log("死亡状态！");
+        
+        if(owner.DeadTimer.isTimeUp)
+        {
+            isDisappear = true;
+            owner.Animator.Play("Disappear");
+        }
 
+        if(disappearTimer.isTimeUp)
+        {
+            OnExit();
+        }
     }
     public override void OnExit(params object[] args)
     {
-        
+        PoolMgr.GetInstance().PushObj(owner.Data.path, owner.gameObject);
     }
 }
 #endregion

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BagPanel : UIBase
 {
-    public override void ShowMe()
+    private void Start()
     {
         // 注册<道具点击>消息
         EventCenter.GetInstance().AddEventListener<ItemClick>("成功购买的道具", (x) =>
@@ -13,15 +13,20 @@ public class BagPanel : UIBase
             AddItemInBag(x);
         });
         EventCenter.GetInstance().AddEventListener<bool>("背包清空", (x) =>
-         {
-             Transform bag = GameTool.FindTheChild(gameObject, "背包界面");
+        {
+            Transform bag = GameTool.FindTheChild(gameObject, "背包界面");
 
-             for (int i = bag.childCount - 1; i >= 0; i--)
-             {
-                 bag.GetChild(i).GetChild(0).GetComponent<Image>().sprite = null;
-                 PoolMgr.GetInstance().PushObj(bag.GetChild(i).name, bag.GetChild(i).gameObject);
-             }
-         });
+            for (int i = bag.childCount - 1; i >= 0; i--)
+            {
+                bag.GetChild(i).GetChild(0).GetComponent<Image>().sprite = null;
+                PoolMgr.GetInstance().PushObj(bag.GetChild(i).name, bag.GetChild(i).gameObject);
+            }
+        });
+        EventCenter.GetInstance().AddEventListener<int>("获得奖励", (x) =>
+        {
+            int num = int.Parse(GetControl<Text>("CoinNum").text);
+            GetControl<Text>("CoinNum").text = (num + x).ToString();
+        });
     }
     protected override void OnClick(string btnName)
     {
