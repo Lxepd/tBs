@@ -32,12 +32,16 @@ public class StatePanel : UIBase
         {
             ChangeHp((int)x.hurt);
         });
-        EventCenter.GetInstance().AddEventListener<int>("状态界面清空", (x) =>
+        EventCenter.GetInstance().AddEventListener<int>("道具栏清空", (x) =>
         {
             data = null;
-            BagItemIDList.Clear();
             BagItem.Clear();
+            BagItemIDList.Clear();
             index = 0;
+
+            GetControl<Image>("Item").sprite = null;
+            GetControl<Image>("Item").color = new Color(43 / 255f, 43 / 255f, 43 / 255f);
+            GetControl<Text>("ItemNum").text = "";
         });
     }
     void Update()
@@ -150,11 +154,12 @@ public class StatePanel : UIBase
     private void SetBagItem(int index)
     {
         if (BagItemIDList.Count == 0)
-            return;
+            return;   
 
         ResMgr.GetInstance().LoadAsync<Sprite>(GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic, BagItemIDList[index]).path, (x) =>
         {
             GetControl<Image>("Item").sprite = x;
+            GetControl<Image>("Item").color = new Color(255f, 255f, 255f);
             GetControl<Text>("ItemNum").text = BagItem[BagItemIDList[index]].ToString();
         });
     }
