@@ -35,9 +35,10 @@ public class MusicMgr : InstanceNoMono<MusicMgr>
     {
         for (int i = soundList.Count-1; i >=0; i--)
         {
-            if(soundList[i].isPlaying)
+            if(!soundList[i].isPlaying)
             {
-                PoolMgr.GetInstance().PushObj("音效", soundList[i].gameObject);
+                Object.Destroy(soundList[i]);
+                //PoolMgr.GetInstance().PushObj("音效", soundList[i].gameObject);
                 soundList.RemoveAt(i--);
             }
         }
@@ -115,12 +116,12 @@ public class MusicMgr : InstanceNoMono<MusicMgr>
         }
 
         // 当音效资源异步加载结束后  再添加一个音效
-        ResMgr.GetInstance().LoadAsync<AudioClip>("Music/Sound" + name, (clip) =>
+        ResMgr.GetInstance().LoadAsync<AudioClip>("Music/Sound/" + name, (clip) =>
           {
               AudioSource source = soundObj.AddComponent<AudioSource>();
               source.clip = clip;
               source.loop = isLoop;
-              source.volume = bkValue;
+              source.volume = soundValue * .5f;
               source.Play();
               soundList.Add(source);
               if (callBack != null)
@@ -135,6 +136,7 @@ public class MusicMgr : InstanceNoMono<MusicMgr>
     /// <param name="value"></param>
     public void ChangeSoundValue(float value)
     {
+        value *= .5f;
         soundValue = value;
 
         foreach (var s in soundList)

@@ -30,6 +30,7 @@ public class StatePanel : UIBase
         });
         EventCenter.GetInstance().AddEventListener<ThrowItemData>("玩家扣血", (x) =>
         {
+            MusicMgr.GetInstance().PlaySound("damaged1", false);
             ChangeHp((int)x.hurt);
         });
         EventCenter.GetInstance().AddEventListener<int>("道具栏清空", (x) =>
