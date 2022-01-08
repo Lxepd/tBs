@@ -1,11 +1,22 @@
 <Data>
     <it id="15001">
         <name>火蛇</name>
-		<path>Prefabs/Enemy/FireWorm/FireWorm</path>
+		<path>Prefabs/Enemy/FireWorm</path>
 		<tips>一种会发射Fire波的蛇类怪物</tips>
-		<hp>2</hp>
+		<hp>100</hp>
 		<speed>3</speed>
 		<atk>0</atk>
+		<hitLen>2</hitLen>
+		<moveLen>12</moveLen>
+		<atkLen>10</atkLen>
+    </it>
+	<it id="15002">
+        <name>死亡使者</name>
+		<path>Prefabs/Enemy/Bringer-of-Death</path>
+		<tips>令人发触的怪物，总能神不知鬼不觉地给人致命一击</tips>
+		<hp>100</hp>
+		<speed>5</speed>
+		<atk>10</atk>
 		<hitLen>2</hitLen>
 		<moveLen>12</moveLen>
 		<atkLen>10</atkLen>

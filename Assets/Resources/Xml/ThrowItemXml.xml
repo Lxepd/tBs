@@ -6,7 +6,7 @@
 		<tips>基础射击子弹</tips>
 		<mass>10</mass>
 		<speed>10</speed>
-		<hurt>0</hurt>
+		<hurt>20</hurt>
 	</it>
 	<it id="10002">
 		<icon>Sprites/BulletIcon/Q</icon>

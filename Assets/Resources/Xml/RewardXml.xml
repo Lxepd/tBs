@@ -1,7 +1,27 @@
 <Data>
-    <it id="16001">
-        <name>少量钱</name>
-		<path>Prefabs/Reward/少量钱</path>
+	<it id="16001">
+		<name>一点钱</name>
+		<path>Prefabs/Reward/一点钱</path>
 		<reward>1</reward>
+	</it>
+	<it id="16002">
+		<name>少量钱</name>
+		<path>Prefabs/Reward/少量钱</path>
+		<reward>5</reward>
+	</it>
+    <it id="16003">
+        <name>正常量钱</name>
+		<path>Prefabs/Reward/正常量钱</path>
+		<reward>10</reward>
     </it>
+	<it id="16004">
+		<name>有点多钱</name>
+		<path>Prefabs/Reward/有点多钱</path>
+		<reward>20</reward>
+	</it>
+	<it id="16005">
+		<name>大量钱</name>
+		<path>Prefabs/Reward/大量钱</path>
+		<reward>50</reward>
+	</it>
 </Data>

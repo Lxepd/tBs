@@ -6,10 +6,15 @@ using UnityEngine.UI;
 public class EnemyBase : MonoBehaviour
 {
     protected EnemyData data;
+    public EnemyData Data { get => data; }
+    // 获取父类的组件信息
     // 刚体组件
     [HideInInspector] protected Rigidbody2D rg;
+    public Rigidbody2D Rg { get => rg; }
     // 动画组件
     [HideInInspector] protected Animator animator;
+    public Animator Animator { get => animator; }
+    public float AnimaTime { get => nowAnimatorTime; }
     // 有限状态机
     [HideInInspector] protected StateMachine machine;
 
@@ -20,22 +25,35 @@ public class EnemyBase : MonoBehaviour
     public Collider2D player;
 
     protected int id;
+    protected bool isHit;
+    public bool Hit { get => isHit; set => isHit = value; }
+
     protected Image hp;
     protected float currentHp;
+    protected float nowAnimatorTime;
     protected virtual void Start()
     {
-        // TODO: 初始化怪物
+        data = GameTool.GetDicInfo(Datas.GetInstance().EnemyDataDic, id);
 
         rg = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
         hp = GameTool.FindTheChild(gameObject, "Hp").GetComponent<Image>();
-
-        data = GameTool.GetDicInfo(Datas.GetInstance().EnemyDataDic, id);
         hp.fillAmount = (currentHp = data.hp) / data.hp;
+
+        // 获取<敌人扣血>的消息
+        EventCenter.GetInstance().AddEventListener<ThrowItemData>("敌人扣血", (x) =>
+        {
+            if (nearThrow == Vector2.zero)
+                return;
+
+            currentHp -= x.hurt;
+            isHit = true;
+        });
     }
     protected virtual void Update()
     {
+        nowAnimatorTime = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
         // 状态选择
         CheckState();
         // 检查玩家攻击
@@ -46,20 +64,23 @@ public class EnemyBase : MonoBehaviour
         hp.fillAmount = Mathf.Lerp(hp.fillAmount, currentHp / data.hp, Time.deltaTime * 10f);
     }
     // 改变朝向
-    public void Rotate(Vector2 dir)
+    public void Rotate(Vector3 dir)
     {
-        if (dir.x <= 0)
+        Vector3 playerDir = (dir - transform.position).normalized;
+        if (playerDir.x <= 0)
         {
-            transform.localScale = new Vector2(-1, transform.localScale.y);
+            transform.localScale = new Vector2(1, transform.localScale.y);
+            
         }
         else
         {
-            transform.localScale = new Vector2(1, transform.localScale.y);
+            transform.localScale = new Vector2(-1, transform.localScale.y);
         }
     }
     // 状态改变
     public virtual void CheckState()
     {
+        player = Physics2D.OverlapCircle(transform.position, data.moveLen, LayerMask.GetMask("玩家"));
 
     }
     /// <summary>
@@ -70,10 +91,27 @@ public class EnemyBase : MonoBehaviour
         LayerMask mask = LayerMask.GetMask("基础攻击") | LayerMask.GetMask("强化物");
         Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 2f, mask);
         if (cols.Length == 0)
+        {
+            nearThrow = Vector2.zero;
             return;
+        }
 
         GameTool.QuickSortArray(transform.position, cols, 0, cols.Length - 1);
         nearThrow = (transform.position - cols[0].transform.position).normalized;
     }
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        if (data == null)
+            return;
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, data.hitLen);
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(transform.position, data.moveLen);
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(transform.position, data.atkLen);
+    }
+#endif
 }
 

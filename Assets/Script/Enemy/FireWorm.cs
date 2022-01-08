@@ -13,12 +13,8 @@ public enum FireWormState
 }
 public class FireWorm : EnemyBase
 {
-    public EnemyData Data { get => data; }
     // 注册状态计时器
     public Timer moveTimer, atkTimer, HitTimer, DeadTimer;
-    // 获取父类的组件信息
-    public Animator Animator { get => animator; } 
-    public Rigidbody2D Rg { get => rg; }
     // 移动状态的移动执行时间
     [HideInInspector] public float MoveTimertime;
     // 攻击状态的攻击执行时间
@@ -28,8 +24,6 @@ public class FireWorm : EnemyBase
     // 死亡状态的消失执行时间
     [HideInInspector] public float DeadTimertime;
 
-    public Timer ForceStopTimer { get => forceStopTimer; }
-    public bool isHit;
     public bool isDead;
     public bool isPushInPool;
 
@@ -39,16 +33,6 @@ public class FireWorm : EnemyBase
     {
         id = 15001;
         base.Start();
-
-        MoveTimertime = .5f * GameTool.GetAnimatorLength(animator, "Walk");
-        moveTimer = new Timer(MoveTimertime, false, false);
-        AtkTimertime = .65f * GameTool.GetAnimatorLength(animator, "Atk");
-        atkTimer = new Timer(AtkTimertime, false, false);
-        HitTimertime = .3f * GameTool.GetAnimatorLength(animator, "Hit");
-        HitTimer = new Timer(HitTimertime, false, false);
-        DeadTimertime = 3f * GameTool.GetAnimatorLength(animator, "Dead");
-        DeadTimer = new Timer(DeadTimertime, false, false);
-
         // 状态机状态注册
         FireWormIdle idle = new FireWormIdle(1, this);
         FireWormWalk walk = new FireWormWalk(2, this);
@@ -64,24 +48,16 @@ public class FireWorm : EnemyBase
         machine.AddState(hit);
         machine.AddState(dead);
 
-        // 获取<敌人扣血>的消息
-        EventCenter.GetInstance().AddEventListener<ThrowItemData>("敌人扣血", (x) =>
-        {
-            if (nearThrow == Vector2.zero)
-                return;
+        MoveTimertime = .5f * GameTool.GetAnimatorLength(animator, "Walk");
+        moveTimer = new Timer(MoveTimertime, false, false);
+        AtkTimertime = .65f * GameTool.GetAnimatorLength(animator, "Atk");
+        atkTimer = new Timer(AtkTimertime, false, false);
+        HitTimertime = .3f * GameTool.GetAnimatorLength(animator, "Hit");
+        HitTimer = new Timer(HitTimertime, false, false);
+        DeadTimertime = 3f * GameTool.GetAnimatorLength(animator, "Dead");
+        DeadTimer = new Timer(DeadTimertime, false, false);
 
-            currentHp -= x.hurt;
-            if (currentHp <= 0)
-            {
-                isDead = true;
-                DeadTimer.Start();
-                fws = FireWormState.Dead;
-                return;
-            }
-            // 力 = 投掷物来向 * 投掷物重量
-            //rg.AddForce(nearThrow * x.mass, ForceMode2D.Impulse);
-            isHit = true;
-        });
+        
 
     }
     protected override void Update()
@@ -97,14 +73,14 @@ public class FireWorm : EnemyBase
                 machine.TranslateState(1);
                 break;
             case FireWormState.Walk:
-                machine.TranslateState(2, player);
+                machine.TranslateState(2);
                 if (moveTimer.isStop)
                 {
                     moveTimer.Start();
                 }
                 break;
             case FireWormState.Atk:
-                machine.TranslateState(3, player);
+                machine.TranslateState(3);
                 if (atkTimer.isStop)
                 {
                     atkTimer.Start();
@@ -128,18 +104,25 @@ public class FireWorm : EnemyBase
     /// </summary>
     public override void CheckState()
     {
-        player = Physics2D.OverlapCircle(transform.position, data.moveLen, LayerMask.GetMask("玩家"));
+        base.CheckState();
+
+        if (player == null)
+            return;
+        // 朝向玩家
+        Rotate(player.transform.position);
 
         if (!isDead)
         {
-            if (player == null)
-            {
-                fws = FireWormState.Idle;
-                return;
-            }
-
             fws = FireWormState.Idle;
 
+            if (currentHp <= 0)
+            {
+                isDead = true;
+                DeadTimer.Start();
+                currentHp = 0;
+                fws = FireWormState.Dead;
+                return;
+            }
 
             if (isHit)
             {
@@ -160,20 +143,6 @@ public class FireWorm : EnemyBase
             }
         }
     }
-#if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
-    {
-        if (data == null)
-            return;
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, data.hitLen);
-        Gizmos.color = Color.black;
-        Gizmos.DrawWireSphere(transform.position, data.moveLen);
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(transform.position, data.atkLen);
-    }
-#endif
 }
 
     #region 状态
@@ -205,7 +174,6 @@ public class FireWormIdle : StateBaseTemplate<FireWorm>
 /// </summary>
 public class FireWormWalk : StateBaseTemplate<FireWorm>
 {
-    Collider2D player;
     public FireWormWalk(int id, FireWorm ec) : base(id, ec)
     {
 
@@ -213,15 +181,14 @@ public class FireWormWalk : StateBaseTemplate<FireWorm>
     public override void OnEnter(params object[] args)
     {
         owner.Animator.Play("Walk");
-        player = (Collider2D)args[0];
     }
     public override void OnStay(params object[] args)
     {
         //Debug.Log("移动状态！");
 
-        Vector2 playerDir = (player.transform.position - owner.transform.position).normalized;
+        Vector2 playerDir = (owner.player.transform.position - owner.transform.position).normalized;
 
-        if (owner.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > GameTool.GetAnimatorLen(owner.Animator, "Walk"))
+        if (owner.AnimaTime > GameTool.GetAnimatorLen(owner.Animator, "Walk"))
         {
             OnExit();
             return;
@@ -229,11 +196,8 @@ public class FireWormWalk : StateBaseTemplate<FireWorm>
 
         if (owner.moveTimer.isTimeUp)
         {
-            // 朝向玩家
-            owner.Rotate(playerDir);
             // 刚体移动 = 朝向 * 怪物速度
             owner.Rg.velocity = playerDir * owner.Data.speed;
-
         }
 
     }
@@ -249,7 +213,6 @@ public class FireWormWalk : StateBaseTemplate<FireWorm>
 /// </summary>
 public class FireWormAtk : StateBaseTemplate<FireWorm>
 {
-    Collider2D player;
     bool isAtk;
     public FireWormAtk(int id, FireWorm ec) : base(id, ec)
     {
@@ -259,7 +222,6 @@ public class FireWormAtk : StateBaseTemplate<FireWorm>
     {
         owner.Animator.Play("Atk");
         owner.Rg.velocity = Vector2.zero;
-        player = (Collider2D)args[0];
     }
     public override void OnStay(params object[] args)
     {
@@ -267,11 +229,9 @@ public class FireWormAtk : StateBaseTemplate<FireWorm>
 
         Vector3 yoff = new Vector3(.5f * owner.transform.localScale.x, 1f, 0);
         Vector3 playerYoff = new Vector3(0, .5f, 0);
-        Vector3 playerDir = ((player.transform.position+ playerYoff) - owner.transform.position - yoff).normalized;
-        
-        owner.Rotate(playerDir);
+        Vector3 playerDir = ((owner.player.transform.position+ playerYoff) - owner.transform.position - yoff).normalized;
 
-        if (owner.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > GameTool.GetAnimatorLen(owner.Animator, "Atk"))
+        if (owner.AnimaTime > GameTool.GetAnimatorLen(owner.Animator, "Atk"))
         {
             OnExit();
             return;
@@ -281,16 +241,6 @@ public class FireWormAtk : StateBaseTemplate<FireWorm>
         {
             isAtk = true;
             SkillMgr.SkillOfFireBall(owner.transform.position, playerDir, yoff);
-            //PoolMgr.GetInstance().GetObj("Prefabs/Bullet/FireBall", (x) =>
-            // {
-            //     x.transform.position = owner.transform.position + yoff;
-            //     // 设置火球速度
-            //     x.GetComponent<Rigidbody2D>().velocity = playerDir * 10;
-            //     // 设置火球朝向
-            //     x.transform.rotation = Quaternion.FromToRotation(Vector3.right, playerDir);
-            //     // 设置火球发射者
-            //     x.GetComponent<ThrowItem>().ws = WhoShoot.Enemy;
-            // });
         }
 
     }
@@ -319,7 +269,7 @@ public class FireWormHit : StateBaseTemplate<FireWorm>
     {
         //Debug.Log("被击状态！");
 
-        if (owner.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > GameTool.GetAnimatorLen(owner.Animator, "Hit"))
+        if (owner.AnimaTime > GameTool.GetAnimatorLen(owner.Animator, "Hit"))
         {
             OnExit();
             return;
@@ -334,7 +284,7 @@ public class FireWormHit : StateBaseTemplate<FireWorm>
     }
     public override void OnExit(params object[] args)
     {
-        owner.isHit = false;
+        owner.Hit = false;
         owner.moveTimer.Reset(owner.MoveTimertime);
         owner.atkTimer.Reset(owner.AtkTimertime);
         owner.HitTimer.Reset(owner.HitTimertime);
@@ -353,7 +303,7 @@ public class FireWormDead : StateBaseTemplate<FireWorm>
     {
         if (!isDisappear)
         {
-            disappearTimer = new Timer(1.5f, false, false);
+            disappearTimer = new Timer(.8f, false, false);
             disappearTimer.Start();
             owner.GetComponent<BoxCollider2D>().enabled = false;
             owner.Animator.Play("Dead");
@@ -362,9 +312,9 @@ public class FireWormDead : StateBaseTemplate<FireWorm>
     }
     public override void OnStay(params object[] args)
     {
-        Debug.Log("死亡状态！");
-        
-        if(owner.DeadTimer.isTimeUp)
+        //Debug.Log("死亡状态！");
+
+        if (owner.AnimaTime > GameTool.GetAnimatorLen(owner.Animator, "Dead"))
         {
             isDisappear = true;
             owner.Animator.Play("Disappear");
