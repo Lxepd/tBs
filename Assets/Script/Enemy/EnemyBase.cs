@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyBase : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class EnemyBase : MonoBehaviour
 
     protected Timer forceStopTimer;
     public Collider2D player;
+
+    protected int id;
+    protected Image hp;
+    protected float currentHp;
     protected virtual void Start()
     {
         // TODO: 初始化怪物
@@ -24,7 +29,10 @@ public class EnemyBase : MonoBehaviour
         rg = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
-        
+        hp = GameTool.FindTheChild(gameObject, "Hp").GetComponent<Image>();
+
+        data = GameTool.GetDicInfo(Datas.GetInstance().EnemyDataDic, id);
+        hp.fillAmount = (currentHp = data.hp) / data.hp;
     }
     protected virtual void Update()
     {
@@ -34,6 +42,8 @@ public class EnemyBase : MonoBehaviour
         FindThrowDir();
         // 有限状态机更新
         machine.Update();
+
+        hp.fillAmount = Mathf.Lerp(hp.fillAmount, currentHp / data.hp, Time.deltaTime * 10f);
     }
     // 改变朝向
     public void Rotate(Vector2 dir)

@@ -13,7 +13,6 @@ public enum FireWormState
 }
 public class FireWorm : EnemyBase
 {
-    private int id = 15001;   
     public EnemyData Data { get => data; }
     // 注册状态计时器
     public Timer moveTimer, atkTimer, HitTimer, DeadTimer;
@@ -38,9 +37,8 @@ public class FireWorm : EnemyBase
 
     protected override void Start()
     {
+        id = 15001;
         base.Start();
-
-        data = GameTool.GetDicInfo(Datas.GetInstance().EnemyDataDic, id);
 
         MoveTimertime = .5f * GameTool.GetAnimatorLength(animator, "Walk");
         moveTimer = new Timer(MoveTimertime, false, false);
@@ -72,8 +70,8 @@ public class FireWorm : EnemyBase
             if (nearThrow == Vector2.zero)
                 return;
 
-            data.hp -= x.hurt;
-            if (data.hp <= 0)
+            currentHp -= x.hurt;
+            if (currentHp <= 0)
             {
                 isDead = true;
                 DeadTimer.Start();
@@ -82,7 +80,6 @@ public class FireWorm : EnemyBase
             }
             // 力 = 投掷物来向 * 投掷物重量
             //rg.AddForce(nearThrow * x.mass, ForceMode2D.Impulse);
-            Debug.Log(data.hp);
             isHit = true;
         });
 
@@ -283,16 +280,17 @@ public class FireWormAtk : StateBaseTemplate<FireWorm>
         if (owner.atkTimer.isTimeUp && !isAtk)
         {
             isAtk = true;
-            PoolMgr.GetInstance().GetObj("Prefabs/Bullet/FireBall", (x) =>
-             {
-                 x.transform.position = owner.transform.position + yoff;
-                 // 设置火球速度
-                 x.GetComponent<Rigidbody2D>().velocity = playerDir * 10;
-                 // 设置火球朝向
-                 x.transform.rotation = Quaternion.FromToRotation(Vector3.right, playerDir);
-                 // 设置火球发射者
-                 x.GetComponent<ThrowItem>().ws = WhoShoot.Enemy;
-             });
+            SkillMgr.SkillOfFireBall(owner.transform.position, playerDir, yoff);
+            //PoolMgr.GetInstance().GetObj("Prefabs/Bullet/FireBall", (x) =>
+            // {
+            //     x.transform.position = owner.transform.position + yoff;
+            //     // 设置火球速度
+            //     x.GetComponent<Rigidbody2D>().velocity = playerDir * 10;
+            //     // 设置火球朝向
+            //     x.transform.rotation = Quaternion.FromToRotation(Vector3.right, playerDir);
+            //     // 设置火球发射者
+            //     x.GetComponent<ThrowItem>().ws = WhoShoot.Enemy;
+            // });
         }
 
     }

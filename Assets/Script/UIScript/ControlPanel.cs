@@ -204,6 +204,7 @@ public class ControlPanel : UIBase
                 rg.velocity = speed * enemyDir;
                 // …Ë÷√≥ØœÚ
                 x.transform.rotation = Quaternion.FromToRotation(Vector3.right, enemyDir);
+                MusicMgr.GetInstance().PlaySound("fire.wav", false);
             }
 
             x.GetComponent<ThrowItem>().ws = WhoShoot.Player;

@@ -50,7 +50,7 @@ public class StatePanel : UIBase
             return;
 
         // ¸üÐÂÑªÁ¿
-        GetControl<Image>("HpBar").fillAmount = currentHp / data.MaxHp;
+        GetControl<Image>("HpBar").fillAmount = Mathf.Lerp(GetControl<Image>("HpBar").fillAmount, currentHp / data.MaxHp, Time.deltaTime * 10f);
         GetBagItem();
         SetBagItem(index);
     }

@@ -3,7 +3,7 @@
         <name>火蛇</name>
 		<path>Prefabs/Enemy/FireWorm/FireWorm</path>
 		<tips>一种会发射Fire波的蛇类怪物</tips>
-		<hp>1</hp>
+		<hp>2</hp>
 		<speed>3</speed>
 		<atk>0</atk>
 		<hitLen>2</hitLen>
