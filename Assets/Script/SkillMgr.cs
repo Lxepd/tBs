@@ -25,4 +25,21 @@ public class SkillMgr
             x.GetComponent<ThrowItem>().ws = who;
         });
     }
+    public static void SkillOfDeathHand(Vector3 owner, int num = 10, float radius = 10f)
+    {
+        //                  个数
+        for (int i = 0; i < num; i++)
+        {
+            PoolMgr.GetInstance().GetObj("Prefabs/Skills/DeathHand", (x) =>
+             {
+                 //                圆形区域范围随机   *  圆的范围
+                 Vector3 p = Random.insideUnitCircle * radius;
+                 //                         内空心圆半径 + 空心圆的范围 => 整个空心圆半径
+                 Vector3 pos = p.normalized * (3 + p.magnitude);
+                 x.transform.position = owner + new Vector3(pos.x, pos.y, 0);
+
+             });
+        }
+
+    }
 }

@@ -70,11 +70,12 @@ public class EnemyBase : MonoBehaviour
         if (playerDir.x <= 0)
         {
             transform.localScale = new Vector2(1, transform.localScale.y);
-            
+            hp.fillOrigin = (int)Image.OriginHorizontal.Left;
         }
         else
         {
             transform.localScale = new Vector2(-1, transform.localScale.y);
+            hp.fillOrigin = (int)Image.OriginHorizontal.Right;
         }
     }
     // ×´Ì¬¸Ä±ä

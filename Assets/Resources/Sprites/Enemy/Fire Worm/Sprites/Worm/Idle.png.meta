@@ -133,7 +133,7 @@ TextureImporter:
       name: Idle_0
       rect:
         serializedVersion: 2
-        x: 17
+        x: 28
         y: 32
         width: 51
         height: 41
@@ -154,7 +154,7 @@ TextureImporter:
       name: Idle_1
       rect:
         serializedVersion: 2
-        x: 108
+        x: 106
         y: 32
         width: 51
         height: 44
@@ -175,7 +175,7 @@ TextureImporter:
       name: Idle_2
       rect:
         serializedVersion: 2
-        x: 199
+        x: 183
         y: 32
         width: 50
         height: 41
@@ -196,7 +196,7 @@ TextureImporter:
       name: Idle_3
       rect:
         serializedVersion: 2
-        x: 288
+        x: 290
         y: 32
         width: 51
         height: 43
@@ -217,7 +217,7 @@ TextureImporter:
       name: Idle_5
       rect:
         serializedVersion: 2
-        x: 558
+        x: 550
         y: 32
         width: 49
         height: 45
@@ -238,7 +238,7 @@ TextureImporter:
       name: Idle_6
       rect:
         serializedVersion: 2
-        x: 648
+        x: 646
         y: 32
         width: 49
         height: 40
@@ -259,7 +259,7 @@ TextureImporter:
       name: Idle_7
       rect:
         serializedVersion: 2
-        x: 737
+        x: 739
         y: 32
         width: 48
         height: 38
@@ -280,7 +280,7 @@ TextureImporter:
       name: Idle_9
       rect:
         serializedVersion: 2
-        x: 468
+        x: 479
         y: 32
         width: 47
         height: 37
@@ -301,7 +301,7 @@ TextureImporter:
       name: Idle_10
       rect:
         serializedVersion: 2
-        x: 378
+        x: 376
         y: 32
         width: 49
         height: 41

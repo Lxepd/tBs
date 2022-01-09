@@ -115,7 +115,7 @@ TextureImporter:
       name: Get Hit_0
       rect:
         serializedVersion: 2
-        x: 22
+        x: 25
         y: 32
         width: 40
         height: 42
@@ -136,7 +136,7 @@ TextureImporter:
       name: Get Hit_2
       rect:
         serializedVersion: 2
-        x: 198
+        x: 202
         y: 32
         width: 45
         height: 45
@@ -157,7 +157,7 @@ TextureImporter:
       name: Get Hit_3
       rect:
         serializedVersion: 2
-        x: 109
+        x: 121
         y: 32
         width: 44
         height: 44

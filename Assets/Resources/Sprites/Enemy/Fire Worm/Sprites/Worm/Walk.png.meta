@@ -133,7 +133,7 @@ TextureImporter:
       name: Walk_3
       rect:
         serializedVersion: 2
-        x: 468
+        x: 476
         y: 32
         width: 46
         height: 42
@@ -154,7 +154,7 @@ TextureImporter:
       name: Walk_4
       rect:
         serializedVersion: 2
-        x: 558
+        x: 561
         y: 32
         width: 44
         height: 40
@@ -217,7 +217,7 @@ TextureImporter:
       name: Walk_7
       rect:
         serializedVersion: 2
-        x: 17
+        x: 24
         y: 32
         width: 49
         height: 39
@@ -238,7 +238,7 @@ TextureImporter:
       name: Walk_11
       rect:
         serializedVersion: 2
-        x: 377
+        x: 381
         y: 32
         width: 51
         height: 43
@@ -259,7 +259,7 @@ TextureImporter:
       name: Walk_12
       rect:
         serializedVersion: 2
-        x: 107
+        x: 112
         y: 32
         width: 51
         height: 41
@@ -280,7 +280,7 @@ TextureImporter:
       name: Walk_13
       rect:
         serializedVersion: 2
-        x: 197
+        x: 210
         y: 32
         width: 52
         height: 43
@@ -301,7 +301,7 @@ TextureImporter:
       name: Walk_14
       rect:
         serializedVersion: 2
-        x: 287
+        x: 297
         y: 32
         width: 52
         height: 35

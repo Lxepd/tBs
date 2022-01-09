@@ -248,5 +248,6 @@ public class BringerOfDeathSkill : StateBaseTemplate<BringerOfDeath>
         machine.TranslateState(1);
         owner.isSkill = false;
         owner.skillTimer.Start();
+        SkillMgr.SkillOfDeathHand(owner.transform.position,10);
     }
 }
