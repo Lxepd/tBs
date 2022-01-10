@@ -3,7 +3,7 @@
         <name>小金人</name>
 		<path>Prefabs/角色/小金人</path>
 		<tips>浑身发着光。。</tips>
-		<maxHp>50</maxHp>
+		<maxHp>500</maxHp>
 		<speed>10</speed>
 		<bulletID>10001</bulletID>
 		<checkLen>1.34</checkLen>
