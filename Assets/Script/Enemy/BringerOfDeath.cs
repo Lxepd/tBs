@@ -14,15 +14,12 @@ public enum BringerOfDeathState
 }
 public class BringerOfDeath : EnemyBase
 {
-    public BringerOfDeathState bodS = BringerOfDeathState.Idle;
+    BringerOfDeathState bodS = BringerOfDeathState.Idle;
 
-    public bool isDead;
+    public bool isDead,isSkill;
     public Timer skillTimer;
     // ¹¥»÷×´Ì¬µÄ¹¥»÷Ö´ÐÐÊ±¼ä
     [HideInInspector] public float SkillTimertime;
-
-    [HideInInspector] public float atkTimertime;
-
 
     protected override void Start()
     {
@@ -45,8 +42,6 @@ public class BringerOfDeath : EnemyBase
         machine.AddState(dead);
         machine.AddState(skill);
 
-        atkTimertime = .5f * GameTool.GetAnimatorLen(animator, "Atk");
-        atkTimer = new Timer(atkTimertime, false, false);
         SkillTimertime = 2f;
         skillTimer = new Timer(SkillTimertime, false, true);
     }
@@ -60,14 +55,9 @@ public class BringerOfDeath : EnemyBase
                 machine.TranslateState(1);
                 break;
             case BringerOfDeathState.Walk:
-                machine.TranslateState(2);
                 break;
             case BringerOfDeathState.Atk:
                 machine.TranslateState(3);
-                if (atkTimer.isStop)
-                {
-                    atkTimer.Start();
-                }
                 break;
             case BringerOfDeathState.Hit:
                 machine.TranslateState(4);
@@ -85,40 +75,43 @@ public class BringerOfDeath : EnemyBase
         base.CheckState();
 
         if (player == null)
-        {
-            bodS = BringerOfDeathState.Idle;
             return;
-        }
         // ³¯ÏòÍæ¼Ò
         Rotate(player.transform.position);
 
-        if (currentHp <= 0)
+        if (!isDead && !isSkill)
         {
-            isDead = true;
-            currentHp = 0;
-            bodS = BringerOfDeathState.Dead;
-            return;
-        }
+            bodS = BringerOfDeathState.Idle;
 
-        if (isHit)
-        {
-            bodS = BringerOfDeathState.Hit;
-            return;
-        }
+            if (currentHp <= 0)
+            {
+                isDead = true;
+                currentHp = 0;
+                bodS = BringerOfDeathState.Dead;
+                return;
+            }
 
-        if (Vector2.Distance(player.transform.position, transform.position) <= data.atkLen && skillTimer.isTimeUp)
-        {
-            //skillTimer.Reset(SkillTimertime);
-            //int skillIndex = Random.Range(1, 101);
-            //if (skillIndex < 30)
-            //{
-            bodS = BringerOfDeathState.Skill;
-            //}
-            //else
-            //{
-            //    bodS = BringerOfDeathState.Atk;
-            //}
-            return;
+            if (isHit)
+            {
+                bodS = BringerOfDeathState.Hit;
+                return;
+            }
+
+            if (Vector2.Distance(player.transform.position, transform.position) <= data.atkLen && skillTimer.isTimeUp)
+            {
+                isSkill = true;
+                int skillIndex = Random.Range(1, 101);
+                if(skillIndex<30)
+                {
+                    bodS = BringerOfDeathState.Atk;
+                }
+                else
+                {
+                    bodS = BringerOfDeathState.Skill;
+                }
+                return;
+            }
+     
         }
     }
 }
@@ -162,8 +155,6 @@ public class BringerOfDeathWalk : StateBaseTemplate<BringerOfDeath>
 }
 public class BringerOfDeathAtk : StateBaseTemplate<BringerOfDeath>
 {
-    bool isAtk;
-    Collider2D col;
     public BringerOfDeathAtk(int id, BringerOfDeath ec) : base(id, ec)
     {
 
@@ -174,26 +165,16 @@ public class BringerOfDeathAtk : StateBaseTemplate<BringerOfDeath>
     }
     public override void OnStay(params object[] args)
     {
-        col = Physics2D.OverlapBox(owner.transform.position + new Vector3(owner.transform.localScale.x * 4, 1f, 0), new Vector2(3.5f, 1.5f), LayerMask.GetMask("Íæ¼Ò"));
-
-        if (owner.atkTimer.isTimeUp && !isAtk && col != null)
-        {
-            isAtk = true;
-            EventCenter.GetInstance().EventTrigger<float>("Íæ¼Ò¿ÛÑª", owner.Data.atk);       
-        }
-
-        if (owner.AnimaTime > GameTool.GetAnimatorLen(owner.Animator,"Atk"))
+        if (owner.AnimaTime > GameTool.GetAnimatorLen(owner.Animator, "Atk"))
         {
             OnExit();
             return;
         }
-
     }
     public override void OnExit(params object[] args)
     {
-        owner.bodS = BringerOfDeathState.Idle;
-        isAtk = false;
-        owner.atkTimer.Reset(owner.atkTimertime);
+        machine.TranslateState(1);
+        owner.isSkill = false;
         owner.skillTimer.Start();
     }
 }
@@ -218,7 +199,6 @@ public class BringerOfDeathHit : StateBaseTemplate<BringerOfDeath>
     public override void OnExit(params object[] args)
     {
         owner.Hit = false;
-        owner.bodS = BringerOfDeathState.Idle;
     }
 }
 public class BringerOfDeathDead : StateBaseTemplate<BringerOfDeath>
@@ -265,8 +245,9 @@ public class BringerOfDeathSkill : StateBaseTemplate<BringerOfDeath>
     }
     public override void OnExit(params object[] args)
     {
-        owner.bodS = BringerOfDeathState.Idle;
+        machine.TranslateState(1);
+        owner.isSkill = false;
         owner.skillTimer.Start();
-        SkillMgr.SkillOfDeathHand(owner.transform.position, 20);
+        SkillMgr.SkillOfDeathHand(owner.transform.position,10);
     }
 }

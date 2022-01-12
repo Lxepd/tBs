@@ -13,6 +13,8 @@ public enum FireWormState
 }
 public class FireWorm : EnemyBase
 {
+    // ×¢²á×´Ì¬¼ÆÊ±Æ÷
+    public Timer moveTimer, atkTimer, HitTimer, DeadTimer;
     // ÒÆ¶¯×´Ì¬µÄÒÆ¶¯Ö´ÐÐÊ±¼ä
     [HideInInspector] public float MoveTimertime;
     // ¹¥»÷×´Ì¬µÄ¹¥»÷Ö´ÐÐÊ±¼ä
@@ -23,8 +25,9 @@ public class FireWorm : EnemyBase
     [HideInInspector] public float DeadTimertime;
 
     public bool isDead;
+    public bool isPushInPool;
 
-    public FireWormState fws = FireWormState.Idle;
+    FireWormState fws = FireWormState.Idle;
 
     protected override void Start()
     {
@@ -59,6 +62,9 @@ public class FireWorm : EnemyBase
     }
     protected override void Update()
     {
+        if (isPushInPool)
+            return;
+
         base.Update();
 
         switch (fws)
@@ -101,38 +107,40 @@ public class FireWorm : EnemyBase
         base.CheckState();
 
         if (player == null)
+            return;
+        // ³¯ÏòÍæ¼Ò
+        Rotate(player.transform.position);
+
+        if (!isDead)
         {
             fws = FireWormState.Idle;
-            return;
-        }
-        // ³¯ÏòÍæ¼Ò
-        Rotate(player.transform.position); 
 
-        if (currentHp <= 0)
-        {
-            isDead = true;
-            DeadTimer.Start();
-            currentHp = 0;
-            fws = FireWormState.Dead;
-            return;
-        }
+            if (currentHp <= 0)
+            {
+                isDead = true;
+                DeadTimer.Start();
+                currentHp = 0;
+                fws = FireWormState.Dead;
+                return;
+            }
 
-        if (isHit)
-        {
-            fws = FireWormState.Hit;
-            return;
-        }
-        //Èç¹ûÔÚ¹¥»÷·¶Î§ÄÚ£¬Ôò½øÈë ¹¥»÷×´Ì¬
-        if (Vector2.Distance(player.transform.position, transform.position) <= data.atkLen)
-        {
-            fws = FireWormState.Atk;
-            return;
-        }
-        // ·ñÔòÒÆ¶¯×·»÷×´Ì¬
-        else
-        {
-            fws = FireWormState.Walk;
-            return;
+            if (isHit)
+            {
+                fws = FireWormState.Hit;
+                return;
+            }
+            //Èç¹ûÔÚ¹¥»÷·¶Î§ÄÚ£¬Ôò½øÈë ¹¥»÷×´Ì¬
+            if (Vector2.Distance(player.transform.position, transform.position) <= data.atkLen)
+            {
+                fws = FireWormState.Atk;
+                return;
+            }
+            // ·ñÔòÒÆ¶¯×·»÷×´Ì¬
+            else
+            {
+                fws = FireWormState.Walk;
+                return;
+            }
         }
     }
 }
@@ -178,13 +186,13 @@ public class FireWormWalk : StateBaseTemplate<FireWorm>
     {
         //Debug.Log("ÒÆ¶¯×´Ì¬£¡");
 
-        if (owner.AnimaTime > GameTool.GetAnimatorLen(owner.Animator, "Walk") || owner.player == null)
+        Vector2 playerDir = (owner.player.transform.position - owner.transform.position).normalized;
+
+        if (owner.AnimaTime > GameTool.GetAnimatorLen(owner.Animator, "Walk"))
         {
             OnExit();
             return;
         }
-
-        Vector2 playerDir = (owner.player.transform.position - owner.transform.position).normalized;
 
         if (owner.moveTimer.isTimeUp)
         {
@@ -197,7 +205,7 @@ public class FireWormWalk : StateBaseTemplate<FireWorm>
     {
         owner.moveTimer.Reset(owner.MoveTimertime);
         owner.Rg.velocity = Vector2.zero;
-        owner.fws = FireWormState.Idle;
+        machine.TranslateState(1);
     }
 }
 /// <summary>
@@ -219,15 +227,15 @@ public class FireWormAtk : StateBaseTemplate<FireWorm>
     {
         //Debug.Log("¹¥»÷×´Ì¬£¡");
 
+        Vector3 yoff = new Vector3(.5f * owner.transform.localScale.x, 1f, 0);
+        Vector3 playerYoff = new Vector3(0, .5f, 0);
+        Vector3 playerDir = ((owner.player.transform.position+ playerYoff) - owner.transform.position - yoff).normalized;
+
         if (owner.AnimaTime > GameTool.GetAnimatorLen(owner.Animator, "Atk"))
         {
             OnExit();
             return;
         }
-
-        Vector3 yoff = new Vector3(.5f * owner.transform.localScale.x, 1f, 0);
-        Vector3 playerYoff = new Vector3(0, .5f, 0);
-        Vector3 playerDir = ((owner.player.transform.position+ playerYoff) - owner.transform.position - yoff).normalized;
 
         if (owner.atkTimer.isTimeUp && !isAtk)
         {
@@ -240,7 +248,7 @@ public class FireWormAtk : StateBaseTemplate<FireWorm>
     {
         isAtk = false;
         owner.atkTimer.Reset(owner.AtkTimertime, false);
-        owner.fws = FireWormState.Idle;
+        machine.TranslateState(1);
 
     }
 }
@@ -280,7 +288,6 @@ public class FireWormHit : StateBaseTemplate<FireWorm>
         owner.moveTimer.Reset(owner.MoveTimertime);
         owner.atkTimer.Reset(owner.AtkTimertime);
         owner.HitTimer.Reset(owner.HitTimertime);
-        owner.fws = FireWormState.Idle;
     }
 }
 public class FireWormDead : StateBaseTemplate<FireWorm>
@@ -321,7 +328,7 @@ public class FireWormDead : StateBaseTemplate<FireWorm>
     public override void OnExit(params object[] args)
     {
         PoolMgr.GetInstance().PushObj(owner.Data.path, owner.gameObject);
-        owner.stopMono = true;
+        owner.isPushInPool = true;
     }
 }
 #endregion

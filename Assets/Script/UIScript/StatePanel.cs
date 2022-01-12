@@ -28,10 +28,10 @@ public class StatePanel : UIBase
             // 初始化UI
             InitStateUI();
         });
-        EventCenter.GetInstance().AddEventListener<float>("玩家扣血", (x) =>
+        EventCenter.GetInstance().AddEventListener<ThrowItemData>("玩家扣血", (x) =>
         {
             //MusicMgr.GetInstance().PlaySound("damaged1", false);
-            ChangeHp((int)x);
+            ChangeHp((int)x.hurt);
         });
         EventCenter.GetInstance().AddEventListener<int>("道具栏清空", (x) =>
         {

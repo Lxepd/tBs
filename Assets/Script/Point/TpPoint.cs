@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-using UnityEngine.Tilemaps;
+using System;
 
 public enum TpType
 {
     回去,
     下一关
 }
-[System.Serializable]
+[Serializable]
 public class TpData
 {
     [Tooltip("传送type")]
@@ -54,20 +54,10 @@ public class TpPoint : MonoBehaviour
                     break;
                 case TpType.下一关:
                     Debug.Log(GameTool.GetDicInfo(Datas.GetInstance().RoomDataDic, tp.roomID).name);
-                    UIMgr.GetInstance().ShowPanel<LoadingPanel>("LoadingPanel", E_UI_Layer.Load);
                     SceneMgr.GetInstance().LoadSceneAsyn("Level", () =>
                     {
                         GameObject room = Instantiate(Resources.Load<GameObject>(GameTool.GetDicInfo(Datas.GetInstance().RoomDataDic, tp.roomID).prefabPath));
-                        Room rom;
-                        rom = room.GetComponent<Room>();
-                        if (rom == null)
-                        {
-                            rom = room.AddComponent<Room>();
-                        }
-
-                        rom.data = GameTool.GetDicInfo(Datas.GetInstance().RoomDataDic, tp.roomID);
-
-                        UIMgr.GetInstance().HidePanel("LoadingPanel");
+                        Player.instance.transform.position = room.transform.Find("出现点").position;
                     });
                     break;
             }

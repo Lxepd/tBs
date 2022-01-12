@@ -15,7 +15,7 @@ public class ttttest : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        handTimer = new Timer(.5f*GameTool.GetAnimatorLength(anim, "DeathHand"), false, true);
+        handTimer = new Timer(.5f*GameTool.GetAnimatorLen(anim, "DeathHand"), false, true);
     }
     private void OnEnable()
     {
@@ -25,12 +25,10 @@ public class ttttest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Collider2D cols = Physics2D.OverlapBox(transform.position + offV3, size, 0, 1 << LayerMask.NameToLayer("Íæ¼Ò"));
+        Collider2D cols = Physics2D.OverlapBox(transform.position + offV3, size, LayerMask.GetMask("Íæ¼Ò"));
 
         if (handTimer.isTimeUp && cols != null)
         {
-            Debug.Log(cols.name);
-            EventCenter.GetInstance().EventTrigger<float>("Íæ¼Ò¿ÛÑª", 20);
             handTimer.Reset(.5f);
         }
 

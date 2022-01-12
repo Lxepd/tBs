@@ -7,8 +7,7 @@ using UnityEngine.EventSystems;
 public enum E_UI_Layer
 {
     Normal,
-    Above,
-    Load
+    Above
 }
 
 /// <summary>
@@ -22,7 +21,6 @@ public class UIMgr : InstanceNoMono<UIMgr>
 
     private Transform normal;
     private Transform above;
-    private Transform load;
 
     public RectTransform canvas;
 
@@ -34,7 +32,6 @@ public class UIMgr : InstanceNoMono<UIMgr>
 
         normal = canvas.Find("Normal");
         above = canvas.Find("Above");
-        load = canvas.Find("Load");
 
         obj = ResMgr.GetInstance().Load<GameObject>("Prefabs/UI/EventSystem");
         Object.DontDestroyOnLoad(obj);
@@ -47,8 +44,6 @@ public class UIMgr : InstanceNoMono<UIMgr>
                 return this.normal;
             case E_UI_Layer.Above:
                 return this.above;
-            case E_UI_Layer.Load:
-                return this.load;
         }
 
         return null;
@@ -81,9 +76,6 @@ public class UIMgr : InstanceNoMono<UIMgr>
             {
                 case E_UI_Layer.Above:
                     father = above;
-                    break;
-                case E_UI_Layer.Load:
-                    father = load;
                     break;
             }
 
@@ -135,7 +127,6 @@ public class UIMgr : InstanceNoMono<UIMgr>
             HidePanel(panel.Key);
         }
     }
-
     /// <summary>
     /// 获取已经显示的UI
     /// </summary>

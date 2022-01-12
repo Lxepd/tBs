@@ -2,21 +2,16 @@
     <level id="11001">
         <name>第一关</name>
 		<path>Prefabs/RoomPrefabs/关卡一</path>
-		<num>10</num>
+		<roomType>0</roomType>
     </level>
     <level id="11002">
         <name>第二关</name>
 		<path>Prefabs/RoomPrefabs/关卡二</path>
-		<num>10</num>
-	</level>
+		<roomType>0</roomType>
+    </level>
     <level id="11003">
         <name>第三关</name>
 		<path>Prefabs/RoomPrefabs/关卡三</path>
-		<num>10</num>
-	</level>
-	<level id="11101">
-		<name>第一Boss关</name>
-		<path>Prefabs/RoomPrefabs/1Boss</path>
-		<num>1</num>
-	</level>
+		<roomType>1</roomType>
+    </level>
 </Data>

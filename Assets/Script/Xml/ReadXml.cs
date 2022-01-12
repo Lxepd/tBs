@@ -128,7 +128,7 @@ public class ReadXml : InstanceNoMono<ReadXml>
 
             newData.name = item.SelectSingleNode("name").InnerText;
             newData.prefabPath = item.SelectSingleNode("path").InnerText;
-            newData.monsterNum = int.Parse(item.SelectSingleNode("num").InnerText);
+            newData.roomType = (RoomType)int.Parse(item.SelectSingleNode("roomType").InnerText);
 
             Datas.GetInstance().RoomDataDic.Add(newData.id, newData);
         }

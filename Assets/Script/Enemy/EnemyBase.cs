@@ -21,8 +21,6 @@ public class EnemyBase : MonoBehaviour
     // 玩家子弹来向
     [HideInInspector] protected Vector2 nearThrow;
 
-    public bool stopMono;
-
     protected Timer forceStopTimer;
     public Collider2D player;
 
@@ -33,10 +31,6 @@ public class EnemyBase : MonoBehaviour
     protected Image hp;
     protected float currentHp;
     protected float nowAnimatorTime;
-
-    // 注册状态计时器
-    public Timer moveTimer, atkTimer, HitTimer, DeadTimer;
-
     protected virtual void Start()
     {
         data = GameTool.GetDicInfo(Datas.GetInstance().EnemyDataDic, id);
@@ -48,20 +42,17 @@ public class EnemyBase : MonoBehaviour
         hp.fillAmount = (currentHp = data.hp) / data.hp;
 
         // 获取<敌人扣血>的消息
-        EventCenter.GetInstance().AddEventListener<float>("敌人扣血", (x) =>
+        EventCenter.GetInstance().AddEventListener<ThrowItemData>("敌人扣血", (x) =>
         {
             if (nearThrow == Vector2.zero)
                 return;
 
-            currentHp -= (int)x;
+            currentHp -= x.hurt;
             isHit = true;
         });
     }
     protected virtual void Update()
     {
-        if (stopMono)
-            return;
-
         nowAnimatorTime = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
         // 状态选择
         CheckState();
@@ -78,13 +69,13 @@ public class EnemyBase : MonoBehaviour
         Vector3 playerDir = (dir - transform.position).normalized;
         if (playerDir.x <= 0)
         {
-            transform.localScale = new Vector2(-1, transform.localScale.y);
-            hp.fillOrigin = (int)Image.OriginHorizontal.Right;
+            transform.localScale = new Vector2(1, transform.localScale.y);
+            hp.fillOrigin = (int)Image.OriginHorizontal.Left;
         }
         else
         {
-            transform.localScale = new Vector2(1, transform.localScale.y);
-            hp.fillOrigin = (int)Image.OriginHorizontal.Left;
+            transform.localScale = new Vector2(-1, transform.localScale.y);
+            hp.fillOrigin = (int)Image.OriginHorizontal.Right;
         }
     }
     // 状态改变
