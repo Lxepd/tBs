@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.Tilemaps;
+using System;
 
 public enum TpType
 {
@@ -54,7 +55,6 @@ public class TpPoint : MonoBehaviour
                     {
                         ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/Room", (x) =>
                          {
-                             Player.instance.transform.position = GameTool.FindTheChild(x, "出现点").position;
                          });
 
                         UIMgr.GetInstance().HidePanel("LoadingPanel");

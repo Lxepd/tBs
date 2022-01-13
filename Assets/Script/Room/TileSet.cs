@@ -66,12 +66,15 @@ public class TileSet : MonoBehaviour
              int cr, cc;
              do
              {
-                 cr = Random.Range(-row / 2, row / 2);
-                 cc = Random.Range(-col / 2, col / 2);
-
-             } while (CheckNeighborWalls(cr, cc, 1) == 0);
+                 cr = Random.Range(0, row);
+                 cc = Random.Range(0, col);
+             } while (CheckNeighborWalls(cr, cc, 3) != 0);
 
              x.transform.position = new Vector2(cr, cc);
+             x.transform.SetParent(transform);
+
+             Player.instance.transform.position = x.transform.position;
+
          });
     }
     private void ReduceTile(int num)
@@ -90,7 +93,7 @@ public class TileSet : MonoBehaviour
                     }
 
                     // 规则
-                    mapArray[i, j] = (CheckNeighborWalls(i, j, 1) >= 4) ? TileType.Wall : TileType.Load;
+                    mapArray[i, j] = (CheckNeighborWalls(i, j, 1) >= 5) ? TileType.Wall : TileType.Load;
                 }
             }
 
@@ -100,7 +103,7 @@ public class TileSet : MonoBehaviour
     }
     private void CreateTile()
     {
-        Vector3 size = new Vector3(row / 2, col / 2, 0);
+        Vector3 size = new Vector3(0, 0, 0);
         for (int i = 0; i < mapArray.GetLength(0); i++)
         {
             for (int j = 0; j < mapArray.GetLength(1); j++)
@@ -132,25 +135,26 @@ public class TileSet : MonoBehaviour
             }
         }
 
-        return count - 1;
+        return count;
     }
     private void CheckMonsterNum()
     {
         if (monsterList.Count != 0 || isCreateTpPoint)
             return;
 
+        isCreateTpPoint = true;
+        Debug.Log(1);
         ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/传送点", (x) =>
         {
             int cr, cc;
             do
             {
-                cr = Random.Range(-row / 2, row / 2);
-                cc = Random.Range(-col / 2, col / 2);
-
-            } while (CheckNeighborWalls(cr, cc, 1) != 0);
+                cr = Random.Range(0, row);
+                cc = Random.Range(0, col);
+            } while (CheckNeighborWalls(cr, cc, 3) != 0);
 
             x.transform.position = new Vector2(cr, cc);
-            isCreateTpPoint = true;
+            x.transform.SetParent(transform);
         });
     }
 }
