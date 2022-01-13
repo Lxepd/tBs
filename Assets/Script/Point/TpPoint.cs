@@ -2,27 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-using System;
+using UnityEngine.Tilemaps;
 
 public enum TpType
 {
     回去,
     下一关
 }
-[Serializable]
-public class TpData
-{
-    [Tooltip("传送type")]
-    public TpType type;
-    [Tooltip("下一关id")]
-    public int roomID;
-}
 public class TpPoint : MonoBehaviour
 {
     Timer tpTimer;
     bool isStart;
 
-    public TpData tp;
+    TpType tp;
+    int level = 0;
 
     private void Start()
     {
@@ -38,10 +31,12 @@ public class TpPoint : MonoBehaviour
             Debug.Log("玩家在传送点，准备传送");
         }
 
+        tp = (level <= 15) ? TpType.下一关 : TpType.回去;
+
         if (tpTimer.isTimeUp)
         {
             PoolMgr.GetInstance().Clear();
-            switch (tp.type)
+            switch (tp)
             {
                 case TpType.回去:
                     SceneMgr.GetInstance().LoadSceneAsyn("Game", () =>
@@ -53,20 +48,20 @@ public class TpPoint : MonoBehaviour
                     });
                     break;
                 case TpType.下一关:
-                    Debug.Log(GameTool.GetDicInfo(Datas.GetInstance().RoomDataDic, tp.roomID).name);
+                    level++;
+                    UIMgr.GetInstance().ShowPanel<LoadingPanel>("LoadingPanel", E_UI_Layer.Load);
                     SceneMgr.GetInstance().LoadSceneAsyn("Level", () =>
                     {
-                        GameObject room = Instantiate(Resources.Load<GameObject>(GameTool.GetDicInfo(Datas.GetInstance().RoomDataDic, tp.roomID).prefabPath));
-                        Player.instance.transform.position = room.transform.Find("出现点").position;
+                        ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/Room", (x) =>
+                         {
+                             Player.instance.transform.position = GameTool.FindTheChild(x, "出现点").position;
+                         });
+
+                        UIMgr.GetInstance().HidePanel("LoadingPanel");
                     });
                     break;
             }
             tpTimer.Reset(5f);
-            //PoolMgr.GetInstance().GetObj(GameMgr.GetInstance().GetRoomInfo(tp.roomID).prefabPath, (x) =>
-            //{
-            //    Player.instance.transform.position = x.transform.FindChild("出现点").position;
-            //    ResetRoom();
-            //});
         }
     }
 

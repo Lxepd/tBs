@@ -48,6 +48,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -130,7 +131,7 @@ TextureImporter:
       name: Death_1
       rect:
         serializedVersion: 2
-        x: 108
+        x: 100
         y: 32
         width: 50
         height: 40
@@ -151,7 +152,7 @@ TextureImporter:
       name: Death_3
       rect:
         serializedVersion: 2
-        x: 282
+        x: 276
         y: 32
         width: 49
         height: 46
@@ -172,7 +173,7 @@ TextureImporter:
       name: Death_5
       rect:
         serializedVersion: 2
-        x: 466
+        x: 464
         y: 32
         width: 53
         height: 49
@@ -193,12 +194,12 @@ TextureImporter:
       name: Death_6
       rect:
         serializedVersion: 2
-        x: 554
+        x: 555
         y: 32
         width: 60
         height: 46
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.43, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -214,7 +215,7 @@ TextureImporter:
       name: Death_0
       rect:
         serializedVersion: 2
-        x: 27
+        x: 31
         y: 32
         width: 45
         height: 32
@@ -226,7 +227,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 54135f86523831730800000000000000
-      internalID: 3968659893341466949
+      internalID: -992163288514190105
       vertices: []
       indices: 
       edges: []
@@ -235,7 +236,7 @@ TextureImporter:
       name: Death_2
       rect:
         serializedVersion: 2
-        x: 197
+        x: 194
         y: 32
         width: 50
         height: 42
@@ -256,7 +257,7 @@ TextureImporter:
       name: Death_4
       rect:
         serializedVersion: 2
-        x: 380
+        x: 371
         y: 32
         width: 51
         height: 48
@@ -277,12 +278,12 @@ TextureImporter:
       name: Death_7
       rect:
         serializedVersion: 2
-        x: 644
+        x: 641
         y: 32
         width: 59
         height: 15
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.43, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -304,6 +305,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Death_7: -6126746645354384401
+      Death_1: 6991849013916550155
+      Death_5: -1891625820773287384
+      Death_0: -992163288514190105
+      Death_4: 4800267807231483719
+      Death_2: 6495761399759928590
+      Death_6: -5789737788129074030
+      Death_3: 3156895337291164288
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

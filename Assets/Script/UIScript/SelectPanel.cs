@@ -28,22 +28,20 @@ public class SelectPanel : UIBase
                 // 排除没选择情况
                 if (playerID == 0)
                     return;
+                // 展开<加载>界面
+                UIMgr.GetInstance().ShowPanel<LoadingPanel>("LoadingPanel", E_UI_Layer.Load);
                 // 隐藏<选择角色>界面
                 UIMgr.GetInstance().HidePanel("SelectPanel");
                 // 展开<背包>界面
                 UIMgr.GetInstance().ShowPanel<BagPanel>("BagPanel", E_UI_Layer.Above);
                 // 展开<列表>界面
                 UIMgr.GetInstance().ShowPanel<ListPanel>("ListPanel", E_UI_Layer.Above);
-                // 展开<加载>界面
-                UIMgr.GetInstance().ShowPanel<LoadingPanel>("LoadingPanel", E_UI_Layer.Above);
                 // 异步场景切换，并执行切换后的委托
                 SceneMgr.GetInstance().LoadSceneAsyn("Game", () =>
                 {
                     // 隐藏<主界面>
                     UIMgr.GetInstance().HidePanel("MainPanel");
-                    // 隐藏<加载>界面
-                    Invoke(nameof(ttt), 1f);
-                    //UIMgr.GetInstance().HidePanel("LoadingPanel");
+
                     // 隐藏<背包>界面
                     UIMgr.GetInstance().HidePanel("BagPanel");
                     // 隐藏<列表>界面
@@ -57,6 +55,9 @@ public class SelectPanel : UIBase
 
                     // 根据选择的角色ID进行初始化
                     InitPlayer(playerID);
+
+                    // 隐藏<加载>界面
+                    Invoke(nameof(HideLoadingPanel), 2f);
                 });
                 break;
         }
@@ -86,7 +87,7 @@ public class SelectPanel : UIBase
               DontDestroyOnLoad(x);
           });
     }
-    public void ttt()
+    public void HideLoadingPanel()
     {
         UIMgr.GetInstance().HidePanel("LoadingPanel");
     }

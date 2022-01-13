@@ -1,97 +1,7 @@
 fileFormatVersion: 2
-guid: e0c37f0f70502614a8a61c0c0ff52f53
+guid: ebd7818ec42aa734f91154fb59f76509
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 476525532521564579
-    second: MysticChroma_Basics_0
-  - first:
-      213: 142880621767553447
-    second: MysticChroma_Basics_1
-  - first:
-      213: -5598862712417836460
-    second: MysticChroma_Basics_2
-  - first:
-      213: -6722974486988737077
-    second: MysticChroma_Basics_3
-  - first:
-      213: -8009863081588716327
-    second: MysticChroma_Basics_4
-  - first:
-      213: 2028620045834997336
-    second: MysticChroma_Basics_5
-  - first:
-      213: -8058063738920102455
-    second: MysticChroma_Basics_6
-  - first:
-      213: -4001217400953945351
-    second: MysticChroma_Basics_7
-  - first:
-      213: -6211955069581557506
-    second: MysticChroma_Basics_8
-  - first:
-      213: 5759333276950408723
-    second: MysticChroma_Basics_9
-  - first:
-      213: 8730834043603382433
-    second: MysticChroma_Basics_10
-  - first:
-      213: -311892726919941660
-    second: MysticChroma_Basics_11
-  - first:
-      213: -259601740891013888
-    second: MysticChroma_Basics_12
-  - first:
-      213: -8636880247903234382
-    second: MysticChroma_Basics_13
-  - first:
-      213: -5497156215597389702
-    second: MysticChroma_Basics_14
-  - first:
-      213: 5015454950762244478
-    second: MysticChroma_Basics_15
-  - first:
-      213: 7309081884947483493
-    second: MysticChroma_Basics_16
-  - first:
-      213: -462140425364631433
-    second: MysticChroma_Basics_17
-  - first:
-      213: 3474580081745753768
-    second: MysticChroma_Basics_18
-  - first:
-      213: -973357973956824306
-    second: MysticChroma_Basics_19
-  - first:
-      213: 8087013005102939039
-    second: MysticChroma_Basics_20
-  - first:
-      213: -4724419780778237103
-    second: MysticChroma_Basics_21
-  - first:
-      213: 2924969446460162103
-    second: MysticChroma_Basics_22
-  - first:
-      213: 915899226906217141
-    second: MysticChroma_Basics_23
-  - first:
-      213: 3426029702342679269
-    second: MysticChroma_Basics_24
-  - first:
-      213: -8953334017867789315
-    second: MysticChroma_Basics_25
-  - first:
-      213: 1413568200687636972
-    second: MysticChroma_Basics_26
-  - first:
-      213: -2919843319691852618
-    second: MysticChroma_Basics_27
-  - first:
-      213: -4903889352811736665
-    second: MysticChroma_Basics_28
-  - first:
-      213: 1636125768343118755
-    second: MysticChroma_Basics_29
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -114,6 +24,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -170,7 +81,19 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -181,12 +104,12 @@ TextureImporter:
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 0
+    textureFormat: -1
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -207,8 +130,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a90a547275fc9600800000000000000
-      internalID: 476525532521564579
+      spriteID: 67640509a75dd44488f42fe0ba203ddf
+      internalID: 1795099047
       vertices: []
       indices: 
       edges: []
@@ -225,15 +148,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a1fdb12b2d9bf100800000000000000
-      internalID: 142880621767553447
+      spriteID: 19310e9bd3ca6074e967de1900e71625
+      internalID: 1764277929
       vertices: []
       indices: 
       edges: []
@@ -250,15 +169,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 452a720f608dc42b0800000000000000
-      internalID: -5598862712417836460
+      spriteID: 98591bdc1359fc44b9bb86953d8cf036
+      internalID: 906797543
       vertices: []
       indices: 
       edges: []
@@ -275,15 +190,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc5b50de25233b2a0800000000000000
-      internalID: -6722974486988737077
+      spriteID: 3a944931a1e057e4da88e9ef39587dd3
+      internalID: -1736181868
       vertices: []
       indices: 
       edges: []
@@ -303,8 +214,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9dc836227ff37d090800000000000000
-      internalID: -8009863081588716327
+      spriteID: 5189031c0cd3a134989e6af9d7ec0246
+      internalID: 938109964
       vertices: []
       indices: 
       edges: []
@@ -324,8 +235,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85e4b300f2b172c10800000000000000
-      internalID: 2028620045834997336
+      spriteID: 4665c91ef2025b141b195e5522b4ea1a
+      internalID: 189056814
       vertices: []
       indices: 
       edges: []
@@ -334,8 +245,8 @@ TextureImporter:
       name: MysticChroma_Basics_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 48
+        x: 96
+        y: 64
         width: 16
         height: 16
       alignment: 0
@@ -345,8 +256,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c5163019b10c2090800000000000000
-      internalID: -8058063738920102455
+      spriteID: 15f0d4ca3a88d6243b38cf63ce87bc7e
+      internalID: 2110373205
       vertices: []
       indices: 
       edges: []
@@ -355,23 +266,19 @@ TextureImporter:
       name: MysticChroma_Basics_7
       rect:
         serializedVersion: 2
-        x: 16
-        y: 48
+        x: 112
+        y: 64
         width: 16
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f2470329f1d878c0800000000000000
-      internalID: -4001217400953945351
+      spriteID: cbd2e7b20de57d74c8f90d5a5d7a7b31
+      internalID: -2114048594
       vertices: []
       indices: 
       edges: []
@@ -380,23 +287,19 @@ TextureImporter:
       name: MysticChroma_Basics_8
       rect:
         serializedVersion: 2
-        x: 32
-        y: 48
+        x: 128
+        y: 64
         width: 16
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef087ecc6c3bac9a0800000000000000
-      internalID: -6211955069581557506
+      spriteID: 81ac8475ae9d00a45a7e53d03915e39c
+      internalID: 136742361
       vertices: []
       indices: 
       edges: []
@@ -405,7 +308,7 @@ TextureImporter:
       name: MysticChroma_Basics_9
       rect:
         serializedVersion: 2
-        x: 48
+        x: 0
         y: 48
         width: 16
         height: 16
@@ -413,15 +316,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31e27b3e9134def40800000000000000
-      internalID: 5759333276950408723
+      spriteID: 043d46d78ceaddb4c8b32d9e037e956e
+      internalID: -1263724154
       vertices: []
       indices: 
       edges: []
@@ -430,7 +329,7 @@ TextureImporter:
       name: MysticChroma_Basics_10
       rect:
         serializedVersion: 2
-        x: 64
+        x: 16
         y: 48
         width: 16
         height: 16
@@ -441,8 +340,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a0fdd10e472a2970800000000000000
-      internalID: 8730834043603382433
+      spriteID: c627e5fe10d01dd4b8adf0328164af29
+      internalID: 336178166
       vertices: []
       indices: 
       edges: []
@@ -451,7 +350,7 @@ TextureImporter:
       name: MysticChroma_Basics_11
       rect:
         serializedVersion: 2
-        x: 80
+        x: 32
         y: 48
         width: 16
         height: 16
@@ -459,15 +358,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e1b8e3a73febabf0800000000000000
-      internalID: -311892726919941660
+      spriteID: 1f032fc13591e85488139eac36994284
+      internalID: 628096191
       vertices: []
       indices: 
       edges: []
@@ -476,8 +371,8 @@ TextureImporter:
       name: MysticChroma_Basics_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
+        x: 48
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -487,8 +382,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00d3e139795b56cf0800000000000000
-      internalID: -259601740891013888
+      spriteID: d2b008ad23b3d634ebfec1bb278c5338
+      internalID: -1250090864
       vertices: []
       indices: 
       edges: []
@@ -497,23 +392,19 @@ TextureImporter:
       name: MysticChroma_Basics_13
       rect:
         serializedVersion: 2
-        x: 16
-        y: 32
+        x: 64
+        y: 48
         width: 16
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b6d328bc23a32880800000000000000
-      internalID: -8636880247903234382
+      spriteID: 94738faa5b98a9042a5eb2f3d7bec613
+      internalID: -1615100623
       vertices: []
       indices: 
       edges: []
@@ -522,8 +413,8 @@ TextureImporter:
       name: MysticChroma_Basics_14
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
+        x: 80
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -533,8 +424,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a78ac7e0c8d26b3b0800000000000000
-      internalID: -5497156215597389702
+      spriteID: cffe9d290c486204d8dce6882acda1ad
+      internalID: -1548949351
       vertices: []
       indices: 
       edges: []
@@ -543,33 +434,8 @@ TextureImporter:
       name: MysticChroma_Basics_15
       rect:
         serializedVersion: 2
-        x: 48
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-      bones: []
-      spriteID: e79682764b97a9540800000000000000
-      internalID: 5015454950762244478
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MysticChroma_Basics_16
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
+        x: 96
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -579,8 +445,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56b898acf331f6560800000000000000
-      internalID: 7309081884947483493
+      spriteID: 1f78700c4d2970541a58965dec84e775
+      internalID: 1756183767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_16
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8729d95bad2164c4db30e5d6833315ef
+      internalID: -1595312808
       vertices: []
       indices: 
       edges: []
@@ -589,23 +476,19 @@ TextureImporter:
       name: MysticChroma_Basics_17
       rect:
         serializedVersion: 2
-        x: 80
-        y: 32
+        x: 128
+        y: 48
         width: 16
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7701bcd4bb52699f0800000000000000
-      internalID: -462140425364631433
+      spriteID: a7072a31594484b43a1a39a078dc9272
+      internalID: -761098404
       vertices: []
       indices: 
       edges: []
@@ -615,6 +498,195 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42ce7c992f2cae14cadd3f17b54cb968
+      internalID: -1075763454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_19
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ecf3dcf6bccdc24985d74267f004d14
+      internalID: -78966634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_20
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3e4ab7129666bc4c92d432237675071
+      internalID: 1531367814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_21
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14af9f879a147cc4eb92eb9836185f9d
+      internalID: -1992753794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_22
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69710eacb68fe6e4d909ddaabccc98eb
+      internalID: 501511477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_23
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19fefe17267ed7b4882b65e5f2aacf40
+      internalID: 128400165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_24
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c798a869f83b956498a3fe2f99cfd600
+      internalID: 474029862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_25
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aed1fffb00e60ce469f014befdb11b18
+      internalID: -1527824688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_26
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23e00707ba6f4e040ae4ee3290821028
+      internalID: -452234850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_27
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 16
         width: 16
         height: 16
@@ -625,14 +697,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a67a1cdc20383030800000000000000
-      internalID: 3474580081745753768
+      spriteID: 909424f5d5abaa843ac6b3c82dce7bbb
+      internalID: 639701729
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MysticChroma_Basics_19
+      name: MysticChroma_Basics_28
       rect:
         serializedVersion: 2
         x: 16
@@ -643,21 +715,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e03720b6410fd72f0800000000000000
-      internalID: -973357973956824306
+      spriteID: 949501c53cc00f2499254c1a0c95738d
+      internalID: -2000663044
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MysticChroma_Basics_20
+      name: MysticChroma_Basics_29
       rect:
         serializedVersion: 2
         x: 32
@@ -668,21 +736,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9bff173b77da3070800000000000000
-      internalID: 8087013005102939039
+      spriteID: 682ead71233e1b748938d755bbf02160
+      internalID: -906346933
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MysticChroma_Basics_21
+      name: MysticChroma_Basics_30
       rect:
         serializedVersion: 2
         x: 48
@@ -693,21 +757,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15362ec8d3d7f6eb0800000000000000
-      internalID: -4724419780778237103
+      spriteID: 001b25d6ff82cbb42b66180f105ecdff
+      internalID: 1361486376
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MysticChroma_Basics_22
+      name: MysticChroma_Basics_31
       rect:
         serializedVersion: 2
         x: 64
@@ -721,14 +781,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7300123e634979820800000000000000
-      internalID: 2924969446460162103
+      spriteID: 25246b87fb205404794e74e115faa7f6
+      internalID: -786297516
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MysticChroma_Basics_23
+      name: MysticChroma_Basics_32
       rect:
         serializedVersion: 2
         x: 80
@@ -739,21 +799,80 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5baccc58e7de5bc00800000000000000
-      internalID: 915899226906217141
+      spriteID: 3c7100bcac8799f4289130e0bd378e52
+      internalID: 878505035
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MysticChroma_Basics_24
+      name: MysticChroma_Basics_33
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 751b9f916bdb3e3499655bb5d7c1f962
+      internalID: 1812657693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_34
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67918da90980f5e4f93bfcf330c59581
+      internalID: -1520404584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_35
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74a5f0c0eacb5434691b5b267fb30337
+      internalID: 1179982772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_36
       rect:
         serializedVersion: 2
         x: 0
@@ -767,14 +886,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ea9216ccd3bb8f20800000000000000
-      internalID: 3426029702342679269
+      spriteID: a14189bac9fcb2e408014376008f7dc7
+      internalID: -1586859744
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MysticChroma_Basics_25
+      name: MysticChroma_Basics_37
       rect:
         serializedVersion: 2
         x: 16
@@ -788,14 +907,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfbc195c52e5fb380800000000000000
-      internalID: -8953334017867789315
+      spriteID: 5093e5060044c894591e03177177d432
+      internalID: 1824205133
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MysticChroma_Basics_26
+      name: MysticChroma_Basics_38
       rect:
         serializedVersion: 2
         x: 32
@@ -809,14 +928,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce156c30ac00e9310800000000000000
-      internalID: 1413568200687636972
+      spriteID: 8a67f8ddba1a3bb488065ed303d8d0aa
+      internalID: -60908536
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MysticChroma_Basics_27
+      name: MysticChroma_Basics_39
       rect:
         serializedVersion: 2
         x: 48
@@ -830,14 +949,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b448f188f1aa77d0800000000000000
-      internalID: -2919843319691852618
+      spriteID: bb65fc7a722a8884e9515c09d8c29181
+      internalID: -335569067
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MysticChroma_Basics_28
+      name: MysticChroma_Basics_40
       rect:
         serializedVersion: 2
         x: 64
@@ -851,14 +970,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a116d39d92e1fbb0800000000000000
-      internalID: -4903889352811736665
+      spriteID: 7c139025a080bfc4598ab156fbe8e2ce
+      internalID: -1874425172
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MysticChroma_Basics_29
+      name: MysticChroma_Basics_41
       rect:
         serializedVersion: 2
         x: 80
@@ -869,15 +988,389 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a364fdb7bfa4b610800000000000000
-      internalID: 1636125768343118755
+      spriteID: 247f2dbaf8a3f4547a9117f27d56e62b
+      internalID: -223010540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_42
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8995ac5baed0b9b459b4cd43f04a193f
+      internalID: 452932969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_43
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b2a8baaa32304e429deaf38e4c2a7fe
+      internalID: -1449044000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_44
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d63fa98a5e987544897860d6870114e
+      internalID: -936605156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_45
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46aa400e6cd9a7d47bbf3997311e848b
+      internalID: 632411114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_46
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 794b2eb3784bfb14b9925213c1da9399
+      internalID: -1866555289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_47
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c7838cdd586f8c4d9711983225a4963
+      internalID: 146025941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_48
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a28f8cefd4a311e49ad290f046b0a5e8
+      internalID: -527706266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_49
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 110020cb33a075143a85b89c0fbc2d06
+      internalID: -2097625151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_50
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d6eb4d8a0be6344b8eff450a0d52d2c
+      internalID: 1516096339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_51
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce7958c712a25704e8ca3a32d9771f81
+      internalID: -1915697450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_52
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccf079089098b44468e22d66f0b9d245
+      internalID: 1170272996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_53
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28f0b51971ed0554d9c4beae9011ec02
+      internalID: 584477101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_54
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e20834123476b9d4599d234c4f7fb10a
+      internalID: 364559552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_55
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5370d56dd73aeb445bb65d0d37de965e
+      internalID: 1763741606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_56
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39fffba986b546541af55c46ad5ffaeb
+      internalID: -1777371056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_57
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10b66dceb3ca12b4dab595bebc0e3a90
+      internalID: 484949052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_58
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5da4eec785f03f94db6eb8c8fcf36626
+      internalID: 1314891367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MysticChroma_Basics_59
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d990a1c0d4863ca469e1754ecef9a1d9
+      internalID: 592141414
       vertices: []
       indices: 
       edges: []
@@ -892,6 +1385,67 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      MysticChroma_Basics_29: -906346933
+      MysticChroma_Basics_1: 1764277929
+      MysticChroma_Basics_36: -1586859744
+      MysticChroma_Basics_52: 1170272996
+      MysticChroma_Basics_34: -1520404584
+      MysticChroma_Basics_18: -1075763454
+      MysticChroma_Basics_21: -1992753794
+      MysticChroma_Basics_55: 1763741606
+      MysticChroma_Basics_56: -1777371056
+      MysticChroma_Basics_0: 1795099047
+      MysticChroma_Basics_5: 189056814
+      MysticChroma_Basics_11: 628096191
+      MysticChroma_Basics_27: 639701729
+      MysticChroma_Basics_20: 1531367814
+      MysticChroma_Basics_38: -60908536
+      MysticChroma_Basics_9: -1263724154
+      MysticChroma_Basics_24: 474029862
+      MysticChroma_Basics_40: -1874425172
+      MysticChroma_Basics_37: 1824205133
+      MysticChroma_Basics_30: 1361486376
+      MysticChroma_Basics_3: -1736181868
+      MysticChroma_Basics_12: -1250090864
+      MysticChroma_Basics_41: -223010540
+      MysticChroma_Basics_2: 906797543
+      MysticChroma_Basics_49: -2097625151
+      MysticChroma_Basics_50: 1516096339
+      MysticChroma_Basics_28: -2000663044
+      MysticChroma_Basics_54: 364559552
+      MysticChroma_Basics_59: 592141414
+      MysticChroma_Basics_10: 336178166
+      MysticChroma_Basics_35: 1179982772
+      MysticChroma_Basics_25: -1527824688
+      MysticChroma_Basics_22: 501511477
+      MysticChroma_Basics_32: 878505035
+      MysticChroma_Basics_4: 938109964
+      MysticChroma_Basics_51: -1915697450
+      MysticChroma_Basics_33: 1812657693
+      MysticChroma_Basics_47: 146025941
+      MysticChroma_Basics_16: -1595312808
+      MysticChroma_Basics_45: 632411114
+      MysticChroma_Basics_19: -78966634
+      MysticChroma_Basics_6: 2110373205
+      MysticChroma_Basics_42: 452932969
+      MysticChroma_Basics_13: -1615100623
+      MysticChroma_Basics_46: -1866555289
+      MysticChroma_Basics_26: -452234850
+      MysticChroma_Basics_15: 1756183767
+      MysticChroma_Basics_44: -936605156
+      MysticChroma_Basics_31: -786297516
+      MysticChroma_Basics_7: -2114048594
+      MysticChroma_Basics_58: 1314891367
+      MysticChroma_Basics_43: -1449044000
+      MysticChroma_Basics_14: -1548949351
+      MysticChroma_Basics_23: 128400165
+      MysticChroma_Basics_17: -761098404
+      MysticChroma_Basics_48: -527706266
+      MysticChroma_Basics_8: 136742361
+      MysticChroma_Basics_53: 584477101
+      MysticChroma_Basics_57: 484949052
+      MysticChroma_Basics_39: -335569067
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

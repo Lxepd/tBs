@@ -124,11 +124,9 @@ public class SupplyPoint : MonoBehaviour
 
         return pathID;
     }
-#if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(0, 255, 255);
         Gizmos.DrawWireCube(transform.position, GetComponent<BoxCollider2D>().bounds.size);
     }
-#endif
 }

@@ -33,6 +33,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -115,7 +116,7 @@ TextureImporter:
       name: Get Hit_0
       rect:
         serializedVersion: 2
-        x: 25
+        x: 22
         y: 32
         width: 40
         height: 42
@@ -136,7 +137,7 @@ TextureImporter:
       name: Get Hit_2
       rect:
         serializedVersion: 2
-        x: 202
+        x: 193
         y: 32
         width: 45
         height: 45
@@ -157,12 +158,12 @@ TextureImporter:
       name: Get Hit_3
       rect:
         serializedVersion: 2
-        x: 121
+        x: 111
         y: 32
         width: 44
         height: 44
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.48, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -184,6 +185,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Get Hit_2: -5427525242102528555
+      Get Hit_3: 7799113723750791240
+      Get Hit_0: 4059951838069092975
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

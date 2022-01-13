@@ -36,6 +36,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -208,6 +209,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Effect 4 - Sprite Sheet_3: -2481744982593040360
+      Effect 4 - Sprite Sheet_1: 9167799869015114507
+      Effect 4 - Sprite Sheet_0: 7288960354238218592
+      Effect 4 - Sprite Sheet_2: -4350274049142071473
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

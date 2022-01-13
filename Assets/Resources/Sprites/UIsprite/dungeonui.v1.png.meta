@@ -66,6 +66,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -448,6 +449,21 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      dungeonui.v1_9: -4566373158413014706
+      dungeonui.v1_1: 7587542520182383178
+      dungeonui.v1_11: 9089848584861561697
+      dungeonui.v1_3: -5738173371712620600
+      dungeonui.v1_7: 8085257872600134612
+      dungeonui.v1_13: -4745567402290024960
+      dungeonui.v1_6: 7666241981046835322
+      dungeonui.v1_5: 4713317456113826552
+      dungeonui.v1_8: 3863407293224027738
+      dungeonui.v1_12: 352364634846506028
+      dungeonui.v1_10: 6447378680976856349
+      dungeonui.v1_0: 2232534696157534789
+      dungeonui.v1_2: 6703439691605663517
+      dungeonui.v1_4: 7069302953715104483
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
