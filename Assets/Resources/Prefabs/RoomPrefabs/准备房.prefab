@@ -58071,7 +58071,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!66 &5697717263823711956
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -58229,7 +58229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2639396871814237890, guid: 1d16998d16a0117468e728d5c6a1d132, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8556223417962470012, guid: 1d16998d16a0117468e728d5c6a1d132, type: 3}
       propertyPath: m_RootOrder
@@ -58467,11 +58467,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6591204624919866529, guid: f65b827624d752c4d9605fcb3b1181d3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 44.54
+      value: 37.16
       objectReference: {fileID: 0}
     - target: {fileID: 6591204624919866529, guid: f65b827624d752c4d9605fcb3b1181d3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.74
+      value: -0.27
       objectReference: {fileID: 0}
     - target: {fileID: 6591204624919866529, guid: f65b827624d752c4d9605fcb3b1181d3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -58635,7 +58635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5183851662907177101, guid: 7eb4407398836fb41bd510b39cda4e98, type: 3}
       propertyPath: tp.roomID
-      value: 11002
+      value: 11001
       objectReference: {fileID: 0}
     - target: {fileID: 7385148227233624512, guid: 7eb4407398836fb41bd510b39cda4e98, type: 3}
       propertyPath: m_RootOrder
