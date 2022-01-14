@@ -176,6 +176,7 @@ public class ReadXml : InstanceNoMono<ReadXml>
             newData.id = int.Parse(item.Attributes["id"].InnerText);
 
             newData.name = item.SelectSingleNode("name").InnerText;
+            newData.type = (EnemyType)int.Parse(item.SelectSingleNode("type").InnerText);
             newData.path = item.SelectSingleNode("path").InnerText;
             newData.tips = item.SelectSingleNode("tips").InnerText;
             newData.hp = float.Parse(item.SelectSingleNode("hp").InnerText);

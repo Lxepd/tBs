@@ -16,7 +16,6 @@ public class TpPoint : MonoBehaviour
     bool isStart;
 
     TpType tp;
-    int level = 0;
 
     private void Start()
     {
@@ -31,8 +30,13 @@ public class TpPoint : MonoBehaviour
             tpTimer.Start();
             Debug.Log("玩家在传送点，准备传送");
         }
+        else if(col==null)
+        {
+            isStart = false;
+            tpTimer.Reset(5f);
+        }
 
-        tp = (level <= 15) ? TpType.下一关 : TpType.回去;
+        tp = (LevelMgr.GetInstance().level < 15) ? TpType.下一关 : TpType.回去;
 
         if (tpTimer.isTimeUp)
         {
@@ -49,16 +53,14 @@ public class TpPoint : MonoBehaviour
                     });
                     break;
                 case TpType.下一关:
-                    level++;
-                    UIMgr.GetInstance().ShowPanel<LoadingPanel>("LoadingPanel", E_UI_Layer.Load);
-                    SceneMgr.GetInstance().LoadSceneAsyn("Level", () =>
-                    {
-                        ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/Room", (x) =>
+                    LevelMgr.GetInstance().level++;
+                    Debug.Log(LevelMgr.GetInstance().level);
+                    SceneMgr.GetInstance().LoadScene("Level", () =>
+                     {
+                         ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/Room", (x) =>
                          {
                          });
-
-                        UIMgr.GetInstance().HidePanel("LoadingPanel");
-                    });
+                     });
                     break;
             }
             tpTimer.Reset(5f);

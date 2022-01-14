@@ -23,19 +23,26 @@ public class TileSet : MonoBehaviour
     [SerializeField] public List<GameObject> monsterList = new List<GameObject>();
     bool isCreateTpPoint;
 
+    int bossNum, unBossNum;
+
     private void Start()
     {
         mapArray = new TileType[row, col];
         SetMap();
+
+        EventCenter.GetInstance().AddEventListener<GameObject>("怪物死亡", (x) =>
+         {
+             monsterList.Remove(x);
+         });
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             ReduceTile(num);
             CreateTile();
         }
-        if(Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
@@ -63,19 +70,14 @@ public class TileSet : MonoBehaviour
 
         ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/出现点", (x) =>
          {
-             int cr, cc;
-             do
-             {
-                 cr = Random.Range(0, row);
-                 cc = Random.Range(0, col);
-             } while (CheckNeighborWalls(cr, cc, 3) != 0);
-
-             x.transform.position = new Vector2(cr, cc);
+             x.transform.position = GetBarrierFreeArea();
              x.transform.SetParent(transform);
 
              Player.instance.transform.position = x.transform.position;
-
+             //Camera.main.transform.position = Player.instance.transform.position;
          });
+
+        CreateMonsters(10);
     }
     private void ReduceTile(int num)
     {
@@ -143,18 +145,70 @@ public class TileSet : MonoBehaviour
             return;
 
         isCreateTpPoint = true;
-        Debug.Log(1);
         ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/传送点", (x) =>
         {
-            int cr, cc;
-            do
-            {
-                cr = Random.Range(0, row);
-                cc = Random.Range(0, col);
-            } while (CheckNeighborWalls(cr, cc, 3) != 0);
 
-            x.transform.position = new Vector2(cr, cc);
+            x.transform.position = GetBarrierFreeArea();
             x.transform.SetParent(transform);
         });
+    }
+    private Vector2 GetBarrierFreeArea()
+    {
+        int cr, cc;
+        do
+        {
+            cr = Random.Range(0, row);
+            cc = Random.Range(0, col);
+        } while (CheckNeighborWalls(cr, cc, 3) != 0);
+
+        return new Vector2(cr, cc);
+    }
+    private void CreateMonsters(int num)
+    {
+        int monsterCount = 0;
+
+        while (monsterCount < num)
+        {
+            if (LevelMgr.GetInstance().level % 5 == 0)
+            {
+                if (unBossNum <= 4)
+                {
+                    unBossNum++;
+                    ResMgr.GetInstance().LoadAsync<GameObject>(GameTool.GetRandomEnemyPath(), (x) =>
+                    {
+                        x.transform.position = GetBarrierFreeArea();
+                        x.transform.SetParent(transform);
+                        monsterList.Add(x);
+                    });
+
+                    monsterCount++;
+                }
+
+                if(bossNum <1)
+                {
+                    bossNum++;
+                    ResMgr.GetInstance().LoadAsync<GameObject>(GameTool.GetRandomEnemyPath(false), (x) =>
+                    {
+                        x.transform.position = GetBarrierFreeArea();
+                        x.transform.SetParent(transform);
+                        monsterList.Add(x);
+                    });
+
+                    monsterCount+=2;
+                }
+            }
+            else
+            {
+                ResMgr.GetInstance().LoadAsync<GameObject>(GameTool.GetRandomEnemyPath(), (x) =>
+                {
+                    x.transform.position = GetBarrierFreeArea();
+                    x.transform.SetParent(transform);
+                    monsterList.Add(x);
+                });
+
+                monsterCount++;
+            }
+
+        }
     }
 }

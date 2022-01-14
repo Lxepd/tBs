@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EnemyType
+{
+    小怪,
+    Boss
+}
 /// <summary>
 /// 怪物数据
 /// </summary>
@@ -9,6 +14,7 @@ public class EnemyData
 {
     public int id; // ID
     public string name; // 名
+    public EnemyType type;
     public string path; // 预制体位置
     public string tips; // 说明
     public float hp; // 血量

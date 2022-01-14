@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 1920635613336205593}
   - component: {fileID: 1920635613336205592}
   - component: {fileID: 1920635613336205595}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemap
-  m_TagString: Untagged
+  m_TagString: "\u5899\u58C1"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -235,6 +235,7 @@ MonoBehaviour:
   row: 50
   col: 50
   num: 1
+  monsterList: []
 --- !u!1 &1920635614383048826
 GameObject:
   m_ObjectHideFlags: 0

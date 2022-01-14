@@ -301,6 +301,8 @@ public class FireWormDead : StateBaseTemplate<FireWorm>
             owner.GetComponent<BoxCollider2D>().enabled = false;
             owner.Animator.Play("Dead");
             owner.Rg.velocity = Vector2.zero;
+
+            EventCenter.GetInstance().EventTrigger<GameObject>("¹ÖÎïËÀÍö",owner.gameObject);
         }
     }
     public override void OnStay(params object[] args)

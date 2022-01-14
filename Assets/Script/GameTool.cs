@@ -105,6 +105,16 @@ public class GameTool
 
         return default(T);
     }
+    public static string GetRandomEnemyPath(bool normal = true)
+    {
+        int id;
+        do
+        {
+            id = 15000 + UnityEngine.Random.Range(1, Datas.GetInstance().EnemyDataDic.Count + 1);
+        } while ((normal) ? GetDicInfo(Datas.GetInstance().EnemyDataDic, id).type == EnemyType.Boss : GetDicInfo(Datas.GetInstance().EnemyDataDic, id).type == EnemyType.–°π÷);
+
+        return GetDicInfo(Datas.GetInstance().EnemyDataDic, id).path;
+    }
     /// <summary>
     /// List…Ó∏¥÷∆
     /// </summary>
