@@ -195,8 +195,8 @@ TextureImporter:
         y: 652
         width: 45
         height: 54
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.48, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -216,8 +216,8 @@ TextureImporter:
         y: 652
         width: 47
         height: 52
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.48, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -448,7 +448,7 @@ TextureImporter:
         width: 140
         height: 83
       alignment: 9
-      pivot: {x: 0.29, y: 0}
+      pivot: {x: 0.25, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -469,7 +469,7 @@ TextureImporter:
         width: 133
         height: 76
       alignment: 9
-      pivot: {x: 0.29, y: 0}
+      pivot: {x: 0.25, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -490,7 +490,7 @@ TextureImporter:
         width: 127
         height: 85
       alignment: 9
-      pivot: {x: 0.25, y: 0}
+      pivot: {x: 0.19, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -532,7 +532,7 @@ TextureImporter:
         width: 62
         height: 69
       alignment: 9
-      pivot: {x: 0.53, y: 0}
+      pivot: {x: 0.48, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -595,7 +595,7 @@ TextureImporter:
         width: 126
         height: 85
       alignment: 9
-      pivot: {x: 0.23, y: 0}
+      pivot: {x: 0.19, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -742,7 +742,7 @@ TextureImporter:
         width: 112
         height: 82
       alignment: 9
-      pivot: {x: 0.15, y: 0}
+      pivot: {x: 0.11, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1488,18 +1488,18 @@ TextureImporter:
       23: -4818586564699129774
       31: -1332470889934944754
       8: 6233496440514900867
-      38: -1868120325543435884
-      61: -8487232043859119557
       56: 946013011605069419
+      38: -1868120325543435884
       54: -5090540181421502748
       36: 7215576535354308736
       27: 3879292089760221355
       11: -187061038009810156
       52: 1206823848250521534
-      47: 4343592893084976045
-      32: 3660635505352458090
       59: -4998798509716206269
+      32: 3660635505352458090
+      61: -8487232043859119557
       2: -5923306537521942286
+      47: 4343592893084976045
       9: 6185124051430620655
       4: -1846612928519130627
       16: 8914642584386402721

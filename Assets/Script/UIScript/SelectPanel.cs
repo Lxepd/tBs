@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// 选择角色界面
@@ -16,6 +18,9 @@ public class SelectPanel : UIBase
         EventCenter.GetInstance().AddEventListener<int>("选择角色", (x) =>
         {
             playerID = x;
+            GetControl<Image>("RoleImg").sprite = ResMgr.GetInstance().Load<Sprite>(GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, playerID).spritePath);
+            GetControl<Image>("RoleImg").color = new Color(1, 1, 1, 1);
+            GetControl<Image>("RoleImg").GetComponent<Animator>().Play(GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, playerID).name);
         });
     }
     protected override void OnClick(string btnName)
@@ -70,8 +75,7 @@ public class SelectPanel : UIBase
         // 异步生成角色  
         ResMgr.GetInstance().LoadAsync<GameObject>(GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, playerID).path, (x) =>
           {
-              Player p = (x.GetComponent<Player>() == null) ? x.AddComponent<Player>() : x.GetComponent<Player>();
-              p.data = GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, playerID);
+              GetRoleComponent(x, playerID);
 
               ResMgr.GetInstance().Load<GameObject>("Prefabs/CM vcam1").transform.SetParent(x.transform);
 
@@ -94,5 +98,15 @@ public class SelectPanel : UIBase
     public void HideLoadingPanel()
     {
         UIMgr.GetInstance().HidePanel("LoadingPanel");
+    }
+    public void GetRoleComponent(GameObject go,int id)
+    {
+        switch (playerID)
+        {
+            case 14002:
+                Dinosaur type = go.GetComponent<Dinosaur>() ?? go.AddComponent<Dinosaur>();
+                type.data = GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, playerID);
+                break;
+        }
     }
 }

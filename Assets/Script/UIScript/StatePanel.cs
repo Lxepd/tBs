@@ -57,8 +57,6 @@ public class StatePanel : UIBase
         // 更新血量
         GetControl<Image>("HpBar").fillAmount = Mathf.Lerp(GetControl<Image>("HpBar").fillAmount, currentHp / data.MaxHp, Time.deltaTime * 10f);
         SetBagItem(index);
-
-        Debug.Log(BagItemIDList.Count);
     }
     /// <summary>
     /// 对应按钮点击
