@@ -24,6 +24,7 @@ public class TileSet : MonoBehaviour
     bool isCreateTpPoint;
 
     int bossNum, unBossNum;
+    [SerializeField] public Transform appearPoint;
 
     private void Start()
     {
@@ -34,6 +35,7 @@ public class TileSet : MonoBehaviour
          {
              monsterList.Remove(x);
          });
+      
     }
     private void Update()
     {
@@ -72,8 +74,7 @@ public class TileSet : MonoBehaviour
          {
              x.transform.position = GetBarrierFreeArea();
              x.transform.SetParent(transform);
-
-             Player.instance.transform.position = x.transform.position;
+             appearPoint = x.transform;
              //Camera.main.transform.position = Player.instance.transform.position;
          });
 

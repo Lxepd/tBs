@@ -196,10 +196,6 @@ public class ControlPanel : UIBase
                 enemyDir = (nearEnemy.transform.position - playerPos).normalized;
                 EventCenter.GetInstance().EventTrigger<Vector2>("Joystick", Vector2.zero);
 
-                Player.instance.Animator.SetFloat("AtkX", enemyDir.x);
-                Player.instance.Animator.SetFloat("AtkY", enemyDir.y);
-                // 播放挥砍动画
-                Player.instance.Animator.Play("Atk");
                 // 设置速度
                 rg.velocity = speed * enemyDir;
                 // 设置朝向
@@ -218,14 +214,11 @@ public class ControlPanel : UIBase
             case CtrlType.射击:
                 if (nearEnemy == null || !cdTimer.isTimeUp)
                 {
-                    Debug.Log("附近没怪 或者 CD没好");
                     return;
                 }
                 Shoot();
                 break;
             case CtrlType.打开商店:
-                Debug.Log("打开商店");
-                //UIMgr.GetInstance().ShowPanel<ShopPanel>("ShopPanel", E_UI_Layer.Above);
                 npcComponent.InitShop();
                 break;
             case CtrlType.传送:

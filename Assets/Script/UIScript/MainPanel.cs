@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using System.Xml;
-using Cinemachine;
 
 public class MainPanel : UIBase
 {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// ½ÇÉ«¿¨µã»÷
@@ -12,6 +13,7 @@ public class RoleClick : ImgClickBase
     protected override void Start()
     {
         base.Start();
+        GameTool.FindTheChild(gameObject, "Text").GetComponent<Text>().text = GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, RoleId).name;
     }
 
     private void Update()

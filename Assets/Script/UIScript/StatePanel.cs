@@ -22,9 +22,9 @@ public class StatePanel : UIBase
     private void Start()
     {
         // 获取数据
-        EventCenter.GetInstance().AddEventListener<int>("角色信息", (x) =>
+        EventCenter.GetInstance().AddEventListener<PlayerData>("角色初始", (x) =>
         {
-            data = GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, x);
+            data = x;
             // 初始化UI
             InitStateUI();
         });
@@ -32,6 +32,10 @@ public class StatePanel : UIBase
         {
             //MusicMgr.GetInstance().PlaySound("damaged1", false);
             ChangeHp((int)x);
+        });
+        EventCenter.GetInstance().AddEventListener<ItemClick>("成功购买的道具", (x) =>
+        {
+            GetBagItem(x);
         });
         EventCenter.GetInstance().AddEventListener<int>("道具栏清空", (x) =>
         {
@@ -52,8 +56,9 @@ public class StatePanel : UIBase
 
         // 更新血量
         GetControl<Image>("HpBar").fillAmount = Mathf.Lerp(GetControl<Image>("HpBar").fillAmount, currentHp / data.MaxHp, Time.deltaTime * 10f);
-        GetBagItem();
         SetBagItem(index);
+
+        Debug.Log(BagItemIDList.Count);
     }
     /// <summary>
     /// 对应按钮点击
@@ -104,6 +109,7 @@ public class StatePanel : UIBase
     {
         // 获取最大血量
         currentHp = data.MaxHp;
+        Debug.Log(currentHp);
         // 初始化文本
         GetControl<Text>("CurrentHp").text = data.MaxHp.ToString();
         GetControl<Text>("MaxHp").text = data.MaxHp.ToString();
@@ -122,33 +128,17 @@ public class StatePanel : UIBase
 
         GetControl<Text>("CurrentHp").text = currentHp.ToString();
     }
-    private void GetBagItem()
+    private void GetBagItem(ItemClick item)
     {
-        Transform content = GameTool.FindTheChild(UIMgr.GetInstance().GetLayerFather(E_UI_Layer.Above).gameObject, "背包界面");
-        Dictionary<int, int> test = new Dictionary<int, int>();
-        // 获取背包内的可消耗道具
-        for (int i = 0; i < content.childCount; i++)
+        if (!BagItem.ContainsKey(item.id))
         {
-            ItemClick ic = content.GetChild(i).GetComponent<ItemClick>();
-            ItemData itemd = GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic, ic.id);
-            // 排除背包内<非消耗品>
-            if (itemd.itemType == ItemType.非消耗品)
-                continue;
-            // 检测字典有没有
-            // 有则更新数量
-            if (test.ContainsKey(ic.id))
-            {
-                test[ic.id] += ic.currentNum;
-            }
-            // 无则添加
-            else
-            {
-                test.Add(ic.id, ic.currentNum);
-                BagItemIDList.Add(ic.id);
-            }
+            BagItem.Add(item.id, 1);
+            BagItemIDList.Add(item.id);
         }
-
-        BagItem = test;
+        else
+        {
+            BagItem[item.id] += 1;
+        }
     }
     /// <summary>
     /// 将<一次性消耗品>与<可重复使用消耗品>放置状态边上的物品格子中

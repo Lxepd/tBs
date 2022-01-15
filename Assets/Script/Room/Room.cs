@@ -28,7 +28,7 @@ public class Room : MonoBehaviour
             data.monsters.Add(enemy);
             num++;
         }
-        //Player.instance.transform.position = transform.Find("³öÏÖµã").position;
+
     }
 
     // Update is called once per frame

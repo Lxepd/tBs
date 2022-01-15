@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
 using UnityEngine.Tilemaps;
 using System;
 
@@ -30,10 +29,11 @@ public class TpPoint : MonoBehaviour
             tpTimer.Start();
             Debug.Log("玩家在传送点，准备传送");
         }
-        else if(col==null)
+        else if(col==null && !tpTimer.isStop)
         {
             isStart = false;
             tpTimer.Reset(5f);
+            Debug.Log("取消传送");
         }
 
         tp = (LevelMgr.GetInstance().level < 15) ? TpType.下一关 : TpType.回去;
@@ -48,7 +48,7 @@ public class TpPoint : MonoBehaviour
                     {
                         ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/RoomPrefabs/准备房", (z) =>
                         {
-                            Player.instance.transform.position = GameObject.Find("返回点").transform.position;
+                            col.transform.position = GameObject.Find("返回点").transform.position;
                         });
                     });
                     break;
@@ -59,6 +59,7 @@ public class TpPoint : MonoBehaviour
                      {
                          ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/Room", (x) =>
                          {
+                             col.transform.position = x.GetComponent<TileSet>().appearPoint.position;
                          });
                      });
                     break;

@@ -15,7 +15,6 @@ public class SelectPanel : UIBase
         // 注册角色ID消息
         EventCenter.GetInstance().AddEventListener<int>("选择角色", (x) =>
         {
-            Debug.Log(x);
             playerID = x;
         });
     }
@@ -71,6 +70,11 @@ public class SelectPanel : UIBase
         // 异步生成角色  
         ResMgr.GetInstance().LoadAsync<GameObject>(GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, playerID).path, (x) =>
           {
+              Player p = (x.GetComponent<Player>() == null) ? x.AddComponent<Player>() : x.GetComponent<Player>();
+              p.data = GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, playerID);
+
+              ResMgr.GetInstance().Load<GameObject>("Prefabs/CM vcam1").transform.SetParent(x.transform);
+
               // 初始化位置
               ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/RoomPrefabs/准备房", (z) =>
               {
