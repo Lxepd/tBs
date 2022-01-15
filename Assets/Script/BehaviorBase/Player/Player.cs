@@ -20,6 +20,7 @@ public class Player : BehaviorBase
     }
     private void Update()
     {
+        EventCenter.GetInstance().EventTrigger<Vector2>("PlayerPos", transform.position);
         rg.velocity = dir * data.speed;
 
         if (rg.velocity ==Vector2.zero)

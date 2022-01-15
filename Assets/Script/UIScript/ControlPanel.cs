@@ -154,6 +154,7 @@ public class ControlPanel : UIBase
     /// </summary>
     private void Shoot()
     {
+        Debug.Log("shoot");
         // 如果弹匣里没有，则进行基础攻击
         if (strengthenQueue.Count == 0)
         {
