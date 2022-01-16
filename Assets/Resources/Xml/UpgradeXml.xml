@@ -1,0 +1,12 @@
+<Data>
+	<upgrade id="30001">
+		<beforeUpgrade>20001</beforeUpgrade>
+		<afterUpgrade>20002</afterUpgrade>
+		<cost>10</cost>
+	</upgrade>
+	<upgrade id="30002">
+		<beforeUpgrade>20001</beforeUpgrade>
+		<afterUpgrade>20002</afterUpgrade>
+		<cost>20</cost>
+	</upgrade>
+</Data>

@@ -16,7 +16,7 @@
 		<tips>小小小小小小恐龙</tips>
 		<maxHp>500</maxHp>
 		<speed>10</speed>
-		<initialWeaponId>20002</initialWeaponId>
+		<initialWeaponId>20001</initialWeaponId>
 		<checkLen>1.5</checkLen>
 	</it>
 </Data>

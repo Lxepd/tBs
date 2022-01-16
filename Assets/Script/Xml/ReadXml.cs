@@ -237,5 +237,27 @@ public class ReadXml : InstanceNoMono<ReadXml>
             Datas.GetInstance().WeaponDataDic.Add(newData.id, newData);
         }
     }
+    public void LoadUpgradeXml(string path)
+    {
+        if (Datas.GetInstance().UpgradeDataDic.Count != 0)
+            return;
+
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.Load(Application.persistentDataPath + path);
+
+        XmlNodeList xmlList = xmlDoc.SelectSingleNode("Data").ChildNodes;
+
+        foreach (XmlNode item in xmlList)
+        {
+            UpgradeData newData = new UpgradeData();
+            newData.id = int.Parse(item.Attributes["id"].InnerText);
+
+            newData.beforeId = int.Parse(item.SelectSingleNode("beforeUpgrade").InnerText);
+            newData.afterId = int.Parse(item.SelectSingleNode("afterUpgrade").InnerText);
+            newData.cost = int.Parse(item.SelectSingleNode("cost").InnerText);
+
+            Datas.GetInstance().UpgradeDataDic.Add(newData.id, newData);
+        }
+    }
     #endregion
 }

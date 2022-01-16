@@ -32,10 +32,12 @@ public class SelectPanel : UIBase
                 // 排除没选择情况
                 if (playerID == 0)
                     return;
-                // 展开<加载>界面
-                UIMgr.GetInstance().ShowPanel<LoadingPanel>("LoadingPanel", E_UI_Layer.Load);
                 // 隐藏<选择角色>界面
                 UIMgr.GetInstance().HidePanel("SelectPanel");
+                // 展开<加载>界面
+                UIMgr.GetInstance().ShowPanel<LoadingPanel>("LoadingPanel", E_UI_Layer.Load);
+                // 展开<装备升级>界面
+                UIMgr.GetInstance().ShowPanel<UpgradePanel>("UpgradePanel", E_UI_Layer.Above);
                 // 展开<背包>界面
                 UIMgr.GetInstance().ShowPanel<BagPanel>("BagPanel", E_UI_Layer.Above);
                 // 展开<列表>界面
@@ -45,7 +47,8 @@ public class SelectPanel : UIBase
                 {
                     // 隐藏<主界面>
                     UIMgr.GetInstance().HidePanel("MainPanel");
-
+                    // 隐藏<装备升级>界面
+                    UIMgr.GetInstance().HidePanel("UpgradePanel");
                     // 隐藏<背包>界面
                     UIMgr.GetInstance().HidePanel("BagPanel");
                     // 隐藏<列表>界面

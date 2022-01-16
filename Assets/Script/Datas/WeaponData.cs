@@ -18,3 +18,10 @@ public class WeaponData
     public float shootLen; // 枪支射击距离
     public float shootNextTime; // 射击间隔
 }
+public class UpgradeData
+{
+    public int id; // id
+    public int beforeId; // 升级前
+    public int afterId; // 升级后
+    public int cost; // 花费
+}

@@ -27,8 +27,6 @@ public class NpcEditor : Editor
         items = npcData.FindProperty("items");
         // 装备商人
         equipmentNpc = npcData.FindProperty("equipmentNpc");
-        // 工匠
-        craftsMan = npcData.FindProperty("craftsMan");
     }
 
     public override void OnInspectorGUI()
@@ -49,7 +47,6 @@ public class NpcEditor : Editor
                 EditorGUILayout.PropertyField(equipmentNpc);
                 break;
             case 3:
-                EditorGUILayout.PropertyField(craftsMan);
                 break;
         }
 

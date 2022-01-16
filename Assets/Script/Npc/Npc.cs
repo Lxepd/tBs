@@ -16,7 +16,6 @@ public class Npc : MonoBehaviour
     public List<道具商人> itemsCopy = new List<道具商人>();
 
     public List<装备商人> equipmentNpc = new List<装备商人>();
-    public List<工匠> craftsMan = new List<工匠>();
 
     private Timer reInit;
     [Header("商店刷新时间，最短30s")]
@@ -55,24 +54,23 @@ public class Npc : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (playerHere = Physics2D.OverlapCircle(transform.position, checkPlayerHereRadius, LayerMask.GetMask("玩家")))
+        switch (type)
         {
-            EventCenter.GetInstance().EventTrigger<float>("刷新时间", reInit.nowTime);
-        }
-        
-        if (reInit.isTimeUp)
-        {
-            switch (type)
-            {
-                case NpcType.道具商人:
+            case NpcType.道具商人:
+                if (playerHere = Physics2D.OverlapCircle(transform.position, checkPlayerHereRadius, LayerMask.GetMask("玩家")))
+                {
+                    EventCenter.GetInstance().EventTrigger<float>("刷新时间", reInit.nowTime);
+                }
+                if (reInit.isTimeUp)
+                {
                     itemsCopy.Clear();
                     itemsCopy = GameTool.Clone<道具商人>(items);
-                    break;
-                case NpcType.装备商人:
-                    break;
-                case NpcType.工匠:
-                    break;
-            }
+                }
+                break;
+            case NpcType.装备商人:
+                break;
+            case NpcType.工匠:
+                break;
         }
     }
     // 初始化商店
@@ -86,6 +84,7 @@ public class Npc : MonoBehaviour
             case NpcType.装备商人:
                 break;
             case NpcType.工匠:
+                UIMgr.GetInstance().ShowPanel<UpgradePanel>("UpgradePanel", E_UI_Layer.Above);
                 break;
         }
     }
