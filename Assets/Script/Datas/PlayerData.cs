@@ -15,7 +15,6 @@ public class PlayerData
     public string tips; // 角色说明
     public int MaxHp; // 最大生命值
     public float speed; // 角色速度
-    public int bulletID; // 初始子弹
+    public int initialWeaponId;
     public float checkLen; // 道具检测范围
-    public float shootLen; // 允许射击范围
 }

@@ -116,10 +116,10 @@ public class ControlPanel : UIBase
         switch (btnName)
         {
             case "TakeBto":
-                TakeThing();
+                //TakeThing();
                 break;
-            case "ThrowBto":
-                SwitchThrowKeyAct();
+            case "ShootBto":
+                //SwitchThrowKeyAct();
                 break;
             case "BagBto":
                 OpenBag();
@@ -195,7 +195,6 @@ public class ControlPanel : UIBase
             if (nearEnemy != null)
             {
                 enemyDir = (nearEnemy.transform.position - playerPos).normalized;
-                EventCenter.GetInstance().EventTrigger<Vector2>("Joystick", Vector2.zero);
 
                 // …Ë÷√ÀŸ∂»
                 rg.velocity = speed * enemyDir;

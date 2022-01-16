@@ -6,9 +6,8 @@
 		<tips>浑身发着光。。</tips>
 		<maxHp>500</maxHp>
 		<speed>10</speed>
-		<bulletID>10001</bulletID>
+		<initialWeaponId>20001</initialWeaponId>
 		<checkLen>1.34</checkLen>
-		<shootLen>10</shootLen>
     </it>
 	<it id="14002">
 		<name>小恐龙</name>
@@ -17,8 +16,7 @@
 		<tips>小小小小小小恐龙</tips>
 		<maxHp>500</maxHp>
 		<speed>10</speed>
-		<bulletID>10001</bulletID>
+		<initialWeaponId>20002</initialWeaponId>
 		<checkLen>1.5</checkLen>
-		<shootLen>10</shootLen>
 	</it>
 </Data>

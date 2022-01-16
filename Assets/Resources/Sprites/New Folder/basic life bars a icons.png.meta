@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -157,6 +157,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: basic life bars a icons _0
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 157
+        width: 23
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14f375c6b433422419d8a3c073c8412a
+      internalID: -282221068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic life bars a icons _3
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 142
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 564d654ede1ac4b4f97537d02a018c43
+      internalID: 1911842885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -168,6 +210,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      basic life bars a icons _3: 1911842885
       basic life bars a icons _0: -282221068
       basic life bars a icons _2: -1161489403
       basic life bars a icons _1: -803140382

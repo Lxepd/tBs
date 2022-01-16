@@ -154,9 +154,8 @@ public class ReadXml : InstanceNoMono<ReadXml>
             newData.tips = item.SelectSingleNode("tips").InnerText;
             newData.MaxHp = int.Parse(item.SelectSingleNode("maxHp").InnerText);
             newData.speed = float.Parse(item.SelectSingleNode("speed").InnerText);
-            newData.bulletID = int.Parse(item.SelectSingleNode("bulletID").InnerText);
+            newData.initialWeaponId = int.Parse(item.SelectSingleNode("initialWeaponId").InnerText);
             newData.checkLen = float.Parse(item.SelectSingleNode("checkLen").InnerText);
-            newData.shootLen = float.Parse(item.SelectSingleNode("shootLen").InnerText);
 
             Datas.GetInstance().PlayerDataDic.Add(newData.id, newData);
         }
@@ -210,6 +209,32 @@ public class ReadXml : InstanceNoMono<ReadXml>
             newData.reward = int.Parse(item.SelectSingleNode("reward").InnerText);
 
             Datas.GetInstance().RewardDataDic.Add(newData.id, newData);
+        }
+    }
+    public void LoadWeaponXml(string path)
+    {
+        if (Datas.GetInstance().WeaponDataDic.Count != 0)
+            return;
+
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.Load(Application.persistentDataPath + path);
+
+        XmlNodeList xmlList = xmlDoc.SelectSingleNode("Data").ChildNodes;
+
+        foreach (XmlNode item in xmlList)
+        {
+            WeaponData newData = new WeaponData();
+            newData.id = int.Parse(item.Attributes["id"].InnerText);
+
+            newData.spritePath = item.SelectSingleNode("spritePath").InnerText;
+            newData.bulletPath = item.SelectSingleNode("bulletPath").InnerText;
+            newData.type = (Weapon)int.Parse(item.SelectSingleNode("type").InnerText);
+            newData.atk = float.Parse(item.SelectSingleNode("atk").InnerText);
+            newData.bulletSpeed = float.Parse(item.SelectSingleNode("bulletSpeed").InnerText);
+            newData.shootLen = float.Parse(item.SelectSingleNode("shootLen").InnerText);
+            newData.shootNextTime = float.Parse(item.SelectSingleNode("shootNextTime").InnerText);
+
+            Datas.GetInstance().WeaponDataDic.Add(newData.id, newData);
         }
     }
     #endregion

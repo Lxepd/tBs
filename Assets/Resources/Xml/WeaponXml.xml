@@ -1,0 +1,20 @@
+<Data>
+    <it id="20001">
+		<spritePath>Sprites/Guns/pistol7</spritePath>
+		<bulletPath>Prefabs/Bullet/手枪子弹</bulletPath>
+		<type>0</type>
+		<atk>2</atk>
+		<bulletSpeed>20</bulletSpeed>
+		<shootLen>5</shootLen>
+		<shootNextTime>.1</shootNextTime>
+    </it>
+	<it id="20002">
+		<spritePath>Sprites/Guns/sniperrifle4</spritePath>
+		<bulletPath>Prefabs/Bullet/狙击子弹</bulletPath>
+		<type>1</type>
+		<atk>50</atk>
+		<bulletSpeed>50</bulletSpeed>
+		<shootLen>20</shootLen>
+		<shootNextTime>.7</shootNextTime>
+	</it>
+</Data>
