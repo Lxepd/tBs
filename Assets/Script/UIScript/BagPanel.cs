@@ -22,10 +22,9 @@ public class BagPanel : UIBase
                 PoolMgr.GetInstance().PushObj(bag.GetChild(i).name, bag.GetChild(i).gameObject);
             }
         });
-        EventCenter.GetInstance().AddEventListener<int>("获得奖励", (x) =>
+        EventCenter.GetInstance().AddEventListener<int>("当前金币", (x) =>
         {
-            int num = int.Parse(GetControl<Text>("CoinNum").text);
-            GetControl<Text>("CoinNum").text = (num + x).ToString();
+            GetControl<Text>("CoinNum").text = x.ToString();
         });
     }
     protected override void OnClick(string btnName)

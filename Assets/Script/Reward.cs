@@ -14,12 +14,13 @@ public class Reward : MonoBehaviour
     private RewardData data;
 
     private Vector2 startPos;
+    private float checkLen = 5f;
+
     private void Start()
     {
         startPos = transform.position;
         data = GameTool.GetDicInfo(Datas.GetInstance().RewardDataDic, id);
     }
-
     private void FixedUpdate()
     {
         currentTime += .1f;
@@ -29,6 +30,12 @@ public class Reward : MonoBehaviour
         {
             dir *= -1;
             currentTime = 0;
+        }
+
+        Collider2D player = Physics2D.OverlapCircle(transform.position, checkLen,LayerMask.GetMask("玩家"));
+        if(player!=null)
+        {
+            transform.position = Vector3.Lerp(transform.position, player.transform.position, Vector2.Distance(transform.position, player.transform.position) / 10f * Time.fixedDeltaTime);
         }
     }
 
@@ -42,7 +49,7 @@ public class Reward : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            EventCenter.GetInstance().EventTrigger<int>("获得奖励", data.reward);
+            EventCenter.GetInstance().EventTrigger<int>("获得金币", data.reward);
             PoolMgr.GetInstance().PushObj(data.path, gameObject);
         }
     }

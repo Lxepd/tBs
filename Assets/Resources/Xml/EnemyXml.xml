@@ -4,6 +4,7 @@
 		<type>0</type>
 		<path>Prefabs/Enemy/FireWorm</path>
 		<tips>一种会发射Fire波的蛇类怪物</tips>
+		<rewardId>16002</rewardId>
 		<hp>100</hp>
 		<speed>3</speed>
 		<atk>0</atk>
@@ -16,6 +17,7 @@
 		<type>1</type>
 		<path>Prefabs/Enemy/Bringer-of-Death</path>
 		<tips>令人发触的怪物，总能神不知鬼不觉地给人致命一击</tips>
+		<rewardId>16004</rewardId>
 		<hp>100</hp>
 		<speed>5</speed>
 		<atk>10</atk>

@@ -34,7 +34,7 @@ public class JoyStickPanel : UIBase
     /// <param name="data">屏幕点击位置</param>
     private void PointerDown(BaseEventData data)
     {
-        Debug.Log("按下");
+        //Debug.Log("按下");
 
         // 显示
         imgBk.gameObject.SetActive(true);
@@ -54,7 +54,7 @@ public class JoyStickPanel : UIBase
     /// <param name="data">屏幕点击位置</param>
     private void PointerUp(BaseEventData data)
     {
-        Debug.Log("抬起");
+        //Debug.Log("抬起");
         imgControl.transform.localPosition = Vector2.zero;
         // 抬起隐藏
         imgBk.gameObject.SetActive(false);
@@ -69,7 +69,7 @@ public class JoyStickPanel : UIBase
     /// <param name="data">屏幕点击位置</param>
     private void Drag(BaseEventData data)
     {
-        Debug.Log("拖拽");
+        //Debug.Log("拖拽");
 
         Vector2 localPos;
         // 屏幕转换UI坐标

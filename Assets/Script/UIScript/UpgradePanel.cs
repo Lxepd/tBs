@@ -11,11 +11,18 @@ public class UpgradePanel : UIBase
     int afterId;
     string compareImgPath = "Sprites/UIsprite/箭头/";
 
+    private int coinNum;
+    private int cost;
+
     void Start()
     {
         parent = GameTool.FindTheChild(gameObject, "Content");
 
         EventCenter.GetInstance().AddEventListener<WeaponData>("枪支数据", (x) => { weaponData = x; });
+        EventCenter.GetInstance().AddEventListener<int>("当前金币", (x) =>
+        {
+            coinNum = x;
+        });
     }
     private void Update()
     {
@@ -26,7 +33,14 @@ public class UpgradePanel : UIBase
         switch (btnName)
         {
             case "UpgradeBto":
+                if (coinNum < cost)
+                {
+                    Debug.Log("钱不够");
+                    return;
+                }
+
                 EventCenter.GetInstance().EventTrigger<int>("枪支更新", afterId);
+                EventCenter.GetInstance().EventTrigger<int>("获得金币", cost - coinNum);
                 break;
             case "CloseBto":
                 UIMgr.GetInstance().HidePanel("UpgradePanel");
@@ -56,6 +70,7 @@ public class UpgradePanel : UIBase
                 {
                     x.transform.SetParent(parent);
                     x.transform.localScale = Vector3.one;
+                    x.GetComponent<Toggle>().group = parent.GetComponent<ToggleGroup>();
                     ChangeUpgradeGo(x, item.Value);
                 });
             }
@@ -77,7 +92,8 @@ public class UpgradePanel : UIBase
         go.GetComponent<Toggle>().onValueChanged.RemoveAllListeners();
         go.GetComponent<Toggle>().onValueChanged.AddListener((x) =>
         {
-            Debug.Log(data.afterId);
+            Debug.Log(data.id);
+            cost = data.cost;
             afterId = data.afterId;
         });
 

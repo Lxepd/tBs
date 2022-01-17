@@ -31,7 +31,7 @@ public class TileSet : MonoBehaviour
         mapArray = new TileType[row, col];
         SetMap();
 
-        EventCenter.GetInstance().AddEventListener<GameObject>("怪物死亡", (x) =>
+        EventCenter.GetInstance().AddEventListener<GameObject>("怪物表减少", (x) =>
          {
              monsterList.Remove(x);
          });

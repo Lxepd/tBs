@@ -17,6 +17,7 @@ public class EnemyData
     public EnemyType type;
     public string path; // 预制体位置
     public string tips; // 说明
+    public int rewardId; // 奖励Id
     public float hp; // 血量
     public float speed;
     public float atk; // 伤害

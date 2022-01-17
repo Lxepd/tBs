@@ -107,7 +107,6 @@ public class StatePanel : UIBase
     {
         // 获取最大血量
         currentHp = data.MaxHp;
-        Debug.Log(currentHp);
         // 初始化文本
         GetControl<Text>("CurrentHp").text = data.MaxHp.ToString();
         GetControl<Text>("MaxHp").text = data.MaxHp.ToString();

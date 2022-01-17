@@ -11,50 +11,24 @@ public enum CtrlType
 }
 public class ControlPanel : UIBase
 {
-    // 强化物列表
-    private Collider2D[] strengthen;
-    // 强化物数量
-    private Text numText;
-    // 强化物弹匣
-    // 将拿取的 强化物放入 队列
-    private Queue<BulletBag> strengthenQueue;
-    // 拿取强化物的最大数量
-    private int maxThingNum = 10;
-    // 当前玩家位置
-    private Vector3 playerPos;
+    // 玩家位置
+    private Vector3 PlayerPos;
     // 最近的敌人
     private GameObject nearEnemy;
-    // 敌人方向向量
-    private Vector3 enemyDir;
-    // 计时器
-    private Timer cdTimer;
-    // 投掷速度
-    public float throwSpeed = .2f;
-    // 改变前的投掷速度
-    private float lastThrow;
+    private Transform gun;
 
     CtrlType ctrlType;
     Npc npcComponent;
-    protected override void Awake()
-    {
-        base.Awake();
-        // 初始化队列
-        if (strengthenQueue == null)
-        {
-            strengthenQueue = new Queue<BulletBag>();
-        }
+    WeaponData weaponData;
+    Timer shootTimer, ammunitionChangeTimer;
 
-    }
-    // Start is called before the first frame update
-    void Start()
+    private float currentBulletNum;
+
+    private void Start()
     {
-        // 获取text组件
-        numText = GetControl<Text>("ThrowNum");
-        // 从消息中心拿取消息
-        EventCenter.GetInstance().AddEventListener<Collider2D[]>("强化物", (x) => { strengthen = x; });
         EventCenter.GetInstance().AddEventListener<Vector2>("PlayerPos", (x) =>
         {
-            playerPos = x + new Vector2(0, .5f);
+            PlayerPos = x;
         });
         EventCenter.GetInstance().AddEventListener<Collider2D>("距离最近的敌人", (x) =>
         {
@@ -65,6 +39,17 @@ public class ControlPanel : UIBase
             }
 
             nearEnemy = x.gameObject;
+        });
+        EventCenter.GetInstance().AddEventListener<Transform>("是否有枪支", (x) =>
+        {
+            gun = x;
+        });
+        EventCenter.GetInstance().AddEventListener<WeaponData>("枪支数据", (x) =>
+        {
+            weaponData = x;
+            currentBulletNum = weaponData.bulletNum;
+            ammunitionChangeTimer = new Timer(weaponData.ammunitionChangeTime, false, false);
+            shootTimer = new Timer(x.shootNextTime, true);
         });
         EventCenter.GetInstance().AddEventListener<Collider2D>("附近的Npc", (x) =>
         {
@@ -79,97 +64,70 @@ public class ControlPanel : UIBase
             {
                 ctrlType = CtrlType.射击;
             }
-
         });
-        // 计时器
-        cdTimer = new Timer(throwSpeed, true);
-        lastThrow = throwSpeed;
+        EventCenter.GetInstance().AddEventListener<bool>("射击长按", (x) =>
+        {
+            if (x)
+            {
+                SwitchBtoAct();
+            }
+        });
 
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        // 根据队列数量修改text的文本
-        if (strengthenQueue.Count < 1)
+        if (weaponData == null)
+            return;
+
+        if (currentBulletNum > 0)
         {
-            numText.text = "∞";
+            GetControl<Image>("子弹数量").color = new Color(255 / 255f, 255 / 255f, 255 / 255f, 255 / 255f);
+            GetControl<Image>("子弹数量").fillAmount = currentBulletNum / weaponData.bulletNum;
         }
         else
         {
-            numText.text = strengthenQueue.Count + "/" + maxThingNum;
+            GetControl<Image>("子弹数量").color = new Color(255 / 255f, 255 / 255f, 255 / 255f, 100 / 255f);
+            GetControl<Image>("子弹数量").fillAmount = Mathf.Lerp(GetControl<Image>("子弹数量").fillAmount, weaponData.ammunitionChangeTime - ammunitionChangeTimer.nowTime, Time.deltaTime * 10f);
         }
-        // 投掷速度修改时
-        if (lastThrow != throwSpeed)
+
+        if(GetControl<Image>("子弹数量").fillAmount == 1)
         {
-            // 重置计时器
-            cdTimer.Reset(throwSpeed, false);
-            lastThrow = throwSpeed;
+            currentBulletNum = weaponData.bulletNum;
         }
     }
-    /// <summary>
-    /// 按钮点击事件注册
-    /// </summary>
-    /// <param name="btnName">按钮名</param>
     protected override void OnClick(string btnName)
     {
         switch (btnName)
         {
             case "TakeBto":
-                //TakeThing();
-                break;
-            case "ShootBto":
-                //SwitchThrowKeyAct();
                 break;
             case "BagBto":
                 OpenBag();
                 break;
         }
     }
-    /// <summary>
-    /// 拿取
-    /// </summary>
-    private void TakeThing()
-    {
-        if (strengthen.Length < 1)
-        {
-            Debug.Log("拿了个空气！！");
-            return;
-        }
-
-        Debug.Log("拿取强化物！！");
-        // 一次只拿取一个，拿完跳出
-        if (strengthenQueue.Count < maxThingNum)
-        {
-            BulletBag bb = strengthen[0].GetComponent<BulletBag>();
-            bb.InitPos();
-            strengthenQueue.Enqueue(bb);
-            PoolMgr.GetInstance().PushObj(strengthen[0].name, strengthen[0].gameObject);
-            Debug.Log(strengthenQueue.Count);
-        }
-
-    }
-    /// <summary>
-    /// 射击
-    /// </summary>
     private void Shoot()
     {
-        Debug.Log("shoot");
-        // 如果弹匣里没有，则进行基础攻击
-        if (strengthenQueue.Count == 0)
-        {
-            // 基础攻击
-            ThrowItemData data = GameTool.GetDicInfo(Datas.GetInstance().ThrowItemDataDic, 10001);
-            ShootBase(data.path, data.speed);
-        }
-        // 否则，使用弹匣中第一个强化物
-        else
-        {
-            BulletBag first = strengthenQueue.Dequeue();
+        PoolMgr.GetInstance().GetObj(weaponData.bulletPath, (x) =>
+         {
+             x.transform.position = gun.position;
+             Rigidbody2D rg = x.GetComponent<Rigidbody2D>();
 
-            Debug.Log("强化射击！！        " + first);
-            ThrowItemData tid = GameTool.GetDicInfo(Datas.GetInstance().ThrowItemDataDic, first.id);
-            ShootBase(tid.path, tid.speed);
+             Vector2 enemyDir = (nearEnemy.transform.position - PlayerPos).normalized;
+             // 设置速度
+             rg.velocity = weaponData.bulletSpeed * enemyDir;
+             x.transform.rotation = Quaternion.FromToRotation(Vector3.right,enemyDir);
+
+             ThrowItem ti = x.GetComponent<ThrowItem>();
+             ti.ws = WhoShoot.Player;
+             ti.hurt = weaponData.atk;
+         });
+
+        currentBulletNum = (currentBulletNum <= 0) ? 0 : currentBulletNum - 1;
+
+        if(currentBulletNum == 0)
+        {
+            ammunitionChangeTimer.Start();
         }
     }
     /// <summary>
@@ -180,50 +138,18 @@ public class ControlPanel : UIBase
         Debug.Log("打开背包！！");
         UIMgr.GetInstance().ShowPanel<BagPanel>("BagPanel", E_UI_Layer.Above);
     }
-    /// <summary>
-    /// 射击
-    /// </summary>
-    private void ShootBase(string name, float speed)
-    {
-        PoolMgr.GetInstance().GetObj(name, (x) =>
-        {
-            x.transform.position = playerPos;
-
-            Rigidbody2D rg = x.GetComponent<Rigidbody2D>();
-
-            // 有敌人就朝敌人发射
-            if (nearEnemy != null)
-            {
-                enemyDir = (nearEnemy.transform.position - playerPos).normalized;
-
-                // 设置速度
-                rg.velocity = speed * enemyDir;
-                // 设置朝向
-                x.transform.rotation = Quaternion.FromToRotation(Vector3.right, enemyDir);
-                //MusicMgr.GetInstance().PlaySound("attack3", false);
-            }
-
-            x.GetComponent<ThrowItem>().ws = WhoShoot.Player;
-        });
-    }
-
-    private void SwitchThrowKeyAct()
+    private void SwitchBtoAct()
     {
         switch (ctrlType)
         {
             case CtrlType.射击:
-                if (nearEnemy == null || !cdTimer.isTimeUp)
-                {
+                if (nearEnemy == null || gun.GetComponent<SpriteRenderer>().sprite == null || !shootTimer.isTimeUp || currentBulletNum == 0)
                     return;
-                }
+
                 Shoot();
                 break;
             case CtrlType.打开商店:
                 npcComponent.InitShop();
-                break;
-            case CtrlType.传送:
-                break;
-            default:
                 break;
         }
     }

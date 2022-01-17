@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Player : BehaviorBase
 {
-    private Vector2 dir;
+    protected Vector2 dir;
     [SerializeField] public PlayerData playerData;
     [SerializeField] public WeaponData weaponData;
     Transform gun;
+
+    private int coinNum;
+    protected Collider2D nearEnemy;
+
     protected override void Start()
     {
         base.Start();
@@ -25,14 +29,18 @@ public class Player : BehaviorBase
         EventCenter.GetInstance().AddEventListener<Vector2>("Joystick", (x) => 
         {
             dir = x;
-            Rotate(x);
         });
         EventCenter.GetInstance().EventTrigger<PlayerData>("角色初始", playerData);
+        EventCenter.GetInstance().AddEventListener<int>("获得金币", (x) =>
+        {
+            coinNum += x;
+        });
     }
-    private void Update()
+    protected virtual void Update()
     {
         EventCenter.GetInstance().EventTrigger<Transform>("是否有枪支", gun);
         EventCenter.GetInstance().EventTrigger<Vector2>("PlayerPos", transform.position);
+        EventCenter.GetInstance().EventTrigger<int>("当前金币", coinNum);
         rg.velocity = dir * playerData.speed;
 
         if (rg.velocity ==Vector2.zero)
@@ -44,7 +52,7 @@ public class Player : BehaviorBase
             anim.Play("Run");
         }
     }
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         Checkstrengthen();
         FindProximityOfEnemy();
@@ -72,13 +80,13 @@ public class Player : BehaviorBase
         if (cols.Length == 0)
         {
             // 消息中心存储 <距离最近的敌人> 消息
-            EventCenter.GetInstance().EventTrigger<Collider2D>("距离最近的敌人", null);
+            EventCenter.GetInstance().EventTrigger<Collider2D>("距离最近的敌人", (nearEnemy = null));
             return;
         }
         // 进行排序
         GameTool.QuickSortArray(transform.position, cols, 0, cols.Length - 1);
         // 消息中心存储 <距离最近的敌人> 消息
-        EventCenter.GetInstance().EventTrigger<Collider2D>("距离最近的敌人", cols[0]);
+        EventCenter.GetInstance().EventTrigger<Collider2D>("距离最近的敌人", (nearEnemy = cols[0]));
         
         RoleArms(cols[0].transform);
     }

@@ -25,6 +25,7 @@ public class FireWorm : EnemyBase
     public bool isDead;
 
     public FireWormState fws = FireWormState.Idle;
+    public int GetId { get => id; }
 
     protected override void Start()
     {
@@ -53,9 +54,6 @@ public class FireWorm : EnemyBase
         HitTimer = new Timer(HitTimertime, false, false);
         DeadTimertime = 3f * GameTool.GetAnimatorLength(anim, "Dead");
         DeadTimer = new Timer(DeadTimertime, false, false);
-
-        
-
     }
     protected override void Update()
     {
@@ -100,14 +98,6 @@ public class FireWorm : EnemyBase
     {
         base.CheckState();
 
-        if (player == null)
-        {
-            fws = FireWormState.Idle;
-            return;
-        }
-        // 朝向玩家
-        Rotate(player.transform.position); 
-
         if (currentHp <= 0)
         {
             isDead = true;
@@ -116,6 +106,14 @@ public class FireWorm : EnemyBase
             fws = FireWormState.Dead;
             return;
         }
+
+        if (player == null)
+        {
+            fws = FireWormState.Idle;
+            return;
+        }
+        // 朝向玩家
+        Rotate(player.transform.position); 
 
         if (isHit)
         {
@@ -285,7 +283,7 @@ public class FireWormHit : StateBaseTemplate<FireWorm>
 }
 public class FireWormDead : StateBaseTemplate<FireWorm>
 {
-    bool isDisappear;
+    bool isDisappear, isDropReward;
     Timer disappearTimer;
 
     public FireWormDead(int id, FireWorm ec) : base(id, ec)
@@ -302,7 +300,15 @@ public class FireWormDead : StateBaseTemplate<FireWorm>
             owner.Animator.Play("Dead");
             owner.Rg.velocity = Vector2.zero;
 
-            EventCenter.GetInstance().EventTrigger<GameObject>("怪物死亡",owner.gameObject);
+            EventCenter.GetInstance().EventTrigger<GameObject>("怪物表减少", owner.gameObject);
+        }
+        if(!isDropReward)
+        {
+            isDropReward = true;
+            PoolMgr.GetInstance().GetObj(GameTool.GetDicInfo(Datas.GetInstance().RewardDataDic, Datas.GetInstance().EnemyDataDic[owner.GetId].rewardId).path, (x) =>
+            {
+                x.transform.position = owner.transform.position;
+            });
         }
     }
     public override void OnStay(params object[] args)
