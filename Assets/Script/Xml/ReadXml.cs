@@ -229,6 +229,8 @@ public class ReadXml : InstanceNoMono<ReadXml>
             newData.spritePath = item.SelectSingleNode("spritePath").InnerText;
             newData.bulletPath = item.SelectSingleNode("bulletPath").InnerText;
             newData.type = (Weapon)int.Parse(item.SelectSingleNode("type").InnerText);
+            newData.bulletNum = int.Parse(item.SelectSingleNode("bulletNum").InnerText);
+            newData.ammunitionChangeTime = float.Parse(item.SelectSingleNode("ammunitionChangeTime").InnerText);
             newData.atk = float.Parse(item.SelectSingleNode("atk").InnerText);
             newData.bulletSpeed = float.Parse(item.SelectSingleNode("bulletSpeed").InnerText);
             newData.shootLen = float.Parse(item.SelectSingleNode("shootLen").InnerText);

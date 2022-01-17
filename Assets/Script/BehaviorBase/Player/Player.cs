@@ -15,6 +15,12 @@ public class Player : BehaviorBase
         gun = GameTool.FindTheChild(gameObject, "GunSprite");
         gun.GetComponent<SpriteRenderer>().sprite = ResMgr.GetInstance().Load<Sprite>(weaponData.spritePath);
         EventCenter.GetInstance().EventTrigger<WeaponData>("枪支数据", weaponData);
+        EventCenter.GetInstance().AddEventListener<int>("枪支更新", (x) =>
+         {
+             weaponData = GameTool.GetDicInfo(Datas.GetInstance().WeaponDataDic, x);
+             gun.GetComponent<SpriteRenderer>().sprite = ResMgr.GetInstance().Load<Sprite>(weaponData.spritePath);
+             EventCenter.GetInstance().EventTrigger<WeaponData>("枪支数据", weaponData);
+         });
 
         EventCenter.GetInstance().AddEventListener<Vector2>("Joystick", (x) => 
         {

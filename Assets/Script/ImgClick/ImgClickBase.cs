@@ -2,10 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ImgClickBase : MonoBehaviour
+public class ImgClickBase : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 {
     // ×é¼þ
     protected BoxCollider2D boxCol;
@@ -40,5 +40,15 @@ public class ImgClickBase : MonoBehaviour
         {
             act();
         }
+    }
+
+    public virtual void OnPointerDown(PointerEventData eventData)
+    {
+
+    }
+
+    public virtual void OnPointerUp(PointerEventData eventData)
+    {
+
     }
 }

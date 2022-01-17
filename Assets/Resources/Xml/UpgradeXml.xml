@@ -6,7 +6,22 @@
 	</upgrade>
 	<upgrade id="30002">
 		<beforeUpgrade>20001</beforeUpgrade>
-		<afterUpgrade>20002</afterUpgrade>
-		<cost>20</cost>
+		<afterUpgrade>20003</afterUpgrade>
+		<cost>30</cost>
+	</upgrade>
+	<upgrade id="30003">
+		<beforeUpgrade>20003</beforeUpgrade>
+		<afterUpgrade>20004</afterUpgrade>
+		<cost>35</cost>
+	</upgrade>
+	<upgrade id="30004">
+		<beforeUpgrade>20003</beforeUpgrade>
+		<afterUpgrade>20005</afterUpgrade>
+		<cost>35</cost>
+	</upgrade>
+	<upgrade id="30005">
+		<beforeUpgrade>20003</beforeUpgrade>
+		<afterUpgrade>20006</afterUpgrade>
+		<cost>35</cost>
 	</upgrade>
 </Data>

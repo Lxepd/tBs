@@ -14,7 +14,9 @@ public class ControlPane : UIBase
     CtrlType ctrlType;
     Npc npcComponent;
     WeaponData weaponData;
-    Timer shootTimer;
+    Timer shootTimer, ammunitionChangeTimer;
+
+    private float currentBulletNum;
 
     private void Start()
     {
@@ -39,6 +41,8 @@ public class ControlPane : UIBase
         EventCenter.GetInstance().AddEventListener<WeaponData>("枪支数据", (x) =>
         {
             weaponData = x;
+            currentBulletNum = weaponData.bulletNum;
+            ammunitionChangeTimer = new Timer(weaponData.ammunitionChangeTime, false, false);
             shootTimer = new Timer(x.shootNextTime, true);
         });
         EventCenter.GetInstance().AddEventListener<Collider2D>("附近的Npc", (x) =>
@@ -55,19 +59,38 @@ public class ControlPane : UIBase
                 ctrlType = CtrlType.射击;
             }
         });
+        EventCenter.GetInstance().AddEventListener<bool>("射击长按", (x) =>
+        {
+            if (x)
+            {
+                SwitchBtoAct();
+            }
+        });
+
     }
     private void Update()
     {
-        
+        if (currentBulletNum > 0)
+        {
+            GetControl<Image>("子弹数量").color = new Color(255 / 255f, 255 / 255f, 255 / 255f, 255 / 255f);
+            GetControl<Image>("子弹数量").fillAmount = currentBulletNum / weaponData.bulletNum;
+        }
+        else
+        {
+            GetControl<Image>("子弹数量").color = new Color(255 / 255f, 255 / 255f, 255 / 255f, 100 / 255f);
+            GetControl<Image>("子弹数量").fillAmount = Mathf.Lerp(GetControl<Image>("子弹数量").fillAmount, weaponData.ammunitionChangeTime - ammunitionChangeTimer.nowTime, Time.deltaTime * 10f);
+        }
+
+        if(GetControl<Image>("子弹数量").fillAmount == 1)
+        {
+            currentBulletNum = weaponData.bulletNum;
+        }
     }
     protected override void OnClick(string btnName)
     {
         switch (btnName)
         {
             case "TakeBto":
-                break;
-            case "ShootBto":
-                SwitchBtoAct();
                 break;
             case "BagBto":
                 OpenBag();
@@ -76,8 +99,6 @@ public class ControlPane : UIBase
     }
     private void Shoot()
     {
-        Debug.Log("Shoot");
-
         PoolMgr.GetInstance().GetObj(weaponData.bulletPath, (x) =>
          {
              x.transform.position = gun.position;
@@ -92,6 +113,13 @@ public class ControlPane : UIBase
              ti.ws = WhoShoot.Player;
              ti.hurt = weaponData.atk;
          });
+
+        currentBulletNum = (currentBulletNum <= 0) ? 0 : currentBulletNum - 1;
+
+        if(currentBulletNum == 0)
+        {
+            ammunitionChangeTimer.Start();
+        }
     }
     /// <summary>
     /// 打开背包
@@ -106,7 +134,7 @@ public class ControlPane : UIBase
         switch (ctrlType)
         {
             case CtrlType.射击:
-                if (nearEnemy == null || gun.GetComponent<SpriteRenderer>().sprite == null || !shootTimer.isTimeUp)
+                if (nearEnemy == null || gun.GetComponent<SpriteRenderer>().sprite == null || !shootTimer.isTimeUp || currentBulletNum == 0)
                     return;
 
                 Shoot();

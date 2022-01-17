@@ -3,18 +3,66 @@
 		<spritePath>Sprites/Guns/pistol7</spritePath>
 		<bulletPath>Prefabs/Bullet/手枪子弹</bulletPath>
 		<type>0</type>
+		<bulletNum>12</bulletNum>
+		<ammunitionChangeTime>1.5</ammunitionChangeTime>
 		<atk>2</atk>
 		<bulletSpeed>20</bulletSpeed>
 		<shootLen>5</shootLen>
-		<shootNextTime>.1</shootNextTime>
+		<shootNextTime>.2</shootNextTime>
     </it>
 	<it id="20002">
+		<spritePath>Sprites/Guns/assaultrifle3</spritePath>
+		<bulletPath>Prefabs/Bullet/手枪子弹</bulletPath>
+		<type>1</type>
+		<bulletNum>30</bulletNum>
+		<ammunitionChangeTime>2</ammunitionChangeTime>
+		<atk>5</atk>
+		<bulletSpeed>35</bulletSpeed>
+		<shootLen>15</shootLen>
+		<shootNextTime>.1</shootNextTime>
+	</it>
+	<it id="20003">
 		<spritePath>Sprites/Guns/sniperrifle4</spritePath>
 		<bulletPath>Prefabs/Bullet/狙击子弹</bulletPath>
-		<type>1</type>
-		<atk>50</atk>
+		<type>2</type>
+		<bulletNum>6</bulletNum>
+		<ammunitionChangeTime>2.5</ammunitionChangeTime>
+		<atk>15</atk>
 		<bulletSpeed>50</bulletSpeed>
 		<shootLen>20</shootLen>
+		<shootNextTime>.7</shootNextTime>
+	</it>
+	<it id="20004">
+		<spritePath>Sprites/Guns/sniperrifle3</spritePath>
+		<bulletPath>Prefabs/Bullet/狙击子弹</bulletPath>
+		<type>2</type>
+		<bulletNum>6</bulletNum>
+		<ammunitionChangeTime>2.5</ammunitionChangeTime>
+		<atk>17</atk>
+		<bulletSpeed>50</bulletSpeed>
+		<shootLen>25</shootLen>
+		<shootNextTime>1</shootNextTime>
+	</it>
+	<it id="20005">
+		<spritePath>Sprites/Guns/sniperrifle5</spritePath>
+		<bulletPath>Prefabs/Bullet/狙击子弹</bulletPath>
+		<type>2</type>
+		<bulletNum>6</bulletNum>
+		<ammunitionChangeTime>2.5</ammunitionChangeTime>
+		<atk>12</atk>
+		<bulletSpeed>70</bulletSpeed>
+		<shootLen>20</shootLen>
+		<shootNextTime>.6</shootNextTime>
+	</it>
+	<it id="20006">
+		<spritePath>Sprites/Guns/sniperrifle6</spritePath>
+		<bulletPath>Prefabs/Bullet/狙击子弹</bulletPath>
+		<type>2</type>
+		<bulletNum>6</bulletNum>
+		<ammunitionChangeTime>2.5</ammunitionChangeTime>
+		<atk>12</atk>
+		<bulletSpeed>50</bulletSpeed>
+		<shootLen>30</shootLen>
 		<shootNextTime>.7</shootNextTime>
 	</it>
 </Data>

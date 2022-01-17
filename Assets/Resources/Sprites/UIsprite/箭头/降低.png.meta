@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 99021992e0e36d644aa35a8e9e059b5a
+guid: f7adeceaa65d1c74ca780e4f50aedaa0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,12 +42,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -114,112 +114,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: basic life bars a icons _1
-      rect:
-        serializedVersion: 2
-        x: 65
-        y: 147
-        width: 47
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6b8ed35c1a251824ab4da119775cdfa3
-      internalID: -803140382
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: basic life bars a icons _2
-      rect:
-        serializedVersion: 2
-        x: 121
-        y: 157
-        width: 23
-        height: 5
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d39c0182c8fac444dbff977593fe35ec
-      internalID: -1161489403
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: basic life bars a icons _0
-      rect:
-        serializedVersion: 2
-        x: 121
-        y: 157
-        width: 23
-        height: 5
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 14f375c6b433422419d8a3c073c8412a
-      internalID: -282221068
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: basic life bars a icons _3
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 142
-        width: 11
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 564d654ede1ac4b4f97537d02a018c43
-      internalID: 1911842885
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: basic life bars a icons_0
-      rect:
-        serializedVersion: 2
-        x: 175
-        y: 145
-        width: 47
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0824875e22c361241913f5823a56f9bb
-      internalID: -372047220
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -230,12 +125,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      basic life bars a icons _3: 1911842885
-      basic life bars a icons _0: -282221068
-      basic life bars a icons_0: -372047220
-      basic life bars a icons _2: -1161489403
-      basic life bars a icons _1: -803140382
+    nameFileIdTable: {}
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
