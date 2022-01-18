@@ -23,7 +23,8 @@ public class BringerOfDeath : EnemyBase
 
     [HideInInspector] public float atkTimertime;
 
-
+    public int GetId { get => id; }
+    public int skillId = 17002;
     protected override void Start()
     {
         id = 15002;
@@ -267,6 +268,6 @@ public class BringerOfDeathSkill : StateBaseTemplate<BringerOfDeath>
     {
         owner.bodS = BringerOfDeathState.Idle;
         owner.skillTimer.Start();
-        SkillMgr.SkillOfDeathHand(owner.transform.position, 20);
+        SkillMgr.SkillOfRegionalCircularRandom(owner.skillId, owner.transform.position, 20);
     }
 }

@@ -22,6 +22,7 @@ public class UpgradePanel : UIBase
         EventCenter.GetInstance().AddEventListener<int>("当前金币", (x) =>
         {
             coinNum = x;
+            GetControl<Text>("CoinNum").text = x.ToString();
         });
     }
     private void Update()
@@ -38,9 +39,9 @@ public class UpgradePanel : UIBase
                     Debug.Log("钱不够");
                     return;
                 }
-
+                Debug.Log("升级");
                 EventCenter.GetInstance().EventTrigger<int>("枪支更新", afterId);
-                EventCenter.GetInstance().EventTrigger<int>("获得金币", cost - coinNum);
+                EventCenter.GetInstance().EventTrigger<int>("获得金币", -cost);
                 break;
             case "CloseBto":
                 UIMgr.GetInstance().HidePanel("UpgradePanel");

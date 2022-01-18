@@ -12,15 +12,45 @@ public class SelectPanel : UIBase
     // 选择的角色ID
     private int playerID;
 
+    private Transform roleSelect;
+
     private void Start()
     {
+        Debug.Log("Select Start");
+
+        roleSelect = GameTool.FindTheChild(gameObject, "角色选择");
+
+        foreach (var item in Datas.GetInstance().PlayerDataDic)
+        {
+            PoolMgr.GetInstance().GetObj("Prefabs/角色/RoleCard", (x) =>
+             {
+                 x.transform.SetParent(roleSelect);
+                 x.transform.localScale = Vector3.one;
+                 GameTool.FindTheChild(x, "RoleImg").GetComponent<Image>().sprite = ResMgr.GetInstance().Load<Sprite>(GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, item.Value.id).spritePath);
+
+                 Toggle to = x.GetComponent<Toggle>();
+                 to.group = roleSelect.GetComponent<ToggleGroup>();
+                 to.onValueChanged.AddListener((y) =>
+                 {
+                     playerID = item.Value.id;
+                     GetControl<Image>("RoleImg").sprite = ResMgr.GetInstance().Load<Sprite>(GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, playerID).spritePath);
+                     GetControl<Image>("RoleImg").color = new Color(1, 1, 1, 1);
+                     GetControl<Image>("RoleImg").GetComponent<Animator>().Play(GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, playerID).name);
+
+                 });
+             });
+        }
+
         // 注册角色ID消息
         EventCenter.GetInstance().AddEventListener<int>("选择角色", (x) =>
         {
+            Debug.Log(x);
             playerID = x;
-            GetControl<Image>("RoleImg").sprite = ResMgr.GetInstance().Load<Sprite>(GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, playerID).spritePath);
-            GetControl<Image>("RoleImg").color = new Color(1, 1, 1, 1);
-            GetControl<Image>("RoleImg").GetComponent<Animator>().Play(GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, playerID).name);
+
+            if (x == 0)
+            {
+                GetControl<Image>("RoleImg").color = new Color(1, 1, 1, 1 / 255f);
+            }
         });
     }
     protected override void OnClick(string btnName)
@@ -106,7 +136,7 @@ public class SelectPanel : UIBase
     {
         switch (playerID)
         {
-            case 14002:
+            case 14001:
                 Dinosaur type = go.GetComponent<Dinosaur>() ?? go.AddComponent<Dinosaur>();
                 type.playerData = GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, playerID);
                 type.weaponData = GameTool.GetDicInfo(Datas.GetInstance().WeaponDataDic, type.playerData.initialWeaponId);

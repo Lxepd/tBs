@@ -24,6 +24,7 @@ public class StatePanel : UIBase
         // 获取数据
         EventCenter.GetInstance().AddEventListener<PlayerData>("角色初始", (x) =>
         {
+            Debug.Log(x.id);
             data = x;
             // 初始化UI
             InitStateUI();

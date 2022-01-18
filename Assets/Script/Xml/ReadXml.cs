@@ -262,5 +262,29 @@ public class ReadXml : InstanceNoMono<ReadXml>
             Datas.GetInstance().UpgradeDataDic.Add(newData.id, newData);
         }
     }
+    public void LoadSkillXml(string path)
+    {
+        if (Datas.GetInstance().SkillDataDic.Count != 0)
+            return;
+
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.Load(Application.persistentDataPath + path);
+
+        XmlNodeList xmlList = xmlDoc.SelectSingleNode("Data").ChildNodes;
+
+        foreach (XmlNode item in xmlList)
+        {
+            SkillData newData = new SkillData();
+            newData.id = int.Parse(item.Attributes["id"].InnerText);
+
+            newData.name = item.SelectSingleNode("name").InnerText;
+            newData.path = item.SelectSingleNode("path").InnerText;
+            newData.tips = item.SelectSingleNode("tips").InnerText;
+            newData.speed = int.Parse(item.SelectSingleNode("speed").InnerText);
+            newData.hurt = int.Parse(item.SelectSingleNode("hurt").InnerText);
+
+            Datas.GetInstance().SkillDataDic.Add(newData.id, newData);
+        }
+    }
     #endregion
 }

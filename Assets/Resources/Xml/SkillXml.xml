@@ -1,0 +1,16 @@
+<Data>
+	<skill id ="17001">
+		<name>火球</name>
+		<path>Prefabs/Skills/FireBall</path>
+		<tips>火蛇发射的炽热火球</tips>
+		<speed>10</speed>
+		<hurt>3</hurt>
+	</skill>
+	<skill id ="17002">
+		<name>死亡之手</name>
+		<path>Prefabs/Skills/DeathHand</path>
+		<tips>死亡使者释放形似手的黑色闪电</tips>
+		<speed>0</speed>
+		<hurt>20</hurt>
+	</skill>
+</Data>

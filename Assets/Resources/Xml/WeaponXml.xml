@@ -16,7 +16,7 @@
 		<type>1</type>
 		<bulletNum>30</bulletNum>
 		<ammunitionChangeTime>2</ammunitionChangeTime>
-		<atk>5</atk>
+		<atk>100</atk>
 		<bulletSpeed>35</bulletSpeed>
 		<shootLen>15</shootLen>
 		<shootNextTime>.1</shootNextTime>

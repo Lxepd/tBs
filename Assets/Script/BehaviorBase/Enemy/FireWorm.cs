@@ -26,6 +26,7 @@ public class FireWorm : EnemyBase
 
     public FireWormState fws = FireWormState.Idle;
     public int GetId { get => id; }
+    public int skillId = 17001;
 
     protected override void Start()
     {
@@ -230,7 +231,7 @@ public class FireWormAtk : StateBaseTemplate<FireWorm>
         if (owner.atkTimer.isTimeUp && !isAtk)
         {
             isAtk = true;
-            SkillMgr.SkillOfFireBall(owner.transform.position, playerDir, yoff);
+            SkillMgr.SkillOfOnePoint(owner.skillId, owner.transform.position, playerDir, yoff);
         }
 
     }

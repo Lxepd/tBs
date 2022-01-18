@@ -24,4 +24,6 @@ public class Datas : InstanceNoMono<Datas>
     public Dictionary<int, WeaponData> WeaponDataDic = new Dictionary<int, WeaponData>();
     // 存放<升级>信息字典
     public Dictionary<int, UpgradeData> UpgradeDataDic = new Dictionary<int, UpgradeData>();
+    // 存放<技能>信息字典
+    public Dictionary<int, SkillData> SkillDataDic = new Dictionary<int, SkillData>();
 }

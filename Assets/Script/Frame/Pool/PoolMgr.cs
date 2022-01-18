@@ -29,7 +29,7 @@ public class PoolData
     {
         obj.SetActive(false);
         poolList.Add(obj);
-        obj.transform.parent = fatherObj.transform;
+        obj.transform.SetParent(fatherObj.transform);
     }
     /// <summary>
     /// ÄÃ¶«Î÷

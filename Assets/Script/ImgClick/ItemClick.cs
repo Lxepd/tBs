@@ -24,6 +24,8 @@ public class ItemClick : ImgClickBase
     }
     private void Update()
     {
+        // 更新道具数量
+        transform.Find("ItemNum").GetComponent<Text>().text = currentNum.ToString();
         // 移动端点击
         PhoneTouch(() =>
         {

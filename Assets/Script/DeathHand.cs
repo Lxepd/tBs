@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ttttest : MonoBehaviour
+public class DeathHand : MonoBehaviour
 {
     private Animator anim;
     float animTime;
@@ -41,11 +41,9 @@ public class ttttest : MonoBehaviour
             PoolMgr.GetInstance().PushObj(name, gameObject);
         }
     }
-#if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(transform.position + offV3, size);
     }
-#endif
 }
