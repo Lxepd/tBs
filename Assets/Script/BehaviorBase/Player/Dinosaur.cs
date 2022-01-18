@@ -20,7 +20,7 @@ public class Dinosaur : Player
                 transform.localScale = new Vector3(-1, 1, 1);
 
             }
-            else
+            else if(dir.x > 0)
             {
                 transform.localScale = new Vector3(1, 1, 1);
             }

@@ -5,9 +5,7 @@ using UnityEngine.UI;
 
 public enum CtrlType
 {
-    射击,
-    打开商店,
-    传送
+    打开商店
 }
 public class ControlPanel : UIBase
 {
@@ -60,16 +58,16 @@ public class ControlPanel : UIBase
                 ctrlType = CtrlType.打开商店;
                 npcComponent = x.GetComponent<Npc>();
             }
-            else
-            {
-                ctrlType = CtrlType.射击;
-            }
+
         });
         EventCenter.GetInstance().AddEventListener<bool>("射击长按", (x) =>
         {
             if (x)
             {
-                SwitchBtoAct();
+                if (nearEnemy == null || gun.GetComponent<SpriteRenderer>().sprite == null || !shootTimer.isTimeUp || currentBulletNum == 0)
+                    return;
+
+                Shoot();
             }
         });
 
@@ -100,6 +98,7 @@ public class ControlPanel : UIBase
         switch (btnName)
         {
             case "TakeBto":
+                SwitchBtoAct();
                 break;
             case "BagBto":
                 OpenBag();
@@ -142,12 +141,6 @@ public class ControlPanel : UIBase
     {
         switch (ctrlType)
         {
-            case CtrlType.射击:
-                if (nearEnemy == null || gun.GetComponent<SpriteRenderer>().sprite == null || !shootTimer.isTimeUp || currentBulletNum == 0)
-                    return;
-
-                Shoot();
-                break;
             case CtrlType.打开商店:
                 npcComponent.InitShop();
                 break;

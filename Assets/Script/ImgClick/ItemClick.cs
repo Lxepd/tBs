@@ -20,14 +20,10 @@ public class ItemClick : ImgClickBase
     {
         base.Start();
         img = GameTool.FindTheChild(gameObject, "Img").GetComponent<Image>();
-        selectGo = GameTool.FindTheChild(UIMgr.GetInstance().GetLayerFather(E_UI_Layer.Above).gameObject, "ItemSelect");
-        selectGo.gameObject.SetActive(false);
 
     }
     private void Update()
     {
-        // 更新道具数量
-        transform.Find("ItemNum").GetComponent<Text>().text = currentNum.ToString();
         // 移动端点击
         PhoneTouch(() =>
         {
