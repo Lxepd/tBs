@@ -24,7 +24,7 @@ public class ControlPanel : UIBase
 
     private void Start()
     {
-        EventCenter.GetInstance().AddEventListener<Vector2>("PlayerPos", (x) =>
+        EventCenter.GetInstance().AddEventListener<Vector2>("射击起点", (x) =>
         {
             PlayerPos = x;
         });
@@ -142,7 +142,7 @@ public class ControlPanel : UIBase
         switch (ctrlType)
         {
             case CtrlType.打开商店:
-                npcComponent.InitShop();
+                npcComponent.OpenShop();
                 break;
         }
     }

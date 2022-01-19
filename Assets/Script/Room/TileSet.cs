@@ -11,12 +11,16 @@ public enum TileType
 }
 public class TileSet : MonoBehaviour
 {
+    // 墙壁RuleTile
     [SerializeField] RuleTile wallRuleTile;
+    // 非墙壁RuleTile
     [SerializeField] RuleTile roadRuleTile;
+    // 瓦片地图
     [SerializeField] Tilemap tilemap;
-
+    // 地图大小
     public int row = 10;
     public int col = 10;
+    // 融合次数
     public int num = 0;
 
     TileType[,] mapArray;
@@ -24,7 +28,6 @@ public class TileSet : MonoBehaviour
     bool isCreateTpPoint;
 
     int bossNum, unBossNum;
-    [SerializeField] public Transform appearPoint;
 
     private void Start()
     {
@@ -70,13 +73,13 @@ public class TileSet : MonoBehaviour
         ReduceTile(num);
         CreateTile();
 
+
         ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/出现点", (x) =>
-         {
-             x.transform.position = GetBarrierFreeArea();
-             x.transform.SetParent(transform);
-             appearPoint = x.transform;
-             //Camera.main.transform.position = Player.instance.transform.position;
-         });
+        {
+            x.transform.position = GetBarrierFreeArea();
+            x.transform.SetParent(transform);
+            EventCenter.GetInstance().EventTrigger<Vector2>("玩家传送", x.transform.position);
+        });
 
         CreateMonsters(10);
     }

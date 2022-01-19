@@ -122,7 +122,11 @@ public class StatePanel : UIBase
         currentHp -= hurt;
 
         if (currentHp <= 0)
+        {
             currentHp = 0;
+        }
+
+        EventCenter.GetInstance().EventTrigger("Íæ¼ÒËÀÍö", currentHp == 0);
 
         GetControl<Text>("CurrentHp").text = currentHp.ToString();
     }

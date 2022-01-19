@@ -6,13 +6,14 @@ using UnityEngine.UI;
 /// <summary>
 /// 商店界面
 /// </summary>
-public class ShopPanel : UIBase
+public class ItemShopPanel : UIBase
 {
     // 点击的<道具>上的脚本
     private ItemClick item;
     // <道具>父物体
     private Transform itemParent;
 
+    bool isInit;
     private void Start()
     {
         EventCenter.GetInstance().AddEventListener<float>("刷新时间", (x) =>
@@ -24,19 +25,26 @@ public class ShopPanel : UIBase
         {
             item = x;
         });
+        EventCenter.GetInstance().AddEventListener<List<道具商人>>("道具商店", (x) =>
+        {
+            if (!isInit)
+            {
+                isInit = true;
+                InitShop(x);
+            }
+        });
+
+        // 找到父物体
+        itemParent = GameTool.FindTheChild(UIMgr.GetInstance().GetLayerFather(E_UI_Layer.Above).gameObject, "商店展示界面");
     }
     private void Update()
     {
         // 清空数量为0的道具
         ClearZeroItem();
     }
-    /// <summary>
-    /// 界面展开时执行
-    /// </summary>
     public override void ShowMe()
-    { 
-        // 找到父物体
-        itemParent = GameTool.FindTheChild(UIMgr.GetInstance().GetLayerFather(E_UI_Layer.Above).gameObject, "商店展示界面");
+    {
+        isInit = false;
     }
     /// <summary>
     /// 界面隐藏时执行
@@ -46,10 +54,8 @@ public class ShopPanel : UIBase
         // 挨个回收父物体下的道具，即商店内的道具逐个清除
         for (int i = itemParent.childCount - 1; i >= 0; i--)
         {
-            itemParent.GetChild(i).GetChild(0).GetComponent<Image>().sprite = null;
             PoolMgr.GetInstance().PushObj(itemParent.GetChild(i).name, itemParent.GetChild(i).gameObject);
         }
-        GameTool.FindTheChild(UIMgr.GetInstance().GetLayerFather(E_UI_Layer.Above).gameObject, "ItemSelect").gameObject.SetActive(false);
     }
     /// <summary>
     /// 对应按钮点击
@@ -62,7 +68,7 @@ public class ShopPanel : UIBase
             // 关闭商店按钮
             case "Bto_ShopQuit":
                 // 隐藏<商店>界面
-                UIMgr.GetInstance().HidePanel("ShopPanel");
+                UIMgr.GetInstance().HidePanel("ItemShopPanel");
                 break;
             // 商店道具购买按钮
             case "Bto_Buy":
@@ -91,6 +97,57 @@ public class ShopPanel : UIBase
                 }
                 break;
         }
+    }
+    /// <summary>
+    /// 初始化商店
+    /// </summary>
+    /// <param name="shop"></param>
+    private void InitShop(List<道具商人> shop)
+    {
+        Transform content = GameTool.FindTheChild(UIMgr.GetInstance().GetLayerFather(E_UI_Layer.Above).gameObject, "商店展示界面");
+        foreach (道具商人 item in shop)
+        {
+            int[] num = new int[]
+            {
+                // 有多少个满的
+                item.num / GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic,item.id).maxNum,
+                // 多出来几个
+                item.num % GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic,item.id).maxNum
+            };
+
+            if (num[0] != 0)
+            {
+                for (int i = 0; i < num[0]; i++)
+                {
+                    CreateShopItem(content, item, GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic, item.id).maxNum);
+                }
+            }
+            if (num[1] != 0)
+            {
+                CreateShopItem(content, item, num[1]);
+            }
+        }
+    }
+    /// <summary>
+    /// 生成商店物品
+    /// </summary>
+    /// <param name="parent"></param>
+    /// <param name="item">道具</param>
+    /// <param name="num">数量</param>
+    private void CreateShopItem(Transform parent, 道具商人 item, int num)
+    {
+        PoolMgr.GetInstance().GetObj("Prefabs/ShopItem", (x) =>
+        {
+            x.transform.SetParent(parent);
+            x.transform.localScale = Vector3.one;
+
+            ItemClick ic = x.GetComponent<ItemClick>();
+            ic.id = item.id;
+            ic.currentNum = num;
+            x.transform.Find("Img").GetComponent<Image>().sprite = ResMgr.GetInstance().Load<Sprite>(GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic, item.id).path);
+            //x.transform.Find("ItemNum").GetComponent<Text>().text = num.ToString();
+
+        });
     }
     /// <summary>
     /// 清除为0的道具商品

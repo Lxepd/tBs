@@ -35,11 +35,19 @@ public class Player : BehaviorBase
         {
             coinNum += x;
         });
+        EventCenter.GetInstance().AddEventListener<bool>("玩家死亡", (x) =>
+         {
+             if(x)
+             {
+                 Time.timeScale = 0;
+                 Debug.Log("玩家死亡");
+             }
+         });
     }
     protected virtual void Update()
     {
         EventCenter.GetInstance().EventTrigger<Transform>("是否有枪支", gun);
-        EventCenter.GetInstance().EventTrigger<Vector2>("PlayerPos", transform.position);
+        EventCenter.GetInstance().EventTrigger<Vector2>("射击起点", transform.position);
         EventCenter.GetInstance().EventTrigger<int>("当前金币", coinNum);
         rg.velocity = dir * playerData.speed;
 

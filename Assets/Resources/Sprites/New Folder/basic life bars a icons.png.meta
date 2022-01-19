@@ -208,7 +208,7 @@ TextureImporter:
         width: 47
         height: 7
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -216,6 +216,27 @@ TextureImporter:
       bones: []
       spriteID: 0824875e22c361241913f5823a56f9bb
       internalID: -372047220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic life bars a icons_1
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 87
+        width: 43
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9831fc4e8c7caf547b54013cc3df5ede
+      internalID: -1338393366
       vertices: []
       indices: 
       edges: []
@@ -236,6 +257,7 @@ TextureImporter:
       basic life bars a icons_0: -372047220
       basic life bars a icons _2: -1161489403
       basic life bars a icons _1: -803140382
+      basic life bars a icons_1: -1338393366
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

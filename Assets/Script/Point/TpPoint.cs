@@ -12,13 +12,20 @@ public enum TpType
 public class TpPoint : MonoBehaviour
 {
     Timer tpTimer;
+    float tpTime = 3f;
     bool isStart;
 
     TpType tp;
+    Transform player;
 
     private void Start()
     {
-        tpTimer = new Timer(5f, false, false);
+        tpTimer = new Timer(tpTime, false, false);
+
+        EventCenter.GetInstance().AddEventListener<Vector2>("玩家传送", (x) =>
+         {
+             player.position = x;
+         });
     }
     private void FixedUpdate()
     {
@@ -27,12 +34,13 @@ public class TpPoint : MonoBehaviour
         {
             isStart = true;
             tpTimer.Start();
+            player = col.transform;
             Debug.Log("玩家在传送点，准备传送");
         }
         else if(col==null && !tpTimer.isStop)
         {
             isStart = false;
-            tpTimer.Reset(5f);
+            tpTimer.Reset(tpTime);
             Debug.Log("取消传送");
         }
 
@@ -59,12 +67,13 @@ public class TpPoint : MonoBehaviour
                      {
                          ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/Room", (x) =>
                          {
-                             col.transform.position = x.GetComponent<TileSet>().appearPoint.position;
+                             //col.transform.position = x.GetComponent<TileSet>().appearPoint.position;
                          });
+
                      });
                     break;
             }
-            tpTimer.Reset(5f);
+            tpTimer.Reset(tpTime);
         }
     }
 

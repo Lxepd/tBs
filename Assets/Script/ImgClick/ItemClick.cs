@@ -8,8 +8,6 @@ using UnityEngine.UI;
 /// </summary>
 public class ItemClick : ImgClickBase
 {
-    // 道具选中
-    private Transform selectGo;
     // 道具ID
     [HideInInspector] public int id;
     // 当前这个道具的数量
@@ -20,7 +18,6 @@ public class ItemClick : ImgClickBase
     {
         base.Start();
         img = GameTool.FindTheChild(gameObject, "Img").GetComponent<Image>();
-
     }
     private void Update()
     {
@@ -29,9 +26,6 @@ public class ItemClick : ImgClickBase
         // 移动端点击
         PhoneTouch(() =>
         {
-            //selectGo.gameObject.SetActive(true);
-            // 将选取图标移至点击位置
-            //StartCoroutine(MoveSelect(Input.GetTouch(0).position));
             // 测试
             GameTool.FindTheChild(UIMgr.GetInstance().GetLayerFather(E_UI_Layer.Above).gameObject, "NameTest").GetComponent<Text>().text = img.sprite.name;
             // 发送玩家点击消息
@@ -42,19 +36,8 @@ public class ItemClick : ImgClickBase
         PCMouseDown(() =>
         {
             GameTool.FindTheChild(UIMgr.GetInstance().GetLayerFather(E_UI_Layer.Above).gameObject, "NameTest").GetComponent<Text>().text = img.sprite.name;
-
             EventCenter.GetInstance().EventTrigger<ItemClick>("商店物品", this);
-
         });
 
-    }
-    private IEnumerator MoveSelect(Vector3 end)
-    {
-        while (selectGo.position != end)
-        {
-            selectGo.position = Vector2.MoveTowards(selectGo.position, end, 10);
-            Debug.Log(selectGo.position);
-            yield return 0;
-        }
     }
 }

@@ -17,11 +17,11 @@ public class SkillMgr
         SkillData data = Datas.GetInstance().SkillDataDic[id];
         PoolMgr.GetInstance().GetObj(data.path, (x) =>
         {
-            x.transform.position = owner + off;
+            x.transform.position = owner;
             // 设置火球速度
             x.GetComponent<Rigidbody2D>().velocity = dir * data.speed;
             // 设置火球朝向
-            x.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
+            x.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir + off);
             // 设置火球发射者
             x.GetComponent<ThrowItem>().ws = who;
             // 设置伤害

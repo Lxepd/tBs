@@ -28,6 +28,8 @@ public class FireWorm : EnemyBase
     public int GetId { get => id; }
     public int skillId = 17001;
 
+    [HideInInspector] public Transform mouth;
+
     protected override void Start()
     {
         id = 15001;
@@ -55,6 +57,8 @@ public class FireWorm : EnemyBase
         HitTimer = new Timer(HitTimertime, false, false);
         DeadTimertime = 3f * GameTool.GetAnimatorLength(anim, "Dead");
         DeadTimer = new Timer(DeadTimertime, false, false);
+
+        mouth = GameTool.FindTheChild(gameObject, "mouth");
     }
     protected override void Update()
     {
@@ -224,14 +228,12 @@ public class FireWormAtk : StateBaseTemplate<FireWorm>
             return;
         }
 
-        Vector3 yoff = new Vector3(.5f * owner.transform.localScale.x, 1f, 0);
-        Vector3 playerYoff = new Vector3(0, .5f, 0);
-        Vector3 playerDir = ((owner.player.transform.position+ playerYoff) - owner.transform.position - yoff).normalized;
+        Vector3 playerDir = (owner.player.transform.position - owner.mouth.position).normalized;
 
         if (owner.atkTimer.isTimeUp && !isAtk)
         {
             isAtk = true;
-            SkillMgr.SkillOfOnePoint(owner.skillId, owner.transform.position, playerDir, yoff);
+            SkillMgr.SkillOfOnePoint(owner.skillId, owner.mouth.position, playerDir);
         }
 
     }
