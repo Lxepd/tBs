@@ -1,11 +1,21 @@
 <Data>
     <it id="13001">
-        <name>道具商人</name>
+        <name>Npc1</name>
+		<path>Prefabs/Npc/Npc1</path>
+		<type>1</type>
+		<shop>
+			<item id="12001">13</item>
+			<item id="12002">7</item>
+		</shop>
+		<shopReTime>30</shopReTime>
     </it>
 	<it id="13002">
-		<name>装备商人</name>
-	</it>
-	<it id="13003">
-		<name>工匠</name>
+		<name>Npc2</name>
+		<path>Prefabs/Npc/Npc2</path>
+		<type>1</type>
+		<shop>
+			<item id="12002">8</item>
+		</shop>
+		<shopReTime>4752</shopReTime>
 	</it>
 </Data>

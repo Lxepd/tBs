@@ -6,9 +6,6 @@ using UnityEngine.UI;
 
 public class Npc : MonoBehaviour
 {
-    // NpcData
-    public int id;
-    public NpcData data;
     // Npc¿‡–Õ
     public NpcType type;
 
@@ -28,7 +25,7 @@ public class Npc : MonoBehaviour
 
     private void Start()
     {
-        data = GameTool.GetDicInfo(Datas.GetInstance().NpcDataDic, id);
+        //data = GameTool.GetDicInfo(Datas.GetInstance().NpcDataDic, id);
 
         switch (type)
         {

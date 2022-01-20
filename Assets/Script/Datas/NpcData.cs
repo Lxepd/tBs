@@ -7,6 +7,10 @@ public class NpcData
 {
     public int id; // id
     public string name; // 名
+    public string path;
+    public NpcType type;
+    public List<道具> items;
+    public float shopReTime;
 }
 
 public enum NpcType
@@ -40,4 +44,18 @@ public class 装备商人
 public class 工匠
 {
     public int test;
+}
+
+public class 道具
+{
+    // 道具ID
+    public int id;
+    // 道具数量
+    public int num;
+
+    public 道具(int id, int num)
+    {
+        this.id = id;
+        this.num = num;
+    }
 }

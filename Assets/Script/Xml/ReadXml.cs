@@ -107,6 +107,9 @@ public class ReadXml : InstanceNoMono<ReadXml>
             newData.id = int.Parse(item.Attributes["id"].InnerText);
 
             newData.name = item.SelectSingleNode("name").InnerText;
+            newData.path = item.SelectSingleNode("path").InnerText;
+            newData.type = (NpcType)int.Parse(item.SelectSingleNode("type").InnerText);
+            newData.shopReTime = float.Parse(item.SelectSingleNode("shopReTime").InnerText);
 
             Datas.GetInstance().NpcDataDic.Add(newData.id, newData);
         }
