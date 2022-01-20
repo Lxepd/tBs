@@ -16,16 +16,9 @@ public class TpPoint : MonoBehaviour
     bool isStart;
 
     TpType tp;
-    Transform player;
-
     private void Start()
     {
         tpTimer = new Timer(tpTime, false, false);
-
-        EventCenter.GetInstance().AddEventListener<Vector2>("玩家传送", (x) =>
-         {
-             player.position = x;
-         });
     }
     private void FixedUpdate()
     {
@@ -34,7 +27,6 @@ public class TpPoint : MonoBehaviour
         {
             isStart = true;
             tpTimer.Start();
-            player = col.transform;
             Debug.Log("玩家在传送点，准备传送");
         }
         else if(col==null && !tpTimer.isStop)
@@ -56,7 +48,7 @@ public class TpPoint : MonoBehaviour
                     {
                         ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/RoomPrefabs/准备房", (z) =>
                         {
-                            col.transform.position = GameObject.Find("返回点").transform.position;
+                            col.transform.position = GameTool.FindTheChild(z,"返回点").transform.position;
                         });
                     });
                     break;
@@ -65,23 +57,21 @@ public class TpPoint : MonoBehaviour
                     Debug.Log(LevelMgr.GetInstance().level);
                     SceneMgr.GetInstance().LoadScene("Level", () =>
                      {
-                         ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/Room", (x) =>
+                         ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/Room",(x)=>
                          {
-                             //col.transform.position = x.GetComponent<TileSet>().appearPoint.position;
-                         });
 
+                         });
                      });
+
                     break;
             }
             tpTimer.Reset(tpTime);
         }
     }
 
-#if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.white;
         Gizmos.DrawWireCube(transform.position, GetComponent<BoxCollider2D>().bounds.size);
     }
-#endif
 }

@@ -24,7 +24,6 @@ public class StatePanel : UIBase
         // 获取数据
         EventCenter.GetInstance().AddEventListener<PlayerData>("角色初始", (x) =>
         {
-            Debug.Log(x.id);
             data = x;
             // 初始化UI
             InitStateUI();
@@ -49,6 +48,11 @@ public class StatePanel : UIBase
             GetControl<Image>("Item").color = new Color(43 / 255f, 43 / 255f, 43 / 255f);
             GetControl<Text>("ItemNum").text = "";
         });
+        EventCenter.GetInstance().AddEventListener("角色恢复", () =>
+         {
+             // 初始化UI
+             InitStateUI();
+         });
     }
     void Update()
     {
@@ -124,9 +128,12 @@ public class StatePanel : UIBase
         if (currentHp <= 0)
         {
             currentHp = 0;
+            EventCenter.GetInstance().EventTrigger("玩家死亡");
         }
-
-        EventCenter.GetInstance().EventTrigger("玩家死亡", currentHp == 0);
+        else
+        {
+            EventCenter.GetInstance().EventTrigger("玩家受伤");
+        }
 
         GetControl<Text>("CurrentHp").text = currentHp.ToString();
     }

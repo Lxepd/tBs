@@ -10,6 +10,8 @@ public class BehaviorBase : MonoBehaviour
     // ¶¯»­×é¼þ
     protected Animator anim;
 
+    protected float animTime;
+
     protected virtual void Start()
     {
         rg = GetComponent<Rigidbody2D>();

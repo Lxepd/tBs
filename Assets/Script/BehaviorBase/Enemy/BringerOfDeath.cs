@@ -107,7 +107,7 @@ public class BringerOfDeath : EnemyBase
             return;
         }
 
-        if (Vector2.Distance(player.transform.position, transform.position) <= data.atkLen && skillTimer.isTimeUp)
+        if (Vector2.Distance(player.transform.position, transform.position) <= data.atkLen && skillTimer.isTimeUp && !playerIsDeath)
         {
             //skillTimer.Reset(SkillTimertime);
             //int skillIndex = Random.Range(1, 101);

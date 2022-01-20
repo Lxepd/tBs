@@ -28,33 +28,29 @@ public class TileSet : MonoBehaviour
     bool isCreateTpPoint;
 
     int bossNum, unBossNum;
+    public GameObject aaa;
 
+    Timer check;
     private void Start()
     {
+        EventCenter.GetInstance().AddEventListener<GameObject>("怪物表减少", (x) =>
+        {
+            monsterList.Remove(x);
+        });
+        EventCenter.GetInstance().AddEventListener<GameObject>("玩家物体", (x) =>
+        {
+            aaa = x;
+        });
+
+        check = new Timer(3f);
         mapArray = new TileType[row, col];
         SetMap();
 
-        EventCenter.GetInstance().AddEventListener<GameObject>("怪物表减少", (x) =>
-         {
-             monsterList.Remove(x);
-         });
-      
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            ReduceTile(num);
-            CreateTile();
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
     }
     private void FixedUpdate()
     {
-        CheckMonsterNum();
+        if (check.isTimeUp)
+            CheckMonsterNum();
     }
     private void SetMap()
     {
@@ -73,12 +69,12 @@ public class TileSet : MonoBehaviour
         ReduceTile(num);
         CreateTile();
 
-
         ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/出现点", (x) =>
         {
             x.transform.position = GetBarrierFreeArea();
             x.transform.SetParent(transform);
-            EventCenter.GetInstance().EventTrigger<Vector2>("玩家传送", x.transform.position);
+
+            aaa.transform.position = x.transform.position;
         });
 
         CreateMonsters(10);
@@ -151,7 +147,6 @@ public class TileSet : MonoBehaviour
         isCreateTpPoint = true;
         ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/传送点", (x) =>
         {
-
             x.transform.position = GetBarrierFreeArea();
             x.transform.SetParent(transform);
         });

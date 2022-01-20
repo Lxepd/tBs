@@ -70,6 +70,10 @@ public class ControlPanel : UIBase
                 Shoot();
             }
         });
+        EventCenter.GetInstance().AddEventListener("角色恢复", () =>
+        {
+            GetControl<Image>("子弹数量").fillAmount = 1;
+        });
 
     }
     private void Update()

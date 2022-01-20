@@ -35,7 +35,7 @@ public class Reward : MonoBehaviour
         Collider2D player = Physics2D.OverlapCircle(transform.position, checkLen,LayerMask.GetMask("Íæ¼Ò"));
         if(player!=null)
         {
-            transform.position = Vector3.Lerp(transform.position, player.transform.position, Vector2.Distance(transform.position, player.transform.position) / 10f * Time.fixedDeltaTime);
+            transform.position = Vector3.Lerp(transform.position, player.transform.position, Time.deltaTime * 10f);
         }
     }
 

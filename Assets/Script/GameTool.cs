@@ -152,4 +152,9 @@ public class GameTool
         return Mathf.Min(GetAnimatorLength(anim, animName), 1f);
     }
 
+    public static bool CheckAnimatorNameAnd1f(Animator anim,string name,float animTime)
+    {
+        AnimatorStateInfo asinfo = anim.GetCurrentAnimatorStateInfo(0);
+        return asinfo.IsName(name) && animTime < 1f;
+    }
 }

@@ -6,6 +6,12 @@ public class Dinosaur : Player
 {
     Transform gun;
     float angle;
+    protected override void Start()
+    {
+        base.Start();
+
+        gun = GameTool.FindTheChild(gameObject, "Gun");
+    }
     protected override void Update()
     {
         base.Update();
@@ -33,11 +39,9 @@ public class Dinosaur : Player
             }
         }
     }
-    protected override void RoleArms(Transform tran)
+    protected override void RoleArms()
     {
-        gun = GameTool.FindTheChild(gameObject, "Gun");
-
-        Vector3 gunDir = (tran.position - transform.position).normalized * transform.localScale.x;
+        Vector3 gunDir = (nearEnemy == null) ? Vector3.right : (nearEnemy.transform.position - transform.position).normalized * transform.localScale.x;
         float angle = Mathf.Atan2(gunDir.y, gunDir.x) * Mathf.Rad2Deg;
         this.angle = angle;
         Rotate(angle);

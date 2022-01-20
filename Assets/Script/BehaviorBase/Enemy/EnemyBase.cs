@@ -32,6 +32,7 @@ public class EnemyBase : BehaviorBase
 
     // ×¢²á×´Ì¬¼ÆÊ±Æ÷
     public Timer moveTimer, atkTimer, HitTimer, DeadTimer;
+    public bool playerIsDeath;
 
     protected override void Start()
     {
@@ -50,6 +51,10 @@ public class EnemyBase : BehaviorBase
 
             currentHp -= (int)x;
             isHit = true;
+        });
+        EventCenter.GetInstance().AddEventListener("Íæ¼ÒËÀÍö", () =>
+        {
+            playerIsDeath = true;
         });
     }
     protected virtual void Update()
@@ -104,7 +109,6 @@ public class EnemyBase : BehaviorBase
         GameTool.QuickSortArray(transform.position, cols, 0, cols.Length - 1);
         nearThrow = (transform.position - cols[0].transform.position).normalized;
     }
-#if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         if (data == null)
@@ -117,6 +121,5 @@ public class EnemyBase : BehaviorBase
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, data.atkLen);
     }
-#endif
 }
 

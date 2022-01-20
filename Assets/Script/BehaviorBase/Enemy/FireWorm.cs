@@ -126,7 +126,7 @@ public class FireWorm : EnemyBase
             return;
         }
         //如果在攻击范围内，则进入 攻击状态
-        if (Vector2.Distance(player.transform.position, transform.position) <= data.atkLen)
+        if (Vector2.Distance(player.transform.position, transform.position) <= data.atkLen && !playerIsDeath)
         {
             fws = FireWormState.Atk;
             return;
