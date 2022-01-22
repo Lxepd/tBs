@@ -40,7 +40,6 @@ public class EndPanel : UIBase
                     // Çå¿Õ»º´æ³Ø
                     PoolMgr.GetInstance().Clear();
                     EventCenter.GetInstance().Clear();
-
                 });
                 break;
         }

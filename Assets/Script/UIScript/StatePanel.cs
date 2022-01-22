@@ -60,7 +60,23 @@ public class StatePanel : UIBase
             return;
 
         // 更新血量
+        GetControl<Text>("CurrentHp").text = currentHp.ToString();
         GetControl<Image>("HpBar").fillAmount = Mathf.Lerp(GetControl<Image>("HpBar").fillAmount, currentHp / data.MaxHp, Time.deltaTime * 10f);
+
+        List<int> zeroList = new List<int>();
+        foreach (var item in BagItem)
+        {
+            if(item.Value <= 0)
+            {
+                zeroList.Add(item.Key);
+            }
+        }
+        for (int i = 0; i < zeroList.Count; i++)
+        {
+            BagItem.Remove(zeroList[i]);
+            BagItemIDList.Remove(zeroList[i]);
+        }
+
         SetBagItem(index);
     }
     /// <summary>
@@ -100,7 +116,30 @@ public class StatePanel : UIBase
                 break;
             // 使用
             case "Bto_":
-                Debug.Log("道具使用");        
+                Debug.Log("道具使用");
+                int itemId = BagItemIDList[index];
+                switch (Datas.GetInstance().ItemDataDic[itemId].actType)
+                {
+                    case ItemActType.血量恢复:
+                        Debug.Log(itemId);
+                        currentHp += Datas.GetInstance().ItemDataDic[BagItemIDList[index]].recovery;
+                        break;
+                    case ItemActType.攻速强化:
+                        break;
+                }
+
+                switch (Datas.GetInstance().ItemDataDic[itemId].itemType)
+                {
+                    case ItemType.一次性消耗品:
+                        BagItem[itemId]--;
+                        break;
+                    case ItemType.可重复使用消耗品:
+                        break;
+                    case ItemType.非消耗品:
+                        break;
+                }
+
+                EventCenter.GetInstance().EventTrigger<int>("道具使用消耗", itemId);
                 break;
 
         }
@@ -113,9 +152,7 @@ public class StatePanel : UIBase
         // 获取最大血量
         currentHp = data.MaxHp;
         // 初始化文本
-        GetControl<Text>("CurrentHp").text = data.MaxHp.ToString();
         GetControl<Text>("MaxHp").text = data.MaxHp.ToString();
-
     }
     /// <summary>
     /// 扣血执行
@@ -135,7 +172,6 @@ public class StatePanel : UIBase
             EventCenter.GetInstance().EventTrigger("玩家受伤");
         }
 
-        GetControl<Text>("CurrentHp").text = currentHp.ToString();
     }
     private void GetBagItem(ItemClick item)
     {
@@ -156,12 +192,17 @@ public class StatePanel : UIBase
     private void SetBagItem(int index)
     {
         if (BagItemIDList.Count == 0)
-            return;   
+        {
+            GetControl<Image>("Item").sprite = null;
+            GetControl<Image>("Item").color = new Color(255 / 255f, 255 / 255f, 255 / 255f, 0 / 255f);
+            GetControl<Text>("ItemNum").text = "";
+            return;
+        }
 
         ResMgr.GetInstance().LoadAsync<Sprite>(Datas.GetInstance().ItemDataDic[ BagItemIDList[index]].path, (x) =>
         {
             GetControl<Image>("Item").sprite = x;
-            GetControl<Image>("Item").color = new Color(255f, 255f, 255f);
+            GetControl<Image>("Item").color = new Color(255 / 255f, 255 / 255f, 255 / 255f, 255 / 255f);
             GetControl<Text>("ItemNum").text = BagItem[BagItemIDList[index]].ToString();
         });
     }

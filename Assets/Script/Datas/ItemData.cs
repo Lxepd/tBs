@@ -12,8 +12,8 @@ public enum ItemType
 public enum ItemActType
 {
     None,
-    恢复,
-    强化
+    血量恢复,
+    攻速强化
 }
 public class ItemData
 {
@@ -23,11 +23,8 @@ public class ItemData
     public string tips; // 说明
     public bool canSuperPosition; // 能否叠加
     public int maxNum; // 最大数量
-    public bool canSell; // 能否出售
-    public int sellPrice; // 出售价
-    public bool canBuy; // 能否买入
-    public int buyPrice; // 买入价
     public ItemType itemType; // 道具类型
     public ItemActType actType; // 道具功能
-
+    public int recovery; // 恢复
+    public float increaseAttackSpeed; // 增加攻速
 }

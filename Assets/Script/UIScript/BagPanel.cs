@@ -5,8 +5,12 @@ using UnityEngine.UI;
 
 public class BagPanel : UIBase
 {
+    Transform bag;
+
     private void Start()
     {
+        bag = GameTool.FindTheChild(gameObject, "背包界面");
+
         // 注册<道具点击>消息
         EventCenter.GetInstance().AddEventListener<ItemClick>("成功购买的道具", (x) =>
         {
@@ -26,6 +30,29 @@ public class BagPanel : UIBase
         {
             GetControl<Text>("CoinNum").text = x.ToString();
         });
+        EventCenter.GetInstance().AddEventListener<int>("道具使用消耗", (x) =>
+        {
+            for (int i = 0; i < bag.childCount; i++)
+            {
+                ItemClick ic = bag.GetChild(i).GetComponent<ItemClick>();
+                if (ic.id == x)
+                {
+                    ic.currentNum--;
+                    return;
+                }
+            }
+        });
+    }
+    private void Update()
+    {
+        for (int i = bag.childCount - 1; i >= 0; i--)
+        {
+            ItemClick ic = bag.GetChild(i).GetComponent<ItemClick>();
+            if (ic.currentNum <= 0)
+            {
+                PoolMgr.GetInstance().PushObj(bag.GetChild(i).name, bag.GetChild(i).gameObject);
+            }
+        }
     }
     protected override void OnClick(string btnName)
     {
@@ -43,7 +70,6 @@ public class BagPanel : UIBase
     }
     private void AddItemInBag(ItemClick item)
     {
-        Transform bag = GameTool.FindTheChild(gameObject, "背包界面");
 
         // 没有达到最大值则叠加
         for (int i = 0; i < bag.childCount; i++)

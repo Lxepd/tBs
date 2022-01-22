@@ -5,24 +5,20 @@
         <tips>能够恢复血量</tips>
         <canSuperPosition>true</canSuperPosition>
         <maxNum>10</maxNum>
-        <canSell>true</canSell>
-        <sellPrice>2</sellPrice>
-        <canBuy>true</canBuy>
-        <buyPrice>5</buyPrice>
         <itemType>1</itemType>
         <actType>1</actType>
-    </it>
+		<recovery>100</recovery>
+		<increaseAttackSpeed>0</increaseAttackSpeed>
+	</it>
     <it id="12002">
         <name>柠檬</name>
 		<path>Sprites/ItemSprite/柠檬</path>
         <tips>看起来很酸。。。</tips>
         <canSuperPosition>true</canSuperPosition>
         <maxNum>5</maxNum>
-        <canSell>true</canSell>
-        <sellPrice>2</sellPrice>
-        <canBuy>true</canBuy>
-        <buyPrice>5</buyPrice>
         <itemType>1</itemType>
         <actType>2</actType>
+		<recovery>0</recovery>
+		<increaseAttackSpeed>0.05</increaseAttackSpeed>
     </it>
 </Data>
