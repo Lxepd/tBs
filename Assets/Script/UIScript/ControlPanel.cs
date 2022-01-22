@@ -57,6 +57,7 @@ public class ControlPanel : UIBase
             {
                 ctrlType = CtrlType.´ò¿ªÉÌµê;
                 npcComponent = x.GetComponent<Npc>();
+
             }
 
         });

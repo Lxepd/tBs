@@ -13,7 +13,7 @@ public class RoleClick : ImgClickBase
     protected override void Start()
     {
         base.Start();
-        GameTool.FindTheChild(gameObject, "Text").GetComponent<Text>().text = GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, RoleId).name;
+        GameTool.FindTheChild(gameObject, "Text").GetComponent<Text>().text = Datas.GetInstance().PlayerDataDic[RoleId].name;
     }
 
     private void Update()

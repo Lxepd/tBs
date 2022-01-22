@@ -127,12 +127,24 @@ public class UIMgr : InstanceNoMono<UIMgr>
     }
     public void HideAllPanelBesides(string name)
     {
+        List<string> aList = new List<string>();
+
         foreach (var panel in panelDic)
         {
             if (panel.Key == name)
                 continue;
 
-            HidePanel(panel.Key);
+            Object.Destroy(panel.Value.gameObject);
+            aList.Add(panel.Key);
+            //HidePanel(panel.Key);
+        }
+
+        for (int i = 0; i < aList.Count; i++)
+        {
+            if (aList[i] == name)
+                continue;
+
+            panelDic.Remove(aList[i]);
         }
     }
 

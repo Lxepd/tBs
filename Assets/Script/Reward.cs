@@ -19,7 +19,7 @@ public class Reward : MonoBehaviour
     private void Start()
     {
         startPos = transform.position;
-        data = GameTool.GetDicInfo(Datas.GetInstance().RewardDataDic, id);
+        data = Datas.GetInstance().RewardDataDic[id];
     }
     private void FixedUpdate()
     {

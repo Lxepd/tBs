@@ -20,14 +20,7 @@ public class BehaviorBase : MonoBehaviour
     // ¸Ä±ä³¯Ïò
     protected virtual void Rotate(Vector3 dir)
     {
-        //if (dir.x < 0)
-        //{
-        //    transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
-        //}
-        //else if (dir.x > 0)
-        //{
-        //    transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
-        //}
+
     }
     protected virtual void Rotate(float dir)
     {

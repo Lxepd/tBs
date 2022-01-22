@@ -22,7 +22,7 @@ public class Player : BehaviorBase
         EventCenter.GetInstance().EventTrigger<WeaponData>("枪支数据", weaponData);
         EventCenter.GetInstance().AddEventListener<int>("枪支更新", (x) =>
          {
-             weaponData = GameTool.GetDicInfo(Datas.GetInstance().WeaponDataDic, x);
+             weaponData = Datas.GetInstance().WeaponDataDic[x];
              gun.GetComponent<SpriteRenderer>().sprite = ResMgr.GetInstance().Load<Sprite>(weaponData.spritePath);
              EventCenter.GetInstance().EventTrigger<WeaponData>("枪支数据", weaponData);
          });
@@ -32,6 +32,7 @@ public class Player : BehaviorBase
             dir = x;
         });
         EventCenter.GetInstance().EventTrigger<PlayerData>("角色初始", playerData);
+
         EventCenter.GetInstance().AddEventListener<int>("获得金币", (x) =>
         {
             coinNum += x;
@@ -50,7 +51,7 @@ public class Player : BehaviorBase
         {
             isDeath = false;
             Time.timeScale = 1;
-            anim.Play("Idle");
+            gameObject.SetActive(true);
         });
     }
     protected virtual void Update()
@@ -66,6 +67,7 @@ public class Player : BehaviorBase
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Death") && animTime > 1f)
         {
             Time.timeScale = 0;
+            gameObject.SetActive(false);
             return;
         }
         if (GameTool.CheckAnimatorNameAnd1f(anim,"Hurt", animTime))
@@ -101,6 +103,39 @@ public class Player : BehaviorBase
         CheckNpcHere();
 
         RoleArms();
+    }
+    protected virtual void OnDestroy()
+    {
+        EventCenter.GetInstance().RemoveEventListener<int>("枪支更新", (x) =>
+        {
+            weaponData = Datas.GetInstance().WeaponDataDic[x];
+            gun.GetComponent<SpriteRenderer>().sprite = ResMgr.GetInstance().Load<Sprite>(weaponData.spritePath);
+            EventCenter.GetInstance().EventTrigger<WeaponData>("枪支数据", weaponData);
+        });
+        EventCenter.GetInstance().RemoveEventListener<Vector2>("Joystick", (x) =>
+        {
+            dir = x;
+        });
+        EventCenter.GetInstance().RemoveEventListener<int>("获得金币", (x) =>
+        {
+            coinNum += x;
+        });
+        EventCenter.GetInstance().RemoveEventListener("玩家死亡", () =>
+        {
+            UIMgr.GetInstance().ShowPanel<EndPanel>("EndPanel", E_UI_Layer.Above);
+
+            isDeath = true;
+        });
+        EventCenter.GetInstance().RemoveEventListener("玩家受伤", () =>
+        {
+            isHit = true;
+        });
+        EventCenter.GetInstance().RemoveEventListener("角色恢复", () =>
+        {
+            isDeath = false;
+            Time.timeScale = 1;
+            gameObject.SetActive(true);
+        });
     }
     /// <summary>
     /// 检查附近有没有强化物

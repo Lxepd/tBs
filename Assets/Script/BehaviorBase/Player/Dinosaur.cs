@@ -17,6 +17,10 @@ public class Dinosaur : Player
         base.Update();
         Rotate(angle);
     }
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+    }
     protected override void Rotate(float angle)
     {
         if (nearEnemy == null)

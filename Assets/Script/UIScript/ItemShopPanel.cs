@@ -25,7 +25,7 @@ public class ItemShopPanel : UIBase
         {
             item = x;
         });
-        EventCenter.GetInstance().AddEventListener<List<道具商人>>("道具商店", (x) =>
+        EventCenter.GetInstance().AddEventListener<List<道具>>("道具商店", (x) =>
         {
             if (!isInit)
             {
@@ -90,7 +90,7 @@ public class ItemShopPanel : UIBase
                     if (item.id != ic.id)
                         continue;
 
-                    if (ic.currentNum <= GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic,ic.id).maxNum)
+                    if (ic.currentNum <= Datas.GetInstance().ItemDataDic[ic.id].maxNum)
                     {
                         
                     }
@@ -102,24 +102,24 @@ public class ItemShopPanel : UIBase
     /// 初始化商店
     /// </summary>
     /// <param name="shop"></param>
-    private void InitShop(List<道具商人> shop)
+    private void InitShop(List<道具> shop)
     {
         Transform content = GameTool.FindTheChild(UIMgr.GetInstance().GetLayerFather(E_UI_Layer.Above).gameObject, "商店展示界面");
-        foreach (道具商人 item in shop)
+        foreach (道具 item in shop)
         {
             int[] num = new int[]
             {
                 // 有多少个满的
-                item.num / GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic,item.id).maxNum,
+                item.num / Datas.GetInstance().ItemDataDic[item.id].maxNum,
                 // 多出来几个
-                item.num % GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic,item.id).maxNum
+                item.num % Datas.GetInstance().ItemDataDic[item.id].maxNum
             };
 
             if (num[0] != 0)
             {
                 for (int i = 0; i < num[0]; i++)
                 {
-                    CreateShopItem(content, item, GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic, item.id).maxNum);
+                    CreateShopItem(content, item, Datas.GetInstance().ItemDataDic[item.id].maxNum);
                 }
             }
             if (num[1] != 0)
@@ -134,7 +134,7 @@ public class ItemShopPanel : UIBase
     /// <param name="parent"></param>
     /// <param name="item">道具</param>
     /// <param name="num">数量</param>
-    private void CreateShopItem(Transform parent, 道具商人 item, int num)
+    private void CreateShopItem(Transform parent, 道具 item, int num)
     {
         PoolMgr.GetInstance().GetObj("Prefabs/ShopItem", (x) =>
         {
@@ -144,7 +144,7 @@ public class ItemShopPanel : UIBase
             ItemClick ic = x.GetComponent<ItemClick>();
             ic.id = item.id;
             ic.currentNum = num;
-            x.transform.Find("Img").GetComponent<Image>().sprite = ResMgr.GetInstance().Load<Sprite>(GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic, item.id).path);
+            x.transform.Find("Img").GetComponent<Image>().sprite = ResMgr.GetInstance().Load<Sprite>(Datas.GetInstance().ItemDataDic[item.id].path);
             //x.transform.Find("ItemNum").GetComponent<Text>().text = num.ToString();
 
         });

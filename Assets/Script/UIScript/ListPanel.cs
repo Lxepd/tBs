@@ -38,19 +38,17 @@ public class ListPanel : UIBase
             // 返回主菜单
             case "Bto_Home":
                 // 切回开头场景
-                // 触发消息，初始化<选择角色>界面的选择id
-                EventCenter.GetInstance().EventTrigger<int>("选择角色", 0);
                 // 触发消息，执行<玩家角色>销毁
-                EventCenter.GetInstance().EventTrigger<GameObject>("玩家角色", playerGo);
+                EventCenter.GetInstance().EventTrigger("销毁角色");
                 EventCenter.GetInstance().EventTrigger<int>("道具栏清空", 0);
                 EventCenter.GetInstance().EventTrigger<bool>("背包清空", true);
-                EventCenter.GetInstance().Clear();
                 SceneMgr.GetInstance().LoadSceneAsyn("Main", ()=>
                 {
                     // 除了<主界面>以外的界面全部隐藏
                     UIMgr.GetInstance().HideAllPanelBesides("MainPanel");
                     // 清空缓存池
                     PoolMgr.GetInstance().Clear();
+                    EventCenter.GetInstance().Clear();
                 });
                 break;
             // 关闭菜单

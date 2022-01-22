@@ -158,7 +158,7 @@ public class StatePanel : UIBase
         if (BagItemIDList.Count == 0)
             return;   
 
-        ResMgr.GetInstance().LoadAsync<Sprite>(GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic, BagItemIDList[index]).path, (x) =>
+        ResMgr.GetInstance().LoadAsync<Sprite>(Datas.GetInstance().ItemDataDic[ BagItemIDList[index]].path, (x) =>
         {
             GetControl<Image>("Item").sprite = x;
             GetControl<Image>("Item").color = new Color(255f, 255f, 255f);

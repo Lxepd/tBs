@@ -91,29 +91,15 @@ public class GameTool
 
         return str;
     }
-    /// <summary>
-    /// 获取任意字典信息
-    /// </summary>
-    /// <typeparam name="T">数据类型</typeparam>
-    /// <param name="dic">字典</param>
-    /// <param name="id">获取的id数据</param>
-    /// <returns></returns>
-    public static T GetDicInfo<T>(Dictionary<int, T> dic, int id)
-    {
-        if (dic.ContainsKey(id))
-            return dic[id];
-
-        return default(T);
-    }
     public static string GetRandomEnemyPath(bool normal = true)
     {
         int id;
         do
         {
             id = 15000 + UnityEngine.Random.Range(1, Datas.GetInstance().EnemyDataDic.Count + 1);
-        } while ((normal) ? GetDicInfo(Datas.GetInstance().EnemyDataDic, id).type == EnemyType.Boss : GetDicInfo(Datas.GetInstance().EnemyDataDic, id).type == EnemyType.小怪);
+        } while ((normal) ? Datas.GetInstance().EnemyDataDic[id].type == EnemyType.Boss : Datas.GetInstance().EnemyDataDic[id].type == EnemyType.小怪);
 
-        return GetDicInfo(Datas.GetInstance().EnemyDataDic, id).path;
+        return Datas.GetInstance().EnemyDataDic[id].path;
     }
     /// <summary>
     /// List深复制

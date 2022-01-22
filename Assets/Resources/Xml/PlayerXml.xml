@@ -4,7 +4,7 @@
 		<path>Prefabs/角色/恐龙</path>
 		<sprite>Sprites/RoleSprite/小恐龙</sprite>
 		<tips>小小小小小小恐龙</tips>
-		<maxHp>9</maxHp>
+		<maxHp>1</maxHp>
 		<speed>10</speed>
 		<initialWeaponId>20001</initialWeaponId>
 		<checkLen>1.5</checkLen>

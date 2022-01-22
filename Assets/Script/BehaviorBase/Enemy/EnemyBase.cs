@@ -38,7 +38,7 @@ public class EnemyBase : BehaviorBase
     {
         base.Start();
 
-        data = GameTool.GetDicInfo(Datas.GetInstance().EnemyDataDic, id);
+        data = Datas.GetInstance().EnemyDataDic[id];
 
         hp = GameTool.FindTheChild(gameObject, "Hp").GetComponent<Image>();
         hp.fillAmount = (currentHp = data.hp) / data.hp;

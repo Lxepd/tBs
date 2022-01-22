@@ -111,6 +111,38 @@ public class ReadXml : InstanceNoMono<ReadXml>
             newData.type = (NpcType)int.Parse(item.SelectSingleNode("type").InnerText);
             newData.shopReTime = float.Parse(item.SelectSingleNode("shopReTime").InnerText);
 
+            switch (newData.type)
+            {
+                case NpcType.道具商人:
+                    foreach (XmlNode it in item.SelectSingleNode("shop").ChildNodes)
+                    {
+                        道具 shopItem = new 道具(int.Parse(it.Attributes["id"].InnerText), int.Parse(it.InnerText));
+
+                        if(newData.items == null)
+                        {
+                            newData.items = new List<道具>();
+                        }
+
+                        newData.items.Add(shopItem);
+                    }
+                    break;
+                case NpcType.装备商人:
+                    break;
+                case NpcType.工匠:
+                    foreach (XmlNode it in item.SelectSingleNode("shop").ChildNodes)
+                    {
+                        升级 shopItem = new 升级(int.Parse(it.Attributes["id"].InnerText));
+
+                        if (newData.upgrades == null)
+                        {
+                            newData.upgrades = new List<升级>();
+                        }
+
+                        newData.upgrades.Add(shopItem);
+                    }
+                    break;
+            }
+
             Datas.GetInstance().NpcDataDic.Add(newData.id, newData);
         }
     }

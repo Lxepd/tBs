@@ -18,4 +18,28 @@
 		</shop>
 		<shopReTime>4752</shopReTime>
 	</it>
+	<it id="13003">
+		<name>Npc3</name>
+		<path>Prefabs/Npc/Npc3</path>
+		<type>3</type>
+		<shop>
+			<item id="30001"></item>
+			<item id="30002"></item>
+			<item id="30003"></item>
+			<item id="30004"></item>
+			<item id="30005"></item>
+		</shop>
+		<shopReTime>0</shopReTime>
+	</it>
+	<it id="13004">
+		<name>Npc4</name>
+		<path>Prefabs/Npc/Npc4</path>
+		<type>3</type>
+		<shop>
+			<item id="30003"></item>
+			<item id="30004"></item>
+			<item id="30005"></item>
+		</shop>
+		<shopReTime>0</shopReTime>
+	</it>
 </Data>

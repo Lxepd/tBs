@@ -1,42 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-using UnityEngine.UI;
 
-public class Npc : MonoBehaviour
+public class Npc:MonoBehaviour
 {
-    // Npc类型
-    public NpcType type;
+    public int id;
+    public NpcData data;
 
-    [Header("道具商店售卖的东西")]
-    public List<道具商人> items = new List<道具商人>();
-    public List<道具商人> itemsCopy = new List<道具商人>();
+    [HideInInspector] public List<道具> items = new List<道具>();
 
-    public List<装备商人> equipmentNpc = new List<装备商人>();
-
-    private Timer reInit;
-    [Header("商店刷新时间，最短30s")]
-    public float reInitTime;
     [Header("检测玩家距离，最短1.5")]
     public float checkPlayerHereRadius = 1.5f;
 
     private bool playerHere;
 
+    private Timer reInit;
+
     private void Start()
     {
-        //data = GameTool.GetDicInfo(Datas.GetInstance().NpcDataDic, id);
+        data = Datas.GetInstance().NpcDataDic[id];
 
-        switch (type)
+        switch (data.type)
         {
             case NpcType.道具商人:
-                itemsCopy = GameTool.Clone<道具商人>(items);
+                items = GameTool.Clone<道具>(data.items);
                 EventCenter.GetInstance().AddEventListener<int>("NPC道具数量更新", (x) =>
                 {
                     if (!playerHere)
                         return;
 
-                    foreach (var item in itemsCopy)
+                    foreach (var item in items)
                     {
                         if (item.id == x)
                         {
@@ -45,43 +38,46 @@ public class Npc : MonoBehaviour
                         }
                     }
                 });
-                reInit = new Timer(Mathf.Max(30, reInitTime), true, true);
+                reInit = new Timer(Mathf.Max(30, data.shopReTime), true, true);
                 break;
             case NpcType.装备商人:
-                //TODO
                 break;
             case NpcType.工匠:
-                //TODO
                 break;
         }
 
     }
-    private void FixedUpdate()
+    private void Update()
     {
-        switch (type)
+        playerHere = Physics2D.OverlapCircle(transform.position, checkPlayerHereRadius, LayerMask.GetMask("玩家"));
+
+        switch (data.type)
         {
             case NpcType.道具商人:
-                if (playerHere = Physics2D.OverlapCircle(transform.position, checkPlayerHereRadius, LayerMask.GetMask("玩家")))
+                if(playerHere)
                 {
                     EventCenter.GetInstance().EventTrigger<float>("刷新时间", reInit.nowTime);
-                    EventCenter.GetInstance().EventTrigger<List<道具商人>>("道具商店", itemsCopy);
+                    EventCenter.GetInstance().EventTrigger<List<道具>>("道具商店", items);
                 }
                 if (reInit.isTimeUp)
                 {
-                    itemsCopy.Clear();
-                    itemsCopy = GameTool.Clone<道具商人>(items);
+                    items = GameTool.Clone<道具>(data.items);
                 }
                 break;
             case NpcType.装备商人:
                 break;
             case NpcType.工匠:
+                if (playerHere)
+                {
+                    EventCenter.GetInstance().EventTrigger<List<升级>>("武器升级", data.upgrades);
+                }
                 break;
         }
     }
     // 初始化商店
     public void OpenShop()
     {
-        switch (type)
+        switch (data.type)
         {
             case NpcType.道具商人:
                 UIMgr.GetInstance().ShowPanel<ItemShopPanel>("ItemShopPanel", E_UI_Layer.Above);

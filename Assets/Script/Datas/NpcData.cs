@@ -11,6 +11,7 @@ public class NpcData
     public NpcType type;
     public List<道具> items;
     public float shopReTime;
+    public List<升级> upgrades;
 }
 
 public enum NpcType
@@ -21,31 +22,6 @@ public enum NpcType
     工匠
 }
 [Serializable]
-public class 道具商人
-{
-    // 道具ID
-    public int id;
-    // 道具数量
-    public int num;
-
-    public 道具商人(int id, int num)
-    {
-        this.id = id;
-        this.num = num;
-    }
-}
-[Serializable]
-public class 装备商人
-{
-    public int test;
-
-}
-[Serializable]
-public class 工匠
-{
-    public int test;
-}
-
 public class 道具
 {
     // 道具ID
@@ -57,5 +33,25 @@ public class 道具
     {
         this.id = id;
         this.num = num;
+    }
+}
+public class UpgradeData
+{
+    public int id; // id
+    public int beforeId; // 升级前
+    public int afterId; // 升级后
+    public int cost; // 花费
+}
+[Serializable]
+public class 升级
+{
+    public int id; // id
+    public int beforeId; // 升级前
+    public int afterId; // 升级后
+    public int cost; // 花费
+
+    public 升级(int id)
+    {
+        this.id = id;
     }
 }

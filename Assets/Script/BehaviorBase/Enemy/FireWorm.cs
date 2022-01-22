@@ -187,6 +187,11 @@ public class FireWormWalk : StateBaseTemplate<FireWorm>
             return;
         }
 
+        if(owner.player == null)
+        {
+            owner.fws = FireWormState.Idle;
+        }
+
         Vector2 playerDir = (owner.player.transform.position - owner.transform.position).normalized;
 
         if (owner.moveTimer.isTimeUp)
@@ -226,6 +231,11 @@ public class FireWormAtk : StateBaseTemplate<FireWorm>
         {
             OnExit();
             return;
+        }
+
+        if (owner.player == null)
+        {
+            owner.fws = FireWormState.Idle;
         }
 
         Vector3 playerDir = (owner.player.transform.position - owner.mouth.position).normalized;
@@ -308,7 +318,7 @@ public class FireWormDead : StateBaseTemplate<FireWorm>
         if(!isDropReward)
         {
             isDropReward = true;
-            PoolMgr.GetInstance().GetObj(GameTool.GetDicInfo(Datas.GetInstance().RewardDataDic, Datas.GetInstance().EnemyDataDic[owner.GetId].rewardId).path, (x) =>
+            PoolMgr.GetInstance().GetObj(Datas.GetInstance().RewardDataDic[Datas.GetInstance().EnemyDataDic[owner.GetId].rewardId].path, (x) =>
             {
                 x.transform.position = owner.transform.position;
             });

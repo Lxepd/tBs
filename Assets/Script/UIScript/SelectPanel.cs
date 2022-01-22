@@ -26,32 +26,21 @@ public class SelectPanel : UIBase
              {
                  x.transform.SetParent(roleSelect);
                  x.transform.localScale = Vector3.one;
-                 GameTool.FindTheChild(x, "RoleImg").GetComponent<Image>().sprite = ResMgr.GetInstance().Load<Sprite>(GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, item.Value.id).spritePath);
+                 GameTool.FindTheChild(x, "RoleImg").GetComponent<Image>().sprite = ResMgr.GetInstance().Load<Sprite>(Datas.GetInstance().PlayerDataDic[item.Value.id].spritePath);
 
                  Toggle to = x.GetComponent<Toggle>();
                  to.group = roleSelect.GetComponent<ToggleGroup>();
                  to.onValueChanged.AddListener((y) =>
                  {
                      playerID = item.Value.id;
-                     GetControl<Image>("RoleImg").sprite = ResMgr.GetInstance().Load<Sprite>(GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, playerID).spritePath);
+                     GetControl<Image>("RoleImg").sprite = ResMgr.GetInstance().Load<Sprite>(Datas.GetInstance().PlayerDataDic[playerID].spritePath);
                      GetControl<Image>("RoleImg").color = new Color(1, 1, 1, 1);
-                     GetControl<Image>("RoleImg").GetComponent<Animator>().Play(GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, playerID).name);
-
+                     GetControl<Image>("RoleImg").GetComponent<Animator>().Play(Datas.GetInstance().PlayerDataDic[playerID].name);
+                     Debug.Log(playerID);
                  });
              });
         }
 
-        // 注册角色ID消息
-        EventCenter.GetInstance().AddEventListener<int>("选择角色", (x) =>
-        {
-            Debug.Log(x);
-            playerID = x;
-
-            if (x == 0)
-            {
-                GetControl<Image>("RoleImg").color = new Color(1, 1, 1, 1 / 255f);
-            }
-        });
     }
     protected override void OnClick(string btnName)
     {
@@ -108,7 +97,7 @@ public class SelectPanel : UIBase
     private void InitPlayer(int id)
     {
         // 异步生成角色  
-        ResMgr.GetInstance().LoadAsync<GameObject>(GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, playerID).path, (x) =>
+        ResMgr.GetInstance().LoadAsync<GameObject>(Datas.GetInstance().PlayerDataDic[playerID].path, (x) =>
           {
               GetRoleComponent(x, playerID);
 
@@ -121,9 +110,9 @@ public class SelectPanel : UIBase
               });
 
               // 注册返回主界面的消息
-              EventCenter.GetInstance().AddEventListener<GameObject>("玩家角色", (y) =>
+              EventCenter.GetInstance().AddEventListener("销毁角色", () =>
                {
-                   Destroy(y);
+                   Destroy(x);
                });
 
 
@@ -141,9 +130,11 @@ public class SelectPanel : UIBase
         {
             case 14001:
                 Dinosaur type = go.GetComponent<Dinosaur>() ?? go.AddComponent<Dinosaur>();
-                type.playerData = GameTool.GetDicInfo(Datas.GetInstance().PlayerDataDic, playerID);
-                type.weaponData = GameTool.GetDicInfo(Datas.GetInstance().WeaponDataDic, type.playerData.initialWeaponId);
+                type.playerData = Datas.GetInstance().PlayerDataDic[playerID];
+                type.weaponData = Datas.GetInstance().WeaponDataDic[type.playerData.initialWeaponId];
                 break;
         }
+
+
     }
 }

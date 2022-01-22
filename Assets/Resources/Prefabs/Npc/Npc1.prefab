@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8793703548513229627}
   - component: {fileID: 4154949302424103660}
   - component: {fileID: 4538489798772709103}
-  - component: {fileID: 9072697624576223415}
+  - component: {fileID: -6493123055008469771}
   m_Layer: 10
   m_Name: Npc1
   m_TagString: Untagged
@@ -113,7 +113,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.76597977, y: 0.47911835}
   m_EdgeRadius: 0
---- !u!114 &9072697624576223415
+--- !u!114 &-6493123055008469771
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,19 +122,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 447881389537083196}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02d70f2fdf484e74b88ec83d60c27c1a, type: 3}
+  m_Script: {fileID: 11500000, guid: 60adea0073139094c853face9485a984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
-  type: 1
-  items:
-  - id: 12001
-    num: 13
-  - id: 12002
-    num: 7
-  itemsCopy: []
-  equipmentNpc: []
-  reInitTime: 30
+  id: 13001
   checkPlayerHereRadius: 1.5
 --- !u!1 &9085718436332723384
 GameObject:

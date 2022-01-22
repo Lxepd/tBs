@@ -49,8 +49,8 @@ public class BagPanel : UIBase
         for (int i = 0; i < bag.childCount; i++)
         {
             ItemClick ic = bag.GetChild(i).GetComponent<ItemClick>();
-            if (item.id == GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic, ic.id).id &&
-                ic.currentNum < GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic, ic.id).maxNum)
+            if (item.id == Datas.GetInstance().ItemDataDic[ic.id].id &&
+                ic.currentNum < Datas.GetInstance().ItemDataDic[ic.id].maxNum)
             {
                 ic.currentNum++;
                 return;
@@ -67,7 +67,7 @@ public class BagPanel : UIBase
             ic.id = item.id;
             ic.currentNum = 1;
 
-            x.transform.Find("Img").GetComponent<Image>().sprite = ResMgr.GetInstance().Load<Sprite>(GameTool.GetDicInfo(Datas.GetInstance().ItemDataDic, item.id).path);
+            x.transform.Find("Img").GetComponent<Image>().sprite = ResMgr.GetInstance().Load<Sprite>(Datas.GetInstance().ItemDataDic[item.id].path);
         });
     }
 }
