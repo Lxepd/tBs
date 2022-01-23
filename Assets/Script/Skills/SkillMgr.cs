@@ -18,10 +18,11 @@ public class SkillMgr
         PoolMgr.GetInstance().GetObj(data.path, (x) =>
         {
             x.transform.position = owner;
+            x.transform.localScale = (dir.x < 0) ? new Vector3(-1, 1, 1) : new Vector3(1, 1, 1);
             // 设置火球速度
             x.GetComponent<Rigidbody2D>().velocity = dir * data.speed;
             // 设置火球朝向
-            x.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir + off);
+            x.transform.rotation = Quaternion.FromToRotation(Vector3.right * x.transform.localScale.x, dir + off);
             // 设置火球发射者
             x.GetComponent<ThrowItem>().ws = who;
             // 设置伤害

@@ -27,7 +27,9 @@ public class FireWorm : EnemyBase
     public FireWormState fws = FireWormState.Idle;
     public int GetId { get => id; }
     public int skillId = 17001;
-
+    public Timer MonoTimer;
+    // ¹¥»÷×´Ì¬µÄ¹¥»÷Ö´ÐÐÊ±¼ä
+    [HideInInspector] public float MonoTimertime;
     [HideInInspector] public Transform mouth;
 
     protected override void Start()
@@ -50,13 +52,13 @@ public class FireWorm : EnemyBase
         machine.AddState(dead);
 
         MoveTimertime = .5f * GameTool.GetAnimatorLength(anim, "Walk");
-        moveTimer = new Timer(MoveTimertime, false, false);
+        moveTimer = new Timer(MoveTimertime, false, true);
         AtkTimertime = .65f * GameTool.GetAnimatorLength(anim, "Atk");
-        atkTimer = new Timer(AtkTimertime, false, false);
-        HitTimertime = .3f * GameTool.GetAnimatorLength(anim, "Hit");
-        HitTimer = new Timer(HitTimertime, false, false);
+        atkTimer = new Timer(AtkTimertime, false, true);
         DeadTimertime = 3f * GameTool.GetAnimatorLength(anim, "Dead");
         DeadTimer = new Timer(DeadTimertime, false, false);
+        MonoTimertime = .5f;
+        MonoTimer = new Timer(MonoTimertime, false, true);
 
         mouth = GameTool.FindTheChild(gameObject, "mouth");
     }
@@ -71,24 +73,12 @@ public class FireWorm : EnemyBase
                 break;
             case FireWormState.Walk:
                 machine.TranslateState(2);
-                if (moveTimer.isStop)
-                {
-                    moveTimer.Start();
-                }
                 break;
             case FireWormState.Atk:
                 machine.TranslateState(3);
-                if (atkTimer.isStop)
-                {
-                    atkTimer.Start();
-                }
                 break;
             case FireWormState.Hit:
                 machine.TranslateState(4);
-                if (HitTimer.isStop)
-                {
-                    HitTimer.Start();
-                }
                 break;
             case FireWormState.Dead:
                 machine.TranslateState(5);
@@ -126,14 +116,18 @@ public class FireWorm : EnemyBase
             return;
         }
         //Èç¹ûÔÚ¹¥»÷·¶Î§ÄÚ£¬Ôò½øÈë ¹¥»÷×´Ì¬
-        if (Vector2.Distance(player.transform.position, transform.position) <= data.atkLen && !playerIsDeath)
+        if (Vector2.Distance(player.transform.position, transform.position) <= data.atkLen && MonoTimer.isTimeUp && !playerIsDeath)
         {
+            MonoTimer.Reset(MonoTimertime);
+            atkTimer.Start();
             fws = FireWormState.Atk;
             return;
         }
         // ·ñÔòÒÆ¶¯×·»÷×´Ì¬
-        else
+        else if(Vector2.Distance(player.transform.position, transform.position) > data.atkLen && MonoTimer.isTimeUp)
         {
+            MonoTimer.Reset(MonoTimertime);
+            moveTimer.Start();
             fws = FireWormState.Walk;
             return;
         }
@@ -181,19 +175,14 @@ public class FireWormWalk : StateBaseTemplate<FireWorm>
     {
         //Debug.Log("ÒÆ¶¯×´Ì¬£¡");
 
-        if (owner.AnimaTime > GameTool.GetAnimatorLen(owner.Animator, "Walk") || owner.player == null)
+        if (owner.AnimaTime > 1f || owner.player == null)
         {
             OnExit();
             return;
         }
 
-        if(owner.player == null)
-        {
-            owner.fws = FireWormState.Idle;
-        }
-
         Vector2 playerDir = (owner.player.transform.position - owner.transform.position).normalized;
-
+        
         if (owner.moveTimer.isTimeUp)
         {
             // ¸ÕÌåÒÆ¶¯ = ³¯Ïò * ¹ÖÎïËÙ¶È
@@ -203,7 +192,7 @@ public class FireWormWalk : StateBaseTemplate<FireWorm>
     }
     public override void OnExit(params object[] args)
     {
-        owner.moveTimer.Reset(owner.MoveTimertime);
+        owner.MonoTimer.Start();
         owner.Rg.velocity = Vector2.zero;
         owner.fws = FireWormState.Idle;
     }
@@ -213,7 +202,6 @@ public class FireWormWalk : StateBaseTemplate<FireWorm>
 /// </summary>
 public class FireWormAtk : StateBaseTemplate<FireWorm>
 {
-    bool isAtk;
     public FireWormAtk(int id, FireWorm ec) : base(id, ec)
     {
 
@@ -227,32 +215,25 @@ public class FireWormAtk : StateBaseTemplate<FireWorm>
     {
         //Debug.Log("¹¥»÷×´Ì¬£¡");
 
-        if (owner.AnimaTime > GameTool.GetAnimatorLen(owner.Animator, "Atk"))
+        if (owner.AnimaTime > 1f || owner.player == null)
         {
             OnExit();
             return;
         }
 
-        if (owner.player == null)
-        {
-            owner.fws = FireWormState.Idle;
-        }
-
         Vector3 playerDir = (owner.player.transform.position - owner.mouth.position).normalized;
 
-        if (owner.atkTimer.isTimeUp && !isAtk)
+        if (owner.atkTimer.isTimeUp)
         {
-            isAtk = true;
+            owner.atkTimer.Reset(owner.AtkTimertime);
             SkillMgr.SkillOfOnePoint(owner.skillId, owner.mouth.position, playerDir);
         }
 
     }
     public override void OnExit(params object[] args)
     {
-        isAtk = false;
-        owner.atkTimer.Reset(owner.AtkTimertime, false);
+        owner.MonoTimer.Start();
         owner.fws = FireWormState.Idle;
-
     }
 }
 public class FireWormHit : StateBaseTemplate<FireWorm>
@@ -264,33 +245,23 @@ public class FireWormHit : StateBaseTemplate<FireWorm>
     public override void OnEnter(params object[] args)
     {
         owner.Animator.Play("Hit");
-
-        owner.moveTimer.Pause();
-        owner.atkTimer.Pause();
+        owner.Rg.velocity = Vector2.zero;
+        owner.MonoTimer.Pause();
     }
     public override void OnStay(params object[] args)
     {
         //Debug.Log("±»»÷×´Ì¬£¡");
 
-        if (owner.AnimaTime > GameTool.GetAnimatorLen(owner.Animator, "Hit"))
+        if (owner.AnimaTime > 1f)
         {
             OnExit();
             return;
-        }
-
-        if (owner.HitTimer.isTimeUp)
-        {
-            owner.Rg.velocity = Vector2.zero;
-            
-            Debug.Log("±»´ò£¡£¡");
         }
     }
     public override void OnExit(params object[] args)
     {
         owner.Hit = false;
-        owner.moveTimer.Reset(owner.MoveTimertime);
-        owner.atkTimer.Reset(owner.AtkTimertime);
-        owner.HitTimer.Reset(owner.HitTimertime);
+        owner.MonoTimer.Continue();
         owner.fws = FireWormState.Idle;
     }
 }
@@ -328,7 +299,7 @@ public class FireWormDead : StateBaseTemplate<FireWorm>
     {
         //Debug.Log("ËÀÍö×´Ì¬£¡");
 
-        if (owner.AnimaTime > GameTool.GetAnimatorLen(owner.Animator, "Dead"))
+        if (owner.AnimaTime > 1f)
         {
             isDisappear = true;
             owner.Animator.Play("Disappear");

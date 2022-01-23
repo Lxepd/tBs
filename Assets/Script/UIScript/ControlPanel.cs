@@ -114,7 +114,7 @@ public class ControlPanel : UIBase
     {
         PoolMgr.GetInstance().GetObj(weaponData.bulletPath, (x) =>
          {
-             x.transform.position = gun.position;
+             x.transform.position = gun.position + new Vector3(0,.45f,0);
              Rigidbody2D rg = x.GetComponent<Rigidbody2D>();
 
              Vector3 randomPosOff = new Vector3(0, Random.Range(-1,2), 0);

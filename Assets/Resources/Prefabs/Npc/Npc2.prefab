@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8793703548513229627}
   - component: {fileID: 4154949302424103660}
   - component: {fileID: 4538489798772709103}
+  - component: {fileID: 4023512165839426290}
   - component: {fileID: 582996184242426228}
   m_Layer: 10
   m_Name: Npc2
@@ -113,6 +114,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7767849, y: 0.5150833}
   m_EdgeRadius: 0
+--- !u!95 &4023512165839426290
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447881389537083196}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 045cff49cc0e38441921d8aede653910, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &582996184242426228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13002
+  items: []
   checkPlayerHereRadius: 1.5
 --- !u!1 &5223307440584332489
 GameObject:
@@ -138,7 +160,7 @@ GameObject:
   - component: {fileID: 1460148322334595828}
   - component: {fileID: 1667036526862124946}
   m_Layer: 0
-  m_Name: Square (2)
+  m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +174,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5223307440584332489}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.024, y: 0.286, z: 0}
+  m_LocalPosition: {x: 0, y: 0.286, z: 0}
   m_LocalScale: {x: 1.2281997, y: 1.4381906, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

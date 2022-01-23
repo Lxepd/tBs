@@ -9,7 +9,7 @@
 		<speed>3</speed>
 		<atk>0</atk>
 		<hitLen>2</hitLen>
-		<moveLen>12</moveLen>
+		<moveLen>15</moveLen>
 		<atkLen>10</atkLen>
     </it>
 	<it id="15002">
@@ -18,7 +18,7 @@
 		<path>Prefabs/Enemy/Bringer-of-Death</path>
 		<tips>令人发触的怪物，总能神不知鬼不觉地给人致命一击</tips>
 		<rewardId>16004</rewardId>
-		<hp>100</hp>
+		<hp>1000</hp>
 		<speed>5</speed>
 		<atk>10</atk>
 		<hitLen>2</hitLen>

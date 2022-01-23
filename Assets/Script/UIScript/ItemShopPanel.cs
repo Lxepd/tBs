@@ -33,6 +33,10 @@ public class ItemShopPanel : UIBase
                 InitShop(x);
             }
         });
+        EventCenter.GetInstance().AddEventListener<int>("当前金币", (x) =>
+        {
+            GetControl<Text>("CoinNum").text = x.ToString();
+        });
 
         // 找到父物体
         itemParent = GameTool.FindTheChild(UIMgr.GetInstance().GetLayerFather(E_UI_Layer.Above).gameObject, "商店展示界面");
