@@ -27,7 +27,6 @@ public class TileSet : MonoBehaviour
     [SerializeField] public List<GameObject> monsterList = new List<GameObject>();
     bool isCreateTpPoint;
 
-    int bossNum, unBossNum;
     public GameObject aaa;
 
     Timer check;
@@ -78,6 +77,7 @@ public class TileSet : MonoBehaviour
         });
 
         CreateMonsters(10);
+        CreateNpc();
     }
     private void ReduceTile(int num)
     {
@@ -162,52 +162,56 @@ public class TileSet : MonoBehaviour
 
         return new Vector2(cr, cc);
     }
+    public static string GetRandomEnemyPath(bool normal = true)
+    {
+        int id;
+        do
+        {
+            id = 15000 + Random.Range(1, Datas.GetInstance().EnemyDataDic.Count + 1);
+        } while ((normal) ? Datas.GetInstance().EnemyDataDic[id].type == EnemyType.Boss : Datas.GetInstance().EnemyDataDic[id].type == EnemyType.ะกนึ);
+
+        return Datas.GetInstance().EnemyDataDic[id].path;
+    }
     private void CreateMonsters(int num)
     {
         int monsterCount = 0;
+        bool hasBoss = false;
 
         while (monsterCount < num)
         {
-            if (LevelMgr.GetInstance().level % 5 == 0)
+            if (LevelMgr.GetInstance().level % 5 == 0 && !hasBoss)
             {
-                if (unBossNum <= 4)
-                {
-                    unBossNum++;
-                    ResMgr.GetInstance().LoadAsync<GameObject>(GameTool.GetRandomEnemyPath(), (x) =>
-                    {
-                        x.transform.position = GetBarrierFreeArea();
-                        x.transform.SetParent(transform);
-                        monsterList.Add(x);
-                    });
-
-                    monsterCount++;
-                }
-
-                if(bossNum <1)
-                {
-                    bossNum++;
-                    ResMgr.GetInstance().LoadAsync<GameObject>(GameTool.GetRandomEnemyPath(false), (x) =>
-                    {
-                        x.transform.position = GetBarrierFreeArea();
-                        x.transform.SetParent(transform);
-                        monsterList.Add(x);
-                    });
-
-                    monsterCount+=2;
-                }
-            }
-            else
-            {
-                ResMgr.GetInstance().LoadAsync<GameObject>(GameTool.GetRandomEnemyPath(), (x) =>
+                ResMgr.GetInstance().LoadAsync<GameObject>(GetRandomEnemyPath(false), (x) =>
                 {
                     x.transform.position = GetBarrierFreeArea();
                     x.transform.SetParent(transform);
                     monsterList.Add(x);
                 });
 
-                monsterCount++;
+                hasBoss = true;
+                monsterCount += 5;
             }
 
+            ResMgr.GetInstance().LoadAsync<GameObject>(GetRandomEnemyPath(), (x) =>
+            {
+                x.transform.position = GetBarrierFreeArea();
+                x.transform.SetParent(transform);
+                monsterList.Add(x);
+            });
+
+            monsterCount++;
         }
+    }
+    private void CreateNpc()
+    {
+        if (Random.Range(0, 101) > 20)
+            return;
+
+        string path = Datas.GetInstance().NpcDataDic[13000 + Random.Range(1, Datas.GetInstance().NpcDataDic.Count + 1)].path;
+        ResMgr.GetInstance().LoadAsync<GameObject>(path, (x) =>
+         {
+             x.transform.position = GetBarrierFreeArea();
+             x.transform.SetParent(transform);
+         });
     }
 }

@@ -6,6 +6,7 @@ public class Dinosaur : Player
 {
     Transform gun;
     float angle;
+
     protected override void Start()
     {
         base.Start();
@@ -15,6 +16,7 @@ public class Dinosaur : Player
     protected override void Update()
     {
         base.Update();
+
         Rotate(angle);
     }
     protected override void OnDestroy()

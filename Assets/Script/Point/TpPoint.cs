@@ -54,7 +54,7 @@ public class TpPoint : MonoBehaviour
                     break;
                 case TpType.下一关:
                     LevelMgr.GetInstance().level++;
-                    Debug.Log(LevelMgr.GetInstance().level);
+                    PoolMgr.GetInstance().Clear();
                     SceneMgr.GetInstance().LoadScene("Level", () =>
                      {
                          ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/Room",(x)=>

@@ -117,7 +117,8 @@ public class ControlPanel : UIBase
              x.transform.position = gun.position;
              Rigidbody2D rg = x.GetComponent<Rigidbody2D>();
 
-             Vector2 enemyDir = (nearEnemy.transform.position - PlayerPos).normalized;
+             Vector3 randomPosOff = new Vector3(0, Random.Range(-1,2), 0);
+             Vector2 enemyDir = (nearEnemy.transform.position + randomPosOff / 2 - PlayerPos).normalized;
              // …Ë÷√ÀŸ∂»
              rg.velocity = weaponData.bulletSpeed * enemyDir;
              x.transform.rotation = Quaternion.FromToRotation(Vector3.right,enemyDir);
