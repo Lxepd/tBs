@@ -81,6 +81,7 @@ public class ReadXml : InstanceNoMono<ReadXml>
             newData.tips = item.SelectSingleNode("tips").InnerText;
             newData.canSuperPosition = bool.Parse(item.SelectSingleNode("canSuperPosition").InnerText);
             newData.maxNum = int.Parse(item.SelectSingleNode("maxNum").InnerText);
+            newData.cost = int.Parse(item.SelectSingleNode("cost").InnerText);
             newData.itemType = (ItemType)int.Parse(item.SelectSingleNode("itemType").InnerText);
             newData.actType = (ItemActType)int.Parse(item.SelectSingleNode("actType").InnerText);
             newData.recovery = int.Parse(item.SelectSingleNode("recovery").InnerText);

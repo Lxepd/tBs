@@ -7,7 +7,8 @@ public class Player : BehaviorBase
     protected Vector2 dir;
     [SerializeField] public PlayerData playerData;
     [SerializeField] public WeaponData weaponData;
-    Transform gun;
+    private Cinemachine.CinemachineCollisionImpulseSource MyInpulse;
+    protected Transform gun;
 
     private int coinNum;
     protected Collider2D nearEnemy;
@@ -17,8 +18,11 @@ public class Player : BehaviorBase
     {
         base.Start();
 
+        MyInpulse = GetComponent<Cinemachine.CinemachineCollisionImpulseSource>();
+
         gun = GameTool.FindTheChild(gameObject, "GunSprite");
         gun.GetComponent<SpriteRenderer>().sprite = ResMgr.GetInstance().Load<Sprite>(weaponData.spritePath);
+        
         EventCenter.GetInstance().EventTrigger<WeaponData>("枪支数据", weaponData);
         EventCenter.GetInstance().AddEventListener<int>("枪支更新", (x) =>
          {
@@ -45,6 +49,7 @@ public class Player : BehaviorBase
          });
         EventCenter.GetInstance().AddEventListener("玩家受伤", () =>
         {
+            MyInpulse.GenerateImpulse();
             isHit = true;
         });
         EventCenter.GetInstance().AddEventListener("角色恢复", () =>

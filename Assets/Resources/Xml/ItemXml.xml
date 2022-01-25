@@ -5,6 +5,7 @@
         <tips>能够恢复血量</tips>
         <canSuperPosition>true</canSuperPosition>
         <maxNum>10</maxNum>
+		<cost>20</cost>
         <itemType>1</itemType>
         <actType>1</actType>
 		<recovery>100</recovery>
@@ -16,6 +17,7 @@
         <tips>看起来很酸。。。</tips>
         <canSuperPosition>true</canSuperPosition>
         <maxNum>5</maxNum>
+		<cost>30</cost>
         <itemType>1</itemType>
         <actType>2</actType>
 		<recovery>0</recovery>

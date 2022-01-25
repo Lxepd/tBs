@@ -23,6 +23,7 @@ public class ItemData
     public string tips; // 说明
     public bool canSuperPosition; // 能否叠加
     public int maxNum; // 最大数量
+    public int cost;
     public ItemType itemType; // 道具类型
     public ItemActType actType; // 道具功能
     public int recovery; // 恢复
