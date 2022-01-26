@@ -51,42 +51,13 @@ public class SelectPanel : UIBase
                 // 排除没选择情况
                 if (playerID == 0)
                     return;
-                // 隐藏<选择角色>界面
-                UIMgr.GetInstance().HidePanel("SelectPanel");
-                // 展开<加载>界面
-                UIMgr.GetInstance().ShowPanel<LoadingPanel>("LoadingPanel", E_UI_Layer.Load);
-                // 展开<装备升级>界面
-                UIMgr.GetInstance().ShowPanel<UpgradePanel>("UpgradePanel", E_UI_Layer.Above);
-                // 展开<背包>界面
-                UIMgr.GetInstance().ShowPanel<BagPanel>("BagPanel", E_UI_Layer.Above);
-                // 展开<列表>界面
-                UIMgr.GetInstance().ShowPanel<ListPanel>("ListPanel", E_UI_Layer.Above);
-                UIMgr.GetInstance().ShowPanel<EndPanel>("EndPanel", E_UI_Layer.Above);
-                // 异步场景切换，并执行切换后的委托
-                SceneMgr.GetInstance().LoadSceneAsyn("Game", () =>
-                {
-                    // 隐藏<主界面>
-                    UIMgr.GetInstance().HidePanel("MainPanel");
-                    // 隐藏<装备升级>界面
-                    UIMgr.GetInstance().HidePanel("UpgradePanel");
-                    // 隐藏<背包>界面
-                    UIMgr.GetInstance().HidePanel("BagPanel");
-                    // 隐藏<列表>界面
-                    UIMgr.GetInstance().HidePanel("ListPanel");
-                    UIMgr.GetInstance().HidePanel("EndPanel");
-                    // 展开<左侧虚拟摇杆>界面
-                    UIMgr.GetInstance().ShowPanel<JoyStickPanel>("JoyStickPanel", E_UI_Layer.Normal);
-                    // 展开<右侧控制>界面
-                    UIMgr.GetInstance().ShowPanel<ControlPanel>("ControlPanel", E_UI_Layer.Normal);
-                    // 展开<角色状态>界面
-                    UIMgr.GetInstance().ShowPanel<StatePanel>("StatePanel", E_UI_Layer.Normal);
-
-                    // 根据选择的角色ID进行初始化
-                    InitPlayer(playerID);
-
-                    // 隐藏<加载>界面
-                    Invoke(nameof(HideLoadingPanel), 2f);
-                });
+                Datas.GetInstance().RoleId = playerID;
+                InitGame();
+                break;
+            case "Bto_Load":
+                XmlSL.GetInstance().Load();
+                Datas.GetInstance().isLoad = true;
+                InitGame();
                 break;
         }
     }
@@ -97,28 +68,65 @@ public class SelectPanel : UIBase
     private void InitPlayer(int id)
     {
         // 异步生成角色  
-        ResMgr.GetInstance().LoadAsync<GameObject>(Datas.GetInstance().PlayerDataDic[playerID].path, (x) =>
-          {
-              GetRoleComponent(x, playerID);
+        ResMgr.GetInstance().LoadAsync<GameObject>(Datas.GetInstance().PlayerDataDic[id].path, (x) =>
+        {
+            GetRoleComponent(x, id);
 
-              ResMgr.GetInstance().Load<GameObject>("Prefabs/CM vcam1").transform.SetParent(x.transform);
+            ResMgr.GetInstance().Load<GameObject>("Prefabs/CM vcam1").transform.SetParent(x.transform);
 
-              // 初始化位置
-              ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/RoomPrefabs/准备房", (z) =>
-              {
-                  x.transform.position = GameObject.Find("返回点").transform.position;
-              });
+            // 初始化位置
+            ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/RoomPrefabs/准备房", (z) =>
+                {
+                    x.transform.position = GameObject.Find("返回点").transform.position;
+                });
 
-              // 注册返回主界面的消息
-              EventCenter.GetInstance().AddEventListener("销毁角色", () =>
-               {
-                   Destroy(x);
-               });
+            // 注册返回主界面的消息
+            EventCenter.GetInstance().AddEventListener("销毁角色", () =>
+                {
+                    Destroy(x);
+                });
+            // 切换场景不销毁
+            DontDestroyOnLoad(x);
+        });
+    }
+    private void InitGame()
+    {
+        // 隐藏<选择角色>界面
+        UIMgr.GetInstance().HidePanel("SelectPanel");
+        // 展开<加载>界面
+        UIMgr.GetInstance().ShowPanel<LoadingPanel>("LoadingPanel", E_UI_Layer.Load);
+        // 展开<装备升级>界面
+        UIMgr.GetInstance().ShowPanel<UpgradePanel>("UpgradePanel", E_UI_Layer.Above);
+        // 展开<背包>界面
+        UIMgr.GetInstance().ShowPanel<BagPanel>("BagPanel", E_UI_Layer.Above);
+        // 展开<列表>界面
+        UIMgr.GetInstance().ShowPanel<ListPanel>("ListPanel", E_UI_Layer.Above);
+        UIMgr.GetInstance().ShowPanel<EndPanel>("EndPanel", E_UI_Layer.Above);
+        // 异步场景切换，并执行切换后的委托
+        SceneMgr.GetInstance().LoadSceneAsyn("Game", () =>
+        {
+            // 隐藏<主界面>
+            UIMgr.GetInstance().HidePanel("MainPanel");
+            // 隐藏<装备升级>界面
+            UIMgr.GetInstance().HidePanel("UpgradePanel");
+            // 隐藏<背包>界面
+            UIMgr.GetInstance().HidePanel("BagPanel");
+            // 隐藏<列表>界面
+            UIMgr.GetInstance().HidePanel("ListPanel");
+            UIMgr.GetInstance().HidePanel("EndPanel");
+            // 展开<左侧虚拟摇杆>界面
+            UIMgr.GetInstance().ShowPanel<JoyStickPanel>("JoyStickPanel", E_UI_Layer.Normal);
+            // 展开<右侧控制>界面
+            UIMgr.GetInstance().ShowPanel<ControlPanel>("ControlPanel", E_UI_Layer.Normal);
+            // 展开<角色状态>界面
+            UIMgr.GetInstance().ShowPanel<StatePanel>("StatePanel", E_UI_Layer.Normal);
 
+            // 根据选择的角色ID进行初始化
+            InitPlayer(Datas.GetInstance().isLoad ? Datas.GetInstance().RoleId : playerID);
 
-              // 切换场景不销毁
-              DontDestroyOnLoad(x);
-          });
+            // 隐藏<加载>界面
+            Invoke(nameof(HideLoadingPanel), 2f);
+        });
     }
     public void HideLoadingPanel()
     {
@@ -126,15 +134,13 @@ public class SelectPanel : UIBase
     }
     public void GetRoleComponent(GameObject go,int id)
     {
-        switch (playerID)
+        switch (id)
         {
             case 14001:
                 Dinosaur type = go.GetComponent<Dinosaur>() ?? go.AddComponent<Dinosaur>();
-                type.playerData = Datas.GetInstance().PlayerDataDic[playerID];
-                type.weaponData = Datas.GetInstance().WeaponDataDic[type.playerData.initialWeaponId];
+                type.playerData = Datas.GetInstance().PlayerDataDic[id];
+                type.weaponData = Datas.GetInstance().WeaponDataDic[Datas.GetInstance().isLoad ? Datas.GetInstance().GunId : Datas.GetInstance().GunId = type.playerData.initialWeaponId];
                 break;
         }
-
-
     }
 }

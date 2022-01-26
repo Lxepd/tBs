@@ -16,6 +16,7 @@ public class MainPanel : UIBase
                 UIMgr.GetInstance().ShowPanel<SelectPanel>("SelectPanel", E_UI_Layer.Normal);
                 // Òþ²Ø<Ö÷½çÃæ>
                 UIMgr.GetInstance().HidePanel("MainPanel");
+                Datas.GetInstance().isLoad = false;
                 break;
             case "Bto_Quit":
 #if UNITY_EDITOR
@@ -24,6 +25,7 @@ public class MainPanel : UIBase
                 Application.Quit();
 #endif
                 break;
+
         }
     }
 }

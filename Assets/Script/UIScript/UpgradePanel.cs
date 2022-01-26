@@ -12,7 +12,7 @@ public class UpgradePanel : UIBase
     //int afterId;
     string compareImgPath = "Sprites/UIsprite/箭头/";
 
-    private int coinNum;
+    //private int coinNum;
     //private int cost;
 
     bool isInit;
@@ -23,11 +23,7 @@ public class UpgradePanel : UIBase
         parent = GameTool.FindTheChild(gameObject, "Content");
 
         EventCenter.GetInstance().AddEventListener<WeaponData>("枪支数据", (x) => { beforeWeaponData = x; });
-        EventCenter.GetInstance().AddEventListener<int>("当前金币", (x) =>
-        {
-            coinNum = x;
-            GetControl<Text>("CoinNum").text = x.ToString();
-        });
+
         EventCenter.GetInstance().AddEventListener<List<升级>>("武器升级", (x) =>
         {
             if (!isInit)
@@ -40,6 +36,7 @@ public class UpgradePanel : UIBase
     }
     private void Update()
     {
+        GetControl<Text>("CoinNum").text = Datas.GetInstance().CoinNum.ToString();
         UpdateUpgrade();
     }
     public override void ShowMe()
@@ -51,7 +48,7 @@ public class UpgradePanel : UIBase
         switch (btnName)
         {
             case "UpgradeBto":
-                if (coinNum < upgradeWeaponData.cost)
+                if (Datas.GetInstance().CoinNum < upgradeWeaponData.cost)
                 {
                     Debug.Log("钱不够");
                     return;
@@ -62,7 +59,7 @@ public class UpgradePanel : UIBase
                     return;
                 }
                 EventCenter.GetInstance().EventTrigger<int>("枪支更新", upgradeWeaponData.afterId);
-                EventCenter.GetInstance().EventTrigger<int>("获得金币", -upgradeWeaponData.cost);
+                Datas.GetInstance().CoinNum -= upgradeWeaponData.cost;
                 break;
             case "CloseBto":
                 UIMgr.GetInstance().HidePanel("UpgradePanel");

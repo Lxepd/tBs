@@ -44,6 +44,7 @@ public class TpPoint : MonoBehaviour
             switch (tp)
             {
                 case TpType.回去:
+                    LevelMgr.GetInstance().isInLevel = false;
                     SceneMgr.GetInstance().LoadSceneAsyn("Game", () =>
                     {
                         ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/RoomPrefabs/准备房", (z) =>
@@ -54,6 +55,7 @@ public class TpPoint : MonoBehaviour
                     break;
                 case TpType.下一关:
                     LevelMgr.GetInstance().level++;
+                    LevelMgr.GetInstance().isInLevel = true;
                     PoolMgr.GetInstance().Clear();
                     SceneMgr.GetInstance().LoadScene("Level", () =>
                      {

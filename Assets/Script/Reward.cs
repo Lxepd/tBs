@@ -49,7 +49,7 @@ public class Reward : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            EventCenter.GetInstance().EventTrigger<int>("»ñµÃ½ð±Ò", data.reward);
+            Datas.GetInstance().CoinNum += data.reward;
             PoolMgr.GetInstance().PushObj(data.path, gameObject);
         }
     }

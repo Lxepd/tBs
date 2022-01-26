@@ -56,6 +56,18 @@ public class ListPanel : UIBase
                 // 隐藏<列表菜单>界面
                 UIMgr.GetInstance().HidePanel("ListPanel");
                 break;
+            case "Bto_Save":
+                if(LevelMgr.GetInstance().isInLevel)
+                {
+                    Debug.Log("无法在关卡保存");
+                    return;
+                }    
+
+                XmlSL.GetInstance().Save();
+                break;
+            case "Bto_Load":
+                //UIMgr.GetInstance().ShowPanel<SLPanel>("SLPanel", E_UI_Layer.Above);
+                break;
         }
     }
 }

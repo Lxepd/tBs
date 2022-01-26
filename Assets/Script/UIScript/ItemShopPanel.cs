@@ -13,7 +13,7 @@ public class ItemShopPanel : UIBase
     // <道具>父物体
     private Transform itemParent;
 
-    private int nowCoin;
+    //private int nowCoin;
 
     bool isInit;
     private void Start()
@@ -35,17 +35,12 @@ public class ItemShopPanel : UIBase
                 InitShop(x);
             }
         });
-        EventCenter.GetInstance().AddEventListener<int>("当前金币", (x) =>
-        {
-            nowCoin = x;
-            GetControl<Text>("CoinNum").text = nowCoin.ToString();
-        });
-
         // 找到父物体
         itemParent = GameTool.FindTheChild(UIMgr.GetInstance().GetLayerFather(E_UI_Layer.Above).gameObject, "商店展示界面");
     }
     private void Update()
     {
+        GetControl<Text>("CoinNum").text = Datas.GetInstance().CoinNum.ToString();
         // 清空数量为0的道具
         ClearZeroItem();
     }
@@ -80,13 +75,13 @@ public class ItemShopPanel : UIBase
             // 商店道具购买按钮
             case "Bto_Buy":
                 // 排除没有点击任何道具
-                if (item == null || nowCoin < Datas.GetInstance().ItemDataDic[item.id].cost)
+                if (item == null || Datas.GetInstance().CoinNum < Datas.GetInstance().ItemDataDic[item.id].cost)
                     return;
                 // 商品-1
                 item.currentNum--;
                 EventCenter.GetInstance().EventTrigger<int>("NPC道具数量更新", item.id);
                 EventCenter.GetInstance().EventTrigger<ItemClick>("成功购买的道具", item);
-                EventCenter.GetInstance().EventTrigger<int>("获得金币", -Datas.GetInstance().ItemDataDic[item.id].cost);
+                Datas.GetInstance().CoinNum -= Datas.GetInstance().ItemDataDic[item.id].cost;
                 break;
             // 商店道具出售按钮
             case "Bto_Sell":

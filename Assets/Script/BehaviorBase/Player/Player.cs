@@ -8,9 +8,8 @@ public class Player : BehaviorBase
     [SerializeField] public PlayerData playerData;
     [SerializeField] public WeaponData weaponData;
     private Cinemachine.CinemachineCollisionImpulseSource MyInpulse;
-    protected Transform gun;
+    protected Transform gunImg;
 
-    private int coinNum;
     protected Collider2D nearEnemy;
 
     private bool isHit,isDeath;
@@ -20,14 +19,15 @@ public class Player : BehaviorBase
 
         MyInpulse = GetComponent<Cinemachine.CinemachineCollisionImpulseSource>();
 
-        gun = GameTool.FindTheChild(gameObject, "GunSprite");
-        gun.GetComponent<SpriteRenderer>().sprite = ResMgr.GetInstance().Load<Sprite>(weaponData.spritePath);
-        
+        gunImg = GameTool.FindTheChild(gameObject, "GunSprite");
+        gunImg.GetComponent<SpriteRenderer>().sprite = ResMgr.GetInstance().Load<Sprite>(weaponData.spritePath);
+
         EventCenter.GetInstance().EventTrigger<WeaponData>("枪支数据", weaponData);
         EventCenter.GetInstance().AddEventListener<int>("枪支更新", (x) =>
          {
+             Datas.GetInstance().GunId = x;
              weaponData = Datas.GetInstance().WeaponDataDic[x];
-             gun.GetComponent<SpriteRenderer>().sprite = ResMgr.GetInstance().Load<Sprite>(weaponData.spritePath);
+             gunImg.GetComponent<SpriteRenderer>().sprite = ResMgr.GetInstance().Load<Sprite>(weaponData.spritePath);
              EventCenter.GetInstance().EventTrigger<WeaponData>("枪支数据", weaponData);
          });
 
@@ -36,11 +36,6 @@ public class Player : BehaviorBase
             dir = x;
         });
         EventCenter.GetInstance().EventTrigger<PlayerData>("角色初始", playerData);
-
-        EventCenter.GetInstance().AddEventListener<int>("获得金币", (x) =>
-        {
-            coinNum += x;
-        });
         EventCenter.GetInstance().AddEventListener("玩家死亡", () =>
          {
              UIMgr.GetInstance().ShowPanel<EndPanel>("EndPanel", E_UI_Layer.Above);
@@ -64,9 +59,8 @@ public class Player : BehaviorBase
         animTime = anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
 
         EventCenter.GetInstance().EventTrigger<GameObject>("玩家物体", gameObject);
-        EventCenter.GetInstance().EventTrigger<Transform>("是否有枪支", gun);
+        EventCenter.GetInstance().EventTrigger<Transform>("是否有枪支", gunImg);
         EventCenter.GetInstance().EventTrigger<Vector2>("射击起点", transform.position);
-        EventCenter.GetInstance().EventTrigger<int>("当前金币", coinNum);
         rg.velocity = dir * playerData.speed;
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Death") && animTime > 1f)
@@ -114,16 +108,12 @@ public class Player : BehaviorBase
         EventCenter.GetInstance().RemoveEventListener<int>("枪支更新", (x) =>
         {
             weaponData = Datas.GetInstance().WeaponDataDic[x];
-            gun.GetComponent<SpriteRenderer>().sprite = ResMgr.GetInstance().Load<Sprite>(weaponData.spritePath);
+            gunImg.GetComponent<SpriteRenderer>().sprite = ResMgr.GetInstance().Load<Sprite>(weaponData.spritePath);
             EventCenter.GetInstance().EventTrigger<WeaponData>("枪支数据", weaponData);
         });
         EventCenter.GetInstance().RemoveEventListener<Vector2>("Joystick", (x) =>
         {
             dir = x;
-        });
-        EventCenter.GetInstance().RemoveEventListener<int>("获得金币", (x) =>
-        {
-            coinNum += x;
         });
         EventCenter.GetInstance().RemoveEventListener("玩家死亡", () =>
         {

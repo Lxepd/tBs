@@ -5,7 +5,14 @@ using UnityEngine;
 public class Dinosaur : Player
 {
     float angle;
+    Transform gun;
 
+    protected override void Start()
+    {
+        base.Start();
+
+        gun = GameTool.FindTheChild(gameObject,"Gun");
+    }
     protected override void Update()
     {
         base.Update();

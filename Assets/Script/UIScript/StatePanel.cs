@@ -122,7 +122,8 @@ public class StatePanel : UIBase
                 {
                     case ItemActType.血量恢复:
                         Debug.Log(itemId);
-                        currentHp += Datas.GetInstance().ItemDataDic[BagItemIDList[index]].recovery;
+                        int maxhp = Datas.GetInstance().PlayerDataDic[Datas.GetInstance().RoleId].MaxHp;
+                        currentHp = Mathf.Min(currentHp += Datas.GetInstance().ItemDataDic[BagItemIDList[index]].recovery, maxhp);
                         break;
                     case ItemActType.攻速强化:
                         break;
@@ -150,7 +151,7 @@ public class StatePanel : UIBase
     private void InitStateUI()
     {
         // 获取最大血量
-        currentHp = data.MaxHp;
+        currentHp = Datas.GetInstance().isLoad ? Datas.GetInstance().Hp : data.MaxHp;
         // 初始化文本
         GetControl<Text>("MaxHp").text = data.MaxHp.ToString();
     }
@@ -172,6 +173,7 @@ public class StatePanel : UIBase
             EventCenter.GetInstance().EventTrigger("玩家受伤");
         }
 
+        Datas.GetInstance().Hp = (int)currentHp;
     }
     private void GetBagItem(ItemClick item)
     {

@@ -26,10 +26,6 @@ public class BagPanel : UIBase
                 PoolMgr.GetInstance().PushObj(bag.GetChild(i).name, bag.GetChild(i).gameObject);
             }
         });
-        EventCenter.GetInstance().AddEventListener<int>("当前金币", (x) =>
-        {
-            GetControl<Text>("CoinNum").text = x.ToString();
-        });
         EventCenter.GetInstance().AddEventListener<int>("道具使用消耗", (x) =>
         {
             for (int i = 0; i < bag.childCount; i++)
@@ -45,6 +41,7 @@ public class BagPanel : UIBase
     }
     private void Update()
     {
+        GetControl<Text>("CoinNum").text = Datas.GetInstance().CoinNum.ToString();
         for (int i = bag.childCount - 1; i >= 0; i--)
         {
             ItemClick ic = bag.GetChild(i).GetComponent<ItemClick>();
