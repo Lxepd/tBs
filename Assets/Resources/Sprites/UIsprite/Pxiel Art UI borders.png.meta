@@ -140,13 +140,13 @@ TextureImporter:
       name: Pxiel Art UI borders_1
       rect:
         serializedVersion: 2
-        x: 17
+        x: 18
         y: 162
-        width: 93
+        width: 92
         height: 92
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 9, y: 8, z: 8, w: 8}
+      border: {x: 8, y: 8, z: 8, w: 8}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -199,6 +199,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Pxiel Art UI borders_4
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 162
+        width: 91
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 8, y: 8, z: 7, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12aa16887aaa2c94680cf53f0967c789
+      internalID: 684111652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pxiel Art UI borders_5
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 286
+        width: 98
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 19, y: 19, z: 19, w: 19}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e514c4f4d1a0a124abb21c42daec7fa0
+      internalID: 677186508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -210,10 +252,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Pxiel Art UI borders_4: 684111652
       Pxiel Art UI borders_0: -839284884
       Pxiel Art UI borders_1: -1204536239
       Pxiel Art UI borders_2: -2125032796
       Pxiel Art UI borders_3: -652897496
+      Pxiel Art UI borders_5: 677186508
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

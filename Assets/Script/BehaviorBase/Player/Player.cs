@@ -5,8 +5,7 @@ using UnityEngine;
 public class Player : BehaviorBase
 {
     protected Vector2 dir;
-    [SerializeField] public PlayerData playerData;
-    [SerializeField] public WeaponData weaponData;
+
     private Cinemachine.CinemachineCollisionImpulseSource MyInpulse;
     protected Transform gunImg;
 
@@ -20,22 +19,21 @@ public class Player : BehaviorBase
         MyInpulse = GetComponent<Cinemachine.CinemachineCollisionImpulseSource>();
 
         gunImg = GameTool.FindTheChild(gameObject, "GunSprite");
-        gunImg.GetComponent<SpriteRenderer>().sprite = ResMgr.GetInstance().Load<Sprite>(weaponData.spritePath);
+        gunImg.GetComponent<SpriteRenderer>().sprite = ResMgr.GetInstance().Load<Sprite>(Datas.GetInstance().weaponData.spritePath);
 
-        EventCenter.GetInstance().EventTrigger<WeaponData>("枪支数据", weaponData);
         EventCenter.GetInstance().AddEventListener<int>("枪支更新", (x) =>
          {
              Datas.GetInstance().GunId = x;
-             weaponData = Datas.GetInstance().WeaponDataDic[x];
-             gunImg.GetComponent<SpriteRenderer>().sprite = ResMgr.GetInstance().Load<Sprite>(weaponData.spritePath);
-             EventCenter.GetInstance().EventTrigger<WeaponData>("枪支数据", weaponData);
+             Datas.GetInstance().weaponData = Datas.GetInstance().WeaponDataDic[x];
+             gunImg.GetComponent<SpriteRenderer>().sprite = ResMgr.GetInstance().Load<Sprite>(Datas.GetInstance().weaponData.spritePath);
+             EventCenter.GetInstance().EventTrigger<bool>("枪支数据改变",true);
          });
 
         EventCenter.GetInstance().AddEventListener<Vector2>("Joystick", (x) => 
         {
             dir = x;
         });
-        EventCenter.GetInstance().EventTrigger<PlayerData>("角色初始", playerData);
+        EventCenter.GetInstance().EventTrigger("角色数据初始");
         EventCenter.GetInstance().AddEventListener("玩家死亡", () =>
          {
              UIMgr.GetInstance().ShowPanel<EndPanel>("EndPanel", E_UI_Layer.Above);
@@ -61,7 +59,7 @@ public class Player : BehaviorBase
         EventCenter.GetInstance().EventTrigger<GameObject>("玩家物体", gameObject);
         EventCenter.GetInstance().EventTrigger<Transform>("是否有枪支", gunImg);
         EventCenter.GetInstance().EventTrigger<Vector2>("射击起点", transform.position);
-        rg.velocity = dir * playerData.speed;
+        rg.velocity = dir * Datas.GetInstance().playerData.speed;
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Death") && animTime > 1f)
         {
@@ -107,9 +105,8 @@ public class Player : BehaviorBase
     {
         EventCenter.GetInstance().RemoveEventListener<int>("枪支更新", (x) =>
         {
-            weaponData = Datas.GetInstance().WeaponDataDic[x];
-            gunImg.GetComponent<SpriteRenderer>().sprite = ResMgr.GetInstance().Load<Sprite>(weaponData.spritePath);
-            EventCenter.GetInstance().EventTrigger<WeaponData>("枪支数据", weaponData);
+            Datas.GetInstance().weaponData = Datas.GetInstance().WeaponDataDic[x];
+            gunImg.GetComponent<SpriteRenderer>().sprite = ResMgr.GetInstance().Load<Sprite>(Datas.GetInstance().weaponData.spritePath);
         });
         EventCenter.GetInstance().RemoveEventListener<Vector2>("Joystick", (x) =>
         {
@@ -138,7 +135,7 @@ public class Player : BehaviorBase
     private void Checkstrengthen()
     {
         // 获取范围的场景投掷物
-        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, playerData.checkLen, LayerMask.GetMask("强化物"));
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, Datas.GetInstance().playerData.checkLen, LayerMask.GetMask("强化物"));
         // 消息中心存储 <附近投掷物> 消息
         EventCenter.GetInstance().EventTrigger<Collider2D[]>("强化物", cols);
     }
@@ -148,7 +145,7 @@ public class Player : BehaviorBase
     private void FindProximityOfEnemy()
     {
         // 获取范围内的敌人
-        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, weaponData.shootLen, LayerMask.GetMask("敌人"));
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, Datas.GetInstance().weaponData.shootLen, LayerMask.GetMask("敌人"));
         // 如果范围内没人
         if (cols.Length == 0)
         {
@@ -167,7 +164,7 @@ public class Player : BehaviorBase
     /// </summary>
     private void CheckNpcHere()
     {
-        Collider2D cols = Physics2D.OverlapCircle(transform.position, playerData.checkLen, LayerMask.GetMask("Npc"));
+        Collider2D cols = Physics2D.OverlapCircle(transform.position, Datas.GetInstance().playerData.checkLen, LayerMask.GetMask("Npc"));
         // 消息中心存储 <Npc> 消息
         EventCenter.GetInstance().EventTrigger<Collider2D>("附近的Npc", cols);
     }
@@ -179,9 +176,9 @@ public class Player : BehaviorBase
     {
         // 检索投掷物圈
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, playerData.checkLen);
+        Gizmos.DrawWireSphere(transform.position, Datas.GetInstance().playerData.checkLen);
         // 检索敌人圈
         Gizmos.color = Color.black;
-        Gizmos.DrawWireSphere(transform.position, weaponData.shootLen);
+        Gizmos.DrawWireSphere(transform.position, Datas.GetInstance().weaponData.shootLen);
     }
 }

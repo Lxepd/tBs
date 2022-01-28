@@ -138,9 +138,10 @@ public class SelectPanel : UIBase
         {
             case 14001:
                 Dinosaur type = go.GetComponent<Dinosaur>() ?? go.AddComponent<Dinosaur>();
-                type.playerData = Datas.GetInstance().PlayerDataDic[id];
-                type.weaponData = Datas.GetInstance().WeaponDataDic[Datas.GetInstance().isLoad ? Datas.GetInstance().GunId : Datas.GetInstance().GunId = type.playerData.initialWeaponId];
-                break;
+               break;
         }
+
+        Datas.GetInstance().playerData = Datas.GetInstance().PlayerDataDic[id];
+        Datas.GetInstance().weaponData = Datas.GetInstance().WeaponDataDic[Datas.GetInstance().isLoad ? Datas.GetInstance().GunId : Datas.GetInstance().GunId = Datas.GetInstance().playerData.initialWeaponId];
     }
 }

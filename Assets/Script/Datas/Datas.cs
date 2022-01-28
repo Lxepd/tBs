@@ -10,6 +10,12 @@ public class Datas : InstanceNoMono<Datas>
     public int GunId;
     public int Hp;
 
+    public PlayerData playerData;
+    public WeaponData weaponData;
+    public float addAtkSpd;
+    public bool isEatItem;
+    public float itemReShootTimer;
+
     // 存放<射击物>信息字典
     public Dictionary<int, ThrowItemData> ThrowItemDataDic = new Dictionary<int, ThrowItemData>();
     // 存放<道具>信息字典

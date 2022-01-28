@@ -145,6 +145,9 @@ public class TileSet : MonoBehaviour
             return;
 
         isCreateTpPoint = true;
+
+        UIMgr.GetInstance().ShowPanel<YWPanel>("YWPanel");
+
         ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/´«ËÍµã", (x) =>
         {
             x.transform.position = GetBarrierFreeArea();

@@ -11,21 +11,45 @@ public enum WhoShoot
 public class ThrowItem : MonoBehaviour
 {
     [HideInInspector] public WhoShoot ws;
-    [SerializeField] public float hurt;
+    [HideInInspector] public float hurt;
+    Collider2D col;
+    LayerMask mask;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    Vector3 boxSize;
+
+    private void Start()
+    {
+        mask = LayerMask.GetMask("³¡¾°");
+        boxSize = GetComponent<BoxCollider2D>().size;
+    }
+
+    private void Update()
     {
         switch (ws)
         {
             case WhoShoot.Player:
-                if (collision.CompareTag("µÐÈË"))
+                mask |= LayerMask.GetMask("µÐÈË");
+                break;
+            case WhoShoot.Enemy:
+                mask |= LayerMask.GetMask("Íæ¼Ò");
+                break;
+        }
+
+        col = Physics2D.OverlapBox(transform.position, boxSize * 2, 0, mask);
+        if (col == null)
+            return;
+
+        switch (ws)
+        {
+            case WhoShoot.Player:
+                if (col.CompareTag("µÐÈË"))
                 {
                     EventCenter.GetInstance().EventTrigger<float>("µÐÈË¿ÛÑª", hurt);
                     PoolMgr.GetInstance().PushObj(name, gameObject);
                 }
                 break;
             case WhoShoot.Enemy:
-                if (collision.CompareTag("Player"))
+                if (col.CompareTag("Player"))
                 {
                     EventCenter.GetInstance().EventTrigger<float>("Íæ¼Ò¿ÛÑª", hurt);
                     PoolMgr.GetInstance().PushObj(name, gameObject);
@@ -34,9 +58,39 @@ public class ThrowItem : MonoBehaviour
         }
 
         // Åöµ½Ç½±ÚÉ¶Ò²Ã»ÊÂ
-        if (collision.CompareTag("Ç½±Ú"))
+        if (col.CompareTag("Ç½±Ú"))
         {
             PoolMgr.GetInstance().PushObj(name, gameObject);
+            return;
         }
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //// Åöµ½Ç½±ÚÉ¶Ò²Ã»ÊÂ
+        //if (collision.CompareTag("Ç½±Ú"))
+        //{
+        //    PoolMgr.GetInstance().PushObj(name, gameObject);
+        //    return;
+        //}
+
+        //switch (ws)
+        //{
+        //    case WhoShoot.Player:
+        //        if (collision.CompareTag("µÐÈË"))
+        //        {
+        //            EventCenter.GetInstance().EventTrigger<float>("µÐÈË¿ÛÑª", hurt);
+        //            PoolMgr.GetInstance().PushObj(name, gameObject);
+        //        }
+        //        break;
+        //    case WhoShoot.Enemy:
+        //        if (collision.CompareTag("Player"))
+        //        {
+        //            EventCenter.GetInstance().EventTrigger<float>("Íæ¼Ò¿ÛÑª", hurt);
+        //            PoolMgr.GetInstance().PushObj(name, gameObject);
+        //        }
+        //        break;
+        //}
     }
 }

@@ -86,6 +86,7 @@ public class ReadXml : InstanceNoMono<ReadXml>
             newData.actType = (ItemActType)int.Parse(item.SelectSingleNode("actType").InnerText);
             newData.recovery = int.Parse(item.SelectSingleNode("recovery").InnerText);
             newData.increaseAttackSpeed = float.Parse(item.SelectSingleNode("increaseAttackSpeed").InnerText);
+            newData.reAtkSpeed = float.Parse(item.SelectSingleNode("reAtkSpeed").InnerText);
 
             Datas.GetInstance().ItemDataDic.Add(newData.id, newData);
         }

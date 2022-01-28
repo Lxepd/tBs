@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class UpgradePanel : UIBase
 {
     Transform parent;
-    WeaponData beforeWeaponData;
     UpgradeData upgradeWeaponData;
 
     //int afterId;
@@ -21,8 +20,6 @@ public class UpgradePanel : UIBase
     void Start()
     {
         parent = GameTool.FindTheChild(gameObject, "Content");
-
-        EventCenter.GetInstance().AddEventListener<WeaponData>("枪支数据", (x) => { beforeWeaponData = x; });
 
         EventCenter.GetInstance().AddEventListener<List<升级>>("武器升级", (x) =>
         {
@@ -53,7 +50,7 @@ public class UpgradePanel : UIBase
                     Debug.Log("钱不够");
                     return;
                 }
-                if (upgradeWeaponData.beforeId != beforeWeaponData.id)
+                if (upgradeWeaponData.beforeId != Datas.GetInstance().weaponData.id)
                 {
                     Debug.Log("所需要升级的武器不对应");
                     return;

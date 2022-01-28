@@ -8,8 +8,6 @@ using UnityEngine.UI;
 /// </summary>
 public class StatePanel : UIBase
 {
-    // 玩家数据
-    private PlayerData data;
     // 当前血量
     private float currentHp;
     // 存放背包消耗品的id与数量
@@ -22,9 +20,8 @@ public class StatePanel : UIBase
     private void Start()
     {
         // 获取数据
-        EventCenter.GetInstance().AddEventListener<PlayerData>("角色初始", (x) =>
+        EventCenter.GetInstance().AddEventListener("角色数据初始", () =>
         {
-            data = x;
             // 初始化UI
             InitStateUI();
         });
@@ -39,7 +36,7 @@ public class StatePanel : UIBase
         });
         EventCenter.GetInstance().AddEventListener<int>("道具栏清空", (x) =>
         {
-            data = null;
+            Datas.GetInstance().playerData = null;
             BagItem.Clear();
             BagItemIDList.Clear();
             index = 0;
@@ -56,12 +53,12 @@ public class StatePanel : UIBase
     }
     void Update()
     {
-        if (data == null)
+        if (Datas.GetInstance().playerData == null)
             return;
 
         // 更新血量
         GetControl<Text>("CurrentHp").text = currentHp.ToString();
-        GetControl<Image>("HpBar").fillAmount = Mathf.Lerp(GetControl<Image>("HpBar").fillAmount, currentHp / data.MaxHp, Time.deltaTime * 10f);
+        GetControl<Image>("HpBar").fillAmount = Mathf.Lerp(GetControl<Image>("HpBar").fillAmount, currentHp / Datas.GetInstance().playerData.MaxHp, Time.deltaTime * 10f);
 
         List<int> zeroList = new List<int>();
         foreach (var item in BagItem)
@@ -126,6 +123,10 @@ public class StatePanel : UIBase
                         currentHp = Mathf.Min(currentHp += Datas.GetInstance().ItemDataDic[BagItemIDList[index]].recovery, maxhp);
                         break;
                     case ItemActType.攻速强化:
+                        Datas.GetInstance().addAtkSpd = Datas.GetInstance().ItemDataDic[BagItemIDList[index]].increaseAttackSpeed;
+                        Datas.GetInstance().isEatItem = true;
+                        Datas.GetInstance().itemReShootTimer = Datas.GetInstance().ItemDataDic[BagItemIDList[index]].reAtkSpeed;
+                        EventCenter.GetInstance().EventTrigger<bool>("枪支数据改变",false);
                         break;
                 }
 
@@ -151,9 +152,9 @@ public class StatePanel : UIBase
     private void InitStateUI()
     {
         // 获取最大血量
-        currentHp = Datas.GetInstance().isLoad ? Datas.GetInstance().Hp : data.MaxHp;
+        currentHp = Datas.GetInstance().isLoad ? Datas.GetInstance().Hp : Datas.GetInstance().playerData.MaxHp;
         // 初始化文本
-        GetControl<Text>("MaxHp").text = data.MaxHp.ToString();
+        GetControl<Text>("MaxHp").text = Datas.GetInstance().playerData.MaxHp.ToString();
     }
     /// <summary>
     /// 扣血执行

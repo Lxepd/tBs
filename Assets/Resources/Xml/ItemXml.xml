@@ -10,6 +10,7 @@
         <actType>1</actType>
 		<recovery>100</recovery>
 		<increaseAttackSpeed>0</increaseAttackSpeed>
+		<reAtkSpeed>0</reAtkSpeed>
 	</it>
     <it id="12002">
         <name>柠檬</name>
@@ -21,6 +22,7 @@
         <itemType>1</itemType>
         <actType>2</actType>
 		<recovery>0</recovery>
-		<increaseAttackSpeed>0.05</increaseAttackSpeed>
+		<increaseAttackSpeed>0.2</increaseAttackSpeed>
+	    <reAtkSpeed>5</reAtkSpeed>
     </it>
 </Data>

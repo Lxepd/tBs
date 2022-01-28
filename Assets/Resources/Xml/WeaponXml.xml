@@ -8,7 +8,7 @@
 		<atk>2</atk>
 		<bulletSpeed>20</bulletSpeed>
 		<shootLen>5</shootLen>
-		<shootNextTime>.2</shootNextTime>
+		<shootNextTime>.7</shootNextTime>
     </it>
 	<it id="20002">
 		<spritePath>Sprites/Guns/assaultrifle3</spritePath>
@@ -16,10 +16,10 @@
 		<type>1</type>
 		<bulletNum>30</bulletNum>
 		<ammunitionChangeTime>2</ammunitionChangeTime>
-		<atk>100</atk>
-		<bulletSpeed>35</bulletSpeed>
+		<atk>0</atk>
+		<bulletSpeed>20</bulletSpeed>
 		<shootLen>15</shootLen>
-		<shootNextTime>.1</shootNextTime>
+		<shootNextTime>.5</shootNextTime>
 	</it>
 	<it id="20003">
 		<spritePath>Sprites/Guns/sniperrifle4</spritePath>
@@ -28,7 +28,7 @@
 		<bulletNum>6</bulletNum>
 		<ammunitionChangeTime>2.5</ammunitionChangeTime>
 		<atk>15</atk>
-		<bulletSpeed>50</bulletSpeed>
+		<bulletSpeed>25</bulletSpeed>
 		<shootLen>20</shootLen>
 		<shootNextTime>.7</shootNextTime>
 	</it>
@@ -39,7 +39,7 @@
 		<bulletNum>6</bulletNum>
 		<ammunitionChangeTime>2.5</ammunitionChangeTime>
 		<atk>17</atk>
-		<bulletSpeed>50</bulletSpeed>
+		<bulletSpeed>25</bulletSpeed>
 		<shootLen>25</shootLen>
 		<shootNextTime>1</shootNextTime>
 	</it>
@@ -50,7 +50,7 @@
 		<bulletNum>6</bulletNum>
 		<ammunitionChangeTime>2.5</ammunitionChangeTime>
 		<atk>12</atk>
-		<bulletSpeed>70</bulletSpeed>
+		<bulletSpeed>30</bulletSpeed>
 		<shootLen>20</shootLen>
 		<shootNextTime>.6</shootNextTime>
 	</it>
@@ -61,7 +61,7 @@
 		<bulletNum>6</bulletNum>
 		<ammunitionChangeTime>2.5</ammunitionChangeTime>
 		<atk>12</atk>
-		<bulletSpeed>50</bulletSpeed>
+		<bulletSpeed>25</bulletSpeed>
 		<shootLen>30</shootLen>
 		<shootNextTime>.7</shootNextTime>
 	</it>

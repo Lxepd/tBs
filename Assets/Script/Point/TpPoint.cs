@@ -59,7 +59,7 @@ public class TpPoint : MonoBehaviour
                     PoolMgr.GetInstance().Clear();
                     SceneMgr.GetInstance().LoadScene("Level", () =>
                      {
-                         ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/Room",(x)=>
+                         ResMgr.GetInstance().LoadAsync<GameObject>("Prefabs/RoomPrefabs/Room", (x)=>
                          {
 
                          });

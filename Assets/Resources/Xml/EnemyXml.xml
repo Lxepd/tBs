@@ -18,7 +18,7 @@
 		<path>Prefabs/Enemy/Bringer-of-Death</path>
 		<tips>令人发触的怪物，总能神不知鬼不觉地给人致命一击</tips>
 		<rewardId>16004</rewardId>
-		<hp>1000</hp>
+		<hp>300</hp>
 		<speed>5</speed>
 		<atk>10</atk>
 		<hitLen>2</hitLen>

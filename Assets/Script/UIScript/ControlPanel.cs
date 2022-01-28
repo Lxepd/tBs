@@ -17,8 +17,9 @@ public class ControlPanel : UIBase
 
     CtrlType ctrlType;
     Npc npcComponent;
-    WeaponData weaponData;
-    Timer shootTimer, ammunitionChangeTimer;
+    Timer shootTimer, ammunitionChangeTimer, reShootNextTime;
+
+    bool isAddBullet;
 
     private float currentBulletNum;
 
@@ -42,12 +43,27 @@ public class ControlPanel : UIBase
         {
             gun = x;
         });
-        EventCenter.GetInstance().AddEventListener<WeaponData>("枪支数据", (x) =>
+        EventCenter.GetInstance().AddEventListener("角色数据初始", () =>
         {
-            weaponData = x;
-            currentBulletNum = weaponData.bulletNum;
-            ammunitionChangeTimer = new Timer(weaponData.ammunitionChangeTime, false, false);
-            shootTimer = new Timer(x.shootNextTime, true);
+            currentBulletNum = Datas.GetInstance().weaponData.bulletNum;
+            ammunitionChangeTimer = new Timer(Datas.GetInstance().weaponData.ammunitionChangeTime, false, false);
+            shootTimer = new Timer(Datas.GetInstance().weaponData.shootNextTime, true);
+        });
+        EventCenter.GetInstance().AddEventListener<bool>("枪支数据改变", (x) =>
+        {
+            if(x)
+            {
+                currentBulletNum = Datas.GetInstance().weaponData.bulletNum;
+                ammunitionChangeTimer = new Timer(Datas.GetInstance().weaponData.ammunitionChangeTime, false, false);
+            }
+
+            float atkSp = Mathf.Max(Datas.GetInstance().weaponData.shootNextTime - Datas.GetInstance().addAtkSpd, 0);
+            shootTimer = new Timer(atkSp, true);
+
+            if(Datas.GetInstance().isEatItem)
+            {
+                reShootNextTime = new Timer(Datas.GetInstance().itemReShootTimer);
+            }
         });
         EventCenter.GetInstance().AddEventListener<Collider2D>("附近的Npc", (x) =>
         {
@@ -65,7 +81,7 @@ public class ControlPanel : UIBase
         {
             if (x)
             {
-                if (nearEnemy == null || gun.GetComponent<SpriteRenderer>().sprite == null || !shootTimer.isTimeUp || currentBulletNum == 0)
+                if (nearEnemy == null || gun.GetComponent<SpriteRenderer>().sprite == null || !shootTimer.isTimeUp || currentBulletNum <= 0)
                     return;
 
                 Shoot();
@@ -79,24 +95,34 @@ public class ControlPanel : UIBase
     }
     private void Update()
     {
-        if (weaponData == null)
+        if (Datas.GetInstance().weaponData == null)
             return;
+
+        if (reShootNextTime!=null && reShootNextTime.isTimeUp && Datas.GetInstance().isEatItem)
+        {
+            Datas.GetInstance().isEatItem = false;
+            reShootNextTime = null;
+            Datas.GetInstance().addAtkSpd = 0;
+            EventCenter.GetInstance().EventTrigger<bool>("枪支数据改变", false);
+        }
 
         if (currentBulletNum > 0)
         {
             GetControl<Image>("子弹数量").color = new Color(255 / 255f, 255 / 255f, 255 / 255f, 255 / 255f);
-            GetControl<Image>("子弹数量").fillAmount = currentBulletNum / weaponData.bulletNum;
+            GetControl<Image>("子弹数量").fillAmount = currentBulletNum / Datas.GetInstance().weaponData.bulletNum;
         }
         else
         {
             GetControl<Image>("子弹数量").color = new Color(255 / 255f, 255 / 255f, 255 / 255f, 100 / 255f);
-            GetControl<Image>("子弹数量").fillAmount = Mathf.Lerp(GetControl<Image>("子弹数量").fillAmount, weaponData.ammunitionChangeTime - ammunitionChangeTimer.nowTime, Time.deltaTime * 10f);
+            GetControl<Image>("子弹数量").fillAmount = Mathf.Lerp(GetControl<Image>("子弹数量").fillAmount, Datas.GetInstance().weaponData.ammunitionChangeTime - ammunitionChangeTimer.nowTime, Time.deltaTime * 10f);
         }
 
         if(GetControl<Image>("子弹数量").fillAmount == 1)
         {
-            currentBulletNum = weaponData.bulletNum;
+            currentBulletNum = Datas.GetInstance().weaponData.bulletNum;
         }
+
+
     }
     protected override void OnClick(string btnName)
     {
@@ -112,7 +138,7 @@ public class ControlPanel : UIBase
     }
     private void Shoot()
     {
-        PoolMgr.GetInstance().GetObj(weaponData.bulletPath, (x) =>
+        PoolMgr.GetInstance().GetObj(Datas.GetInstance().weaponData.bulletPath, (x) =>
          {
              x.transform.position = gun.position + new Vector3(0,.45f,0);
              Rigidbody2D rg = x.GetComponent<Rigidbody2D>();
@@ -120,17 +146,17 @@ public class ControlPanel : UIBase
              Vector3 randomPosOff = new Vector3(0, Random.Range(-1,2), 0);
              Vector2 enemyDir = (nearEnemy.transform.position + randomPosOff / 2 - PlayerPos).normalized;
              // 设置速度
-             rg.velocity = weaponData.bulletSpeed * enemyDir;
+             rg.velocity = Datas.GetInstance().weaponData.bulletSpeed * enemyDir;
              x.transform.rotation = Quaternion.FromToRotation(Vector3.right,enemyDir);
 
              ThrowItem ti = x.GetComponent<ThrowItem>();
              ti.ws = WhoShoot.Player;
-             ti.hurt = weaponData.atk;
+             ti.hurt = Datas.GetInstance().weaponData.atk;
          });
 
         currentBulletNum = (currentBulletNum <= 0) ? 0 : currentBulletNum - 1;
 
-        if(currentBulletNum == 0)
+        if (currentBulletNum <= 0)
         {
             ammunitionChangeTimer.Start();
         }

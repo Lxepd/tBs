@@ -28,4 +28,5 @@ public class ItemData
     public ItemActType actType; // 道具功能
     public int recovery; // 恢复
     public float increaseAttackSpeed; // 增加攻速
+    public float reAtkSpeed; // 攻速恢复
 }
