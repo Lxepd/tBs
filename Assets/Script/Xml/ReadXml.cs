@@ -321,5 +321,29 @@ public class ReadXml : InstanceNoMono<ReadXml>
             Datas.GetInstance().SkillDataDic.Add(newData.id, newData);
         }
     }
+    public void LoadYWXml(string path)
+    {
+        if (Datas.GetInstance().YWDataDic.Count != 0)
+            return;
+
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.Load(Application.persistentDataPath + path);
+
+        XmlNodeList xmlList = xmlDoc.SelectSingleNode("Data").ChildNodes;
+
+        foreach (XmlNode item in xmlList)
+        {
+            YWData newData = new YWData();
+            newData.id = int.Parse(item.Attributes["id"].InnerText);
+
+            newData.name = item.SelectSingleNode("name").InnerText;
+            newData.imgPath = item.SelectSingleNode("imgPath").InnerText;
+            newData.tips = item.SelectSingleNode("tip").InnerText;
+            newData.type = (YWType)int.Parse(item.SelectSingleNode("ywType").InnerText);
+            newData.effect = float.Parse(item.SelectSingleNode("effect").InnerText);
+
+            Datas.GetInstance().YWDataDic.Add(newData.id, newData);
+        }
+    }
     #endregion
 }

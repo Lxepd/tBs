@@ -16,10 +16,10 @@
 		<type>1</type>
 		<bulletNum>30</bulletNum>
 		<ammunitionChangeTime>2</ammunitionChangeTime>
-		<atk>0</atk>
-		<bulletSpeed>20</bulletSpeed>
+		<atk>100</atk>
+		<bulletSpeed>30</bulletSpeed>
 		<shootLen>15</shootLen>
-		<shootNextTime>.5</shootNextTime>
+		<shootNextTime>0.2</shootNextTime>
 	</it>
 	<it id="20003">
 		<spritePath>Sprites/Guns/sniperrifle4</spritePath>

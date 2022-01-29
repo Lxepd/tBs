@@ -1,0 +1,9 @@
+<Data>
+    <yw id="40001">
+		<name>注射器</name>
+		<imgPath>Sprites/YW/针筒</imgPath>
+		<tip>每个增加1.5%攻速</tip>
+		<ywType>0</ywType>
+		<effect>0.015</effect>
+    </yw>
+</Data>

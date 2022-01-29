@@ -38,4 +38,19 @@ public class Datas : InstanceNoMono<Datas>
     public Dictionary<int, UpgradeData> UpgradeDataDic = new Dictionary<int, UpgradeData>();
     // 存放<技能>信息字典
     public Dictionary<int, SkillData> SkillDataDic = new Dictionary<int, SkillData>();
+    // 存放<遗物>信息字典
+    public Dictionary<int, YWData> YWDataDic = new Dictionary<int, YWData>();
+}
+public enum YWType
+{
+    攻速
+}
+public class YWData
+{
+    public int id;
+    public string name;
+    public string imgPath;
+    public string tips;
+    public YWType type;
+    public float effect;
 }

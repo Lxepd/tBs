@@ -39,6 +39,9 @@ public class InitData : MonoBehaviour
         ReadXml.GetInstance().SetFileToPersistent("/SkillXml.xml", "Xml/SkillXml");
         ReadXml.GetInstance().LoadSkillXml("/SkillXml.xml");
 
+        ReadXml.GetInstance().SetFileToPersistent("/YWXml.xml", "Xml/YWXml");
+        ReadXml.GetInstance().LoadYWXml("/YWXml.xml");
+
         //Debug.Log("投掷物字典数据数量：    " + GameMgr.GetInstance().ThrowItemDataDic.Count);
         //Debug.Log("道具字典数据数量：    " + GameMgr.GetInstance().ItemDataDic.Count);
         //Debug.Log("Npc字典数据数量：    " + GameMgr.GetInstance().NpcDataDic.Count);

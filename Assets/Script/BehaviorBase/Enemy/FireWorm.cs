@@ -283,8 +283,6 @@ public class FireWormDead : StateBaseTemplate<FireWorm>
             owner.GetComponent<BoxCollider2D>().enabled = false;
             owner.Animator.Play("Dead");
             owner.Rg.velocity = Vector2.zero;
-
-            EventCenter.GetInstance().EventTrigger<GameObject>("怪物表减少", owner.gameObject);
         }
         if(!isDropReward)
         {
@@ -314,6 +312,7 @@ public class FireWormDead : StateBaseTemplate<FireWorm>
     {
         PoolMgr.GetInstance().PushObj(owner.Data.path, owner.gameObject);
         owner.stopMono = true;
+        EventCenter.GetInstance().EventTrigger<GameObject>("怪物表减少", owner.gameObject);
     }
 }
 #endregion

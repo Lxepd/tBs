@@ -76,7 +76,7 @@ public class TileSet : MonoBehaviour
             aaa.transform.position = x.transform.position;
         });
 
-        CreateMonsters(10);
+        CreateMonsters(0);
         CreateNpc();
     }
     private void ReduceTile(int num)
