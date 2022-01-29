@@ -123,7 +123,7 @@ public class StatePanel : UIBase
                         currentHp = Mathf.Min(currentHp += Datas.GetInstance().ItemDataDic[BagItemIDList[index]].recovery, maxhp);
                         break;
                     case ItemActType.攻速强化:
-                        Datas.GetInstance().addAtkSpd = Datas.GetInstance().ItemDataDic[BagItemIDList[index]].increaseAttackSpeed;
+                        Datas.GetInstance().itemAddAtkSpd = Datas.GetInstance().ItemDataDic[BagItemIDList[index]].increaseAttackSpeed;
                         Datas.GetInstance().isEatItem = true;
                         Datas.GetInstance().itemReShootTimer = Datas.GetInstance().ItemDataDic[BagItemIDList[index]].reAtkSpeed;
                         EventCenter.GetInstance().EventTrigger<bool>("枪支数据改变",false);

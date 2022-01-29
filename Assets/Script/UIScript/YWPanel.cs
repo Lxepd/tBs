@@ -9,6 +9,7 @@ public class YWPanel : UIBase
 
     Dictionary<int, YWData> randomYW = new Dictionary<int, YWData>();
     List<int> randomId = new List<int>();
+    int switchYW;
 
     private void Start()
     {
@@ -53,6 +54,7 @@ public class YWPanel : UIBase
                 x.GetComponent<Toggle>().group = parent.GetComponent<ToggleGroup>();
                 x.GetComponent<Toggle>().onValueChanged.AddListener((y) =>
                 {
+                    switchYW = randomYW[item].id;
                     Debug.Log("选择该遗物：   ID = " + randomYW[item].id + "  遗物名 = " + randomYW[item].name);
                 });
 
@@ -75,8 +77,37 @@ public class YWPanel : UIBase
         switch(btnName)
         {
             case "Bto_Choice":
+                AddRelicsToPlayers();
                 UIMgr.GetInstance().HidePanel("YWPanel");
                 break;
         }
+    }
+    private void AddRelicsToPlayers()
+    {
+        if (!Datas.GetInstance().haveYWDic.ContainsKey(switchYW))
+        {
+            Datas.GetInstance().haveYWDic.Add(switchYW, 1);
+        }
+        else
+        {
+            Datas.GetInstance().haveYWDic[switchYW]++;
+        }
+
+        float ywAs = 0;
+
+        foreach (var item in Datas.GetInstance().haveYWDic)
+        {
+            
+            switch (Datas.GetInstance().YWDataDic[item.Key].type)
+            {
+                case YWType.攻速:
+                    ywAs += Datas.GetInstance().YWDataDic[item.Key].effect * item.Value;
+                    break;
+            }
+
+        }
+
+        Datas.GetInstance().YWAddAtkSpd = ywAs;
+        Debug.Log(Datas.GetInstance().YWAddAtkSpd);
     }
 }

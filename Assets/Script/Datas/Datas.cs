@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class Datas : InstanceNoMono<Datas>
 {
-    public bool isLoad;
-    public int CoinNum;
-    public int RoleId;
-    public int GunId;
-    public int Hp;
-
-    public PlayerData playerData;
-    public WeaponData weaponData;
-    public float addAtkSpd;
-    public bool isEatItem;
-    public float itemReShootTimer;
+    // Sava //
+    public bool isLoad; // 是否点击了读档
+    public int CoinNum; // 金币数
+    public int RoleId; // 角色id
+    public int GunId; // 枪支id
+    public int Hp; // 血量
+    // UnSave
+    public PlayerData playerData; // 角色数据 
+    public WeaponData weaponData; // 枪支数据
+    public float itemAddAtkSpd; // 道具增加的攻速
+    public float YWAddAtkSpd; // 遗物增加攻速
+    public bool isEatItem; // 是否使用了道具
+    public float itemReShootTimer; // 道具的恢复时间
+    public Dictionary<int, int> haveYWDic = new Dictionary<int, int>(); // 带着遗物的字典<id，数量>
 
     // 存放<射击物>信息字典
     public Dictionary<int, ThrowItemData> ThrowItemDataDic = new Dictionary<int, ThrowItemData>();

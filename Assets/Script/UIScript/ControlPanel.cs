@@ -51,13 +51,13 @@ public class ControlPanel : UIBase
         });
         EventCenter.GetInstance().AddEventListener<bool>("枪支数据改变", (x) =>
         {
-            if(x)
-            {
-                currentBulletNum = Datas.GetInstance().weaponData.bulletNum;
-                ammunitionChangeTimer = new Timer(Datas.GetInstance().weaponData.ammunitionChangeTime, false, false);
-            }
+        if (x)
+        {
+            currentBulletNum = Datas.GetInstance().weaponData.bulletNum;
+            ammunitionChangeTimer = new Timer(Datas.GetInstance().weaponData.ammunitionChangeTime, false, false);
+        }
 
-            float atkSp = Mathf.Max(Datas.GetInstance().weaponData.shootNextTime - Datas.GetInstance().addAtkSpd, 0);
+            float atkSp = Mathf.Max(Datas.GetInstance().weaponData.shootNextTime - (Datas.GetInstance().itemAddAtkSpd + Datas.GetInstance().YWAddAtkSpd), 0);
             shootTimer = new Timer(atkSp, true);
 
             if(Datas.GetInstance().isEatItem)
@@ -102,7 +102,7 @@ public class ControlPanel : UIBase
         {
             Datas.GetInstance().isEatItem = false;
             reShootNextTime = null;
-            Datas.GetInstance().addAtkSpd = 0;
+            Datas.GetInstance().itemAddAtkSpd = 0;
             EventCenter.GetInstance().EventTrigger<bool>("枪支数据改变", false);
         }
 
