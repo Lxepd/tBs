@@ -59,7 +59,7 @@ public class Player : BehaviorBase
         EventCenter.GetInstance().EventTrigger<GameObject>("玩家物体", gameObject);
         EventCenter.GetInstance().EventTrigger<Transform>("是否有枪支", gunImg);
         EventCenter.GetInstance().EventTrigger<Vector2>("射击起点", transform.position);
-        rg.velocity = dir * Datas.GetInstance().playerData.speed;
+        rg.velocity = dir * (Datas.GetInstance().playerData.speed * (1 + Datas.GetInstance().YWAddRoleSpd));
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Death") && animTime > 1f)
         {

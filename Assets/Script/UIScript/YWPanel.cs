@@ -6,44 +6,57 @@ using UnityEngine.UI;
 public class YWPanel : UIBase
 {
     Transform parent;
+    Transform showParent;
 
-    Dictionary<int, YWData> randomYW = new Dictionary<int, YWData>();
-    List<int> randomId = new List<int>();
     int switchYW;
 
     private void Start()
     {
         parent = GameTool.FindTheChild(gameObject, "parent");
+        showParent = GameTool.FindTheChild(gameObject, "YWShowParent");
     }
     public override void ShowMe()
     {
         Time.timeScale = 0;
-        int safe = 0;
 
+        if(Datas.GetInstance().haveYWDic.Count!=0)
+        {
+            foreach (var item in Datas.GetInstance().haveYWDic)
+            {
+                PoolMgr.GetInstance().GetObj("Prefabs/YWShow", (x) =>
+                {
+                    x.transform.SetParent(showParent);
+                    x.transform.localScale = Vector3.one;
+
+                    x.GetComponent<Image>().sprite = ResMgr.GetInstance().Load<Sprite>(Datas.GetInstance().YWDataDic[item.Key].imgPath);
+
+                    if (item.Value > 1)
+                        GameTool.FindTheChild(x, "showText").GetComponent<Text>().text = item.Value.ToString();
+                });
+            }
+        }
+
+        Dictionary<int, YWData> randomYW = new Dictionary<int, YWData>();
+        List<int> randomId = new List<int>();
         List<int> readyRd = new List<int>();
+
         foreach (var item in Datas.GetInstance().YWDataDic)
         {
             readyRd.Add(item.Key);
         }
 
-        while (randomYW.Count < 3 || safe < 10)
+        do
         {
             if (readyRd.Count == 0)
                 break;
 
             int rd = Random.Range(0, readyRd.Count);
 
-            Debug.Log(readyRd[rd]);
-            if (randomYW.ContainsKey(readyRd[rd]))
-            {
-                readyRd.RemoveAt(rd);
-                safe++;
-                continue;
-            }
-
             randomYW.Add(readyRd[rd], Datas.GetInstance().YWDataDic[readyRd[rd]]);
             randomId.Add(readyRd[rd]);
-        }
+            readyRd.RemoveAt(rd);
+
+        } while (randomYW.Count < 3);
 
         foreach (var item in randomId)
         {
@@ -66,10 +79,13 @@ public class YWPanel : UIBase
     public override void HideMe()
     {
         Time.timeScale = 1;
-
         for (int i = parent.childCount-1; i >= 0; i--)
         {
             PoolMgr.GetInstance().PushObj(parent.GetChild(i).name, parent.GetChild(i).gameObject);
+        }
+        for (int i = showParent.childCount - 1; i >= 0; i--)
+        {
+            PoolMgr.GetInstance().PushObj(showParent.GetChild(i).name, showParent.GetChild(i).gameObject);
         }
     }
     protected override void OnClick(string btnName)
@@ -93,7 +109,7 @@ public class YWPanel : UIBase
             Datas.GetInstance().haveYWDic[switchYW]++;
         }
 
-        float ywAs = 0;
+        float addRoleSpd = 0, addAtkSpd = 0;
 
         foreach (var item in Datas.GetInstance().haveYWDic)
         {
@@ -101,13 +117,17 @@ public class YWPanel : UIBase
             switch (Datas.GetInstance().YWDataDic[item.Key].type)
             {
                 case YWType.¹¥ËÙ:
-                    ywAs += Datas.GetInstance().YWDataDic[item.Key].effect * item.Value;
+                    addAtkSpd += Datas.GetInstance().YWDataDic[item.Key].effect * item.Value;
+                    break;
+                case YWType.ÒÆËÙ:
+                    addRoleSpd += Datas.GetInstance().YWDataDic[item.Key].effect * item.Value;
+                    break;
+                case YWType.ÒÆ×ª¹¥:
+                    addAtkSpd += Datas.GetInstance().YWDataDic[item.Key].effect * item.Value;
+                    addRoleSpd -= Datas.GetInstance().YWDataDic[item.Key].effect * item.Value;
                     break;
             }
 
         }
-
-        Datas.GetInstance().YWAddAtkSpd = ywAs;
-        Debug.Log(Datas.GetInstance().YWAddAtkSpd);
     }
 }

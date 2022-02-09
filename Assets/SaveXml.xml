@@ -1,8 +1,11 @@
 <save>
   <file>
     <role>14001</role>
-    <gun>20003</gun>
-    <coinNum>60</coinNum>
-    <hp>386</hp>
+    <gun>20001</gun>
+    <coinNum>0</coinNum>
+    <hp>0</hp>
+    <yw>
+      <saveYW id="40001">1</saveYW>
+    </yw>
   </file>
 </save>

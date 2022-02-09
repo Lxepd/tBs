@@ -114,6 +114,7 @@ public class ControlPanel : UIBase
         else
         {
             GetControl<Image>("子弹数量").color = new Color(255 / 255f, 255 / 255f, 255 / 255f, 100 / 255f);
+            Debug.Log(GetControl<Image>("子弹数量"));
             GetControl<Image>("子弹数量").fillAmount = Mathf.Lerp(GetControl<Image>("子弹数量").fillAmount, Datas.GetInstance().weaponData.ammunitionChangeTime - ammunitionChangeTimer.nowTime, Time.deltaTime * 10f);
         }
 

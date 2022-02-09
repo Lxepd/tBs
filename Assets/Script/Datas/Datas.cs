@@ -15,6 +15,7 @@ public class Datas : InstanceNoMono<Datas>
     public WeaponData weaponData; // 枪支数据
     public float itemAddAtkSpd; // 道具增加的攻速
     public float YWAddAtkSpd; // 遗物增加攻速
+    public float YWAddRoleSpd; // 遗物增加角色移速
     public bool isEatItem; // 是否使用了道具
     public float itemReShootTimer; // 道具的恢复时间
     public Dictionary<int, int> haveYWDic = new Dictionary<int, int>(); // 带着遗物的字典<id，数量>
@@ -43,10 +44,24 @@ public class Datas : InstanceNoMono<Datas>
     public Dictionary<int, SkillData> SkillDataDic = new Dictionary<int, SkillData>();
     // 存放<遗物>信息字典
     public Dictionary<int, YWData> YWDataDic = new Dictionary<int, YWData>();
+
+    public void GameReturnClear()
+    {
+        playerData = null;
+        weaponData = null;
+        itemAddAtkSpd = 0;
+        YWAddAtkSpd = 0;
+        YWAddRoleSpd = 0;
+        isEatItem = false;
+        itemReShootTimer = 0;
+        haveYWDic.Clear();
+    }
 }
 public enum YWType
 {
-    攻速
+    攻速,
+    移速,
+    移转攻
 }
 public class YWData
 {

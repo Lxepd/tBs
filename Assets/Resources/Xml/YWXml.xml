@@ -1,9 +1,44 @@
 <Data>
     <yw id="40001">
-		<name>注射器</name>
+		<name>攻速注射器</name>
 		<imgPath>Sprites/YW/针筒</imgPath>
-		<tip>每个增加1.5%攻速</tip>
+		<tip>每个增加1.5%基础攻速</tip>
 		<ywType>0</ywType>
 		<effect>0.015</effect>
     </yw>
+	<yw id="40002">
+		<name>移速注射器</name>
+		<imgPath>Sprites/YW/Y针筒</imgPath>
+		<tip>每个增加1.5%基础移速</tip>
+		<ywType>0</ywType>
+		<effect>0.015</effect>
+	</yw>
+	<yw id="40003">
+		<name>移转攻注射器</name>
+		<imgPath>Sprites/YW/YG针筒</imgPath>
+		<tip>牺牲1.5%基础移速换取同等攻速</tip>
+		<ywType>2</ywType>
+		<effect>0.015</effect>
+	</yw>
+	<yw id="40004">
+		<name>注射器</name>
+		<imgPath>Sprites/YW/测试1针筒</imgPath>
+		<tip>遗物测试1，无任何作用</tip>
+		<ywType>0</ywType>
+		<effect>0</effect>
+	</yw>
+	<yw id="40005">
+		<name>注射器</name>
+		<imgPath>Sprites/YW/测试2针筒</imgPath>
+		<tip>遗物测试2，无任何作用</tip>
+		<ywType>0</ywType>
+		<effect>0</effect>
+	</yw>
+	<yw id="40006">
+		<name>注射器</name>
+		<imgPath>Sprites/YW/测试3针筒</imgPath>
+		<tip>遗物测试3，无任何作用</tip>
+		<ywType>0</ywType>
+		<effect>0</effect>
+	</yw>
 </Data>

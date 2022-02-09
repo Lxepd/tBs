@@ -42,6 +42,7 @@ public class ListPanel : UIBase
                 EventCenter.GetInstance().EventTrigger("销毁角色");
                 EventCenter.GetInstance().EventTrigger<int>("道具栏清空", 0);
                 EventCenter.GetInstance().EventTrigger<bool>("背包清空", true);
+                Datas.GetInstance().GameReturnClear();
                 SceneMgr.GetInstance().LoadSceneAsyn("Main", ()=>
                 {
                     // 除了<主界面>以外的界面全部隐藏

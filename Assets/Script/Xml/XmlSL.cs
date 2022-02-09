@@ -46,10 +46,22 @@ public class XmlSL : InstanceNoMono<XmlSL>
         XmlElement hp = xmlDoc.CreateElement("hp");
         hp.InnerText = save.Hp.ToString();
 
+        //XmlElement ywDic = xmlDoc.CreateElement("yw");
+
+        //foreach (var item in Datas.GetInstance().haveYWDic)
+        //{
+        //    XmlElement saveYW = xmlDoc.CreateElement("saveYW");
+        //    saveYW.SetAttribute("id ", item.Key.ToString());
+        //    saveYW.InnerText = item.Value.ToString();
+
+        //    ywDic.AppendChild(saveYW);
+        //}
+
         file.AppendChild(role);
         file.AppendChild(gun);
         file.AppendChild(coinNum);
         file.AppendChild(hp);
+        //file.AppendChild(ywDic);
         root.AppendChild(file);
 
         xmlDoc.AppendChild(root);
