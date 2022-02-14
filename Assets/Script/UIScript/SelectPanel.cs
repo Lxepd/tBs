@@ -125,7 +125,7 @@ public class SelectPanel : UIBase
             InitPlayer(Datas.GetInstance().isLoad ? Datas.GetInstance().RoleId : playerID);
 
             // Òþ²Ø<¼ÓÔØ>½çÃæ
-            Invoke(nameof(HideLoadingPanel), 2f);
+            Invoke(nameof(HideLoadingPanel), 1.5f);
         });
     }
     public void HideLoadingPanel()
@@ -142,6 +142,7 @@ public class SelectPanel : UIBase
         }
 
         Datas.GetInstance().playerData = Datas.GetInstance().PlayerDataDic[id];
+        Datas.GetInstance().Hp = Datas.GetInstance().PlayerDataDic[id].MaxHp;
         Datas.GetInstance().weaponData = Datas.GetInstance().WeaponDataDic[Datas.GetInstance().isLoad ? Datas.GetInstance().GunId : Datas.GetInstance().GunId = Datas.GetInstance().playerData.initialWeaponId];
     }
 }

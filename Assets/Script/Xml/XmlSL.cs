@@ -16,7 +16,12 @@ public class Save
 
 public class XmlSL : InstanceNoMono<XmlSL>
 {
-    string path = Application.dataPath + "/SaveXml.xml";
+    string path=
+#if UNITY_EDITOR
+    Application.dataPath + "/Resources/Xml/SaveXml.xml";
+#elif UNITY_ANDROID
+    Application.persistentDataPath + @"/SaveXml.xml";
+#endif
 
     private Save CreateGoMsg()
     {
@@ -67,7 +72,9 @@ public class XmlSL : InstanceNoMono<XmlSL>
         xmlDoc.AppendChild(root);
         xmlDoc.Save(path);
 
+#if UNITY_EDITOR
         AssetDatabase.Refresh();
+#endif
     }
     public void Load()
     {

@@ -944,6 +944,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 178735304}
     m_Modifications:
+    - target: {fileID: 2557094941889849941, guid: 60c7586634e24374c930620ab21702cc, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -827.9709
+      objectReference: {fileID: 0}
+    - target: {fileID: 6873873435406225680, guid: 60c7586634e24374c930620ab21702cc, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6873873435406225680, guid: 60c7586634e24374c930620ab21702cc, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6873873435406225680, guid: 60c7586634e24374c930620ab21702cc, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269282936256642182, guid: 60c7586634e24374c930620ab21702cc, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269282936256642182, guid: 60c7586634e24374c930620ab21702cc, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7680444863315228906, guid: 60c7586634e24374c930620ab21702cc, type: 3}
       propertyPath: m_Name
       value: YWPanel

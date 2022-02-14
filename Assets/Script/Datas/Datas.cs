@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Datas : InstanceNoMono<Datas>
 {
-    // Sava //
     public bool isLoad; // 是否点击了读档
+
+    // Sava //
     public int CoinNum; // 金币数
     public int RoleId; // 角色id
     public int GunId; // 枪支id
