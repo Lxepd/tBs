@@ -50,7 +50,7 @@ public class Npc:MonoBehaviour
     private void Update()
     {
         playerHere = Physics2D.OverlapCircle(transform.position, checkPlayerHereRadius, LayerMask.GetMask("玩家"));
-
+        
         switch (data.type)
         {
             case NpcType.道具商人:

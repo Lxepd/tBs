@@ -8,7 +8,8 @@ public enum E_UI_Layer
 {
     Normal,
     Above,
-    Load
+    Load,
+    Logo
 }
 
 /// <summary>
@@ -23,6 +24,7 @@ public class UIMgr : InstanceNoMono<UIMgr>
     private Transform normal;
     private Transform above;
     private Transform load;
+    private Transform logo;
 
     public RectTransform canvas;
 
@@ -35,6 +37,7 @@ public class UIMgr : InstanceNoMono<UIMgr>
         normal = canvas.Find("Normal");
         above = canvas.Find("Above");
         load = canvas.Find("Load");
+        logo = canvas.Find("Logo");
 
         obj = ResMgr.GetInstance().Load<GameObject>("Prefabs/UI/EventSystem");
         Object.DontDestroyOnLoad(obj);
@@ -49,6 +52,8 @@ public class UIMgr : InstanceNoMono<UIMgr>
                 return this.above;
             case E_UI_Layer.Load:
                 return this.load;
+            case E_UI_Layer.Logo:
+                return this.logo;
         }
 
         return null;
@@ -84,6 +89,9 @@ public class UIMgr : InstanceNoMono<UIMgr>
                     break;
                 case E_UI_Layer.Load:
                     father = load;
+                    break;
+                case E_UI_Layer.Logo:
+                    father = logo;
                     break;
             }
 

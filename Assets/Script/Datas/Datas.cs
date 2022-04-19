@@ -2,9 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GameLoadEnum
+{
+    Null,
+    Ok
+}
 public class Datas : InstanceNoMono<Datas>
 {
     public bool isLoad; // 是否点击了读档
+
+    // 是否有存档
+    public GameLoadEnum gameLoad;
+    // 提示面板UI的显示时间
+    public float ShowTipsTime = 2f;
+    // 提示Logo的显示时间
+    public float ShowLogoTime = 4f;
 
     // Sava //
     public int CoinNum; // 金币数

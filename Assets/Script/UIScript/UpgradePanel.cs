@@ -63,6 +63,10 @@ public class UpgradePanel : UIBase
                 break;
         }
     }
+    /// <summary>
+    /// 初始化升级商店
+    /// </summary>
+    /// <param name="upgrade"></param>
     private void InitUpgradeShop(List<升级> upgrade)
     {
         foreach (var item in upgrade)
@@ -78,6 +82,9 @@ public class UpgradePanel : UIBase
             });
         }
     }
+    /// <summary>
+    /// 更新升级面板信息
+    /// </summary>
     private void UpdateUpgrade()
     {
         if (!isInit)
@@ -88,11 +95,11 @@ public class UpgradePanel : UIBase
             PoolMgr.GetInstance().PushObj(parent.GetChild(i).name, parent.GetChild(i).gameObject);
         }
 
-        for (int i = 0; i < upgradeList.Count; i++)
-        {
-            UpgradeData ud = Datas.GetInstance().UpgradeDataDic[upgradeList[i].id];
-            ChangeUpgradeGo(parent.GetChild(i).gameObject, ud);
-        }
+        //for (int i = 0; i < upgradeList.Count; i++)
+        //{
+        //    UpgradeData ud = Datas.GetInstance().UpgradeDataDic[upgradeList[i].id];
+        //    ChangeUpgradeGo(parent.GetChild(i).gameObject, ud);
+        //}
 
         //if (weaponData == null)
         //    return;
@@ -126,6 +133,11 @@ public class UpgradePanel : UIBase
         //    PoolMgr.GetInstance().PushObj(parent.GetChild(i).name, parent.GetChild(i).gameObject);
         //}
     }
+    /// <summary>
+    /// 更改升级物体信息
+    /// </summary>
+    /// <param name="go"></param>
+    /// <param name="data"></param>
     private void ChangeUpgradeGo(GameObject go, UpgradeData data)
     {
         Image before = GameTool.FindTheChild(go, "原武器Img").GetComponent<Image>();
@@ -142,6 +154,11 @@ public class UpgradePanel : UIBase
 
         ChangeGunCompareImg(go, data);
     }
+    /// <summary>
+    /// 更改武器对比图片
+    /// </summary>
+    /// <param name="go"></param>
+    /// <param name="data"></param>
     private void ChangeGunCompareImg(GameObject go, UpgradeData data)
     {
         WeaponData beforeGun = Datas.GetInstance().WeaponDataDic[data.beforeId];
@@ -153,6 +170,11 @@ public class UpgradePanel : UIBase
         GameTool.FindTheChild(go, "射程Img").GetComponent<Image>().sprite = GunCompare(beforeGun.shootLen, afterGun.shootLen);
         GameTool.FindTheChild(go, "间隔Img").GetComponent<Image>().sprite = GunCompare(afterGun.shootNextTime, beforeGun.shootNextTime);
     }
+    /// <summary>
+    /// 枪支对比
+    /// </summary>
+    /// <param name="before">原武器</param>
+    /// <param name="after">升级后武器</param>
     private Sprite GunCompare(float before, float after)
     {
         if (before == after)

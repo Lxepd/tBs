@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InitData : MonoBehaviour
+public class InitGame : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        UIMgr.GetInstance().ShowPanel<MainPanel>("MainPanel", E_UI_Layer.Normal);
+        UIMgr.GetInstance().ShowPanel<LogoPanel>("LogoPanel", E_UI_Layer.Logo);
 
         ReadXml.GetInstance().SetFileToPersistent("/ThrowItemXml.xml", "Xml/ThrowItemXml");
         ReadXml.GetInstance().LoadThrowItemXml("/ThrowItemXml.xml");
@@ -41,16 +41,5 @@ public class InitData : MonoBehaviour
 
         ReadXml.GetInstance().SetFileToPersistent("/YWXml.xml", "Xml/YWXml");
         ReadXml.GetInstance().LoadYWXml("/YWXml.xml");
-
-        //Debug.Log("投掷物字典数据数量：    " + GameMgr.GetInstance().ThrowItemDataDic.Count);
-        //Debug.Log("道具字典数据数量：    " + GameMgr.GetInstance().ItemDataDic.Count);
-        //Debug.Log("Npc字典数据数量：    " + GameMgr.GetInstance().NpcDataDic.Count);
-        //Debug.Log("房间字典数据数量：    " + GameMgr.GetInstance().RoomDataDic.Count);
-        //Debug.Log("角色字典数据数量：    " + GameMgr.GetInstance().PlayerDataDic.Count);
-        //Debug.Log("怪物字典数据数量：    " + GameMgr.GetInstance().EnemyDataDic.Count);
-        //Debug.Log("奖励字典数据数量：    " + GameMgr.GetInstance().RewardDataDic.Count);
-        //Debug.Log("枪支字典数据数量：    " + GameMgr.GetInstance().WeaponDataDic.Count);
-        //Debug.Log("枪支升级字典数据数量：    " + GameMgr.GetInstance().UpgradeDataDic.Count);
-        //Debug.Log("技能字典数据数量：    " + GameMgr.GetInstance().SkillDataDic.Count);
     }
 }

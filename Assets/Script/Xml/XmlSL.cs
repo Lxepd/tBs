@@ -76,7 +76,7 @@ public class XmlSL : InstanceNoMono<XmlSL>
         AssetDatabase.Refresh();
 #endif
     }
-    public void Load()
+    public GameLoadEnum Load()
     {
         Save save = new Save();
 
@@ -98,10 +98,11 @@ public class XmlSL : InstanceNoMono<XmlSL>
             }
 
             SetGame(save);
+            return GameLoadEnum.Ok;
         }
         else
         {
-            Debug.Log("û�浵");
+            return GameLoadEnum.Null;
         }
     }
     public void SetGame(Save s)

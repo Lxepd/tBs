@@ -8,15 +8,20 @@ using UnityEngine;
 public class ListPanel : UIBase
 {
     GameObject playerGo;
+    bool isFirst = true;
     private void Start()
     {
         EventCenter.GetInstance().AddEventListener<GameObject>("玩家物体", (x) => { playerGo = x; });
+        isFirst = !isFirst;
     }
 
     public override void ShowMe()
     {
         // 暂停游戏
-        Time.timeScale = 0f;
+        if (!isFirst)
+        {
+            Time.timeScale = 0f;
+        }
     }
     public override void HideMe()
     {

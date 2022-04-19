@@ -41,12 +41,18 @@ public class ImgClickBase : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
             act();
         }
     }
-
+    /// <summary>
+    /// 点击按下
+    /// </summary>
+    /// <param name="eventData"></param>
     public virtual void OnPointerDown(PointerEventData eventData)
     {
 
     }
-
+    /// <summary>
+    /// 点击抬起
+    /// </summary>
+    /// <param name="eventData"></param>
     public virtual void OnPointerUp(PointerEventData eventData)
     {
 
