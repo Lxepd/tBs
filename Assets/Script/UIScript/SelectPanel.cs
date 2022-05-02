@@ -51,7 +51,7 @@ public class SelectPanel : UIBase
                 // 排除没选择情况
                 if (playerID == 0)
                 {
-                    EventCenter.GetInstance().EventTrigger<string>("Tips", "没存档");
+                    EventCenter.GetInstance().EventTrigger<string>("Tips", "未选择角色");
                     UIMgr.GetInstance().ShowPanel<TipsPanel>("TipsPanel", E_UI_Layer.Above);
                     return;
                 }

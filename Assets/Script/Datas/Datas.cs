@@ -17,6 +17,8 @@ public class Datas : InstanceNoMono<Datas>
     public float ShowTipsTime = 2f;
     // 提示Logo的显示时间
     public float ShowLogoTime = 4f;
+    // 商店选择的道具
+    public ItemClick clickitem;
 
     // Sava //
     public int CoinNum; // 金币数

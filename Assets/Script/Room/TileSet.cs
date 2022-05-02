@@ -76,7 +76,7 @@ public class TileSet : MonoBehaviour
             aaa.transform.position = x.transform.position;
         });
 
-        CreateMonsters(0);
+        CreateMonsters(5);
         CreateNpc();
     }
     private void ReduceTile(int num)
@@ -177,10 +177,15 @@ public class TileSet : MonoBehaviour
     }
     private void CreateMonsters(int num)
     {
+        if(num<0)
+        {
+            return;
+        }
+
         int monsterCount = 0;
         bool hasBoss = false;
 
-        while (monsterCount < num)
+        while (monsterCount < Mathf.Min(num,10))
         {
             if (LevelMgr.GetInstance().level % 5 == 0 && !hasBoss)
             {

@@ -19,6 +19,8 @@ public class LogoPanel : UIBase
         if (showTimer.isTimeUp)
         {
             UIMgr.GetInstance().HideAllPanel();
+            MusicMgr.GetInstance().PlayBkMusic("Risk of Rain 2");
+            MusicMgr.GetInstance().ChangeBkValue(.1f);
         }
     }
     public override void ShowMe()

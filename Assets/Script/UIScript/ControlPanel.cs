@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public enum CtrlType
 {
+    Null,
     打开商店
 }
 public class ControlPanel : UIBase
@@ -73,7 +74,10 @@ public class ControlPanel : UIBase
             {
                 ctrlType = CtrlType.打开商店;
                 npcComponent = x.GetComponent<Npc>();
-
+            }
+            else
+            {
+                ctrlType = CtrlType.Null;
             }
 
         });
@@ -153,6 +157,9 @@ public class ControlPanel : UIBase
              ThrowItem ti = x.GetComponent<ThrowItem>();
              ti.ws = WhoShoot.Player;
              ti.hurt = Datas.GetInstance().weaponData.atk;
+
+             MusicMgr.GetInstance().PlaySound("LASRGun_Plasma Rifle Fire_03", false);
+             MusicMgr.GetInstance().ChangeSoundValue(.5f);
          });
 
         currentBulletNum = (currentBulletNum <= 0) ? 0 : currentBulletNum - 1;
@@ -176,6 +183,8 @@ public class ControlPanel : UIBase
         {
             case CtrlType.打开商店:
                 npcComponent.OpenShop();
+                break;
+            default:
                 break;
         }
     }

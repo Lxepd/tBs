@@ -8,8 +8,6 @@ using UnityEngine.UI;
 /// </summary>
 public class ItemShopPanel : UIBase
 {
-    // 点击的<道具>上的脚本
-    private ItemClick item;
     // <道具>父物体
     private Transform itemParent;
 
@@ -25,7 +23,7 @@ public class ItemShopPanel : UIBase
         // 注册<道具点击>消息
         EventCenter.GetInstance().AddEventListener<ItemClick>("商店物品", (x) =>
         {
-            item = x;
+            Datas.GetInstance().clickitem = x;
         });
         EventCenter.GetInstance().AddEventListener<List<道具>>("道具商店", (x) =>
         {
@@ -75,13 +73,23 @@ public class ItemShopPanel : UIBase
             // 商店道具购买按钮
             case "Bto_Buy":
                 // 排除没有点击任何道具
-                if (item == null || Datas.GetInstance().CoinNum < Datas.GetInstance().ItemDataDic[item.id].cost)
+                if (Datas.GetInstance().clickitem == null)
+                {
+                    EventCenter.GetInstance().EventTrigger<string>("Tips", "没有选择任何商品");
+                    UIMgr.GetInstance().ShowPanel<TipsPanel>("TipsPanel", E_UI_Layer.Above);
                     return;
+                }
+                else if ( Datas.GetInstance().CoinNum < Datas.GetInstance().ItemDataDic[Datas.GetInstance().clickitem.id].cost)
+                {
+                    EventCenter.GetInstance().EventTrigger<string>("Tips", "没钱就别摸");
+                    UIMgr.GetInstance().ShowPanel<TipsPanel>("TipsPanel", E_UI_Layer.Above);
+                    return;
+                }
                 // 商品-1
-                item.currentNum--;
-                EventCenter.GetInstance().EventTrigger<int>("NPC道具数量更新", item.id);
-                EventCenter.GetInstance().EventTrigger<ItemClick>("成功购买的道具", item);
-                Datas.GetInstance().CoinNum -= Datas.GetInstance().ItemDataDic[item.id].cost;
+                Datas.GetInstance().clickitem.currentNum--;
+                EventCenter.GetInstance().EventTrigger<int>("NPC道具数量更新", Datas.GetInstance().clickitem.id);
+                EventCenter.GetInstance().EventTrigger<ItemClick>("成功购买的道具", Datas.GetInstance().clickitem);
+                Datas.GetInstance().CoinNum -= Datas.GetInstance().ItemDataDic[Datas.GetInstance().clickitem.id].cost;
                 break;
             // 商店道具出售按钮
             case "Bto_Sell":
@@ -90,7 +98,7 @@ public class ItemShopPanel : UIBase
                 {
                     ItemClick ic = itemParent.GetChild(i).GetComponent<ItemClick>();
 
-                    if (item.id != ic.id)
+                    if (Datas.GetInstance().clickitem.id != ic.id)
                         continue;
 
                     if (ic.currentNum <= Datas.GetInstance().ItemDataDic[ic.id].maxNum)

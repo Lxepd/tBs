@@ -18,6 +18,11 @@ public class ItemClick : ImgClickBase
     {
         base.Start();
         img = GameTool.FindTheChild(gameObject, "Img").GetComponent<Image>();
+
+        EventCenter.GetInstance().AddEventListener("道具减少", () =>
+        {
+            
+        });
     }
     private void Update()
     {
@@ -30,13 +35,14 @@ public class ItemClick : ImgClickBase
             GameTool.FindTheChild(UIMgr.GetInstance().GetLayerFather(E_UI_Layer.Above).gameObject, "NameTest").GetComponent<Text>().text = img.sprite.name;
             // 发送玩家点击消息
             EventCenter.GetInstance().EventTrigger<ItemClick>("商店物品", this);
-
+            Datas.GetInstance().clickitem = this;
         });
         // PC端点击
         PCMouseDown(() =>
         {
             GameTool.FindTheChild(UIMgr.GetInstance().GetLayerFather(E_UI_Layer.Above).gameObject, "NameTest").GetComponent<Text>().text = img.sprite.name;
             EventCenter.GetInstance().EventTrigger<ItemClick>("商店物品", this);
+            Datas.GetInstance().clickitem = this;
         });
 
     }

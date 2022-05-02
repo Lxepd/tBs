@@ -55,9 +55,10 @@ public class MusicMgr : InstanceNoMono<MusicMgr>
             GameObject obj = new GameObject();
             obj.name = "BkMusic";
             bkMusic = obj.AddComponent<AudioSource>();
+            Object.DontDestroyOnLoad(obj);
         }
 
-        ResMgr.GetInstance().LoadAsync<AudioClip>("Music/Bk" + name, (clip) =>
+        ResMgr.GetInstance().LoadAsync<AudioClip>("Music/Bk/" + name, (clip) =>
         {
             bkMusic.clip = clip;
             bkMusic.loop = true;
