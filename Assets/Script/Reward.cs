@@ -51,6 +51,9 @@ public class Reward : MonoBehaviour
         {
             Datas.GetInstance().CoinNum += data.reward;
             PoolMgr.GetInstance().PushObj(data.path, gameObject);
+
+            MusicMgr.GetInstance().PlaySound("Coin Dropped on Ceramic Dish", false);
+            MusicMgr.GetInstance().ChangeSoundValue(.4f);
         }
     }
 }

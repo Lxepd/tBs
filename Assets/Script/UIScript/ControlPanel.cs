@@ -15,6 +15,8 @@ public class ControlPanel : UIBase
     // 最近的敌人
     private GameObject nearEnemy;
     private Transform gun;
+    private Animator anim;
+    private RectTransform takeRect;
 
     CtrlType ctrlType;
     Npc npcComponent;
@@ -26,6 +28,10 @@ public class ControlPanel : UIBase
 
     private void Start()
     {
+        GameObject takeImgGo = GameTool.FindTheChild(gameObject, "TakeImg").gameObject;
+        takeRect = takeImgGo.GetComponent<RectTransform>();
+        anim = takeImgGo.GetComponent<Animator>();
+
         EventCenter.GetInstance().AddEventListener<Vector2>("射击起点", (x) =>
         {
             PlayerPos = x;
@@ -74,10 +80,15 @@ public class ControlPanel : UIBase
             {
                 ctrlType = CtrlType.打开商店;
                 npcComponent = x.GetComponent<Npc>();
+
+                anim.Play("TalkEffect");
+                takeRect.anchoredPosition = Vector2.zero;
             }
             else
             {
                 ctrlType = CtrlType.Null;
+                anim.Play("Null");
+                takeRect.anchoredPosition = new Vector2(5, 5);
             }
 
         });
@@ -135,9 +146,15 @@ public class ControlPanel : UIBase
         {
             case "TakeBto":
                 SwitchBtoAct();
+
+                MusicMgr.GetInstance().PlaySound("African3", false);
+                MusicMgr.GetInstance().ChangeSoundValue(.5f);
                 break;
             case "BagBto":
                 OpenBag();
+
+                MusicMgr.GetInstance().PlaySound("African3", false);
+                MusicMgr.GetInstance().ChangeSoundValue(.5f);
                 break;
         }
     }
@@ -159,7 +176,7 @@ public class ControlPanel : UIBase
              ti.hurt = Datas.GetInstance().weaponData.atk;
 
              MusicMgr.GetInstance().PlaySound("LASRGun_Plasma Rifle Fire_03", false);
-             MusicMgr.GetInstance().ChangeSoundValue(.5f);
+             MusicMgr.GetInstance().ChangeSoundValue(.3f);
          });
 
         currentBulletNum = (currentBulletNum <= 0) ? 0 : currentBulletNum - 1;

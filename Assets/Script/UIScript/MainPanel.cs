@@ -6,10 +6,11 @@ using System.IO;
 using System.Xml;
 
 public class MainPanel : UIBase
-{
+{ 
+
     protected override void OnClick(string btnName)
     {
-        switch(btnName)
+        switch (btnName)
         {
             case "Bto_Play":
                 // 展开<选择角色>界面
@@ -17,6 +18,9 @@ public class MainPanel : UIBase
                 // 隐藏<主界面>
                 UIMgr.GetInstance().HidePanel("MainPanel");
                 Datas.GetInstance().isLoad = false;
+
+                MusicMgr.GetInstance().PlaySound("African3", false);
+                MusicMgr.GetInstance().ChangeSoundValue(.5f);
                 break;
             case "Bto_Quit":
 #if UNITY_EDITOR
@@ -24,6 +28,8 @@ public class MainPanel : UIBase
 #else
                 Application.Quit();
 #endif
+                MusicMgr.GetInstance().PlaySound("African3", false);
+                MusicMgr.GetInstance().ChangeSoundValue(.5f);
                 break;
 
         }

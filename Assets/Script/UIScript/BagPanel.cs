@@ -57,6 +57,8 @@ public class BagPanel : UIBase
         {
             case "CloseBagBto":
                 HideBagPanel();
+                MusicMgr.GetInstance().PlaySound("African3", false);
+                MusicMgr.GetInstance().ChangeSoundValue(.5f);
                 break;
         }
     }

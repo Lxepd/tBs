@@ -69,6 +69,8 @@ public class ItemShopPanel : UIBase
             case "Bto_ShopQuit":
                 // 隐藏<商店>界面
                 UIMgr.GetInstance().HidePanel("ItemShopPanel");
+                MusicMgr.GetInstance().PlaySound("African3", false);
+                MusicMgr.GetInstance().ChangeSoundValue(.5f);
                 break;
             // 商店道具购买按钮
             case "Bto_Buy":
@@ -90,6 +92,9 @@ public class ItemShopPanel : UIBase
                 EventCenter.GetInstance().EventTrigger<int>("NPC道具数量更新", Datas.GetInstance().clickitem.id);
                 EventCenter.GetInstance().EventTrigger<ItemClick>("成功购买的道具", Datas.GetInstance().clickitem);
                 Datas.GetInstance().CoinNum -= Datas.GetInstance().ItemDataDic[Datas.GetInstance().clickitem.id].cost;
+                
+                MusicMgr.GetInstance().PlaySound("African3", false);
+                MusicMgr.GetInstance().ChangeSoundValue(.5f);
                 break;
             // 商店道具出售按钮
             case "Bto_Sell":
