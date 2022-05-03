@@ -46,6 +46,9 @@ public class ThrowItem : MonoBehaviour
                 {
                     EventCenter.GetInstance().EventTrigger<float>("µÐÈË¿ÛÑª", hurt);
                     PoolMgr.GetInstance().PushObj(name, gameObject);
+
+                    MusicMgr.GetInstance().PlaySound("HIT_METAL_WRENCH_HEAVIEST_02", false);
+                    MusicMgr.GetInstance().ChangeSoundValue(.3f);
                 }
                 break;
             case WhoShoot.Enemy:
